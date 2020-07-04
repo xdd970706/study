@@ -1,0 +1,93 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cftreeitem/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script>
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div MMString:name="TagLibraries/CFML/cftreeitem/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/Value" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="thevalue" type="text" class="basicTextField" id="attr:cftreeitem:value" attname="value" required="true" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/Display" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="display" type="text" class="basicTextField" id="attr:cftreeitem:display" attname="display" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/Parent" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="theparent" type="text" class="basicTextField" id="attr:cftreeitem:parent" attname="parent" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/Query" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="thequery" type="text" class="basicTextField" id="attr:cftreeitem:query" attname="query" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/Image" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="theimg" type="text" class="basicTextField" id="attr:cftreeitem:img" attname="img" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cftreeitem/button/browseBtn/Browse" onClick="tagDialog.browseFile('theimg');focus(this)">
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/Image_1" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="theimgopen" type="text" class="basicTextField" id="attr:cftreeitem:imgopen" attname="imgopen" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cftreeitem/button/browseBtn/Browse" onClick="tagDialog.browseFile('theimgopen');focus(this)">
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/HREF" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="thehref" type="text" class="basicTextField" id="attr:cftreeitem:href" attname="href" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftreeitem/text/Target" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="thetarget" type="text" class="basicTextField" id="attr:cftreeitem:target" attname="target" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap"> 
+        <input type="checkbox" id="attr:cftreeitem:queryasroot" name="thequeryasroot" attname="queryasroot" truevalue="yes" falsevalue="no"/>
+        <MMString:loadString id="TagLibraries/CFML/cftreeitem/checkbox/thequeryasroot/Query" /></td>
+    </tr>
+    <tr valign="baseline">  
+      <td nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap"> 
+        <input type="checkbox" id="attr:cftreeitem:expand" name="theexpand" attname="expand" truevalue="yes" falsevalue="no" checked="true" />
+        <MMString:loadString id="TagLibraries/CFML/cftreeitem/checkbox/theexpand/Expand" /></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

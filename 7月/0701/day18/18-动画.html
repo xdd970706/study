@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 300px;
+				border: 1px solid;
+				margin: 50px auto;
+				background: url(img/ch.png) no-repeat;
+				animation: play 2s infinite step-start;
+				background-position-y: 0;
+			}
+			@keyframes play{
+				0%{
+					background-position-x: 0;
+				}
+				14.28%{
+					background-position-x:-180px;
+				}
+				28.56%{
+					background-position-x:-360px;
+				}
+				42.84%{
+					background-position-x:-540px;
+				}
+				57.12%{
+					background-position-x:-720px;
+				}
+				71.4%{
+					background-position-x:-900px;
+				}
+				85.68%{
+					background-position-x:-1080px;
+				}
+				100%{
+					background-position-x: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+<participant name="FlashForm_FormItem_Text">
+  <translator priority=450 TYPE="renderer">
+    <searchPatterns>
+      <searchPattern requiredLocation="tagName">cfformitem</searchPattern>
+      <searchPattern requiredLocation="attribute+type">script</searchPattern>
+    </searchPatterns>
+    <translations>
+      <translation whereToSearch="tag+cfformitem" limitSearch="all" translationType="as is">
+            <display><![CDATA[<input type="hidden"/>]]></display>
+      </translation>
+    </translations>
+  </translator>
+</participant>

@@ -1,0 +1,15 @@
+<html>
+<head>
+<script language="JavaScript">
+// Copyright 2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+
+if (typeof JSBridge != 'undefined') 
+{
+	JSBridge.init();
+	dw.registerIdleHandler("jsbridge-pump", function() { if (!dw.isModalDialogShowing()) JSBridge.pump();}, 1);
+}
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>按钮</title>
+<style>
+	.button1{
+		position:relative;
+		background-color:#4cAF50;
+		font-size:28px;
+		border:none;
+		color:#ffffff;
+		paddding:20px;
+		width:200px;
+		text-align:center;
+		text-decoration:none;
+		cursor:pointer;
+		overflow: hidden;
+		transition-duration: 0.4s;
+		}
+	.button1:after{
+		content: "";
+		background: red;
+		display: block;
+		position: absolute;
+		padding-top: 350%;
+		padding-left: 350%;
+		margin-left: -20px!important;
+		margin-top: -120%;
+		opacity: 0;
+		transition: all 0.8s
+		}
+	.button1:active:after {
+		padding: 0;
+		margin: 0;
+		opacity: 1;
+		transition: 0s
+		}
+	.button2{
+		position:relative;
+		background-color:#4cAF50;
+		font-size:28px;
+		border:none;
+		color:#ffffff;
+		paddding:40px;
+		width:150px;
+		text-align:center;
+		text-decoration:none;
+		cursor:pointer;
+		overflow: hidden;
+		box-shadow:0 9px #999;
+		}
+	.button2:active{
+		background-color:#3e8e41;
+		box-shadow:0 5px #999;
+		transform:translateY(4px);	
+			}	
+</style>
+</head>
+<body>
+<button class="button1">波纹效果</button>
+<button class="button2">按压效果</button>
+</body>
+</html>

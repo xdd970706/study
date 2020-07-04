@@ -1,0 +1,587 @@
+<!--
+/*************************************************************************
+ *
+ * ADOBE CONFIDENTIAL
+ * ___________________
+ *
+ *  Copyright 2011 Adobe Systems Incorporated
+ *  All Rights Reserved.
+ *
+ * NOTICE:  All information contained herein is, and remains
+ * the property of Adobe Systems Incorporated and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to Adobe Systems Incorporated and its
+ * suppliers and may be covered by U.S. and Foreign Patents,
+ * patents in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Adobe Systems Incorporated.
+ *
+ **************************************************************************/
+-->
+<html>
+<head>
+<title>BC Liquid Translator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=" />
+<style>
+</style>
+<script language="JavaScript" src="BCTranslatorsCommon.js"></script>	
+<script language="JavaScript">
+
+	
+	function getTranslatorInfo(){
+		returnArray = new Array(7);
+		returnArray[0] = "BUSINESS_CATALYST_LIQUID";					// The translatorClass
+		returnArray[1] = "BC Liquid";						// The title
+		returnArray[2] = "0";								// The number of extensions
+		returnArray[3] = "1";								// The number of expressions
+		returnArray[4] = "(\{\%)|LIQUID|(\{tag_)|(\{\{)";
+		returnArray[5] = "byExpression";       
+		returnArray[6] = "100";
+		return returnArray; 
+	}
+	
+	/**
+	 * Translator markup phase.
+	 *
+	 */
+	function translateMarkup(docNameStr, siteRootStr, inStr) {		
+		if (!MM.BC.SITE.getSiteID(null, docNameStr)) return inStr;
+		
+		if ( inStr.length <= 0 ){
+			return inStr;
+		}
+		
+		var outStr;
+		
+		try {
+		
+			outStr = replaceTextInBody(inStr, function(stringToTranslate) {
+
+			// replace invalid divs//
+				var replacedText = replaceInvalidIfs(stringToTranslate);
+replacedText = replaceTags( replacedText, true );				
+				replacedText = scanStringText(replacedText, replacer, shouldTranslate);
+				
+				return replacedText;
+			});
+			
+		} catch(e) {
+			return inStr;
+		}
+		
+		return outStr;
+	}
+
+	
+	/**
+	 * Replaces the tags and variables with their translated code
+	 */
+	function replacer( text) {
+		return replacerBase(text, replaceAll, shouldTranslate);
+			};
+
+	/**
+	 * Replaces the tags, variables, loops and ifs with their translated code
+	 */
+	function replaceAll(text) {
+		
+		var str = replaceVariables( text, true );
+		str = replaceLoops( str);
+		str = replaceConditionals( str);
+				return str;
+	}
+			
+	/**
+	 * Determines if a piece of text should be translated
+	 */
+	function shouldTranslate(text) {
+		if (text.indexOf('tag_') == -1 && text.indexOf('{{') == -1 && text.indexOf('if') == -1 && text.indexOf('else') == -1 && text.indexOf('for') == -1) {
+			return false;
+		}
+		return true;
+		}
+
+	/**
+	 * Translator markup phase.
+	 * Used for show if/else section persistence (the if/else LIQUID tags are detected and made visible/invisible based on data in MM.BC.PERS_IFS
+	 */
+	function translateDOM( dom, sourceStr ) {
+		if (!MM.BC.SITE.getSiteID(null, dom.URL)) return;
+
+		dw.useTranslatedSource(true);
+		
+		var liquid_tags = dom.documentElement.getElementsByTagName('MM:DECORATION');
+		
+		
+		var repeatString = dw.loadString('bc/translator/repeat');
+		var ifString = dw.loadString('bc/translator/showif');
+		
+		function isTableElement(tag) {
+			if (!tag.tagName) return false;
+			
+			var tagName = tag.tagName.toLowerCase();
+			
+			if (tagName == "table" || tagName == "tbody" || tagName == "tfoot" || tagName == "thead") {
+				return true;
+			}
+			
+			return false;
+		}
+		
+		function isTableChildElement(tag) {
+			if (!tag.tagName) return false;
+			
+			var tagName = tag.tagName.toLowerCase();
+			
+			if (tagName == "tr" || tagName == "th" || tagName == "caption" || tagName == "thead" || tagName == "tfoot" || tagName == "tbody") {
+				return true;
+			}
+			
+			return false;
+		}
+
+		
+		function addOutline(tags) {
+			var outline;
+			
+			for (var i = 0; i < tags.length; i++) {
+				
+				var liquidTag = tags[i];
+				var type = liquidTag.getAttribute ? liquidTag.getAttribute("bcType") : "";
+
+				if (!type) continue;
+				
+				if (type.indexOf("LIQUID_LOOP") != -1) {
+					outline = repeatString;
+				} else {
+					if (type.indexOf("LIQUID_IF") != -1) {
+						outline = ifString;
+					} else {
+						continue;
+					}
+				}
+				
+				if (liquidTag && liquidTag.parentNode && isTableElement(liquidTag.parentNode)) {
+					var hasTableChild = false;
+					for (var j = 0; j < liquidTag.childNodes.length; j++) {
+						var tr = liquidTag.childNodes[j];
+
+						if (isTableChildElement(tr)) {
+							tr.setTranslatedAttribute("outline", outline);
+							tr.setTranslatedAttribute("outlineId", "unique");
+							hasTableChild = true;
+							break;
+						}
+					}
+					
+					if (!hasTableChild) {
+						for (var j = 0; j < liquidTag.childNodes.length; j++) {
+							var node = liquidTag.childNodes[j];
+							var type = node.getAttribute ? node.getAttribute("bcType") : "";
+							if (!type) continue;
+							var isLoopOrIf = (type.indexOf("LIQUID_LOOP") != -1 || type.indexOf("LIQUID_IF") != -1)
+							if (isLoopOrIf) {
+								for (var k = 0; k < node.childNodes.length; k++) {
+									var tr = node.childNodes[k];
+									if (isTableChildElement(tr)) {
+										tr.setTranslatedAttribute("outline", outline);
+					tr.setTranslatedAttribute("outlineId", "unique");
+					break;
+					}
+				}
+			}
+		}
+				}
+			}			
+		}
+		}
+		
+		addOutline(liquid_tags);
+	}
+		
+	
+	/**
+	 * Translate the liquid loops in the page
+	 */
+	function replaceLoops( text ) {
+		var translatedText = text;
+		
+		var repeatString = dw.loadString('bc/translator/repeat');
+		
+		function loopStartLocked(str) {
+			var startLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_START_LOOP"  BC.LOOP="true"';
+			startLock += ' depFiles=""';
+			startLock += ' orig="' + escape(  str  ) + '"><MM:DECORATION bcType="LIQUID_LOOP"  outline="' + repeatString + '" outlineId="unique"><MM:EndLock>';
+			
+			return startLock;
+		}
+
+		function loopEndLocked(str) {
+			var endLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_END_LOOP"  ';
+			endLock += ' depFiles=""';
+			endLock += ' orig="' + escape(  str  ) + '"></MM:DECORATION><MM:EndLock>';
+			return endLock;
+		} 
+
+		translatedText = translatedText.replace( /(\{\%\s*for\s*(\w*?)\s*in\s*([\w\W]*?)\s*-?\s*\%\})/gi, loopStartLocked);
+		translatedText = translatedText.replace( /(\{\%\s*endfor\s*-?\s*\%\})/gi, loopEndLocked);
+	
+		return translatedText;
+	};
+
+	/**
+	 * Translate the liquid conditional regions in the page
+	 */
+	function replaceConditionals( text ) {
+		var translatedText = text;		
+		var match;
+		
+		var showIfString = dw.loadString('bc/translator/showif');
+
+		function ifStartLocked(str) {
+			var condition = str.match(/\{\%\s*if\s*([\w\W]*?)\s*-?\s*\%\}/i);
+			var startLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_START_IF" BC.IF="true" condition="' + escape(condition[1]) + '"';
+			startLock += ' depFiles=""';
+			startLock += ' orig="' + escape(  str  ) + '"><MM:DECORATION bcType="LIQUID_IF"  outline="' + showIfString + '" outlineId="unique" type="BCIF" condition="' + escape(condition[1]) + '"><MM:EndLock>';
+			return startLock;
+		}
+		
+		function ifEndLocked(str) {
+			var endLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_END_IF"';
+			endLock += ' depFiles=""';
+			endLock += ' orig="' + escape(  str  ) + '"></MM:DECORATION><MM:EndLock>';
+			return endLock;
+		}
+		
+		function elseIfStartLocked(str) {
+			var startLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_START_ELSE_IF" BC.ELSE_IF="true"';
+			startLock += ' depFiles=""';
+			startLock += ' orig="' + escape(  str  ) + '"></MM:DECORATION><MM:DECORATION style="display:none" type="BCELSEIF"><MM:EndLock>';
+			return startLock;
+		}
+		
+		function elseStartLocked(str) {
+			var startLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_START_ELSE" BC.ELSE="true"';
+			startLock += ' depFiles=""';
+			startLock += ' orig="' + escape(  str  ) + '"></MM:DECORATION><MM:DECORATION style="display:none" type="BCELSE"><MM:EndLock>';
+
+			return startLock;
+		}
+		
+		
+		
+		translatedText = translatedText.replace( /(\{\%\s*if\s*(?:[\w\W]*?)\s*-?\s*\%\})/gi, ifStartLocked);
+		translatedText = translatedText.replace( /(\{\%\s*else\s*(?:[\w\W]*?)\s*-?\s*\%\})/gi, elseStartLocked);
+		translatedText = translatedText.replace( /(\{\%\s*elsif\s*(?:[\w\W]*?)\s*-?\s*\%\})/gi, elseIfStartLocked);
+		translatedText = translatedText.replace( /(\{\%\s*endif\s*(?:[\w\W]*?)\s*-?\s*\%\})/gi, ifEndLocked);
+		
+		return translatedText;
+	};
+
+	function getIfContent(str) {
+		var elseRegExp = /(\{\%\s*else\s*(?:[\w\W]*?)\s*-?\s*\%\})/i;
+		var elseIfRegExp = /(\{\%\s*elsif\s*(?:[\w\W]*?)\s*-?\s*\%\})/i;
+		
+		var elseIndex = str.search(elseRegExp);
+		var elseIfIndex = str.search(elseRegExp);
+		
+		var index = elseIndex;
+		
+		if (elseIfIndex < elseIndex) {
+			index = elseIfIndex;
+		}
+		
+		if (index != -1) {
+			return str.substring(0, index)
+		}
+		
+		return str;
+	}
+
+	
+	function hasInvalidContent(str) {
+		try {
+			
+			dw.useTranslatedSource(true);
+			
+			var isValid = false;
+			
+			var validationContent = str.replace(/\{%/gi, "<").replace(/%\}/gi, ">");
+			
+			var bRegionsExp = /<!--\s*TemplateBeginEditable[^>]*-->/gi;
+			var eRegionsExp = /<!--\s*TemplateEndEditable[^>]*-->/gi;
+			
+			var bRegions = validationContent.match(bRegionsExp);
+			var eRegions = validationContent.match(eRegionsExp);
+			
+			// remove editable regions comments; those comments make validation to consider a single <div> valid html
+			if (bRegions) {
+				for (var k = 0; k < bRegions.length; k++) {
+					validationContent = validationContent.replace(bRegions[k], "EDITABLE_BEGIN_" + k)
+				}
+			}
+			
+			if (eRegions) {
+				for (var k = 0; k < eRegions.length; k++) {
+					validationContent = validationContent.replace(eRegions[k], "EDITABLE_END_" + k);
+				}
+			}
+			
+			var dom = dw.getNewDocumentDOM();
+			dom.body.innerHTML = validationContent;
+			var sa = validationContent.replace(/\s*/gi, "").toLowerCase();
+			var sb = dom.body.innerHTML.replace(/\s*/gi, "").toLowerCase();
+			
+			if (sa == sb) {
+				isValid = true;
+			}
+			
+		} catch (e) {
+		}
+		
+		return !isValid;
+	}
+	
+	function sortByIndex(a, b) {
+		return MM.BC.UTILS.sortBy(a, b, "index")
+	}
+	
+	function findAllIfs(source) {
+		var ifRegExp =  /(\{\%\s*if\s*(?:[\w\W]*?)\s*-?\s*\%\})/i;
+		var endifRegExp =  /(\{\%\s*endif\s*(?:[\w\W]*?)\s*-?\s*\%\})/i;
+		var item = {};
+		var ifsIndexes = [];
+		var endifsIndexes = [];
+		
+		var str = source;
+		var match = str.match(ifRegExp);
+		var ifIndex;
+		var offset = 0;
+		
+		// find all ifs//
+		while (match) {
+			ifIndex = str.indexOf(match[0]);
+			if (!MM.BC.UTILS.isInTag(source, ifIndex + offset)) {
+			ifsIndexes.push({index : ifIndex + offset, string : match[0]});
+			} 
+			str = str.substr(ifIndex + match[0].length);
+			offset = offset + ifIndex + match[0].length;
+			match = str.match(ifRegExp);
+		}
+		
+		ifsIndexes.sort(sortByIndex);
+		
+		//MM.BC.log('ifsIndexes=' + MM.BC.JSON.stringify(ifsIndexes), true);
+		
+		str = source;
+		
+		match = str.match(endifRegExp);
+		var endIfIndex;
+		offset = 0;
+			
+		// find all endifs//
+		while (match) {
+			endIfIndex = str.indexOf(match[0]);
+			endifsIndexes.push({index : endIfIndex + offset, string : match[0]});
+			str = str.substr(endIfIndex + match[0].length);
+			offset = offset + endIfIndex + match[0].length;
+			match = str.match(endifRegExp);
+		}
+			
+		endifsIndexes.sort(sortByIndex);
+				
+		//MM.BC.log('endifsIndexes=' + MM.BC.JSON.stringify(endifsIndexes), true);
+				
+		var ifs = [];
+				
+		var ifItem, enfIfItem;
+		var entireIf, contentIf;
+				
+		// pair the ifs with endifs//
+		for (var i = ifsIndexes.length - 1; i >= 0 ; i--) {
+			ifItem = ifsIndexes[i];
+			enfIfItem = null;
+				
+			// find the paired endif for the current if//
+			for (var j = 0 ; j < endifsIndexes.length; j++) {
+				if (endifsIndexes[j].index > ifItem.index) {
+					enfIfItem = endifsIndexes[j];
+					break;
+				}
+			}
+			
+			// if was paired//
+			if (enfIfItem) {
+				entireIf = source.substring(ifItem.index, enfIfItem.index + enfIfItem.string.length);
+				contentIf = source.substring(ifItem.index + ifItem.string.length, enfIfItem.index);
+				// add the pair to ifs list//
+				ifs.push({
+					index : ifItem.index, 
+					endIndex : enfIfItem.index + enfIfItem.string.length, 
+					entireString : entireIf, 
+					ifString : ifItem.string, 
+					endifString : enfIfItem.string,
+					contentString : contentIf
+				});
+				// set current endif index with -1 to not be paired with other ifs// 
+				enfIfItem.index = -1;
+			}
+			
+		}
+				
+		ifs.sort(sortByIndex);
+				
+		//MM.BC.log('ifs=' + MM.BC.JSON.stringify(ifs), true);
+		
+		return ifs;
+	}
+				
+	function lockInvalidIf(str, display) {
+		var startLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_INVALID" ';
+		startLock += ' depFiles=""';
+		startLock += ' orig="' + escape(  str  ) + '">' + display + '<MM:EndLock>';
+		return startLock;
+				}
+				
+	function replaceInvalidIfs(source) {
+				
+		// get a list of all ifs in page, sorted by index//
+		var ifs = findAllIfs(source);
+		var skip = {};
+		var offset = 0;
+			
+		function nestedIf(ifObj, index) {
+			for (var i = 0; i < index; i++) {
+				if (ifObj.index > ifs[i].index && ifObj.endIndex < ifs[i].endIndex) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		for (var i = 0; i < ifs.length; i++) {
+			// if the if is still found in page (it may have been nested in an invalid div)//
+			var nested = nestedIf(ifs[i], i);
+				
+			if (!nested){
+				// check if it has invalid content//
+				var isInvalid = hasInvalidContent(ifs[i].contentString);
+			
+				// if yes//
+				if (isInvalid) {
+					// get locked version of it, we display an empty string for now//
+					var locked = lockInvalidIf(untranslate(ifs[i].contentString), '&nbsp;');
+			
+					// replace the invalid if content with the empty content//
+					source = source.substring(0, ifs[i].index + ifs[i].ifString.length + offset) + locked + source.substr(ifs[i].endIndex + offset - ifs[i].endifString.length);
+		
+					// update the offset, so next ifs are found corectly in source//
+					offset = offset + (locked.length - ifs[i].contentString.length);
+				}
+			}
+		}
+		
+		return source;
+	}
+	
+	
+	function replaceTags( inStr ) {
+		try {
+			function lockVariable(str, p1, offset, s) {
+				var before = s.substring(0, offset);
+				var gtIndex = before.lastIndexOf('>');
+				var ltIndex = before.lastIndexOf('<');
+				// if its inside a tag, don't replace//
+				if (ltIndex > gtIndex) {
+					return str;
+				}
+				
+				var match = str.match(/tag_\w*/i);
+				var replaceWith = str;
+				if (match) {
+					replaceWith = "{" + match[0] + "}";
+				}
+				
+				var translatedCode = '<MM_DYNAMIC_CONTENT DYNAMICDATA=1>'
+				+ '<MM:DECORATION HILITECOLOR="Dyn Untranslated Color">' + replaceWith + '</MM:DECORATION>'
+				+ '</MM_DYNAMIC_CONTENT>';
+				
+			
+				var endLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_TAG"';
+				endLock += ' depFiles=""';
+				endLock += ' orig="' + escape(str) + '">' + translatedCode + '<MM:EndLock>';
+
+				return endLock; 
+			}
+			 
+			inStr = inStr.replace(/(\{\s*tag_[^\}]*\})/gi, lockVariable)
+		} catch(e) {
+		}
+		return inStr;
+	}
+	
+	/**
+	 * Translate the liquid variables in the page
+	 */
+	function replaceVariables( inStr ) {
+		try {
+			function lockVariable(str) {
+				var match = str.match(/\{\{\s*([^\s}]+?)(\s*\|[^\}]+)*\}\}/i);
+				var replaceWith = str;
+				
+				if (match) {
+					replaceWith = "{{" + match[1] + "}}";
+				}
+				
+				var translatedCode = '<MM_DYNAMIC_CONTENT DYNAMICDATA=1>'
+				+ '<MM:DECORATION HILITECOLOR="Dyn Untranslated Color">' + replaceWith + '</MM:DECORATION>'
+				+ '</MM_DYNAMIC_CONTENT>';
+				
+			
+				var endLock = '<MM:BeginLock translatorClass="BUSINESS_CATALYST_LIQUID_VARIABLE"';
+				endLock += ' depFiles=""';
+				endLock += ' orig="' + escape(str) + '">' + translatedCode + '<MM:EndLock>';
+
+				return endLock; 
+			}
+			
+			var outStr = inStr;
+
+			outStr = outStr.replace(  /\{\{\s*[^\}]+\}\}/gi , lockVariable);
+		} catch(e) {
+		}
+		
+		return outStr;
+	};
+	
+	function untranslate( text ) {
+		if ( !text || !text.length ) {
+			return text;
+		}
+	
+		var dom = dw.getNewDocumentDOM();
+		var temp = text
+			.replace( /\<MM\:BeginLock /gi, "<MM_LockedRegion " )
+			.replace( /\<MM\:EndLock\>/gi, "</MM_LockedRegion>" );
+		dom.documentElement.outerHTML = temp;
+
+		var lockedRegions = dom.documentElement.getElementsByTagName( "MM_LockedRegion" );
+		if ( !lockedRegions || !lockedRegions.length ) {
+			return text;
+		}
+
+		for ( var i = 0; i < lockedRegions.length; i++ ) {
+			var original = unescape( lockedRegions[ i ].getAttribute( "orig" ) );
+			temp = temp.replace( lockedRegions[ i ].outerHTML, function(str) {
+				return original;
+			});
+		}
+
+		return temp;
+	};
+</script>
+</head>
+<body>
+</body>
+</html>

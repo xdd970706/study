@@ -1,0 +1,73 @@
+<tag name="META" endtag="no">
+<tagformat nlbeforetag="1" nlaftertag="1"/>
+<tagdialog file="meta.htm" />
+  <attributes>
+	<attrib name="CHARSET" type="Enumerated">
+      <attriboption value="iso-8859-1" caption="iso-8859-1"/>
+      <attriboption value="utf-8" caption="utf-8"/>
+      <attriboption value="shift_jis" caption="shift_jis"/>
+      <attriboption value="euc-jp" caption="euc-jp"/>
+	  <attriboption value="big5" caption="big5"/>
+	  <attriboption value="gb2312" caption="gb2312"/>
+	  <attriboption value="euc-kr" caption="euc-kr"/>
+	  <attriboption value="din_66003-kr" caption="din_66003-kr"/>
+	  <attriboption value="ns_4551-1-kr" caption="ns_4551-1-kr"/>
+	  <attriboption value="sen_850200_b" caption="sen_850200_b"/>
+	  <attriboption value="csISO2022jp" caption="csISO2022jp"/>
+	  <attriboption value="hz-gb-2312" caption="hz-gb-2312"/>
+	  <attriboption value="ibm852" caption="ibm852"/>
+	  <attriboption value="ibm866" caption="ibm866"/>
+	  <attriboption value="irv" caption="irv"/>
+	  <attriboption value="iso-2022-kr" caption="iso-2022-kr"/>
+	  <attriboption value="iso-8859-2" caption="iso-8859-2"/>
+	  <attriboption value="iso-8859-3" caption="iso-8859-3"/>
+	  <attriboption value="iso-8859-4" caption="iso-8859-4"/>
+	  <attriboption value="iso-8859-5" caption="iso-8859-5"/>
+	  <attriboption value="iso-8859-6" caption="iso-8859-6"/>
+	  <attriboption value="iso-8859-7" caption="iso-8859-7"/>
+	  <attriboption value="iso-8859-8" caption="iso-8859-8"/>
+	  <attriboption value="iso-8859-9" caption="iso-8859-9"/>
+	  <attriboption value="koi8-r" caption="koi8-r"/>
+	  <attriboption value="ks_c_5601" caption="ks_c_5601"/>
+	  <attriboption value="windows-1250" caption="windows-1250"/>
+	  <attriboption value="windows-1251" caption="windows-1251"/>
+	  <attriboption value="windows-1252" caption="windows-1252"/>
+	  <attriboption value="windows-1253" caption="windows-1253"/>
+	  <attriboption value="windows-1254" caption="windows-1254"/>
+	  <attriboption value="windows-1255" caption="windows-1255"/>
+	  <attriboption value="windows-1256" caption="windows-1256"/>
+	  <attriboption value="windows-1257" caption="windows-1257"/>
+	  <attriboption value="windows-1258" caption="windows-1258"/>
+	  <attriboption value="windows-874" caption="windows-874"/>
+	  <attriboption value="x-euc" caption="x-euc"/>
+	  <attriboption value="asmo-708" caption="asmo-708"/>
+	  <attriboption value="dos-720" caption="dos-720"/>
+	  <attriboption value="dos-862" caption="dos-862"/>
+	  <attriboption value="dos-874" caption="dos-874"/>
+	  <attriboption value="cp866" caption="cp866"/>
+	  <attriboption value="cp1256" caption="cp1256"/>
+		</attrib>
+    <attrib name="NAME" type="Enumerated">
+      <attriboption value="Content-Type" caption="Content-Type"/>
+      <attriboption value="Description" caption="Description"/>
+      <attriboption value="Keywords" caption="Keywords"/>
+      <attriboption value="Expires" caption="Expires"/>
+      <attriboption value="Reply-to" caption="Reply-to"/>
+      <attriboption value="PICS-Label" caption="PICS-Label"/>
+      <attriboption value="viewport" caption="viewport"/>
+		</attrib>
+    <attrib name="HTTP-EQUIV" type="Enumerated">
+      <attriboption value="Content-Type" caption="Content-Type"/>
+      <attriboption value="Expires" caption="Expires"/>
+      <attriboption value="Description" caption="Description"/>
+      <attriboption value="Keywords" caption="Keywords"/>
+      <attriboption value="PICS-Label" caption="PICS-Label"/>
+      <attriboption value="Refresh" caption="Refresh"/>
+      <attriboption value="Reply-to" caption="Reply-to"/>
+		</attrib>
+    <attrib name="CONTENT" type="Text" />
+	</attributes>
+	<attribcategories>
+		<attribgroup name="General" elements="content,name,http-equiv" />
+	</attribcategories>
+</tag>

@@ -1,0 +1,82 @@
+<tag name="animateTransform" casesensitive="yes" endtag="yes">
+	<tagformat indentcontents="yes" formatcontents="yes" nlbeforetag="1" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1" />
+	<attributes>
+		<attrib name="id" type="Text" casesensitive="yes"/>
+		<attrib name="xml:base" type="Text" casesensitive="yes"/>
+		<attrib name="xml:lang" type="Text" casesensitive="yes"/>
+		<attrib name="xml:space" type="Enumerated" casesensitive="yes">
+			<attriboption value="default" caption="default" />
+			<attriboption value="preserve" caption="preserve" />
+		</attrib>
+		<attrib name="requiredFeatures" type="Text" casesensitive="yes"/>
+		<attrib name="requiredExtensions" type="Text" casesensitive="yes"/>
+		<attrib name="systemLanguage" type="Text" casesensitive="yes"/>
+		<attrib name="onbegin" type="Text" casesensitive="yes"/>
+		<attrib name="onend" type="Text" casesensitive="yes"/>
+		<attrib name="onrepeat" type="Text" casesensitive="yes"/>
+		<attrib name="onload" type="Text" casesensitive="yes"/>
+		<attrib name="externalResourcesRequired" type="Enumerated" casesensitive="yes">
+			<attriboption value="false" caption="false" />
+			<attriboption value="true" caption="true" />
+		</attrib>
+		<attrib name="xmlns:xlink" type="Text" casesensitive="yes"/>
+		<attrib name="xlink:type" type="Enumerated" casesensitive="yes">
+			<attriboption value="simple" caption="simple (default)" />
+		</attrib>
+		<attrib name="xlink:href" type="Text" casesensitive="yes"/>
+		<attrib name="xlink:role" type="Text" casesensitive="yes"/>
+		<attrib name="xlink:arcrole" type="Text" casesensitive="yes"/>
+		<attrib name="xlink:title" type="Text" casesensitive="yes"/>
+		<attrib name="xlink:show" type="Enumerated" casesensitive="yes">
+			<attriboption value="other" caption="other (default)" />
+		</attrib>
+		<attrib name="xlink:actuate" type="Enumerated" casesensitive="yes">
+			<attriboption value="onLoad" caption="onLoad (default)" />
+		</attrib>
+		<attrib name="attributeName" type="Text" casesensitive="yes"/>
+		<attrib name="attributeType" type="Text" casesensitive="yes"/>
+		<attrib name="begin" type="Text" casesensitive="yes"/>
+		<attrib name="dur" type="Text" casesensitive="yes"/>
+		<attrib name="end" type="Text" casesensitive="yes"/>
+		<attrib name="min" type="Text" casesensitive="yes"/>
+		<attrib name="max" type="Text" casesensitive="yes"/>
+		<attrib name="restart" type="Enumerated" casesensitive="yes">
+			<attriboption value="always" caption="always (default)" />
+			<attriboption value="never" caption="never" />
+			<attriboption value="whenNotActive" caption="whenNotActive" />
+		</attrib>
+		<attrib name="repeatCount" type="Text" casesensitive="yes"/>
+		<attrib name="repeatDur" type="Text" casesensitive="yes"/>
+		<attrib name="fill" type="Enumerated" casesensitive="yes">
+			<attriboption value="freeze" caption="freeze" />
+			<attriboption value="remove" caption="remove (default)" />
+		</attrib>
+		<attrib name="calcMode" type="Enumerated" casesensitive="yes">
+			<attriboption value="discrete" caption="discrete" />
+			<attriboption value="linear" caption="linear (default)" />
+			<attriboption value="paced" caption="paced" />
+			<attriboption value="spline" caption="spline" />
+		</attrib>
+		<attrib name="values" type="Text" casesensitive="yes"/>
+		<attrib name="keyTimes" type="Text" casesensitive="yes"/>
+		<attrib name="keySplines" type="Text" casesensitive="yes"/>
+		<attrib name="from" type="Text" casesensitive="yes"/>
+		<attrib name="to" type="Text" casesensitive="yes"/>
+		<attrib name="by" type="Text" casesensitive="yes"/>
+		<attrib name="additive" type="Enumerated" casesensitive="yes">
+			<attriboption value="replace" caption="replace (default)" />
+			<attriboption value="sum" caption="sum" />
+		</attrib>
+		<attrib name="accumulate" type="Enumerated" casesensitive="yes">
+			<attriboption value="none" caption="none (default)" />
+			<attriboption value="sum" caption="sum" />
+		</attrib>
+		<attrib name="type" type="Enumerated" casesensitive="yes">
+			<attriboption value="rotate" caption="rotate" />
+			<attriboption value="scale" caption="scale" />
+			<attriboption value="skewX" caption="skewX" />
+			<attriboption value="skewY" caption="skewY" />
+			<attriboption value="translate" caption="translate (default)" />
+		</attrib>
+	</attributes>
+</tag>

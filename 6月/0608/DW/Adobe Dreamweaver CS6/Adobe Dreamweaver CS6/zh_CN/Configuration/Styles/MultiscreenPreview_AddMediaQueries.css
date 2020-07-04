@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2008 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and may be covered by U.S. and Foreign Patents,
+* patents in process, and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+*
+* AdobePatentID="B564"
+* AdobePatentID="B565"
+*
+**************************************************************************/
+
+table#mainTable {
+		border-left: solid #ccc 1px;
+		border-bottom: solid #ccc 1px;
+}
+table#mainTable > tr > td, table#mainTable > tr > th {
+	border-top: solid #ccc 1px;
+	border-right: solid #ccc 1px;
+}
+.disabledText {
+	color: #ccc;	
+}
+select {
+	width: 170px;	
+}
+#helpText {
+	margin-top: 20px;	
+	width: 600px;
+}
+</style>

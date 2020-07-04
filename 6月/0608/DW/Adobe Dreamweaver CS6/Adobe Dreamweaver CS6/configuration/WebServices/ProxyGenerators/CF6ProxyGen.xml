@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxyrec>
+	<doctitle>
+    <MMString:loadString id="CF6ProxyGen_ProxyGenerators_01" />
+	</doctitle>
+	<properties>
+		<filename>
+			<![CDATA[CF6ProxyGen.htm]]>
+		</filename>
+		<introspectorfilename>
+			<![CDATA[ReflectJava]]>
+		</introspectorfilename>
+		<servermodels>
+			<![CDATA[ColdFusion]]>
+		</servermodels>
+		<file>
+			<![CDATA[CF6ProxyGen]]>
+		</file>
+	</properties>
+</proxyrec>

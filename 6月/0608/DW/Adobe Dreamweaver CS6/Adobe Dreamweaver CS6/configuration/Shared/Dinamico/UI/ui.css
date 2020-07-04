@@ -1,0 +1,50 @@
+/* Copyright 2009-2010 Adobe Systems Incorporated.  All rights reserved. */
+body {
+	margin-right: 5px;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.labelColumn {
+	width: 80px;
+}
+
+.labelColumn_relative{
+	width: 21%;
+}
+
+
+#dinamicoExtensions .labelColumn {
+	width: 100px;
+}
+
+#dinamicoExtensions .labelColumn_relative{
+	width: 26%;
+}
+
+
+.buttonsTable {
+	width: 100%;
+}
+.buttonsTable .spacer {
+	width: 100%;	
+}
+
+.hrRow {
+	padding: 5px 0 5px 0;
+}
+.buttonCell {
+	padding-left: 80px;
+	padding-right: 20px;
+	white-space: nowrap;
+}
+
+.filesTree {
+	width: 450px;
+	height: 140px;
+}
+
+#extList {
+	width: 170px;
+	height: 150px;
+}

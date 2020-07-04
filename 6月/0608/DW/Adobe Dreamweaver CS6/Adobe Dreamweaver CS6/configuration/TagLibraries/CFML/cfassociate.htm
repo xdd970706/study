@@ -1,0 +1,42 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="TagLibraries/CFML/cfassociate/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script>
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div MMString:name="TagLibraries/CFML/cfassociate/div/name/CFASSOCIATE"> 
+  <table border="0" cellspacing="4">
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfassociate/text/Base" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="thebasetag" type="text" class="basicTextField" id="attr:cfassociate:basetag" attname="basetag" required="true" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfassociate/text/Data" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="datacollection" type="text" class="basicTextField" id="attr:cfassociate:datacollection" attname="datacollection" />
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

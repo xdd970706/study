@@ -1,0 +1,333 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/Table/title" /></title>
+  
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var LANGUAGELIST; 
+var DIRLIST;
+var ALIGNLIST;
+var FRAMELIST;
+var RULESLIST;
+var theUIObjects; 
+
+// Color control elements
+var COLORP_BACK, COLORP_BORDER, COLORP_BORDERLIGHT, COLORP_BORDERDARK;  
+var TEXT_BACK, TEXT_BORDER, TEXT_BORDERLIGHT, TEXT_BORDERDARK;  
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+  updateColors();
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function updateUI(itemName)
+{
+  switch(itemName)
+  {
+    case "backColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_BACK,TEXT_BACK);
+      break;
+    }
+    case "backcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK);
+      break;
+    }
+    case "borderColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_BORDER,TEXT_BORDER);
+      break;
+    }
+    case "bordercolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BORDER,TEXT_BORDER);
+      break;
+    }
+    case "borderColorLightPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_BORDERLIGHT,TEXT_BORDERLIGHT);
+      break;
+    }
+    case "bordercolorlight":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BORDERLIGHT,TEXT_BORDERLIGHT);
+      break;
+    }
+    case "borderColorDarkPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_BORDERDARK,TEXT_BORDERDARK);
+      break;
+    }
+    case "bordercolordark":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BORDERDARK,TEXT_BORDERDARK);
+      break;
+    }
+  }
+}
+
+function updateColors()
+{
+  tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK);
+  tagDialog.updateColorPicker("colorField",COLORP_BORDER,TEXT_BORDER);
+  tagDialog.updateColorPicker("colorField",COLORP_BORDERLIGHT,TEXT_BORDERLIGHT);
+  tagDialog.updateColorPicker("colorField",COLORP_BORDERDARK,TEXT_BORDERDARK);
+}
+
+function initializeUI()
+{
+	LANGUAGELIST = new ListControl("thelang"); 
+	DIRLIST = new ListControl("thedir"); 
+	ALIGNLIST = new ListControl("thealign"); 
+	FRAMELIST = new ListControl("theframe"); 
+	RULESLIST = new ListControl("therules"); 	 
+
+	theUIObjects  = new Array(LANGUAGELIST,DIRLIST,ALIGNLIST,FRAMELIST,RULESLIST); 
+
+  COLORP_BACK = dwscripts.findDOMObject("backColorPicker");
+  COLORP_BORDER = dwscripts.findDOMObject("borderColorPicker");
+	COLORP_BORDERLIGHT = dwscripts.findDOMObject("borderColorLightPicker");
+	COLORP_BORDERDARK = dwscripts.findDOMObject("borderColorDarkPicker");
+  
+  TEXT_BACK = dwscripts.findDOMObject("thebackcolor");
+  TEXT_BORDER = dwscripts.findDOMObject("thebordercolor");
+	TEXT_BORDERLIGHT = dwscripts.findDOMObject("thebordercolorlight");
+	TEXT_BORDERDARK = dwscripts.findDOMObject("thebordercolordark");
+  
+  updateColors(); 
+  tagDialog.populateDropDownList(FRAMELIST, theTableFrameVal, theTableFrameVal, 1); 
+  tagDialog.populateDropDownList(RULESLIST, theTableRulesCap, theTableRulesVal, 1); 
+  tagDialog.populateDropDownList(LANGUAGELIST, theLanguagesCap, theLanguagesVal, 1); 
+  tagDialog.populateDropDownList(DIRLIST, theDirectionCap, theDirectionVal, 1); 
+  tagDialog.populateDropDownList(ALIGNLIST, theAlignTableCap, theAlignTableVal, 0); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/HTML/Table/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Alignment" /> </td>
+      <td nowrap="nowrap">
+        <select name="thealign" class="alignList" id="attr:table:align" attname="align">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Width" /> </td>
+      <td nowrap="nowrap">
+        <input name="thewidth" type="text" class="smallNumOrChar" id="attr:table:width" attname="width" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Border" /> </td>
+      <td nowrap="nowrap">
+        <input name="theborder" type="text" class="smallNumOrChar" id="attr:table:border" attname="border" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Cell" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecellpadding" type="text" class="smallNumOrChar" id="attr:table:cellpadding" attname="cellpadding" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Cell_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecellspacing" type="text" class="smallNumOrChar" id="attr:table:cellspacing" attname="cellspacing" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Background" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="backColorPicker" value="" onChange="updateUI('backColorPicker')"> <input name="thebackcolor" type="text" class="smallTField" id="attr:table:backcolor" onBlur="updateUI('backcolor')" value="" attname="bgcolor">
+        <img src="../../Shared/MM/Images/transparent.gif" width="10" height="1"> <!-- spacer - do not remove --> 
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Frame" /> </td>
+      <td nowrap="nowrap">
+        <select name="theframe" class="oneWordOptionList" id="attr:table:frame" attname="frame">
+           
+        </select>&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/3" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/6" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Rules" /> </td>
+      <td nowrap="nowrap">
+        <select name="therules" class="oneWordOptionList" id="attr:table:rules" attname="rules">
+           
+        </select>&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/3" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/6" />
+      </td>
+    </tr>
+  </table> 
+</div> 
+<div MMString:name="TagLibraries/HTML/Table/div/name/Browser"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Height" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheight" type="text" class="smallNumOrChar" id="attr:table:height" attname="height" />&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/2" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/11" />&nbsp;<img src="../../Shared/MM/Images/Opera.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Opera" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/21" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Columns" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecols" type="text" class="smallNumOrChar" id="attr:table:cols" attname="cols" />&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/3" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/4" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Horizontal" /> </td>
+      <td nowrap="nowrap">
+        <input name="thehspace" type="text" class="smallNumOrChar" id="attr:table:hspace" attname="hspace" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/2" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Vertical" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevspace" type="text" class="smallNumOrChar" id="attr:table:vspace" attname="vspace" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/2" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Background_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thebackground" type="text" class="basicTextField" id="attr:table:background" attname="background" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/HTML/Table/button/browseBtn/Browse" onClick="tagDialog.browseFile('thebackground');focus(this)">&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/3" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/4" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Border_1" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="borderColorPicker" value="" onChange="updateUI('borderColorPicker')"> <input name="thebordercolor" type="text" class="smallTField" id="attr:table:bordercolor" onBlur="updateUI('bordercolor')" value="" attname="bordercolor">&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/2" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/4" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Border_2" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="borderColorLightPicker" value="" onChange="updateUI('borderColorLightPicker')">
+        <input name="thebordercolorlight" type="text" class="smallTField" id="attr:table:bordercolorlight" onBlur="updateUI('bordercolorlight')" value="" attname="bordercolorlight">&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/2" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Border_3" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="borderColorDarkPicker" value="" onChange="updateUI('borderColorDarkPicker')">
+        
+<input name="thebordercolordark" type="text" class="smallTField" id="attr:table:bordercolordark" onBlur="updateUI('bordercolordark')" value="" attname="bordercolordark">
+        &nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/Table/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/Table/text/2" />
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/HTML/Table/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:table:class" attname="class" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:table:id" attname="id" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:table:class" attname="style" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:table:title" attname="title" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><br /><MMString:loadString id="TagLibraries/HTML/Table/text/Summary" /> </td>
+      <td nowrap="nowrap"> 
+        <textarea name="html:table:summary"  wrap="virtual" class="stringOrMsgField" attname="summary"></textarea>
+      </td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/HTML/Table/div/name/Language"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Direction" /> </td>
+      <td nowrap="nowrap">
+        <select name="thedir" class="dirLangList" id="attr:table:dir" attname="dir"> 
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap"></td>
+      <td nowrap="nowrap"></td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/Table/text/Language" /> </td>
+      <td nowrap="nowrap">
+        <select name="thelang" class="dirLangList" id="attr:table:lang" attname="lang" editable="true"> 
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/HTML/Table/div/name/Events"> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onClick"> 
+    <textarea name="theonClick" attname="onClick" id="attr:table:onclick" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onDblClick"> 
+    <textarea name="theonDblClick" attname="onDblClick" id="attr:table:ondblclick" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onMouseDown"> 
+    <textarea name="theonMouseDown" attname="onMouseDown" id="attr:table:onmousedown" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onMouseUp"> 
+    <textarea name="theonMouseUp" attname="onMouseUp" id="attr:table:onmouseup" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onMouseOver"> 
+    <textarea name="theonMouseOver" attname="onMouseOver" id="attr:table:onmouseover" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onMouseMove"> 
+    <textarea name="theonMouseMove" attname="onMouseMove" id="attr:table:onmousemove" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onMouseOut"> 
+    <textarea name="theonMouseOut" attname="onMouseOut" id="attr:table:onmouseout" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onKeyPress"> 
+    <textarea name="theonKeyPress" attname="onKeyPress" id="attr:table:onkeypress" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onKeyDown"> 
+    <textarea name="theonKeyDown" attname="onKeyDown" id="attr:table:onkeydown" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/Table/div/name/onKeyUp"> 
+    <textarea name="theonKeyUp" attname="onKeyUp" id="attr:table:onkeyup" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+</div>
+</body>
+</html>

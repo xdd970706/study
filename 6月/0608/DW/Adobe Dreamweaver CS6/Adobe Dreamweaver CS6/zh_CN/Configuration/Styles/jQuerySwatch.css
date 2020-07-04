@@ -1,0 +1,325 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2012 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and may be covered by U.S. and Foreign Patents,
+* patents in process, and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+*
+**************************************************************************/
+
+body,div,p{
+    border:none;
+    font-size:12px;
+    margin:0;
+    font-family:'Lucida Grande', Tahoma ;
+    box-shadow:none;
+    padding:0;
+    border:0;
+    color:#000;
+    -webkit-transform:none;
+    -webkit-transition:none;
+    -webkit-box-shadow:none;
+    text-shadow:none;
+    text-transform:none;
+    text-align:left;
+    text-decoration:none;
+    font-weight:normal;
+    line-height:normal;
+    border-radius:0px;
+    border-image:none;
+}
+
+body:before, body:after, p:before, p:after {
+    content:"";
+}
+
+div{
+    background-color:transparent;
+}
+
+body, p{
+    background-color:#d6d6d6 ;
+    background-image:none;
+}
+
+p{
+    margin:0 5px 10px 0;
+    padding:0 10px 0 0;;
+}
+
+.dw_swatchFrame{
+    margin:0 3px 3px 0;
+    display:inline-block;
+    padding: 2px 2px 2px 2px;
+}
+
+.dw_swatch{
+    width:20px;
+    height:58px;
+    margin:0;
+}
+
+.dw_selected{
+    background-color:#6E96BE;
+}
+
+.dw_swatchFrame:hover {
+    cursor:pointer;
+}
+.dw_swatchContainer{
+    width:100%;
+}
+			
+.dw_defaultSwatch:hover {
+    cursor:pointer;
+    background-image:url("../jQuerySwatch/defaultstyleiconover.png");
+}
+
+.dw_defaultSwatch{
+    width:20px;
+    height:60px;
+    margin:0;
+    background-image:url("../jQuerySwatch/defaultstyleicon.png");
+}
+
+.dw_imageIcon{
+    margin:2px;
+    display:inline-block;
+}
+
+.dw_imageIcon:hover {
+    margin: 0;
+    border:solid #999 2px;
+    cursor:pointer;
+}
+
+.dw_iconSelected{
+    margin:0;
+    border:solid #6E96BE 2px;
+}
+
+.dw_defaultImageIcon{
+    margin:2px;
+    width:18px;
+    height:18px;
+    display:inline-block;
+    background-image:url("../jQuerySwatch/noicon.png");
+    border-radius: 10px;
+}
+
+.dw_defaultImageIcon:hover {
+    cursor:pointer;
+}
+
+h3{
+    font-size:12px;
+    margin:0 5px 5px 0;
+}
+
+body > div > div {
+    display:none;
+}
+            
+html,body{
+    height:100%;
+}
+
+#dw_content{
+    height:100%;
+}
+
+#dw_ListIconThemeContainer{
+    width:100%;
+}
+
+.dw_iconPosition:hover {
+    cursor:pointer;
+}
+
+.dw_iconPositionBackground {
+	background: #e6e6e6;
+	font-weight: bold;
+	color: #786d6d;
+	text-shadow:  0 1px 1px #eeeeee;
+background-image: linear-gradient( #FDFDFD, #CFCFCF );
+
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from( #FDFDFD ), to( #CFCFCF )); 
+	    font-family: Helvetica, Arial, sans-serif;
+	text-decoration: none;
+    -webkit-border-radius: 1em;
+	border-radius: 1em;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+
+.dw_iconPositionBorder{
+    border-top: 1px solid 	#fff;
+	border: 1px solid #e6e6e6;
+}
+
+.dw_iconPositionBorderSelected{
+    margin:0;
+    border:solid #6E96BE 2px;
+}
+
+.dw_iconPositionDefault{
+    width:90px;
+    height:35px;
+    display:inline-block;
+    margin:10px 10px 0 0;
+}
+
+.dw_iconPositionDefaultImage{
+    width:25px;
+    height:25px;
+    position:relative;
+    left: 5px;
+    top: 5px;
+}
+
+.dw_iconPositionDefault div{
+    position:relative;
+    top: -25px;
+    left: 15px;
+    color:grey;
+    margin: 10px 0 0 0;
+    padding: 0;
+    text-align:center;
+}
+
+.dw_iconPositionNoText{
+    width:90px;
+    height:35px;
+    display:inline-block;
+    margin:10px 10px 0 0;
+    -webkit-border-radius: 1em;
+	border-radius: 1em;
+}
+
+.dw_iconPositionNoTextImage{
+    width:25px;
+    height:25px;
+    position:relative;
+    left: 33px;
+    top: 5px;
+}
+
+.dw_iconPositionNoText div{
+    position:relative;
+    color:grey;
+    margin: 10px 0  0 0;
+    padding: 0;
+    text-align:center;
+    visibility: hidden;
+}
+
+.dw_iconPositionLeft{
+    width:90px;
+    height:35px;
+    display:inline-block;
+    margin:10px 10px 0 0;
+}
+
+.dw_iconPositionLeftImage{
+    width:25px;
+    height:25px;
+    position:relative;
+    left: 5px;
+    top: 5px;
+}
+
+.dw_iconPositionLeft div{
+    position:relative;
+    top: -25px;
+    left: 12px;
+    color:grey;
+    margin: 10px 0 0 0;
+    padding: 0;
+    text-align:center;
+
+}
+.dw_iconPositionRight{
+    width:90px;
+    height:35px;
+    display:inline-block;
+    margin:10px 10px 0 0;
+}
+
+.dw_iconPositionRightImage{
+    width:25px;
+    height:25px;
+    position:relative;
+    left: 60px;
+    top: -20px;
+}
+
+.dw_iconPositionRight div{
+    position:relative;
+    right: 10px;
+    color:grey;
+    padding: 10px 0 0 0;
+    text-align:center;
+
+}
+
+.dw_iconPositionTop{
+    width:90px;
+    height:58px;
+    display:inline-block;
+    margin:10px 10px 0 0;
+}
+
+.dw_iconPositionTopImage{
+    width:25px;
+    height:25px;
+    position:relative;
+    left: 33px;
+    top: 5px;
+}
+
+.dw_iconPositionTop div{
+    color:grey;
+    padding: 10px 0 0 0;
+    text-align:center;
+}
+
+.dw_iconPositionBottom{
+    width:90px;
+    height:58px;
+    display:inline-block;
+    margin:10px 10px 0 0;
+}
+
+.dw_iconPositionBottomImage{
+    width:25px;
+    height:25px;
+    position:relative;
+    left: 33px;
+    top: 28px;
+}
+
+.dw_iconPositionBottom div{
+    position:relative;
+    top: -28px;
+    color:grey;
+    padding: 10px 0 0 0;
+    text-align:center;
+}
+    
+.dw_iconLabel{
+    margin: 5px 0 5px 0;
+}
+.dw_iconPositionLabel{
+    margin: 10px 0 0 0;	
+}

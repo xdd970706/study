@@ -1,0 +1,23 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<TITLE><MMString:loadString id="Shared/Controls/String_Menu/DynamicTextField/title" /></TITLE>
+<SCRIPT>
+
+function controlFiles() {
+  return new Array(
+	"Shared/Controls/Scripts/DynamicTextField.js");
+}
+
+function controlSource(name) {
+  return '' +
+    '<INPUT TYPE="text" NAME="'+ name + '" STYLE="width:150px">' +
+     '<input type="image" src="../../Shared/UltraDev/Images/Boltup.gif" onClick="_' + name + '.launchDynamicData()" name="image">';
+}
+
+</SCRIPT>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</HEAD>
+<BODY>
+</BODY>
+</HTML>

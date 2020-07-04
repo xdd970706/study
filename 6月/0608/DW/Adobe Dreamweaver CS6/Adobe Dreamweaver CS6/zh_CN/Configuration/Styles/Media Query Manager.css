@@ -1,0 +1,165 @@
+﻿@charset "gb-18030";
+
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2008 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and may be covered by U.S. and Foreign Patents,
+* patents in process, and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+*
+**************************************************************************/
+
+#attachCssFilesSection {
+	padding:10px;
+	border:1px solid #999;
+	margin-top:10px;
+	width:500px;
+}
+
+#attachCssFilesHeader {
+	font-weight:bold;
+}
+
+#attachCssFilesBody {	
+	padding-left:35px;	
+	margin-top:10px;
+}
+
+#thisDialogAffectsOtherPagesWarning {
+	font-style:normal;	
+	margin-left:15px;
+	margin-top:8px;
+	margin-bottom:8px;
+	width:390px;
+}
+
+#includeMetaTagSection {
+	padding-top:5px;
+}
+
+#includeMetaTagLabel {
+	font-weight:bold;	
+}
+
+#metaTagBlurb {
+	padding-left:40px;
+	padding-top:10px;
+	font-style:normal;
+	width:450px;
+}
+
+#gridHeader {
+    border-top:1px #999 solid;
+    border-left:1px #999 solid;
+    border-right:1px #999 solid;
+    width:500px;
+	margin-top:20px;
+}
+
+#gridHeader td {
+	font-weight:bold;	
+	padding:3px;
+}
+
+.gridDescCol {
+	width:100px;
+	margin-right:10px;
+}
+
+.gridMediaQueryCol {
+	width:220px;
+	margin-right:10px;
+}
+
+#browserCtrlContainer {
+    border:1px #999 solid;
+    width:500px;
+    height:105px;
+}
+
+#browserCtrl {
+	width:498px;
+	height:105px;
+}
+
+#rowsContainer {
+	width:100%;
+	height:105px;
+	overflow:auto;	
+}
+
+#rowsContainer td{
+	padding:3px;
+}
+
+.gridRow {
+	cursor:pointer;
+	background-color:white;
+	font-family:"宋体-18030", "Adobe 黑体 Std R", "Adobe Heiti Std R", Arial, Helvetica, sans-serif;
+}
+
+.gridRow td {
+	border-bottom:1px solid #ccc;	
+	color:black;
+	font-size:11px;
+}
+
+.gridRowSelected {
+	cursor:pointer;
+	background-color:#316AC5;
+	font-family:"宋体-18030", "Adobe 黑体 Std R", "Adobe Heiti Std R", Arial, Helvetica, sans-serif;
+}
+
+.gridRowSelected td {
+	border-bottom:1px solid #ccc;	
+	color:white;	
+	font-size:11px;
+}
+
+#gridFooter {
+    border-bottom:1px #999 solid;
+    border-left:1px #999 solid;
+    border-right:1px #999 solid;
+    width:500px;
+}
+
+#propertiesSectionHeader {
+	font-weight:bold;
+	margin-top:5px;
+	margin-bottom:5px;	
+}
+
+#propertiesSectionBody {
+	padding-left:20px;	
+}
+
+.disabledText, .disabledText td {
+	color: #808080;	
+}
+
+.error {
+	border:1px red solid;		
+	-webkit-border-radius:5px;	
+	background-color:white;	
+	padding:3px;
+	text-align:center;
+}
+
+.errorHeader {	
+	color:red;	
+}
+
+.errorBody {
+	color:black;
+}

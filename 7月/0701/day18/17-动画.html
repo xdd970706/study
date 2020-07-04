@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				border: 1px solid;
+				/*动画名称*/
+				/* animation-name: rg; */
+				/*动画时间*/
+				/* animation-duration: 3s; */
+				/*动画延迟时间*/
+				/* animation-delay: 2s; */
+				/*动画类型*/
+				/* animation-timing-function: linear; */
+				/*动画执行次数*/
+				/* animation-iteration-count: infinite; */
+				/*动画方向*/
+				/* animation-direction:alternate; */
+				
+				/*缩写形式*/
+				animation: rg 3s linear infinite alternate;
+			}
+			div img{
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+			}
+			/*动画执行体*/
+			@keyframes rg{
+				from{
+					transform: translateX(0px) rotateZ(0deg);
+				}
+				to{
+					transform: translateX(800px) rotateZ(360deg);
+				}
+			}
+			
+			/*动画暂停*/
+			div:hover{
+				animation-play-state: paused;
+			}
+		</style>
+	</head>
+	<body>
+		<div><img src="img/10.jpg" ></div>
+	</body>
+</html>

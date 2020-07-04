@@ -1,0 +1,122 @@
+<html>
+<head>
+<!-- Copyright 2010 Adobe Systems Incorporated.  All rights reserved. -->
+<title>jQuery Mobile</title>
+<meta http-equiv="Content-Type" content="text/html; charset=">
+
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/jQuery/jQueryMobile/jQueryMobileUtils.js"></script>
+<script type="text/javascript" src="../Commands/jQMConstants.js"></script>
+<script type="text/javascript">
+
+if (typeof MM.jqmRolesDict === "undefined")
+{
+	var dict = MM.jqmRolesDict = {};
+	var roles = "autoform button collapsible collapsible-set content controlgroup fieldcontain footer header listview list-divider navbar nojs none page slider".split(/\s+/);
+	for (var i = 0; i < roles.length; ++i)
+		dict[roles[i]] = true;
+}
+
+var jqmRolesDict = MM.jqmRolesDict;
+
+var jqmRoleAttribute = "jQueryMobileRole";
+
+
+function translateDOM(dom, sourceStr)
+{
+	if(typeof dom !== 'undefined') {
+		dom.jQueryMobileComponents =  dom.jQueryMobileComponents || [];
+		
+		var eles = dom.getElementsByAttributeName("data-role");
+		var numEles = eles.length;
+		var deleteFunction = delFunc(dom);
+	
+		for (var i = 0; i < numEles; ++i)
+		{
+			var e = eles[i];
+			var role = e.getAttribute("data-role");
+			var trole = e.getTranslatedAttribute(jqmRoleAttribute);
+			if (!trole || role != trole)
+			{
+				setTranslatedAttributes(e, role);
+				dom.jQueryMobileComponents.push(e);
+			}
+			
+			e.addEventListener("DOMNodeRemovedFromDocument", deleteFunction, false);
+		}
+	
+		// Check if any of our known element components have become
+		// non-components.
+	
+		var comps = dom.jQueryMobileComponents;
+		var num = comps.length;
+		if (num)
+		{
+			var newcomps = dom.jQueryMobileComponents = [];
+			for (var i = 0; i < num; ++i)
+			{
+				var e = comps[i];
+				var role = e.getAttribute("data-role");
+				if (!role) {
+					removeTranslatedAttributes(e);
+				} else if (role != e.getTranslatedAttribute(jqmRoleAttribute)) {
+					setTranslatedAttributes(e, role);
+				}
+			}
+		}
+	}
+}
+
+/**
+  * Cleanly removes the input node from the DOM by manipulating it's outer HTML.
+ **/
+function removeNode(node, dom) {
+	var offsets = dom.nodeToOffsets(node);
+	var docEl = dom.documentElement;
+	var docElOuterHTML = docEl.outerHTML;
+	dom.documentElement.outerHTML = docElOuterHTML.substring(0, offsets[0]) + docElOuterHTML.substring(offsets[1]);
+}
+
+function setTranslatedAttributes(ele, role)
+{
+	if( !ele ) return;
+
+	var ustr = jqmRolesDict[role] ? "" : " (UNRECOGNIZED ROLE VALUE)"; // XXX: Localize
+	ele.setTranslatedAttribute("outline", "jQueryMobile: " + role + ustr);
+	ele.setTranslatedAttribute("outlineId", "unique");
+	ele.setTranslatedAttribute("outlineForSelection", "outlineForSelection");
+	ele.setTranslatedAttribute("hiliteChildrenOnSelect", "false");
+
+	ele.setTranslatedAttribute(jqmRoleAttribute, role);
+}
+
+function removeTranslatedAttributes(ele)
+{
+	if( !ele ) return;
+	
+	ele.removeTranslatedAttribute("outline");
+	ele.removeTranslatedAttribute("outlineId");
+	ele.removeTranslatedAttribute("outlineForSelection");
+	ele.removeTranslatedAttribute(jqmRoleAttribute);
+}
+
+function getTranslatorInfo()
+{
+	returnArray = new Array(7);
+	
+	returnArray[0] = "JQUERY_MOBILE"		// The translatorClass
+	returnArray[1] = "jQuery Mobile"		// The title
+	returnArray[2] = "0"					// The number of extensions. 0 indicates to run against all extensions
+	returnArray[3] = "1"					// The number of expressions"
+	returnArray[4] = "data-role="			// Expression for open
+	returnArray[5] = "byString"				// Run if doc contains expr
+	returnArray[6] = "50"					// priority order to apply translator
+		
+	return returnArray;
+} // getTranslatorInfo()
+</script>
+</head>
+
+<body>
+</body>
+</html>

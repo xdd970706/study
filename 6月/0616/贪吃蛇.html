@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>贪吃蛇</title>
+<style>
+	#map{
+		width:900px;
+		height:600px;
+		background:black;
+		position:relative;
+		}
+	#start{
+		border:none;
+		position:absolute;
+		left:50%;
+		top:50%;
+		transform:translate(-50%,-50%)
+		}
+	.snack{
+		position:absolute;
+		width:29px;
+		height:30px;
+		border-left:1px solid black;
+		}
+		#score{
+		position:absolute;
+		color:#fff;
+		left:50px;
+		top:8px;
+		font-size:20px;
+		}
+		.title{
+		position:absolute;
+		left:10px;
+		top:10px;
+		color:#fff;
+		}
+</style>
+</head>
+
+<body>
+	<div id="map">
+    	<button id="start" onclick="createSnack()">开始游戏</button>
+        <span class="title">得分:</span>
+        <span id="score"></span>
+    </div>
+    
+</body>
+<script>
+	var snackBody = [[12,14,null,"red"],[11,14,null,"yellow"],[10,14,null,"yellow"]];
+	var width = 30;
+	var height = 30;
+	var map = document.getElementById("map");
+	var direction = "right"
+	var food=[0,0,null,"yellow"]
+	var begin=0;
+	var score=0;
+	var points=document.getElementById('score');
+	function createSnack(){ 
+		document.getElementById('start').style.display = "none";
+		for(var i=0;i<snackBody.length;i++){
+			if(snackBody[i][2] == null){
+			this.snackBody[i][2] = document.createElement('div');
+			this.snackBody[i][2].style.left = this.snackBody[i][0]*30+"px";
+			this.snackBody[i][2].style.top = this.snackBody[i][1]*30+"px";
+			this.snackBody[i][2].style.background = this.snackBody[i][3];
+			this.snackBody[i][2].setAttribute("class","snack")
+		 	this.map.appendChild(this.snackBody[i][2]);	
+			}
+			}
+			this.begin=1;	
+		}
+		var timer = setInterval(function(){move()},100);
+		document.onkeydown=function(e){
+			if(e.which==37&&direction!="right"){
+				direction="left"
+				}
+			if(e.which==38&&direction!="down"){
+				direction="up"
+				}
+			if(e.which==39&&direction!="left"){
+				direction="right"
+				}
+			if(e.which==40&&direction!="up"){
+				direction="down"
+				}
+			
+		}
+	function move(){
+		direction=this.direction
+		if(this.begin==1){
+		switch(direction){
+			case "right":
+					for(var i = this.snackBody.length-1;i>0;i--){
+						this.snackBody[i][0]=this.snackBody[i-1][0]
+						this.snackBody[i][1]=this.snackBody[i-1][1]
+						}
+					this.snackBody[0][0] += 1;
+					for(var i=0;i<this.snackBody.length;i++){
+						this.snackBody[i][2].style.left=this.snackBody[i][0]*30+"px"
+						this.snackBody[i][2].style.top=this.snackBody[i][1]*30+"px"
+						}
+											
+				break;
+			case "left":
+				for(var i = this.snackBody.length-1;i>0;i--){
+						this.snackBody[i][0]=this.snackBody[i-1][0]
+						this.snackBody[i][1]=this.snackBody[i-1][1]
+						}
+				this.snackBody[0][0] -= 1;
+				for(var i=0;i<this.snackBody.length;i++){
+						this.snackBody[i][2].style.left=this.snackBody[i][0]*30+"px"
+						this.snackBody[i][2].style.top=this.snackBody[i][1]*30+"px"
+						}
+				break;
+			case "up":
+				for(var i = this.snackBody.length-1;i>0;i--){
+						this.snackBody[i][0]=this.snackBody[i-1][0]
+						this.snackBody[i][1]=this.snackBody[i-1][1]
+						}
+				this.snackBody[0][1] -= 1;
+				for(var i=0;i<this.snackBody.length;i++){
+						this.snackBody[i][2].style.left=this.snackBody[i][0]*30+"px"
+						this.snackBody[i][2].style.top=this.snackBody[i][1]*30+"px"
+						}
+				break;
+			case "down":
+				for(var i = this.snackBody.length-1;i>0;i--){
+						this.snackBody[i][0]=this.snackBody[i-1][0]
+						this.snackBody[i][1]=this.snackBody[i-1][1]
+						}
+				this.snackBody[0][1] += 1;
+				for(var i=0;i<this.snackBody.length;i++){
+						this.snackBody[i][2].style.left=this.snackBody[i][0]*30+"px"
+						this.snackBody[i][2].style.top=this.snackBody[i][1]*30+"px"
+						}
+				break;
+			}
+			this.createFood()
+			this.eatFood()
+			this.gameOver()
+			
+		}
+		}
+		
+		function createFood(){
+				if(this.food[2]!=null) return
+				var x = Math.floor(Math.random()*29)
+				var y = Math.floor(Math.random()*19)
+				snackBody.forEach((item,index)=>{
+					item[0]!=x?this.food[0]=x:this.food[0]=0;
+					})
+				snackBody.forEach((item,index)=>{
+					item[1]!=y?this.food[1]=y:this.food[1]=0;
+					})
+				this.food[2]=document.createElement('div');
+				this.food[2].setAttribute("class","snack");
+				this.food[2].style.background=this.food[3];
+				this.food[2].style.left = this.food[0]*30+"px";
+				this.food[2].style.top = this.food[1]*30+"px";
+				this.map.appendChild(this.food[2]);
+			}
+			function eatFood(){
+				if(this.snackBody[this.snackBody.length-1][0]==this.food[0]&&this.snackBody[this.snackBody.length-1][1]==this.food[1]){
+					if(this.food[2]!=null){
+						this.map.removeChild(this.food[2]);
+						this.food[2]=null;
+						this.snackBody.push(this.food);
+						this.createSnack()
+						this.score +=10
+						this.points.innerHTML=this.score;
+						console.log(this.points.innerHTML)
+						this.food=[0,0,null,"yellow"]
+					}
+					}
+				
+				}	
+				
+			function gameOver(){
+					if(this.snackBody[0][0]==this.snackBody[this.snackBody.length-1][0]&&this.snackBody[0][1]==this.snackBody[this.snackBody.length-1][1]){
+						this.begin=0;
+						alert("游戏结束")
+						}
+					if(this.snackBody[0][0]>29){
+						this.begin=0;
+						alert("游戏结束")
+						}
+					if(this.snackBody[0][1]>19){
+						this.begin=0;
+						alert("游戏结束")
+						}
+				}
+</script>
+</html>

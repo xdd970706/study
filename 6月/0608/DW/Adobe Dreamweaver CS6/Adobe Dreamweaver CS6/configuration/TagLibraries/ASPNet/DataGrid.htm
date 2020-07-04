@@ -1,0 +1,493 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/ASPNet/DataGrid/title" /></title>
+  <link rel="stylesheet" href="../../fields.css">
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Controls/Scripts/MultiStateCheckBox.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/******************* GLOBAL VARS *************************/
+var BORDERSTYLELIST;
+var GRIDLINESLIST;
+var HORIZONTALALIGNLIST;
+
+var theUIObjects; 
+
+// Color control elements
+var COLORP_BACK, COLORP_BORDER, COLORP_FORE,COLORP_AISBACK,COLORP_AISBORDER; 
+var TEXT_BACK, TEXT_BORDER, TEXT_FORE, TEXT_AISBACK, TEXT_AISBORDER; 
+
+var theAllowCustomPagingMultiStateCB; 
+var theAllowPagingMultiStateCB; 
+var theAllowSortingMultiStateCB; 
+var theAutoGenerateColumnsCB; 
+var theEnabledCB; 
+var theEnableViewStateCB; 
+var theShowFooterCB; 
+var theShowHeaderCB; 
+var theShowHeaderCB; 
+var theVisibleCB; 
+
+/*********************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+  updateColors();
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function updateUI(itemName)
+{
+
+  switch(itemName)
+  {
+    case "backColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_BACK,TEXT_BACK);
+      break;
+    }
+    case "backcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK);
+      break;
+    }
+    case "foreColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_FORE,TEXT_FORE);
+      break;
+    }
+    case "forecolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_FORE,TEXT_FORE);
+      break;
+    }
+    case "borderColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_BORDER,TEXT_BORDER);
+      break;
+    }
+    case "bordercolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BORDER,TEXT_BORDER);
+      break;
+    }
+    case "AISBackColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_AISBACK,TEXT_AISBACK);
+      break;
+    }
+    case "AISBackcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_AISBACK,TEXT_AISBACK);
+      break;
+    }
+    case "AISBorderColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_AISBORDER,TEXT_AISBORDER);
+      break;
+    }
+    case "AISBordercolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_AISBORDER,TEXT_AISBORDER);
+      break;
+    }
+    case "AllowCustomPaging":
+	{
+	  theAllowCustomPagingMultiStateCB.updateUI(); 
+	  break; 
+	} 	
+    case "AllowPaging":
+	{
+	  theAllowPagingMultiStateCB.updateUI(); 
+	  break; 
+	} 	
+    case "AllowSorting":
+	{
+	  theAllowSortingMultiStateCB.updateUI(); 
+	  break; 
+	} 	
+    case "AutoGenerateColumns":
+	{
+	  theAutoGenerateColumnsCB.updateUI(); 
+	  break; 
+	} 	
+    case "Enabled":
+	{
+	  theEnabledCB.updateUI(); 
+	  break; 
+	} 	
+    case "EnableViewState":
+	{
+	  theEnableViewStateCB.updateUI(); 
+	  break; 
+	} 	
+    case "ShowFooter":
+	{
+	  theShowFooterCB.updateUI(); 
+	  break; 
+	} 	
+    case "ShowHeader":
+	{
+	  theShowHeaderCB.updateUI(); 
+	  break; 
+	} 	
+    case "Visible":
+	{
+	  theVisibleCB.updateUI(); 
+	  break; 
+	} 	
+  }
+}
+
+function updateColors()
+{
+  tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK);
+  tagDialog.updateColorPicker("colorField",COLORP_BORDER,TEXT_BORDER);
+  tagDialog.updateColorPicker("colorField",COLORP_FORE,TEXT_FORE);
+  /*
+  tagDialog.updateColorPicker("colorField",COLORP_AISBACK,TEXT_AISBACK);
+  tagDialog.updateColorPicker("colorField",COLORP_AISBORDER,TEXT_AISBORDER);
+  */ 
+}
+
+function initializeUI()
+{
+  theAllowCustomPagingMultiStateCB = new MultiStateCheckBox("theAllowCustomPaging"); 
+  theAllowCustomPagingMultiStateCB.initializeUI();
+  theAllowPagingMultiStateCB = new MultiStateCheckBox("theAllowPaging"); 
+  theAllowPagingMultiStateCB.initializeUI();
+  theAllowSortingMultiStateCB = new MultiStateCheckBox("theAllowSorting"); 
+  theAllowSortingMultiStateCB.initializeUI();
+  theAutoGenerateColumnsCB = new MultiStateCheckBox("theAutoGenerateColumns"); 
+  theAutoGenerateColumnsCB.initializeUI();
+  theEnabledCB = new MultiStateCheckBox("theEnabled"); 
+  theEnabledCB.initializeUI();
+  theEnableViewStateCB = new MultiStateCheckBox("theEnableViewState"); 
+  theEnableViewStateCB.initializeUI();
+  theShowFooterCB = new MultiStateCheckBox("theShowFooter");   
+  theShowFooterCB.initializeUI();
+  theShowHeaderCB = new MultiStateCheckBox("theShowHeader");   
+  theShowHeaderCB.initializeUI();
+  theVisibleCB = new MultiStateCheckBox("theVisible");   
+  theVisibleCB.initializeUI();
+  
+  BORDERSTYLELIST = new ListControl("theborderstyle"); 
+  GRIDLINESLIST = new ListControl("thegridline"); 
+  HORIZONTALALIGNLIST = new ListControl("thehorizontalalign"); 
+  theUIObjects = new Array(BORDERSTYLELIST,HORIZONTALALIGNLIST,GRIDLINESLIST); 
+
+  COLORP_BACK = dwscripts.findDOMObject("backColorPicker");
+  TEXT_BACK = dwscripts.findDOMObject("thebackcolor");  
+  
+  COLORP_BORDER = dwscripts.findDOMObject("borderColorPicker"); 
+  TEXT_BORDER = dwscripts.findDOMObject("thebordercolor");
+  
+  COLORP_FORE = dwscripts.findDOMObject("foreColorPicker"); 
+  TEXT_FORE = dwscripts.findDOMObject("theforecolor");  
+/*
+  COLORP_AISBACK = dwscripts.findDOMObject("AISBackColorPicker");
+  TEXT_AISBACK = dwscripts.findDOMObject("theAlternatingItemStyle-BackColor");    
+
+  COLORP_AISBORDER = dwscripts.findDOMObject("AISBorderColorPicker");
+  TEXT_AISBORDER = dwscripts.findDOMObject("theAlternatingItemStyle-BorderColor");    
+*/ 
+  updateColors(); 
+  tagDialog.populateDropDownList(BORDERSTYLELIST, theStylesCap, theStylesVal, 1); 
+  tagDialog.populateDropDownList(GRIDLINESLIST, theStandardGridlinesCap, theStandardGridlinesVal, 1);
+  tagDialog.populateDropDownList(HORIZONTALALIGNLIST, theStandardAlignsCap, theStandardAlignsVal, 1); 
+}
+</script>
+</head>
+
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/General"> 
+  <input type="hidden" name="therunat" attname="runat" value="server" required="true" /> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="aspnet:datagrid:id" attname="id" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Background" /> </td>
+      <td nowrap="nowrap">
+        <input name="theBackImageUrl" type="text" class="basicTextField" id="attr:aspnet:BackImageUrl:advertisementfile" attname="BackImageUrl" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/ASPNet/DataGrid/button/browseBtn/Browse" onClick="tagDialog.browseFile('theBackImageUrl');focus(this)">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Data" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedatakeyfield" type="text" class="basicTextField" id="aspnet:datagrid:datakeyfield" attname="datakeyfield" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Data_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedatamember" type="text" class="basicTextField" id="aspnet:datagrid:datamember" attname="datamember" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Data_2" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedatasource" type="text" class="basicTextField" id="aspnet:datagrid:datasource" attname="datasource" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Page" /> </td>
+      <td nowrap="nowrap">
+        <input name="thepagesize" type="text" class="basicTextField" id="aspnet:datagrid:pagesize" attname="pagesize" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Selected" /> </td>
+      <td nowrap="nowrap">
+        <input name="theselectedindex" type="text" class="basicTextField" id="aspnet:datagrid:selectedindex" attname="selectedindex" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Edit" /> </td>
+      <td nowrap="nowrap">
+        <input name="theedititemindex" type="text" class="basicTextField" id="aspnet:datagrid:edititemindex" attname="edititemindex" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theAllowCustomPaging" attname="AllowCustomPaging" type="image"  onclick="updateUI('AllowCustomPaging');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Allow" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theAllowPaging" attname="AllowPaging" type="image"  onclick="updateUI('AllowPaging');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Allow_1" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theAllowSorting" attname="AllowSorting" type="image"  onclick="updateUI('AllowSorting');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Allow_2" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theAutoGenerateColumns" attname="AutoGenerateColumns" type="image"  onclick="updateUI('AutoGenerateColumns');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/AutoGenerate" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theEnabled" attname="enabled" type="image"  onclick="updateUI('Enabled');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Enabled" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theEnableViewState" attname="EnableViewState" type="image"  onclick="updateUI('EnableViewState');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Enable" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theShowFooter" attname="ShowFooter" type="image"  onclick="updateUI('ShowFooter');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Show" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theShowHeader" attname="ShowHeader" type="image"  onclick="updateUI('ShowHeader');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Show_1" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="theVisible" attname="Visible" type="image"  onclick="updateUI('Visible');" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13"> 
+        <MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Visible" />
+      </td>
+    </tr>
+
+  </table>
+</div>
+
+
+<div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/Layout"> 
+  <table border="0" cellspacing="4"> 
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Grid" /> </td>
+      <td nowrap="nowrap">
+        <select name="thegridline" class="styleList" id="attr:aspnet:table:gridline" attname="gridline" editable="true">
+        </select> 
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Horizontal" /> </td>
+      <td nowrap="nowrap">
+        <select name="thehorizontalalign" class="alignList" id="attr:aspnet:panel:horizontalalign" attname="horizontalalign" editable="false">
+        </select> 
+      </td>
+    </tr>  
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Height" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheight" type="text" class="smallNumOrChar" id="aspnet:datagrid:height" attname="height" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Width" /> </td>
+      <td nowrap="nowrap">
+        <input name="thewidth" type="text" class="smallNumOrChar" id="aspnet:datagrid:width" attname="width" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Cell" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecellpadding" type="text" class="smallNumOrChar" id="aspnet:datagrid:cellpadding" attname="cellpadding" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Cell_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theCellSpacing" type="text" class="smallNumOrChar" id="aspnet:datagrid:CellSpacing" attname="cellspacing" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Border" /> </td>
+      <td nowrap="nowrap">
+        <input name="theborderwidth" type="text" class="smallNumOrChar" id="aspnet:datagrid:borderwidth" attname="borderwidth" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Border_1" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="borderColorPicker" value="" onChange="updateUI('borderColorPicker')"> <input name="thebordercolor" type="text" class="smallTField" id="att:body:alink" onBlur="updateUI('bordercolor')" value="" attname="bordercolor">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Background_1" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="backColorPicker" value="" onChange="updateUI('backColorPicker')"> <input name="thebackcolor" type="text" class="smallTField" id="att:body:backcolor" onBlur="updateUI('backcolor')" value="" attname="backcolor">
+        <img src="../../Shared/MM/Images/transparent.gif" width="10" height="1"> <!-- spacer - do not remove --> 
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Foreground" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="foreColorPicker" value="" onChange="updateUI('foreColorPicker')"> <input name="theforecolor" type="text" class="smallTField" id="att:adrotator:forecolor" onBlur="updateUI('forecolor')" value="" attname="forecolor">
+      </td>
+    </tr>  
+  </table>
+</div> 
+<div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/CSS" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecssclass" type="text" class="basicTextField" id="aspnet:datagrid:CSSClass" attname="cssclass" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Border_2" /> </td>
+      <td nowrap="nowrap">
+        <select name="theborderstyle" class="styleList" id="attr:aspnet:adrotator:borderstyle" attname="borderstyle">
+        </select> 
+      </td>
+    </tr>
+  </table>
+</div> 
+<div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/Accessibility"> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Tool" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetooltip" type="text" class="basicTextField" id="aspnet:datagrid:tooltip" attname="tooltip" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Tab" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetabindex" type="text" class="smallNumOrChar" id="aspnet:datagrid:tabindex" attname="tabindex" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/DataGrid/text/Access" /> </td>
+      <td nowrap="nowrap">
+        <input name="theAccessKey" type="text" class="smallNumOrChar" id="aspnet:datagrid:AccessKey" attname="AccessKey" />
+      </td>
+    </tr>
+  </table> 
+</div> 
+<div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/Events"> 
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnCancelCommand">
+    <textarea name="theOnCancelCommand" attname="OnCancelCommand" id="aspnet:datagrid:OnCancelCommand" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>   
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnDataBinding">
+    <textarea name="theOnDataBinding" attname="OnDataBinding" id="aspnet:datagrid:OnDataBinding" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>     
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnDeleteCommand">
+    <textarea name="theOnDeleteCommand" attname="OnDeleteCommand" id="aspnet:datagrid:OnDeleteCommand" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>     
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnDisposed">
+    <textarea name="theOnDisposed" attname="OnDisposed" id="aspnet:datagrid:OnDisposed" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>   
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnEditCommand">
+    <textarea name="theOnEditCommand" attname="OnEditCommand" id="aspnet:datagrid:OnEditCommand" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>   
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnInit">
+    <textarea name="theOnInit" attname="OnInit" id="aspnet:datagrid:OnInit" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnItemCreated">
+    <textarea name="theOnItemCreated" attname="OnItemCreated" id="aspnet:datagrid:onadcreated" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnItemDataBound">
+    <textarea name="theOnItemDataBound" attname="OnItemDataBound" id="aspnet:datagrid:OnItemDataBound" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>     
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnItemCommand">
+    <textarea name="theOnItemCommand" attname="OnItemCommand" id="aspnet:datagrid:OnItemCommand" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnLoad">
+    <textarea name="theOnLoad" attname="OnLoad" id="aspnet:datagrid:OnLoad" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnPageIndexChanged">
+    <textarea name="theOnPageIndexChanged" attname="OnPageIndexChanged" id="aspnet:datagrid:OnPageIndexChanged" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>   
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnPreRender">
+    <textarea name="theOnPreRender" attname="OnPreRender" id="aspnet:datagrid:OnPreRender" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>   
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnSelectedIndexChanged">
+    <textarea name="theOnSelectedIndexChanged" attname="OnSelectedIndexChanged" id="aspnet:datagrid:OnSelectedIndexChanged" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnSortCommand">
+    <textarea name="theOnSortCommand" attname="OnSortCommand" id="aspnet:datagrid:OnSortCommand" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>   
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnUnload">
+    <textarea name="theOnUnload" attname="OnUnload" id="aspnet:datagrid:OnUnload" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div>     
+  <div MMString:name="TagLibraries/ASPNet/DataGrid/div/name/OnUpdateCommand">
+    <textarea name="theOnUpdateCommand" attname="OnUpdateCommand" id="aspnet:datagrid:onadcreated" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+</div> 
+</body>
+</html>

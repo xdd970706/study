@@ -1,0 +1,87 @@
+<!-- Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+
+var MIMETYPELIST;
+var theUIObjects; 
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+  MIMETYPELIST = new ListControl("themimetype");
+  tagDialog.populateDropDownList(MIMETYPELIST, theTypesContentCap, theTypesContentVar, 1)
+
+  theUIObjects  = new Array(MIMETYPELIST); 
+ }
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+<link href="../../Styles/cfdocumentsection.css" rel="stylesheet" type="text/css" />
+</head>
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cfdocumentsection/div/name/CFDOCUMENTSECTION"> 
+  <table class="cls_cfdocumentsection_table" border="0" cellspacing="4">
+  <tr>
+        <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/text/Source" /> </td>
+        <td colspan="4" nowrap="nowrap">
+	        <input type="text" id="attr:input:src" name="attr:cfdocumentsection:src" attname="src" class="cls_cfdocumentsection_input_attrinputsrc" />
+      &nbsp;
+	        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cfdocumentsection/button/browseBtn/Browse" onClick="tagDialog.browseFile('attr:input:src');focus(this)" />
+	      </td>
+      </tr>
+	  <tr>
+        <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/text/Source_1" /> </td>
+        <td colspan="4" nowrap="nowrap">
+	        <input type="text" id="attr:input:srcfile" name="attr:cfdocumentsection:srcfile" attname="srcfile" class="cls_cfdocumentsection_input_attrinputsrcfile" />
+      &nbsp;
+	        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cfdocumentsection/button/browseBtn/Browse" onClick="tagDialog.browseFile('attr:input:srcfile');focus(this)" />
+	      </td>
+      </tr>
+    <tr>
+	<tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/text/MIME" /> </td>
+      <td nowrap="nowrap">
+        <select name="themimetype" class="mimeTypesList" id="attr:cfdocumentsection:mimetype" attname="mimetype" editable="true" >
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/text/Margin" /></td>
+      <td class="cls_cfdocumentsection_td" nowrap="nowrap"><input name="themargintop" type="text" class="cls_cfdocumentsection_basicTextField" id="attr:cfdocumentsection:margintop" attname="margintop" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/text/Margin_1" /></td>
+      <td nowrap="nowrap"><input name="themarginbottom" type="text" class="cls_cfdocumentsection_basicTextField" id="attr:cfdocumentsection:marginbottom" attname="marginbottom" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/text/Margin_2" /></td>
+      <td nowrap="nowrap"><input name="themarginright" type="text" class="cls_cfdocumentsection_basicTextField" id="attr:cfdocumentsection:marginright" attname="marginright" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfdocumentsection/text/Margin_3" /></td>
+      <td nowrap="nowrap">
+        <input name="themarginleft" type="text" class="basicTextField" id="attr:cfdocumentsection:marginleft" attname="marginleft" />
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

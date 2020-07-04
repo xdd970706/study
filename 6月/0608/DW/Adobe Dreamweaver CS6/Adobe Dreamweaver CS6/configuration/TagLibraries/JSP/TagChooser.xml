@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<tclibrary xmlns:MMString="http://www.macromedia.com/schemes/dat/string/" MMString:name="TagLibraries/TagLibraries_vtm/DWTagLibrary_jsp/taglibrary/name" MMString:desc="TagLibraries/JSP/TagChooser_xml/tclibrary/desc/A" reference='JSP'>
+  <category MMString:name="TagLibraries/JSP/TagChooser_xml/category/name/Directives" icon="icons/Elements.gif">
+	<element name="page"		value='<%@ page %>'		reference='JSP,page Directive'/>
+	<element name="include"	value='<%@ include file=""%>'		reference='JSP,include Directive'/>
+	<element name="taglib"		value='<%@ taglib %>'		reference='JSP,taglib Directive'/>
+  </category>
+  <category MMString:name="TagLibraries/JSP/TagChooser_xml/category/name/Scripting" icon="icons/Elements.gif">
+	<element name="Declaration"		value='<%! %>'		reference='JSP,Declaration'/>
+	<element name="Scriptlet"			value='<% %>'		reference='JSP,Scriptlet'/>
+	<element name="Expression"			value='<%= %>'		reference='JSP,Expression'/>
+  </category>
+  <category MMString:name="TagLibraries/JSP/TagChooser_xml/category/name/Standard" icon="icons/Elements.gif">
+	<element name="jsp:setProperty"	value='<jsp:setProperty>'		reference='JSP,jsp:setProperty'/>
+	<element name="jsp:getProperty"	value='<jsp:getProperty>'		reference='JSP,jsp:getProperty'/>
+	<element name="jsp:useBean"		value='<jsp:useBean>'			reference='JSP,jsp:useBean'/>
+	<element name="jsp:forward"		value='<jsp:forward>'			reference='JSP,jsp:forward'/>
+	<element name="jsp:plugin"			value='<jsp:plugin>'				reference='JSP,jsp:plugin'/>
+	<element name="jsp:param"			value='<jsp:param>'				reference='JSP,jsp:param'/>
+	<element name="jsp:include"		value='<jsp:include>'			reference='JSP,jsp:include'/>
+	<element name="<jsp:params></jsp:params>"	value='<jsp:params>'	reference='JSP,jsp:params'/>
+  </category>
+</tclibrary>

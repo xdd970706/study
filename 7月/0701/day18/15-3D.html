@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				perspective: 500px;
+			}
+			div{
+				width: 200px;
+				height: 200px;
+				background-color: yellow;
+				margin: 200px auto;
+				/*
+					值1，值2，值3分别表示x、y、z
+					
+					注意点：x、y、z的地方写1表示要沿着该轴进行旋转  0表示不旋转
+					
+					1---true真  0---假false
+					
+					值4表示度数
+				*/
+				/* transform: rotate3d(1, 1, 0, 50deg); */
+				/*斜切或者叫倾斜*/
+				/* transform: skewX(-45deg); */
+				/* transform: skewY(-45deg); */
+				
+				/* transform: skewX(0deg) */
+				
+				transition: all 1s;
+			}
+			div:hover{
+				transform: skewX(-30deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

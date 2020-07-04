@@ -1,0 +1,300 @@
+<html>
+<head>
+<!-- Copyright 2006-2007 Adobe Systems Incorporated.  All rights reserved. -->
+<title>Spry Translator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<script language="JavaScript" src="../Shared/MM/Scripts/Class/FileClass.js"></script>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscriptsExtData.js"></SCRIPT>
+<script language="JavaScript">
+var debugTranslator  = false;
+
+//global var
+var _spryInStr = "";
+var _spryTranslatedStr = "";
+var _skipStartOffset = -1;
+var _skipEndOffset = -1;
+var _offsetToBeginOfOpen = -1;
+var _offsetToBeginOfClose = -1;
+
+//to track begin and end of spry regions/spry:detailregions on the page
+var _bInsideASpryRegion = false;  //if we are inside a spry:region, spry:detailregion
+var _bInsideImg = false;
+var _bInsideAScriptBlock = false;
+var _spryRegionDepthCounter = 0;
+//list of spry regions
+var spryRegions = new Array("spry:region", "spry:detailregion");
+
+var _spryDataTokenRegExp = /\{([\w:@\-\._\/]+?)\}/ig; //get the spry data token
+var _spryImgTokenRegExp =  /src\s*=\s*"\{([\w:@\-_\/]+?)\}"/ig; //get the spry data token
+var _spryImgTranslation = 'mmTranslatedValueDynSRC="SRC=dwres:6088" mmTranslatedValueDynAttrs="DynAttrs=src" ';
+
+function spryScannerOpenTagBegin(tag, offset)
+{
+	_skipStartOffset = -1;
+	_skipEndOffset = -1;
+	if (_offsetToBeginOfOpen != -1)
+	{
+		//we have something in our buffer which was not close
+		//refer to bug http://bugapp.macromedia.com/bugapp/detail.asp?id=212079
+		if (offset > _offsetToBeginOfOpen)
+		{
+			var tagStr = _spryInStr.substring(_offsetToBeginOfOpen, offset);
+			_spryTranslatedStr = _spryTranslatedStr + tagStr;
+		}
+		_offsetToBeginOfOpen = -1;
+	}
+	_offsetToBeginOfOpen = offset;
+	if (_bInsideASpryRegion)
+	{
+		_spryRegionDepthCounter++;
+	}
+	if (tag == "img")
+	{
+		_bInsideImg = true; 
+	}
+	if (tag == "script")
+	{
+		_bInsideAScriptBlock = true;  //begin of script tag
+	}
+}
+
+function spryScannerOpenTagEnd(offset, trailingFormat)
+{
+	if (_offsetToBeginOfOpen > -1)
+	{
+		var tagStr = _spryInStr.substring(_offsetToBeginOfOpen, offset);
+		if (_bInsideImg)
+		{
+			//look for src attribute if it spry image reference
+			var searchIndex = tagStr.search(_spryImgTokenRegExp);
+			if (searchIndex != -1)
+			{
+				var preIndexStr = tagStr.substr(0,searchIndex);
+				var postIndexStr = tagStr.substr(searchIndex);
+				tagStr = preIndexStr + _spryImgTranslation + postIndexStr;
+			}
+			_bInsideImg = false;
+		}
+		_spryTranslatedStr = _spryTranslatedStr + tagStr;
+		_offsetToBeginOfOpen = -1;
+		trailingFormat = dwscripts.trim(trailingFormat);
+		if (trailingFormat && trailingFormat.length)
+		{
+			if (_bInsideASpryRegion)
+			{
+				_spryRegionDepthCounter--;
+				if (_spryRegionDepthCounter == 0) //back to zero
+				{
+					//out of the spry:region turn _bInsideASpryRegion to off
+					_bInsideASpryRegion = false;
+				}
+			}
+		}
+	}
+}
+
+
+function spryScannerCloseTagBegin(tag, offset)
+{
+	if (_offsetToBeginOfOpen != -1)
+	{
+		//we have something in our buffer which was not close
+		//refer to bug http://bugapp.macromedia.com/bugapp/detail.asp?id=212079
+		if (offset > _offsetToBeginOfOpen)
+		{
+			var tagStr = _spryInStr.substring(_offsetToBeginOfOpen, offset);
+			_spryTranslatedStr = _spryTranslatedStr + tagStr;
+		}
+		_offsetToBeginOfOpen = -1;
+	}
+	_offsetToBeginOfClose = offset;
+
+	if (tag == "script")
+	{
+		if (_bInsideAScriptBlock)
+		{
+			_bInsideAScriptBlock = false; //end of script tag
+		}
+	}
+}
+
+
+function spryScannerCloseTagEnd(offset)
+{
+	if (_offsetToBeginOfClose > -1)
+	{
+		_spryTranslatedStr = _spryTranslatedStr + _spryInStr.substring(_offsetToBeginOfClose, offset);
+		_offsetToBeginOfClose = -1;
+		if (_bInsideASpryRegion)
+		{
+			_spryRegionDepthCounter--;
+			if (_spryRegionDepthCounter == 0) //back to zero
+			{
+				//out of the spry:region turn _bInsideASpryRegion to off
+				_bInsideASpryRegion = false;
+			}
+		}
+	}
+}
+
+
+function spryScannerAttribute(name, code)
+{
+	//check if attribute is one of the spry attributes
+	//reset the counter 
+	for (var i=0; i < spryRegions.length; i++)
+	{
+		if (spryRegions[i] == name)
+		{
+			_bInsideASpryRegion = true; //inside a spry region
+			_spryRegionDepthCounter = 1;
+			break;
+		}
+	}
+}
+
+function spryScannerText(text, offset)
+{
+	if (offset > _skipEndOffset)
+	{
+        var result; 
+		if (text && text.length)
+		{
+			var dataReferenceOffsetsArray = new Array();
+			if (_bInsideASpryRegion) 
+			{
+				if (!_bInsideAScriptBlock)	//not inside a javascript block
+				{
+					while ((result = _spryDataTokenRegExp.exec(text)) != null)
+					{
+						//display the matched result
+						var origContent = result[0];
+						var startIndex = result.index;
+						var endIndex =   startIndex + origContent.length;
+						if ((startIndex > -1) && (endIndex > -1))
+						{
+							var dataReference = new Object();
+							dataReference.startIndex = startIndex;
+							dataReference.endIndex = endIndex;
+							dataReference.origContent = origContent;
+							//push the datareference location into the array
+							dataReferenceOffsetsArray.push(dataReference);
+							//alert("origContent:" + origContent);
+							//alert("_spryRegionDepthCounter:" + _spryRegionDepthCounter);
+						}
+					}
+				}
+			}
+			var replacedText = "";
+			if (dataReferenceOffsetsArray.length > 0)
+			{
+				//loop over the data references and replace them with translated content
+				var _strIndex = 0;
+				for (var i=0; i < dataReferenceOffsetsArray.length; i++)
+				{
+					var aDataReference = dataReferenceOffsetsArray[i];					
+					var preCode = text.substring(_strIndex,aDataReference.startIndex);
+					var translatedContent = '<MM:BeginLock translatorClass="MM_SPRY" type="'+
+											'MM_SPRY_DATA_REFERENCE' + '" orig="' + aDataReference.origContent +
+											'" ' +
+											'>' + '<MM_DYNAMIC_CONTENT DYNAMICDATA=1>' +  '<MM:DECORATION HILITECOLOR="Dyn Untranslated Color">' + aDataReference.origContent + '</MM:DECORATION>' +  '</MM_DYNAMIC_CONTENT>' + '<MM:EndLock>';					
+					replacedText = replacedText + preCode + translatedContent;
+					_strIndex = aDataReference.endIndex;
+				}
+				//end the remainder of the string
+				replacedText = replacedText + text.substring(_strIndex);
+			}
+			else
+			{
+				replacedText = text;
+			}
+		}
+		_spryTranslatedStr = _spryTranslatedStr + replacedText;
+	}
+}
+
+function spryScannerDirective(code, offset)
+{
+	if (offset > _skipEndOffset)
+	{
+		_spryTranslatedStr = _spryTranslatedStr + code;
+	}
+}
+
+function translateMarkup( docNameStr, siteRootStr, inStr )
+{
+	var macBeforeFileName	= "Desktop:BeforeTranslation.txt";
+	var macAfterFileName	= "Desktop:AfterTranslation.txt";
+	var winBeforeFileName	= "C:\\BeforeTranslation.txt";
+	var winAfterFileName	= "C:\\AfterTranslation.txt";
+
+	//file before translation
+    if (debugTranslator)
+    {
+      if (dwscripts.IS_MAC)
+	  {
+        DWfile.write( macBeforeFileName, inStr );
+	  }
+      else
+	  {
+        DWfile.write( winBeforeFileName, inStr );
+	  }
+    }
+
+	_spryTranslatedStr = "";
+	if (inStr.length > 0)
+	{
+		var callback = new Object();		
+		_spryInStr = inStr;
+		_spryTranslatedStr = "";
+		_skipStartOffset = -1;
+		_skipEndOffset = -1;
+		_offsetToBeginOfOpen = -1;
+		//scanner callbacks
+		callback.openTagBegin = spryScannerOpenTagBegin;
+		callback.attribute = spryScannerAttribute;
+		callback.openTagEnd = spryScannerOpenTagEnd;
+		callback.text = spryScannerText;
+		callback.directive = spryScannerDirective;
+		callback.closeTagBegin = spryScannerCloseTagBegin;
+		callback.closeTagEnd = spryScannerCloseTagEnd;
+		//call scan source string
+		//alert("_spryInStr:" + _spryInStr);
+		dw.scanSourceString(_spryInStr, callback , false /*skip whitespace false*/);
+	}
+
+    if (debugTranslator)
+    {
+      if (dwscripts.IS_MAC)
+	  {
+        DWfile.write( macAfterFileName, _spryTranslatedStr );
+	  }
+      else
+	  {
+        DWfile.write( winAfterFileName, _spryTranslatedStr );
+	   }
+    }
+
+	return _spryTranslatedStr;
+}
+
+function getTranslatorInfo()
+{
+	returnArray = new Array(7)
+
+	returnArray[0] = "MM_SPRY";					// The translatorClass
+	returnArray[1] = "Spry";					// The title
+	returnArray[2] = "0"; 						// The number of extensions. 0 indicates to run against all extensions
+	returnArray[3] = "1"; 						// The number of expressions
+	returnArray[4] = "spry:(detail)?region";	// Run on files with this case-insensitive RegExp
+	returnArray[5] = "byExpression"				// Run if doc contains expression
+	returnArray[6] = "4";						// Priority: Give a high priority (low number) to run this translator before most others
+	return returnArray
+}
+
+</script>
+</head>
+<body>
+</body>
+</html>

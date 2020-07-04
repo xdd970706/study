@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+body,html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+header{
+    height: .9rem;
+    display: flex;
+    padding: 0 .2rem;
+    background: #fafafa;
+    align-items: center;
+    justify-content: space-between;
+}
+header form{
+    background: #fefefe;
+    width: 6.42rem;
+    display: flex;
+    align-items: center;
+    height: .58rem;
+    border: 1px solid #e8e8e8;
+}
+header form i{
+    padding: 0 .27rem;
+    color: #e2e2e2;
+}
+header form input{
+    border: none;
+    outline: none;
+    flex: 1;
+    color: #9b9b9b;
+}
+header .icon-duihuakuang{
+    color:#939393;
+}
+.main{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    border-top:1px solid #f0f0f0;
+}
+.main::-webkit-scrollbar{width: 0p;height: 0px;}
+.main .left{
+    flex: 1;
+    overflow: auto;
+    border-right:1px solid #f0f0f0;
+}
+.main .left ul li{
+    height: .98rem;
+    text-align: center;
+    line-height: .98rem;
+}
+.main .left ul li span{
+    width: 100%;
+    height: .47rem;
+    line-height:.47rem;
+    display: inline-block;
+}
+.main .left ul li:hover span{
+    color: #ff6700;
+    border-left: .05rem solid #ff6700;
+    width: 95%;
+}
+.main .right{
+    flex: 4;
+    overflow: auto;
+}
+.main .right .banner{
+    padding:.10rem .3rem 0.48rem .3rem;
+    height: 2.68rem;
+    box-sizing: border-box;
+}
+.main .right .banner img{
+    width: 100%;
+}
+.main .right .goods p{
+    text-align: center;
+    padding-bottom: .5rem;
+    color: #7b7b7b;
+}
+.main .right .goods ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .95rem;
+}
+.main .right .goods ul li{
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main .right .goods ul li img{
+    width: 100%;
+}
+.main .right .goods ul li span{
+    color:#919191;
+    font-size: .18rem;
+}
+footer{
+    height: 1.06rem;
+    border-top:1px solid #e4e4e4;
+}
+footer ul{
+    height: 1.06rem;
+    display: flex;
+    align-items: center;
+}
+footer ul li{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   color: #767676;
+}
+footer ul li:hover{
+    color: #f56d02;
+}
+footer ul li i{
+    font-size: .4rem !important;
+}
+footer ul li span{
+    font-size: .17rem;
+}

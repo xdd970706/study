@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<panelset>
+
+	<!-- default to App and Document maximized, but don't hard code sizes (code will compute) -->
+  <application maximize="true" colorIcon="true" docView="code"/>
+  <document maximize="true"/>
+
+  <!-- LEFT - Files -->
+  <panelframe dock="left">
+    <panelcontainer>
+      <panel id="site"/>
+      <panel id="assets"/>
+      <panel id="snippets"/>
+    </panelcontainer>
+  </panelframe>
+
+  <!-- RIGHT iconic mode - Insert, CSS, Application (hidden), Frames (hidden), History (hidden) -->
+  <panelframe dock="right" iconmodewidth="120" mode="icon" width="119">
+    <panelcontainer expanded="false">
+      <panel id="BL" />
+    </panelcontainer>
+    <panelcontainer>
+      <panel id="objects" showLabel="true"/>
+    </panelcontainer>
+    <panelcontainer>
+      <panel id="css styles"/>
+      <panel id="layers"/>
+      <panel id="tag inspector" visibleTab="false"/>
+    </panelcontainer>
+    <panelcontainer visible="false">
+      <panel id="database"/>
+      <panel id="data sources"/>
+      <panel id="server scripts"/>
+      <panel id="server components" visibleTab="false"/>
+    </panelcontainer>
+    <panelcontainer visible="false" >
+      <panel id="frames"/>
+    </panelcontainer>
+    <panelcontainer visible="false" >
+      <panel id="history"/>
+    </panelcontainer>
+  </panelframe>
+
+
+  <!-- BOTTOM - Property Inspector (hidden), results (hidden) -->
+  <panelframe dock="bottom">
+    <panelcontainer visible="false">
+      <panel id="propertiesMfc"/>
+    </panelcontainer>
+    <panelcontainer visible="false">
+      <panel id="properties"/>
+    </panelcontainer>
+    <panelcontainer visible="false">
+      <panel id="search"/>
+      <panel id="reference"/>
+      <panel id="validation"/>
+      <panel id="btc"/>
+      <panel id="linkchecker"/>
+      <panel id="reports"/>
+      <panel id="ftp log"/>
+      <panel id="server debug"/>
+    </panelcontainer>
+  </panelframe>
+
+  <!-- FLOATING, individuals don't need to be listed - default behavior...-->
+</panelset>

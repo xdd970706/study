@@ -1,0 +1,60 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfoutput/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script>
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<div MMString:name="TagLibraries/CFML/cfoutput/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfoutput/text/Query" /> </td>
+      <td nowrap="nowrap">
+        <input name="thequery" type="text" class="basicTextField" id="attr:cfoutput:query" attname="query" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfoutput/text/Group" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="thegroup" type="text" class="basicTextField" id="attr:cfoutput:group" attname="group" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfoutput/text/Start" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestartrow" type="text" class="basicTextField" id="attr:cfoutput:startrow" attname="startrow" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfoutput/text/Max" /> </td>
+      <td nowrap="nowrap">
+        <input name="themaxrows" type="text" class="basicTextField" id="attr:cfoutput:maxrows" attname="maxrows" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfoutput:groupcasesensitive" name="thegroupcasesensitive" attname="groupcasesensitive" truevalue="yes" falsevalue="" /> <MMString:loadString id="TagLibraries/CFML/cfoutput/checkbox/thegroupcasesensitive/Group" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+</html>

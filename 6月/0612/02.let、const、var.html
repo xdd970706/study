@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>let、const、var</title>
+</head>
+
+<body>
+<p id="demo"></p>
+<p id="demo1"></p>
+<p>
+</body>
+
+<script>
+	var i = 4;
+	var j = 4;
+	for(var i=0;i<=6;i++){
+		//var str = ""
+		 //str += i;
+		 console.log(i)
+	}
+	for(let j=0;j<=6;j++){
+		//var str1 = ""
+		 //str1 += j;
+		console.log(j)
+		}
+	document.getElementById("demo").innerHTML = "在函数中用var来声明变量:" + "i:"+i +"--"+ "str:" + str;
+	document.getElementById("demo1").innerHTML = "在函数中用let来声明变量:" + "j:"+j +"--"+ "str1:" + str1;
+</script>
+</html>

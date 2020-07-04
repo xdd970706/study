@@ -1,0 +1,328 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*重置样式*/
+*{margin:0;padding:0;}
+ul li{list-style:none;}
+a{text-decoration:none;}
+
+/*网页头部*/
+.header{
+	width:1000px;
+	height:100px;
+	margin:0 auto;
+    }
+.header .logo{
+	width:244px;
+	height:23px;
+	margin-left:20px;
+	margin-top:40px;
+	float:left;
+    }
+.header form{
+	width:225px;
+	height:26px;
+	border:1px solid #e5e5e5;
+	float:right;
+	margin-right:20px;
+	margin-top:39px;
+    }
+.header form .search{
+	width:181px;
+	height:26px;
+	border:none;
+	float:left;
+	background-color:#f1f1f1;
+	font-size:12px;
+	color:#858585;
+	padding-left:14px;
+	outline:none;
+    }
+.header form .btn{
+	width:30px;
+	height:26px;
+	border:none;
+	float:left;
+	background-color:#f1f1f1;
+	background-image:url(../images/search.jpg);
+	background-repeat:no-repeat;
+	background-position:center center;
+	outline:none;
+	cursor:pointer;
+    }
+	
+/*导航*/
+.nav{
+	width:1000px;
+	height:60px;
+	background-color:#303030;
+	margin:0 auto;
+	}
+.nav ul{
+	width:960px;
+    height:60px;
+    margin:27px;
+	}
+.nav ul li{
+	width:119px;
+	height:60px;
+	float:left;
+	font-size:14px;
+	line-height:60px;
+	text-align:center;
+	border-right:1px solid #4a4a4a;
+    }
+.nav ul li a{
+	color:#fff;
+    }
+	
+/*广告*/
+.banner{
+	width:1000px;
+	height:463px;
+	margin:0 auto;
+    }
+	
+/*新闻资讯*/
+.news{
+	width:1000px;
+	height:265px;
+	margin:0 auto;
+    }
+/*左边部分*/
+.news .left{
+	width:500px;
+	height:240px;
+	float:left;
+    }
+.news .left .wrap{
+	width:452px;
+	height:190px;
+	margin-top:30px;
+	margin-left:20px;
+    }
+.news .left .wrap div{
+	height:47px;
+    }
+.news .left .wrap div h3{
+	font-weight:normal;
+	font-size:17px;
+	float:left;
+	}
+.news .left .wrap div img{float:right;}
+
+.news .left .wrap ul li{
+	font-size:12px;
+	line-height:24px;
+	padding-left:13px;
+	background:url(../images/list.png) no-repeat left center;
+	}
+.news .left .wrap ul li a{color:#515151;}
+
+.news .left .wrap ul li span{
+	float:right;
+	color:#969696;
+	}
+
+/*中间部分*/
+.news .center{
+	width:240px;
+	height:240px;
+	background-color:#f1f1f1;
+	float:left;
+    }
+.news .center div{
+	width:193px;
+	height:191px;
+	margin-top:30px;
+	margin-left:24px;	
+    }
+.news .center div h3{
+	font-weight:normal;
+	font-size:17px;
+	height:56px;
+    }
+.news .center div p{
+	font-size:12px;
+	line-height:24px;	
+	}
+.news .center div p span{font-size:14px;}
+.news .center div .p2{
+	color:#969696;
+	margin-top:13px;
+    }
+
+/*右边部分*/
+.news .right{
+	width:260px;
+	height:240px;
+	background:#fbfbfb url(../images/flower.jpg) no-repeat 166px 122px;
+	float:left;
+    }
+.news .right div{
+	width:183px;
+	height:160px;
+	margin-top:30px;
+	margin-left:24px;	
+	}
+.news .right div h3{
+	font-weight:normal;
+	font-size:17px;
+	height:43px;
+	}		
+.news .right div p{
+	font-size:12px;
+	line-height:24px;
+	margin-bottom:48px;	
+	}
+
+/*卧龙市场*/
+.wolong{
+	width:1000px;
+	height:280px;
+	margin:0 auto;
+	}
+.wolong div{
+	height:40px;
+	padding:0 22px;
+	}
+.wolong div h3{
+	font-weight:normal;
+	float:left;
+	font-size:17px;
+	}	
+.wolong div img{
+	float:right;
+	}
+.wolong dl{
+	width:210px;
+	height:200px;
+	float:left;
+	margin:0 20px;
+	}	 
+.wolong dl dd{
+	font-size:13px;
+	line-height:25px;
+	}
+
+/*链接列表*/
+.links{
+	width:1000px;
+	height:220px;
+	background-color:#e5e5e5;
+	margin:0 auto;
+	padding-top:30px;
+	}
+	
+.links .left{
+	width:452px;
+	height:200px;
+	float:left;
+	margin-left:20px;
+	}
+.links h3{
+	font-weight:normal;
+	font-size:16px;
+	height:29px;
+	color:#656565;
+	border-bottom:1px solid #c1c1c1;
+	padding-left:12px;
+	margin-bottom:14px;
+	}
+.links .left ul{
+	float:left;
+	}
+.links .left .mg{
+	margin-left:72px;
+	margin-right:67px;
+	}
+.links ul li{
+	font-size:12px;
+	line-height:24px;
+	padding-left:19px;
+    background:url(../images/gt.jpg) no-repeat 6px center;
+	}
+.links ul li a{color:#656565;}
+
+		
+.links .center{
+	width:153px;
+	height:200px;
+	float:left;
+	margin:0 50px;
+	}
+
+
+.links .right{
+	width:258px;
+	height:200px;
+	float:left;
+	background:url(../images/map.png) no-repeat 32px 45px;
+    }
+	
+/*网站底部*/
+.stern{
+	width:1000px;
+	height:58px;
+	margin:0 auto;
+	}
+.stern .left{
+	width:260px;
+	height:12px;
+	margin-left:15px;
+	margin-top:24px;
+	float:left;
+	}
+.stern .left ul li{
+	width:58px;
+	height:12px;
+	line-height:12px;
+	float:left;
+	border-right:1px solid #8f8f8f;
+	}
+.stern .left ul li a{
+	float:left;
+	padding-left:7px;
+	color:#868686;
+	font-size:11px;
+	line-height:12px;
+	}
+.stern .left ul .a4{
+	width:79px;
+	height:12px;
+	}
+
+
+.stern .center{
+	width:630px;
+	height:12px;
+	font-size:10px;
+	float:left;
+	margin-left:95px;
+	margin-top:24px;
+	}
+.stern .center p{
+	float:left;
+	height:12;
+	color:#868686;
+	font-size:10px;
+	line-height:12px;
+	}
+.stern .center .logo{
+	float:left;
+	margin-top:-2px;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

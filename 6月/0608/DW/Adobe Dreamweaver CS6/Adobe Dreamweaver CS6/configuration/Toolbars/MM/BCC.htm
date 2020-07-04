@@ -1,0 +1,28 @@
+<!-- Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+	<head>
+		<title><MMString:loadString id="Toolbars/MM/BCC/title" /></title>
+		<script language="JavaScript">
+		
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+//--------------- END LOCALIZEABLE ---------------
+		
+
+function canAcceptCommand()
+{
+	var doc = dw.getDocumentDOM();
+	return ((doc != null) && (doc.getView() != 'browse'));
+}
+
+function getMenuID()
+{
+	return "DWBCCToolbarPopup";
+}
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

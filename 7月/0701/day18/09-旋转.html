@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 500px;
+				height: 200px;
+				margin: 100px auto;
+			}
+			img{
+				margin: 30px;
+				transition: all .5s;
+			}
+			img:nth-child(1):hover{
+				transform: rotateZ(360deg) scale(1.3);
+			}
+			img:nth-child(2):hover{
+				transform: rotateZ(-360deg) scale(.6);
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<img src="img/facebook.png" >
+			<img src="img/facebook.png" >
+		</div>
+	</body>
+</html>

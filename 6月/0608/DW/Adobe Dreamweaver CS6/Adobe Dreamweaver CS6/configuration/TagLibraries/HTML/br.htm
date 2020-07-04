@@ -1,0 +1,84 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/br/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var CLEARLIST; 
+var theUIObjects; 
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	CLEARLIST = new ListControl("theclear"); 
+	theUIObjects  = new Array(CLEARLIST); 
+
+  tagDialog.populateDropDownList(CLEARLIST, theClearBRCap, theClearBRVal, 0); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/HTML/br/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/br/text/Clear" /> </td>
+      <td nowrap="nowrap">
+        <select name="theclear" class="oneWordOptionList" id="attr:br:clear" attname="clear" editable="false">
+        </select>
+      </td>
+    </tr>
+  </table> 
+</div> 
+<div MMString:name="TagLibraries/HTML/br/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/br/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:applet:class" attname="class" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/br/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:applet:id" attname="id" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/br/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:applet:class" attname="style" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/br/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:appletronym:title" attname="title" />
+      </td>
+    </tr>
+  </table> 
+</div>
+</body>
+</html>

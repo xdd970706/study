@@ -1,0 +1,140 @@
+<crosstag_attributes>
+  <attribgroup id="GlobalAttributes" name="GlobalAttributes">
+    <attrib name="contenteditable" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="contextmenu" />
+
+    <attrib name="dropzone" type="Enumerated">
+      <attriboption value="copy" caption="copy"/>
+      <attriboption value="move" caption="move"/>
+      <attriboption value="link" caption="link"/>
+    </attrib>
+    <attrib name="draggable" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+      <attriboption value="auto" caption="auto"/>
+    </attrib>
+
+    <attrib name="hidden">
+      <attriboption value="hidden" caption="hidden"/>
+    </attrib>
+    <attrib name="spellcheck" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+ 
+    <taggroup>
+      <tag name="a"/>
+      <tag name="abbr"/>
+      <tag name="acronym"/>
+      <tag name="address"/>
+      <tag name="applet"/>
+      <tag name="area"/>
+      <tag name="article"/>
+      <tag name="aside"/>
+      <tag name="audio"/>
+      <tag name="b"/>
+      <tag name="bdo"/>
+      <tag name="big"/>
+      <tag name="blockquote"/>
+      <tag name="body"/>
+      <tag name="button"/>
+      <tag name="canvas"/>
+      <tag name="caption"/>
+      <tag name="center"/>
+      <tag name="cite"/>
+      <tag name="code"/>
+      <tag name="col"/>
+      <tag name="colgroup"/>
+      <tag name="command"/>
+      <tag name="datalist"/>
+      <tag name="dd"/>
+      <tag name="del"/>
+      <tag name="details"/>
+      <tag name="dir"/>
+      <tag name="div"/>
+      <tag name="dfn"/>
+      <tag name="dl"/>
+      <tag name="dt"/>
+      <tag name="em"/>
+      <tag name="embed"/>
+      <tag name="fieldset"/>
+      <tag name="figcaption"/>
+      <tag name="figure"/>
+      <tag name="font"/>
+      <tag name="footer"/>
+      <tag name="form"/>
+      <tag name="frame"/>
+      <tag name="frameset"/>
+      <tag name="h1"/>
+      <tag name="h2"/>
+      <tag name="h3"/>
+      <tag name="h4"/>
+      <tag name="h5"/>
+      <tag name="h6"/>
+      <tag name="header"/>
+      <tag name="hgroup"/>
+      <tag name="hr"/>
+      <tag name="i"/>
+      <tag name="img"/>
+      <tag name="input"/>
+      <tag name="ins"/>
+      <tag name="kbd"/>
+      <tag name="keygen"/>
+      <tag name="label"/>
+      <tag name="legend"/>
+      <tag name="li"/>
+      <tag name="link"/>
+      <tag name="map"/>
+      <tag name="mark"/>
+      <tag name="marquee"/>
+      <tag name="menu"/>
+      <tag name="meter"/>
+      <tag name="nav"/>
+      <tag name="noscript"/>
+      <tag name="object"/>
+      <tag name="ol"/>
+      <tag name="optgroup"/>
+      <tag name="option"/>
+      <tag name="output"/>
+      <tag name="p"/>
+      <tag name="param"/>
+      <tag name="pre"/>
+      <tag name="progress"/>
+      <tag name="q"/>
+      <tag name="rp"/>
+      <tag name="rt"/>
+      <tag name="ruby"/>
+      <tag name="s"/>
+      <tag name="samp"/>
+      <tag name="section"/>
+      <tag name="select"/>
+      <tag name="small"/>
+      <tag name="source"/>
+      <tag name="span"/>
+      <tag name="strike"/>
+      <tag name="strong"/>
+      <tag name="style"/>
+      <tag name="sub"/>
+      <tag name="summary"/>
+      <tag name="sup"/>
+      <tag name="table"/>
+      <tag name="tbody"/>
+      <tag name="td"/>
+      <tag name="textarea"/>
+      <tag name="tfoot"/>
+      <tag name="th"/>
+      <tag name="thead"/>
+      <tag name="time"/>
+      <tag name="tr"/>
+      <tag name="tt"/>
+      <tag name="u"/>
+      <tag name="ul"/>
+      <tag name="var"/>
+      <tag name="video"/>
+      <tag name="wbr"/>
+    </taggroup>
+	</attribgroup> 
+</crosstag_attributes>

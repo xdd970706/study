@@ -1,0 +1,141 @@
+<!-- Copyright 2001-2007 Adobe Systems Incorporated.  All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfcalendar/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var SELECTORLIST;
+var theUIObjects;
+var applyType = "dynamic"; 
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  var curValue = SELECTORLIST.getValue(); 
+  var activeDisplayNode = dwscripts.findDOMObject("the" + curValue);
+  tagDialog.inspectTagCommon(tagNodeObj, null, applyType, activeDisplayNode, SELECTORLIST); 
+}
+
+function applyTag(tagNodeObj)
+{
+  var curValue = SELECTORLIST.getValue(); 
+  var activeDisplayNode = dwscripts.findDOMObject("the" + curValue);
+  tagDialog.applyTagCommon(tagNodeObj, null, applyType, activeDisplayNode); 
+}
+
+function updateUI()
+{
+  var curDiv = SELECTORLIST.getValue(); 
+
+  tagDialog.showOnlyThisLayer(curDiv); 
+}
+
+function initializeUI()
+{
+	SELECTORLIST = new ListControl("theselector"); 
+	theUIObjects = new Array(SELECTORLIST);
+
+  tagDialog.populateDropDownList(SELECTORLIST, theSelCalendarCap, theSelCalendarVal, 0); 
+}
+
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+<link href="../../Styles/cfcalendar.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onLoad="initializeUI();">
+
+<div MMString:name="TagLibraries/CFML/cfcalendar/div/name/General"> 
+<br /> 
+<MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Attribute" /> 
+<select name="theselector" class="selectorList" id="attr:cfcalendar:selector" onChange="updateUI();" attname="" editable="false">
+</select>
+<hr width="100%"> 
+<div id="thegeneral" class="cls_cfcalendar_div_thegeneral" style="position:absolute;z-index:1;visibility: hidden;">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Name" /> </td>
+      <td colspan="2" nowrap="nowrap">
+        <input name="thename" type="text" class="basicTextField" id="attr:cfcalendar:name" attname="name" required="true" />
+</td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap" align="right" valign="baseline"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Width" /></td>
+      <td nowrap="nowrap"><input name="thewidth" type="text" class="basicTextField" id="attr:cfcalendar:width" attname="width"/></td>
+      </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Height" /></td>
+      <td nowrap="nowrap"><input name="theheight" type="text" class="basicTextField" id="attr:cfcalendar:height" attname="height" /></td>
+      </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Start" /></td>
+      <td nowrap="nowrap"><input name="thestartrange" type="text" class="basicTextField" id="attr:cfcalendar:startrange" attname="startrange" /></td>
+      </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/End" /> </td>
+      <td colspan="2" nowrap="nowrap"><input name="theendrange" type="text" class="basicTextField" id="attr:cfcalendar:endrange" attname="endrange" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Day" /> </td>
+      <td colspan="2" nowrap="nowrap"><input name="thedaynames" type="text" class="basicTextField" id="attr:cfcalendar:daynames" attname="daynames" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Month" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="themonthnames" type="text" class="basicTextField" id="attr:cfcalendar:monthnames" attname="monthnames"  /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Style" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="thestyle" type="text" class="basicTextField" id="attr:cfcalendar:style" attname="style" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Mask" /> </td>
+      <td colspan="2" nowrap="nowrap"><input name="themask" type="text" class="basicTextField" id="attr:cfcalendar:mask" attname="mask" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/Selected" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="theselecteddate" type="text" class="basicTextField" id="attr:cfcalendar:selecteddate" attname="selecteddate" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td colspan="2" nowrap="nowrap">
+            <input type="checkbox" id="attr:cfcalendar:required" name="thecheckrequired" attname="required" truevalue="yes" />
+        <MMString:loadString id="TagLibraries/CFML/cfcalendar/checkbox/thecheckrequired/Required" /></td>
+    </tr>
+  </table>
+</div>
+<div id="theevents" class="cls_cfcalendar_div_theevents" style="position:absolute;z-index:2;visibility: hidden;">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/OnChange" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonchange" type="text" class="basicTextField" id="attr:cfcalendar:onchange" attname="onchange" />
+      </td>
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/OnBlur" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonblur" type="text" class="basicTextField" id="attr:cfcalendar:onblur" attname="onblur" />
+      </td>
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcalendar/text/OnFocus" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonfocus" type="text" class="basicTextField" id="attr:cfcalendar:onfocus" attname="onfocus" />
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+</html>

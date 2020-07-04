@@ -1,0 +1,49 @@
+<html>
+<head>
+<!-- Copyright 2008 Adobe Systems Incorporated.  All rights reserved. -->
+<!-- define all built-in Spry Widget constructors here -->
+<!-- specific includes for spry widgets. These are so we can actually create the widgets we find -->
+<script type="text/javascript" src="../Shared/Spry/DesignTime/EditingUtils.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetBase.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/Accordion/DesignTime/SpryAccordionDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/MenuBar/DesignTime/SpryMenuBarDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/TabbedPanels/DesignTime/SpryTabbedPanelsDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/CollapsiblePanel/DesignTime/SpryCollapsiblePanelDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/Tooltip/DesignTime/SpryTooltipDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationTextField/DesignTime/SpryValidTextFieldDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationSelect/DesignTime/SpryValidationSelectDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationCheckbox/DesignTime/SpryValidationCheckboxDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationTextarea/DesignTime/SpryValidTextareaDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationPassword/DesignTime/SpryValidPasswordDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationRadio/DesignTime/SpryValidRadioDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationConfirm/DesignTime/SpryValidConfirmDesignTime.js" ></script>
+
+<script type="text/javascript">
+//all Spry validation widgets should be in this array
+if (!MM.SPRY_ValidationWidgetsGroup)
+	MM.SPRY_ValidationWidgetsGroup =  new Array();
+	
+MM.SPRY_ValidationWidgetsGroup.push("Spry.Widget.ValidationPassword");
+MM.SPRY_ValidationWidgetsGroup.push("Spry.Widget.ValidationRadio");
+MM.SPRY_ValidationWidgetsGroup.push("Spry.Widget.ValidationConfirm");
+
+if (!MM.SPRY_WidgetConstructors)
+    MM.SPRY_WidgetConstructors =  new Array();
+	
+MM.SPRY_WidgetConstructors['Spry.Widget.Accordion'] = Spry.DesignTime.Widget.Accordion;
+MM.SPRY_WidgetConstructors['Spry.Widget.MenuBar'] = Spry.DesignTime.Widget.MenuBar;
+MM.SPRY_WidgetConstructors['Spry.Widget.TabbedPanels'] = Spry.DesignTime.Widget.TabbedPanels;
+MM.SPRY_WidgetConstructors['Spry.Widget.CollapsiblePanel'] = Spry.DesignTime.Widget.CollapsiblePanel;
+MM.SPRY_WidgetConstructors['Spry.Widget.Tooltip'] = Spry.DesignTime.Widget.Tooltip;
+MM.SPRY_WidgetConstructors['Spry.Widget.ValidationTextField'] = Spry.DesignTime.Widget.ValidationTextField;
+MM.SPRY_WidgetConstructors['Spry.Widget.ValidationSelect'] = Spry.DesignTime.Widget.ValidationSelect;
+MM.SPRY_WidgetConstructors['Spry.Widget.ValidationCheckbox'] = Spry.DesignTime.Widget.ValidationCheckbox;
+MM.SPRY_WidgetConstructors['Spry.Widget.ValidationTextarea'] = Spry.DesignTime.Widget.ValidationTextarea;
+MM.SPRY_WidgetConstructors['Spry.Widget.ValidationPassword'] = Spry.DesignTime.Widget.ValidationPassword;
+MM.SPRY_WidgetConstructors['Spry.Widget.ValidationRadio'] = Spry.DesignTime.Widget.ValidationRadio;
+MM.SPRY_WidgetConstructors['Spry.Widget.ValidationConfirm'] = Spry.DesignTime.Widget.ValidationConfirm;
+</script>
+</head>
+<body>
+</body>
+</html>

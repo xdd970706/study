@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+	}
+ul li{
+	list-style:none;
+	}
+a{
+	text-decoration:none;
+	}
+	
+/*网页头部*/
+.header{
+	width:1000px;
+	height:100px;
+	border:1px solid;
+	margin:0 auto;
+	}
+.header .logo{
+	width：244px;
+	height:23px;
+	margin-left:20px;
+	margin-top:40px;
+	float:left;
+	}
+.header form{
+	width；225px;
+	height:26px;
+	border:1px solid #e5e5e5;
+	float:right;
+	margin-top:39px;
+	margin-right:20px;
+	}
+
+.header form .search{
+	width:181px;
+	height：26px;
+	border:none;
+	float:left;
+	background-color:#f1f1f1;
+	font-size:12px;
+	color:#858585;
+	padding-left:14px;
+	outline:none;
+	}
+	
+.header form .btn{
+	width:30px;
+	height:26px;
+	border:none;
+	folat:left;
+	background-color:#f1f1f1;
+	background-image:url(../images/02.jpg);
+	background-repeat:no-repeat;
+	bacgrounde-position:center center;
+	outline:none;
+	cursor:pointer;
+	}

@@ -1,0 +1,199 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+	}
+a{
+	text-decoration:none;
+	}
+li{
+	list-style:none;
+	}
+.warp{
+	width:100%;
+	}
+.warp .header{
+	width:990px;
+	margin:0 auto;
+	height:80px;
+	}
+.warp .header .logo{
+	height:80px;
+	background:url('../images/l-icon.png') no-repeat 185px center;
+	}
+.warp .header .logo a{
+	float:left;
+	height:80px;
+	width:175px;
+	}
+.warp .header .logo .right{
+	float:right;
+	padding:55px 0 0 20px;
+	font-size:12px;
+	background:url('../images/q-icon.png') no-repeat 0 58px;
+	color:#999999;
+	}
+.warp .top_wrap{
+	width:100%;
+	background:#fff8f0;
+	height:40px;
+	}
+.warp .top_wrap .container{
+	width:990px;
+	font-size:12px;
+	text-align:center;
+	margin:0 auto;
+	line-height:40px;
+	color:#999999;
+	}
+.warp .top_wrap .container .ty{
+	color:#333333;
+	}
+.warp .main{
+	height:475px;
+	width:100%;
+	background:url('../images/bg.jpg')
+	}
+.warp .main .container{
+	margin:0 auto;
+	height:475px;
+	width:990px;
+	background:url('../images/bg2.png') no-repeat;
+	}
+.warp .main .container .logo_form{
+	height:400px;
+	float:right;
+	width:345px;
+	background:#fff;
+	margin-top:15px;
+	}
+.warp .main .container .logo_form .title{
+	color:#999999;
+	font-size:12px;
+	height:35px;
+	line-height:35px;
+	background:#fff8f0;
+	text-align:center;
+	}
+.warp .main .container .logo_form .method{
+	height:55px;
+	border-bottom:1px solid #f4f4f4;
+	}
+.warp .main .container .logo_form .method .left{
+	float:left;
+	color:#666666;
+	}
+.warp .main .container .logo_form .method .right{
+	float:right;
+	color:red;
+	}
+.warp .main .container .logo_form .method a{
+	width:172px;
+	text-align:center;
+	line-height:55px;
+	font-size:17px;
+	
+	}
+.warp .main .container .logo_form .input_box{
+	margin:20px;
+	border:1px solid #bdbdbd;
+	}
+.warp .main .container .logo_form .input_box span{
+	float:left;
+	width:40px;
+	height:40px;
+	border-right:1px solid #bdbdbd;
+	background:url('../images/pwd-icons-new.png') no-repeat 1px 1px;;
+	}
+.warp .main .container .logo_form .password_box{
+	margin:0 20px;
+	border:1px solid #bdbdbd;
+	}
+.warp .main .container .logo_form .password_box span{
+	float:left;
+	width:40px;
+	height:40px;
+	border-right:1px solid #bdbdbd;
+	background:url('../images/pwd-icons-new.png') no-repeat -47px 1px;
+	}
+.warp .main .container .logo_form input{
+	border:none;
+	width:225px;
+	height:40px;
+	outline:none;
+	}
+.warp .main .container .logo_form p{
+	margin:20px 20px 20px 100px;
+	float:right;
+	}
+.warp .main .container .logo_form button{
+	width:305px;
+	height:35px;
+	background:#e4393c;
+	color:#fff;
+	font-size:18px;
+	border:none;
+	margin:0 20px 30px 20px;
+	}
+.warp .main .container .logo_form .logo_foot{
+	height:50px;
+	width:305px;
+	border-top:1px solid #f4f4f4;
+	padding:0 20px;
+	line-height:50px;
+	background:#fcfcfc;
+	color:#666666;
+	font-size:12px;
+	}
+.warp .main .container .logo_form .logo_foot div{
+	float:left;
+	}
+.warp .main .container .logo_form .logo_foot .qq{
+	width:35px;
+	padding-left:19px;
+	background:url('../images/qq.jpg') no-repeat 0 center; 
+	}
+.warp .main .container .logo_form .logo_foot .weixin{
+	width:35px;
+	padding-left:19px;
+	background:url('../images/QQ-weixin.png') no-repeat -20px; center;
+	
+	}
+.warp .main .container .logo_form .logo_foot .register{
+	margin-left:105px;
+	font-size:15px;
+	color:#b61d1d;
+	padding-left:30px;
+	background:url('../images/pwd-icons-new.png') no-repeat -93px -73px;
+	height:20px;
+	line-height:20px;
+	margin-top:16px;	
+	}
+.warp .footer{
+	width:100%;
+	height:145px;
+	}
+.warp .footer .container{
+	width:990px;
+	margin:0 auto;
+	}
+.warp .footer .container ul{
+	margin:20px 0;
+	height:20px;
+	}
+.warp .footer .container ul li{
+	float:left;
+	width:80px;
+	font-size:12px;
+	height:20px;
+	line-height:20px;
+	}
+.warp .footer .container ul li a{
+	color:#666666;
+	}
+.warp .footer .container p{
+	text-align:center;
+	font-size:12px;
+	color:#666666;
+	}

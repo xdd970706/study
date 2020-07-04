@@ -1,0 +1,190 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+	}
+li{
+	list-style:none;
+	}
+a{
+	text-decoration:none;
+	}	
+.header{
+	width:100%;
+	height:60px;
+	background:#232323;
+	}
+.header .con{
+	width:1008px;
+	margin:0 auto
+	}
+.header .con .logo a{
+	float:left;
+	padding:10px 0;
+	height:40px;
+	width:250px;
+}
+.header .con ul{
+	height:60px;
+	width:758px;
+	margin:0;
+	float:right;
+	}
+.header .con ul li{
+	float:left;
+	height:60px;
+	width:60px;
+	line-height:60px;
+	padding:0 10px;
+	background:url('../images/border.jpg') no-repeat right center;
+	text-align:center;
+	}
+.header .con ul .last{
+	background:none;
+	}
+.header .con ul li:hover{
+	background:#f15a23;
+	}
+.header .con ul li a{
+	color:#fff;
+	font-size:13px;
+	}
+.banner{
+	width:100%;
+	height:265px;
+	background:url('../images/banner1.jpg') center center;
+	}
+.meun{
+	width:100%;
+	height:45px;
+	border-bottom:1px solid #e0e0e0;
+	margin:0 auto;
+	}
+.meun .left{
+	width:1008px;
+	height:45px;
+	margin:0 auto;
+	line-height:45px;
+	color:#666666;
+	}
+.meun .left p{
+	padding-left:20px;
+	background:url('../images/home.jpg') no-repeat 0 17px;;
+	}
+.meun .left p a{
+	float:float;
+	color:black;
+	font-size:12px;
+	}
+.meun .left p img{
+	margin:0 8px;
+	
+	}
+.main{
+	width:100%;
+	margin:0 auto;
+	}
+.main .page{
+	width:1008px;
+	margin:0 auto;
+	}
+.main .page .p1 i{
+	color:#f15a23;
+	font-weight:600;
+	font-size:13px;
+	}
+	.main .page .p1{
+	text-indent: 2em;
+	color:#666666;
+	font-size:13px;
+	font-weight:500;
+		}
+.main .page .p2{
+	text-indent: 2em;
+	font-size:14px;
+	}
+.main .page .p3{
+	padding-left:30px;
+	font-weight:500;
+	font-size:13px;
+	color:#666666;
+	}
+.main .page .p4{
+	text-indent: 2em;
+	color:#f15a23;
+	}
+.main .ad{
+	height:240px;
+	witdth:1008px;
+	background:url('../images/ad.jpg') no-repeat center center;
+	}
+.footer{
+	width:100%;
+	height:214px;
+	background:#222222;
+	margin-top:95px;
+	}
+.footer .links{
+	width:1008px;
+	margin:0 auto;
+	height:214px;
+	}
+.footer .links .left{
+	width:475px;
+	padding-top:50px;
+	height:164px;
+	background:url('../images/border2.jpg') no-repeat right center;
+	float:left;
+	padding-left:15px;
+	}
+.footer .links .left ul{
+	float:left;
+	width:85px;
+	}
+ .footer .links .left ul li{
+	 font-size:12px;
+	 margin-bottom:10px;
+	 }
+ .footer .links .left ul li a{
+	 color:#999999;
+	 }
+.footer .links .left ul .title{
+	margin:0 0 20px 0;
+	}
+.footer .links .left ul .title a{
+	color:#fff;
+	}
+.footer .links .main{
+	float:left;
+	width:313px;
+	height:214px;
+	background:url(../images/map.jpg) no-repeat  35px 0;
+	}
+.footer .links .border{
+	width:1px;
+	height:214px;
+	float:left;
+	background:url('../images/border2.jpg') no-repeat 0 center;
+	}
+.footer .links .right{
+	float:left;
+	width:204px;
+	height:214px;
+	background:url(../images/weixin.jpg) no-repeat center center;
+	}
+.bottom{
+	width:100%;
+	background:#101010;
+	height:45px;
+	}
+.bottom p{
+	height:45px;
+	width:1008px;
+	color:#999999;
+	font-size:12px;
+	line-height:45px;
+	margin:0 auto;
+	text-align:center;
+	}

@@ -1,0 +1,34 @@
+<tag name="feTurbulence" casesensitive="yes" endtag="yes">
+	<tagformat indentcontents="yes" formatcontents="yes" nlbeforetag="1" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1" />
+	<attributes>
+		<attrib name="id" type="Text" casesensitive="yes"/>
+		<attrib name="xml:base" type="Text" casesensitive="yes"/>
+		<attrib name="xml:lang" type="Text" casesensitive="yes"/>
+		<attrib name="xml:space" type="Enumerated" casesensitive="yes">
+			<attriboption value="default" caption="default" />
+			<attriboption value="preserve" caption="preserve" />
+		</attrib>
+		<attrib name="color-interpolation-filters" type="Enumerated" casesensitive="yes">
+			<attriboption value="auto" caption="auto" />
+			<attriboption value="inherit" caption="inherit" />
+			<attriboption value="linearRGB" caption="linearRGB" />
+			<attriboption value="sRGB" caption="sRGB" />
+		</attrib>
+		<attrib name="x" type="Text" casesensitive="yes"/>
+		<attrib name="y" type="Text" casesensitive="yes"/>
+		<attrib name="width" type="Text" casesensitive="yes"/>
+		<attrib name="height" type="Text" casesensitive="yes"/>
+		<attrib name="result" type="Text" casesensitive="yes"/>
+		<attrib name="baseFrequency" type="Text" casesensitive="yes"/>
+		<attrib name="numOctaves" type="Text" casesensitive="yes"/>
+		<attrib name="seed" type="Text" casesensitive="yes"/>
+		<attrib name="stitchTiles" type="Enumerated" casesensitive="yes">
+			<attriboption value="noStitch" caption="noStitch (default)" />
+			<attriboption value="stitch" caption="stitch" />
+		</attrib>
+		<attrib name="type" type="Enumerated" casesensitive="yes">
+			<attriboption value="fractalNoise" caption="fractalNoise" />
+			<attriboption value="turbulence" caption="turbulence (default)" />
+		</attrib>
+	</attributes>
+</tag>

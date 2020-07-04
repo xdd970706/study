@@ -1,0 +1,183 @@
+<!-- Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cftree/title" /></title>
+<styleplaceholder>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var ALIGNLIST;
+var FONTLIST; 
+var LOOKANDFEELLIST; 
+var FORMATLIST;
+var theUIObjects;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+  ALIGNLIST = new ListControl("thealign"); 
+  FONTLIST = new ListControl("thefont"); 
+  FORMATLIST = new ListControl("theformat"); 
+  LOOKANDFEELLIST = new ListControl("thelookandfeel"); 
+  theUIObjects = new Array(ALIGNLIST,FONTLIST,LOOKANDFEELLIST, FORMATLIST); 
+
+  tagDialog.populateDropDownList(ALIGNLIST, theVericalAlignmentsCap, theVericalAlignmentsVal, 1); 
+  tagDialog.populateDropDownList(FONTLIST, dw.getSystemFontList('all'), dw.getSystemFontList('all'), 1); 
+  tagDialog.populateDropDownList(LOOKANDFEELLIST, theLookAndFeelCap, theLookAndFeelVal, 1); 
+  tagDialog.populateDropDownList(FORMATLIST, theTreeFormatCap, theTreeFormatVal, 1); 
+  
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+<body onLoad="initializeUI()"> 
+<div MMString:name="TagLibraries/CFML/cftree/div/name/General"> 
+  <table border="0">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Name" /> </td>
+      <td colspan="3" nowrap="nowrap">
+        <input name="thename" type="text" class="medTField" id="attr:cftree:name" attname="name" />      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Message" /> </td>
+      <td colspan="3" nowrap="nowrap">
+        <input name="themessage" type="text" class="basicTextField" id="attr:cftree:message" attname="message" />      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Alignment" /> </td>
+      <td colspan="3" nowrap="nowrap">
+        <select name="thealign" class="alignList" id="attr:cftree:align" attname="align">
+        </select>      </td> 
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Delmiter" /> </td>
+      <td colspan="3" nowrap="nowrap">
+        <input name="thedelimiter" type="text" class="smallTField" id="attr:cftree:delimiter" attname="delimiter" />      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Height" /> </td>
+      <td nowrap="nowrap"><input name="theheight" type="text" class="smallNumOrChar" id="attr:cftree:height" attname="height" /></td>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Vertical" /> </td>
+      <td nowrap="nowrap"><input name="thevspace" type="text" class="smallNumOrChar" id="attr:cftree:vspace" attname="vspace" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Width" /></td>
+      <td nowrap="nowrap"><input name="thewidth" type="text" class="smallNumOrChar" id="attr:cftree:width" attname="width" /></td>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Horizontal" /></td>
+      <td nowrap="nowrap"><input name="thehspace" type="text" class="smallNumOrChar" id="attr:cftree:hspace" attname="hspace" /></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Font" /> </td>
+      <td colspan="3" nowrap="nowrap">
+        <select name="thefont" class="fontList" id="attr:cftree:font" attname="font" editrable="true">
+        </select>      </td> 
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Format" /> </td>
+      <td colspan="3" nowrap="nowrap">
+        <select name="theformat" class="formatList" id="attr:cftree:format" attname="format">
+        </select>      </td> 
+    </tr>
+	 <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Look" /> </td>
+      <td colspan="3" nowrap="nowrap">
+        <select name="thelookandfeel" class="oneWordOptionList" id="attr:cftree:lookandfeel" attname="lookandfeel">
+        </select>      </td> 
+    </tr>
+	 <tr>
+       <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/Tooltip" /> </td>
+       <td colspan="3" nowrap="nowrap"><input name="thetooltip" type="text" class="basicTextField" id="attr:cftree:tooltip" attname="tooltip" />       </td>
+    </tr>
+	 <tr>
+       <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+	   <td colspan="2" nowrap="nowrap"><input type="checkbox" id="attr:cftree:hscroll" name="thehscroll" attname="hscroll" truevalue="yes" />
+	     <MMString:loadString id="TagLibraries/CFML/cftree/checkbox/thehscroll/Scroll" /> </td>
+	   <td nowrap="nowrap"><input type="checkbox" id="attr:cftree:vscroll" name="thevscroll" attname="vscroll" truevalue="yes">
+	     <MMString:loadString id="TagLibraries/CFML/cftree/checkbox/thevscroll/Scroll" /> </td>
+    </tr>    
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td colspan="2" nowrap="nowrap">
+        <input type="checkbox" id="attr:cftree:bold" name="thebold" attname="bold" truevalue="yes" /> <MMString:loadString id="TagLibraries/CFML/cftree/checkbox/thebold/Bold" />      </td>
+      <td nowrap="nowrap"><input type="checkbox" id="attr:cftree:italic" name="theitalic" attname="italic" truevalue="yes" />
+<MMString:loadString id="TagLibraries/CFML/cftree/checkbox/theitalic/Italic" /> </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td colspan="2" nowrap="nowrap"><input type="checkbox" id="attr:cftree:border" name="theborder" attname="border" truevalue="yes" />
+<MMString:loadString id="TagLibraries/CFML/cftree/checkbox/theborder/Border" /> </td>
+      <td nowrap="nowrap"><input type="checkbox" id="attr:cftree:visible" name="thevisible" attname="visible" truevalue="yes" checked />
+<MMString:loadString id="TagLibraries/CFML/cftree/checkbox/thevisible/Visible" /> </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td colspan="2" nowrap="nowrap"><input type="checkbox" id="attr:cftree:completepath" name="thecompletepath" attname="completepath" truevalue="yes"  />
+<MMString:loadString id="TagLibraries/CFML/cftree/checkbox/thecompletepath/Complete" /> </td> 
+      <td nowrap="nowrap"><input type="checkbox" id="attr:cftree:required" name="therequired" attname="required" truevalue="yes"  />
+<MMString:loadString id="TagLibraries/CFML/cftree/checkbox/therequired/Required" /> </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td colspan="3" nowrap="nowrap"><input type="checkbox" id="attr:cftree:appendkey" name="theappendkey" attname="appendkey" truevalue="yes" checked />
+<MMString:loadString id="TagLibraries/CFML/cftree/checkbox/theappendkey/Append" /> </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td colspan="3" nowrap="nowrap">
+        <input type="checkbox" id="attr:cftree:highlighthref" name="highlighthref" attname="highlighthref" truevalue="yes"  checked /> <MMString:loadString id="TagLibraries/CFML/cftree/checkbox/highlighthref/Highlight" />      </td>
+    </tr>
+  </table>
+</div>
+  
+  <div MMString:name="TagLibraries/CFML/cftree/div/name/Events"> 
+  <table border="0">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/onChange" /> </td>
+      <td colspan="3" nowrap="nowrap"><input name="theonchange" type="text" class="basicTextField" id="attr:cftree:onchange" attname="onchange" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/onBlur" /> </td>
+      <td colspan="3" nowrap="nowrap"><input name="theonblur" type="text" class="basicTextField" id="attr:cftree:onblur" attname="onblur" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/onFocus" /> </td>
+      <td colspan="3" nowrap="nowrap"><input name="theonfocus" type="text" class="basicTextField" id="attr:cftree:onfocus" attname="onfocus" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/onValidate" /> </td>
+      <td colspan="3" nowrap="nowrap"><input name="theonvalidate" type="text" class="basicTextField" id="attr:cftree:onvalidate" attname="onvalidate" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftree/text/onError" /> </td>
+      <td colspan="3" nowrap="nowrap"><input name="theonerror" type="text" class="basicTextField" id="attr:cftree:onerror" attname="onerror" />
+      </td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</div>
+</body> 
+</html>

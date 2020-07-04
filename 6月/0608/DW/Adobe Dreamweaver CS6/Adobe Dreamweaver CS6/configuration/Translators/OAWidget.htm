@@ -1,0 +1,694 @@
+<html>
+<head>
+<!-- Copyright 2009 Adobe Systems Incorporated.  All rights reserved. -->
+<title>Widget Framework</title>
+<meta http-equiv="Content-Type" content="text/html; charset=">
+
+<!-- common includes for any widget translator -->
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscriptsServer.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/AssetInfoClass.js"></script>
+<script type="text/javascript" src="../Shared/OAWidget/OAWidgetManager.js" ></script>
+
+<script type="text/javascript">
+
+//
+// TRANSLATOR API FUNCTIONS:
+//
+
+function translateDOM(dom, sourceStr)
+{
+    return translateOAWidget(dom, sourceStr);
+}
+
+function getTranslatorInfo()
+{
+	returnArray = new Array(7);
+
+	returnArray[0] = "OAWidget"			// The translatorClass needs to be unique for each Widget can't have a period in it
+	returnArray[1] = "OAWidget"		    // The title needs to be unique for each Widget
+	returnArray[2] = "0"			    // The number of extensions. 0 indicates to run against all extensions
+	returnArray[3] = "1"				// The number of expressions"
+	returnArray[4] = "<oa:widgets"		// Expression for open
+	returnArray[5] = "byString"			// Run if doc contains expr
+	returnArray[6] = "50"				// priority order to apply translator
+		
+	return returnArray;
+} // getTranslatorInfo()
+
+//
+// OAWidget TRANSLATOR IMPLEMENTATION
+//
+
+function translateOAWidget(dom, sourceStr)
+{
+    var widgetMgr = OAWidgetManager.getManagerForDoc(dom);
+
+    var widgets = OAWidgetManager.getDocumentWidgetList(dom);
+    for (var i = 0; i < widgets.length; i++)
+    {
+        var widgetEntry = widgets[i];
+        var exchangeID = widgetEntry.exchangeID;
+        var widgetID = widgetMgr.getWidgetIDForExchangeID(exchangeID);
+        var binding = widgetEntry.binding;
+        var wmd = widgetMgr.getWidgetMetaData(widgetID);
+        if (wmd)
+        {
+            // XXX: This needs to be updated if we support more binding methods. Today we only support "id" and "selector".
+
+            switch (wmd.bindingMethod)
+            {
+                case "selector":
+                    var widgetElements = getElementsBySelector(binding, dom);
+                    break;
+                default:
+                    alert(wmd.bindingMethod + " binding method is unsupported!");
+                    break;
+            }
+
+            if (widgetElements.length)
+            {
+                var w = widgetMgr.getWidgetInstance(exchangeID, binding);
+                if (!w)
+                {
+                    w = widgetMgr.createWidgetInstance(dom, exchangeID, binding);
+                    addRefWidgetAssets(dom, widgetID, exchangeID, binding);
+                }
+
+                for (var k = 0; widgetElements && k < widgetElements.length; k++)
+                {
+                    var ele = widgetElements[k];
+
+                    setTranslatedAttributes(ele, wmd.name, binding);
+                    ele.setTranslatedAttribute("OAWidgetID", widgetID);
+                    ele.setTranslatedAttribute("OAWidgetBinding", binding);
+
+                    var deleteFunction = getWidgetMarkupDeleteFunc(ele, widgetID, widgetEntry.exchangeID, wmd.bindingMethod, binding);
+                    ele.addEventListener("DOMNodeRemovedFromDocument", deleteFunction, false);
+                }
+            }
+        }
+    }
+}
+
+function getWidgetMarkupDeleteFunc(ele, widgetID, exchangeID, bindingMethod, binding)
+{
+    return function(e)
+    {
+        var doc = e.target.ownerDocument;
+
+        var widgetMgr = OAWidgetManager.getManagerForDoc(doc);
+        var wmd = widgetMgr.getWidgetMetaData(widgetID);
+
+        switch (wmd.bindingMethod)
+        {
+            case "selector":
+                var widgetElements = getElementsBySelector(binding, doc);
+
+                // XXX: Hmmm, our function seems to be getting called *before* the actual target
+                // element is removed from the document. This means we have to check the case where
+                // the widgetElements array contains only the target element in addition to the case
+                // where it is completely empty.
+
+                if (widgetElements.length < 1 || (widgetElements.length == 1 && widgetElements[0] == e.target))
+                {
+                    removeWidgetInstanceCode(doc, widgetID, exchangeID, wmd.bindingMethod, binding);
+                    widgetMgr.removeEntryFromDocumentWidgetList(doc, widgetID, bindingMethod, binding);
+                    releaseWidgetAssets(doc, widgetID, exchangeID, binding);
+                    widgetMgr.removeWidgetInstance(exchangeID, binding);
+                }
+
+                break;
+            default:
+                break;
+        }
+    };
+}
+
+function getWidgetSharedCodeTypes(widgetMgr, widgetID)
+{
+/*
+    var results = [];
+    var typeDict = {};
+
+    var md = widgetMgr.getWidgetMetaData(widgetID);
+    if (md)
+    {
+        var reqs = md.getRequires();
+        for (var i = 0; i < reqs.length; i++)
+        {
+            var r = reqs[i];
+            if (!r.src && r.inlineContent)
+                typeDict[r.type] = true;
+        }
+    }
+
+    for (var t in typeDict)
+        results.push(t);
+
+    return results;
+*/
+
+    // Since the shared code types supported by a given widget can
+    // chanage between versions, we need to look for all of them.
+    return ["javascript", "css", "markup"];
+}
+
+
+function removeDelimitedCode(str, tokenRegExpStr, startDelimRegExpStr)
+{
+    var results = [];
+
+    var re = new RegExp(tokenRegExpStr, "gm");
+    var startRE = new RegExp(startDelimRegExpStr, "gm");
+
+    var contentOffset = 0;
+    var foundStart = false;
+
+    var delimeterOffset = -1;
+
+    var m = re.exec(str);
+    if (!m)
+        return str;
+
+    while (m)
+    {
+        var matchStr = m[0];
+
+        if (matchStr.search(startRE) != -1)
+        {
+            if (delimeterOffset == -1)
+            {
+                delimeterOffset = m.index;
+                seoffset = re.lastIndex;
+            }
+        }
+        else if (delimeterOffset != -1) // End Delimiter
+        {
+            if (contentOffset != delimeterOffset)
+                results.push(str.substring(contentOffset, delimeterOffset));
+            delimeterOffset = -1;
+            contentOffset = re.lastIndex;
+        }
+
+        m = re.exec(str);
+    }
+
+    if (contentOffset < str.length)
+        results.push(str.substring(contentOffset));
+
+    return results.join("");
+}
+
+function getDelimiterRegExps(codeType, startDelim, endDelim)
+{
+    var result = new Object;
+
+    switch (codeType)
+    {
+        case "javascript":
+            result.start = "(?:\\s*\\/\\/\\s*" + startDelim + "\\s*$)";
+            result.end = "(?:\\s*\\/\\/\\s*" + endDelim + "\\s*$)";
+            break;
+        case "css":
+            result.start = "(?:\\/\\*\\s*" + startDelim + "[^\\n\\r]*\\*\\/)";
+            result.end = "(?:\\/\\*\\s*" + endDelim + "\\s*\\*\\/)";
+            break;
+        case "markup":
+            result.start = "(?:<!--\\s*" + startDelim + "[^->]*-->)";
+            result.end = "(?:<!--\\s*" + endDelim + "[^->]*-->)";
+            break;
+    }
+
+    return result;
+}
+
+function removeDelimitedCodeFromElement(ele, startDelim, endDelim)
+{
+    var src = ele.innerHTML;
+    if (src)
+    {
+        var newSrc = removeDelimitedCode(src, startDelim + "|" + endDelim, startDelim);
+        if (src != newSrc)
+        {
+            if (!hasContent(newSrc))
+                ele.outerHTML = "";
+            else
+                ele.innerHTML = newSrc;
+        }
+    }
+}
+
+function hasContent(str)
+{
+    return str && str.replace(/[\s\r\n]+|<!--|(?:\/\/\s*)?-->/mg, "") != "";
+}
+
+function getNodesByType(root, nodeType)
+{
+    var results = [];
+    if (root)
+    {
+        var stack = [root];
+        while (stack.length)
+        {
+            var n = stack.shift();
+            if (n != root && n.nodeType == nodeType)
+                results.push(n);
+            var c = n.lastChild;
+            while (c)
+            {
+                stack.unshift(c);
+                c = c.previousSibling;
+            }
+        }
+    }
+    return results;
+}
+
+function removeCommentDelimitedWidgetSharedCode(doc, widgetMgr, widgetID, exchangeID)
+{
+    // The widget has some "markup" <require> content. This content is
+    // HTML markup delimited by comment nodes. We could simply get the
+    // innerHTML of the entire document and delete these comments and
+    // everything between them, but in an effort to minimize how much
+    // of the document we touch, we scan the document for these comments,
+    // then add their parent containers to a list. We then run through
+    // that list of containers, fetch their innerHTML and remove the
+    // comments and everything between them.
+    //
+    // XXX: Using this approach, we run the risk of totally replacing
+    // the content of the container that is the ancestor of the widget
+    // markup that is currently being deleted. The net result is that
+    // the top-level widget element that is being deleted, gets left
+    // in the document. < sigh >
+
+    // Fetch the container elements that have our "markup" <require>
+    // comments.
+
+    var commentNodes = getNodesByType(doc.documentElement, 8 /* Node.COMMENT_NODE */);
+    var start = "BeginOAWidget_Shared_" + exchangeID + "\\b.*";
+    var end = "EndOAWidget_Shared_" + exchangeID;
+    var startRE = new RegExp(start);
+    var endRE = new RegExp(end);
+    var startComment = null;
+    var elementsToClean = [];
+    for (var j = 0; j < commentNodes.length; j++)
+    {
+        var c = commentNodes[j];
+        var str = c.data;
+        if (!startComment && str.search(startRE) != -1)
+            startComment = c;
+        else if (startComment && str.search(endRE) != -1)
+        {
+            if (startComment.parentNode == c.parentNode)
+            {
+                var p = startComment.parentNode;
+                var alreadySeen = p.getTranslatedAttribute("OAWidgetRequireParent");
+                if (!alreadySeen)
+                {
+                    p.setTranslatedAttribute("OAWidgetRequireParent", "true");
+                    elementsToClean.push(p);
+                }
+                startComment = null;
+            }
+        }
+    }
+
+    if (elementsToClean.length > 0)
+    {
+        var delims = getDelimiterRegExps("markup", start, end);
+        for (var j = 0; j < elementsToClean.length; j++)
+        {
+            var e = elementsToClean[j];
+            var str = e.innerHTML;
+            var newStr = removeDelimitedCode(str, delims.start + "|" + delims.end, delims.start);
+            if (str != newStr)
+                e.innerHTML = newStr;
+            e.removeTranslatedAttribute("OAWidgetRequireParent");
+        }
+    }
+}
+
+function removeWidgetInstanceCode(doc, widgetID, exchangeID, bindingMethod, binding)
+{
+    var start = "BeginOAWidget_Instance_" + exchangeID + ":\\s*" + dwscripts.escRegExpChars(binding);
+    var end = "EndOAWidget_Instance_" + exchangeID;
+
+    var scriptTags = doc.getElementsByTagName("script");
+    var delims = getDelimiterRegExps("javascript", start, end);
+    for (var i = scriptTags.length - 1; i >= 0; i--)
+    {
+        var e = scriptTags.item(i);
+        if (e && !e.src)
+            removeDelimitedCodeFromElement(e, delims.start, delims.end);
+    }
+
+    var styleTags = doc.getElementsByTagName("style");
+    var delims = getDelimiterRegExps("css", start, end);
+    for (var i = styleTags.length - 1; i >= 0; i--)
+    {
+        var e = styleTags.item(i);
+        if (e)
+            removeDelimitedCodeFromElement(e, delims.start, delims.end);
+    }
+}
+
+function removeWidgetSharedCode(doc, widgetMgr, widgetID, exchangeID)
+{
+    var sharedTypes = getWidgetSharedCodeTypes(widgetMgr, widgetID);
+
+    for (var i = 0; i < sharedTypes.length; i++)
+    {
+        var iType = sharedTypes[i];
+        switch (iType)
+        {
+            case "javascript":
+            case "css":
+                var delims = getDelimiterRegExps(iType, "BeginOAWidget_Shared_" + exchangeID + "\\b.*", "EndOAWidget_Shared_" + exchangeID);
+                var tagName = (iType == "javascript") ? "script" : "style";
+                var eles = doc.getElementsByTagName(tagName);
+                for (var j = eles.length - 1; j >= 0; j--)
+                {
+                    var ele = eles.item(j);
+                    if (ele && !ele.src)
+                        removeDelimitedCodeFromElement(ele, delims.start, delims.end);
+                }
+                break;
+            case "markup":
+                removeCommentDelimitedWidgetSharedCode(doc, widgetMgr, widgetID, exchangeID);
+                break;
+        }
+    }
+}
+
+function addRefWidgetAssets(doc, widgetID, exchangeID, binding)
+{
+    if (doc && widgetID)
+    {
+        var widgetMgr = OAWidgetManager.getManagerForDoc(doc);
+        if (widgetMgr)
+            widgetMgr.addWidgetAssetsToDependentDictionary(widgetID);
+    }
+}
+
+function releaseWidgetAssets(doc, widgetID, exchangeID, binding)
+{
+    if (!doc || !widgetID)
+        return;
+
+    var widgetMgr = OAWidgetManager.getManagerForDoc(doc);
+
+    var widgetsLookUp = OAWidgetManager.getWidgetsUsedWithinDocument(doc);
+    var assetRefs = widgetMgr.getWidgetAssetDependentsDictionary(widgetID);
+
+    for (var i = 0; i < assetRefs.length; i++)
+    {
+        var asset = assetRefs[i];
+        var wids = asset.widgetIDs;
+        var isUsed = false;
+
+        for (var wid in wids)
+        {
+            isUsed = widgetsLookUp[wid] != undefined;
+            if (isUsed)
+                break;
+        }
+        if (!isUsed)
+        {
+            var arr = doc.getElementsByTagName(asset.refType == "link" ? "link" : "script");
+            var attr = (asset.refType == "link" ? "href" : "src");
+            if (arr && arr.length > 0)
+            {
+                for (var j = 0; j < arr.length; j++)
+                {
+                    var ele = arr.item(j);
+                    var value = ele.getAttribute(attr);
+                    if (typeof value != "undefined" && value.search(new RegExp(dwscripts.escRegExpChars(asset.path) + "$")) != -1)
+                        ele.outerHTML = "";
+                }
+            }
+        }
+    }
+
+    if (!widgetsLookUp[exchangeID])
+        removeWidgetSharedCode(doc, widgetMgr, widgetID, exchangeID);
+}
+
+function setTranslatedAttributes(ele, widgetType, binding)
+{
+    if (!ele) return;
+
+    // Add attributes to the main element for tabbedoutlines
+    ele.setTranslatedAttribute("outline", widgetType + ": " + binding);
+    ele.setTranslatedAttribute("outlineId", "unique");
+    ele.setTranslatedAttribute("outlineForSelection", "outlineForSelection");
+    ele.setTranslatedAttribute("hiliteChildrenOnSelect", "false");
+    // Leave a marker for the PI to know it can inspect this selection
+    ele.setTranslatedAttribute(widgetType, binding);
+}
+
+function removeTranslatedAttributes(ele, widgetType, binding)
+{
+    if (!ele) return;
+
+    ele.removeTranslatedAttribute("outline");
+    ele.removeTranslatedAttribute("outlineId");
+    ele.removeTranslatedAttribute("outlineForSelection");
+    ele.removeTranslatedAttribute(widgetType);
+}
+
+function getElementsBySelector(sequence, root)
+{
+    if (!sequence)
+        return [];
+
+    if (!getElementsBySelector.queryID)
+    {
+        getElementsBySelector.queryID = 1;
+        getElementsBySelector.distinct = function(a)
+        {
+            var qid = ++getElementsBySelector.queryID + "";
+            var n = a.length;
+            var b = [];
+            for (var i = 0; i < n; i++)
+            {
+                var e = a[i];
+                if (e.getTranslatedAttribute("Spry$$geqid") != qid)
+                {
+                    e.setTranslatedAttribute("Spry$$geqid", qid);
+                    b.push(e);
+                }
+            }
+            for (var i = 0; i < n; i++)
+                a[i].removeTranslatedAttribute("Spry$$geqid");
+            return b;
+        };
+        // XXX: We need to work around the fact that DW's version of getElementsByTagName() doesn't
+        // support the name "*".
+        getElementsBySelector.getElementsByTagName = function(ele, name)
+        {
+            if (name != "*")
+                return ele.getElementsByTagName(name);
+            var results = {
+                a: [],
+                item: function(idx) { return this.a[idx]; },
+                length: 0
+            };
+
+            // Caller wants all child elements. The following code implements
+            // a non-recursive pre-order collection of all child elements.
+
+            var stack = [];
+
+            // Push the element on the stack so its children get processed.
+            // DW's document element doesn't returns null when accessing its
+            // firstChild or lastChild properties. To work around this, push
+            // its documentElement on the stack instead.
+
+            stack.push(ele.nodeType == 9 ? ele.documentElement : ele);
+
+            while (stack.length)
+            {
+                var e = stack.shift();
+                if (e != ele)
+                    results.a.push(e);
+                var c = e.lastChild;
+                while (c)
+                {
+                    if (c.nodeType == 1) // Node.ELEMENT_NODE
+                        stack.unshift(c);
+                    c = c.previousSibling;
+                }
+            }
+
+            results.length = results.a.length;
+            return results;
+        };
+    }
+
+    var results = [];
+
+    // If we have more than one sequence, split the string
+    // into separate sequences and process each one seperately.
+
+    if (sequence.search(/,/) != -1)
+    {
+        var seqs = sequence.split(/\s*,\s*/);
+        for (var i = 0; i < seqs.length; i++)
+            results = results.concat(getElementsBySelector(seqs[i], root));
+        return getElementsBySelector.distinct(results);
+    }
+
+    // We have a single selector sequence. Check to see if a root
+    // was provided. If not, default to using the document.
+
+    if (!root)
+        root = document;
+
+    // Clean off any leading/trailing spaces.
+
+    sequence = sequence.replace(/^\s+|\s+$/, "");
+
+    if (root.nodeType == 9 /* Node.DOCUMENT_NODE */ && sequence.search(/^#[a-zA-Z][a-zA-Z0-9-_\:\.]*$/) != -1)
+    {
+        var e = root.getElementById(sequence.replace(/^#/, ""));
+        if (e)
+            results.push(e);
+        return results;
+    }
+
+    // Now bust the sequence string into combinator and simple selector tokens
+    // and process each one. Combinator tokens simply set the mode for generating
+    // the set of elements to process when the next simple selector is encountered.
+
+    var tknRE = /\s*[>+]\s*|\s+|[^\s>+]+/g;
+    var tm = tknRE.exec(sequence);
+    var mode = ' ';
+
+    while (tm)
+    {
+        var tkn = tm[0];
+        if (tkn.search(/^\s+$/) != -1)
+            mode = ' ';
+        else if (tkn.search(/>/) != -1)
+            mode = '>';
+        else if (tkn.search(/\+/) != -1)
+            mode = '+';
+        else
+        {
+            // We have a simple selector sequence. If we don't a set of previously
+            // processed elements, create one containing the root.
+
+            if (results.length == 0)
+                results = [root];
+
+            // Bust the simple selector sequence into individual simple
+            // selectors.
+
+            var selectorRE = /[#\.][^#\.]+|\*|[^#\.\*]+/g;
+            var sm = selectorRE.exec(tkn);
+            var selectors = [];
+            var eleName = "*";
+
+            while (sm)
+            {
+                var sm = sm[0];
+                if (sm.charAt(0).search(/^[#\.]/) == -1)
+                    eleName = sm.toLowerCase();
+                else
+                {
+                    var o = new Object;
+                    o.c = sm.charAt(0);
+                    o.v = sm.substr(1);
+                    selectors.push(o);
+                }
+                sm = selectorRE.exec(tkn);
+            }
+
+            // Generate of set of elements to process based on the previously
+            // processed set and the current combinator mode.
+
+            var eSet = [];
+            var cnt = results.length;
+
+            var qid = ++getElementsBySelector.queryID + "";
+
+            for (var i = 0; i < cnt; i++)
+            {
+                var e = results[i];
+                switch (mode)
+                {
+                    case ' ':  // any descendant
+                        if (e.nodeType == 9 || e.getTranslatedAttribute("Spry$$geqid") != qid)
+                        {
+                            // var ns = e.getElementsByTagName(eleName);
+                            var ns = getElementsBySelector.getElementsByTagName(e, eleName);
+                            var nscnt = ns.length;
+                            for (var j = 0; j < nscnt; j++)
+                            {
+                                var n = ns.item(j);
+                                n.setTranslatedAttribute("Spry$$geqid", qid);
+                                eSet.push(n);
+                            }
+                        }
+                        break;
+                    case '>': // direct descendant
+                        e = e.firstChild;
+                        while (e)
+                        {
+                            if (e.nodeType == 1 /* Node.ELEMENT_NODE */ && (eleName == '*' || e.nodeName.toLowerCase() == eleName))
+                                eSet.push(e);
+                            e = e.nextSibling;
+                        }
+                        break;
+                    case '+': // adjacent sibling
+                        e = e.nextSibling;
+                        while (e && e.nodeType != 1 /* Node.ELEMENT_NODE */)
+                            e = e.nextSibling;
+                        if (e && (eleName == '*' || e.nodeName.toLowerCase() == eleName))
+                            eSet.push(e);
+                        break;
+                }
+            }
+
+            // If we don't have any elements in our new set, bail.
+
+            var cnt = eSet.length;
+            if (cnt < 1)
+                return [];
+
+            // Run through the new set of elements. Any element that matches
+            // all of our simple selectors gets pushed into our result set.
+
+            results = [];
+
+            for (var i = 0; i < cnt; i++)
+            {
+                var e = eSet[i];
+                var isMatch = true;
+                for (var j = 0; isMatch && j < selectors.length; j++)
+                {
+                    var s = selectors[j];
+                    isMatch = !((s.c == '#' && e.id != s.v) || (s.c == '.' && e.className.search("\\b" + s.v + "\\b") == -1));
+                }
+                if (isMatch)
+                    results.push(e);
+            }
+
+            if (results.length < 1)
+                return [];
+        }
+
+        tm = tknRE.exec(sequence);
+    }
+    return getElementsBySelector.distinct(results);
+}
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

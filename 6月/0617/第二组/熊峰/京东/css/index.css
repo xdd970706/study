@@ -1,0 +1,279 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0;padding:0;}
+.header{
+	width:990px;
+	height:80px;
+	margin:0 auto;
+	}
+.header .logo{
+	width:170px;
+	height:80px;
+	background-image:url(../images/logo.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	float:left;
+	}	
+.header .login{
+	width:120px;
+	height:80px;
+	background-image:url(../images/login.png);
+	background-repeat:no-repeat;
+	background-position-x:23px;
+	background-position-y:35px;
+	float:left;
+	}		
+.header b{
+	color:#3a3a3a;
+	font-size:24px;
+	font-weight:normal;
+	padding-top:30px;
+	padding-left:21px;
+	float:left;
+	}	
+.header .wenjuan{
+	width:140px;
+	height:14px;
+	float:right;
+	background:url(../images/q-icon.png);
+	background-repeat:no-repeat;
+	margin-top:55px;
+	background-position-y:1px;
+	}
+.header .wenjuan a{
+	text-decoration:none;
+	font-size:13px;
+	float:right;
+	line-height:12px;
+	padding-left:3px;
+	}		
+.header .wenjuan a:link{
+	color:#999999;
+	}	
+.tips{
+	width:100%;
+	height:40px;
+	background-color:#fff8f0;
+	}
+.tips div{
+	width:990px;
+	height:40px;
+	margin:0 auto;
+	background:url(../images/info.png) no-repeat 100px 12px;
+	}	
+.tips div p{
+	font-size:12px;
+	color:#999999;
+	line-height:40px;
+	margin-left:120px;
+	}	
+.banner{
+	width:100%;
+	height:475px;
+	background-color:#e93854;
+	}	
+.banner .background{
+	width:990px;
+	height:475px;
+	background-image:url(../images/5aa68632Nd7790d0c.png);
+	margin:0 auto;
+	}
+.banner .right{
+	width:346px;
+	height:400px;
+	float:right;
+	margin-top:10px;
+	}	
+.banner .right .info{
+	height:39px;
+	background:#fff8f0 url(../images/info.png) no-repeat 30px 12px;
+	padding-left:52px;
+	
+	}
+.banner .right .info p{
+	font-size:12px;
+	color:#999999;
+	float:left;
+	margin-top:13px;
+	}	
+.banner .right .two{
+	height:34px;
+	background-color:#ffffff;
+	padding-top:19px;
+	border-bottom:1px solid #f4f4f4;
+	}
+.banner .right .two a{
+	text-decoration:none;
+	float:left;
+	color:#666666;
+	padding-left:49px; 
+	padding-right:49px;
+	font-size:18px;
+	
+	}
+.banner .right .two .br{
+	color:#e4393c;
+	font-weight:bold;
+	border-left:1px solid #f4f4f4;
+	}		
+.banner .right .two span{border-left:1px solid #f4f4f4;}	
+.banner .right form{
+	height:255px;
+	width:346px;
+	background-color:#fff;
+	float:left;
+	}
+.banner .right form .user{
+	width:307px;
+	height:40px;
+	border:1px solid #bdbdbd;
+	margin-left:20px;
+	margin-top:33px;
+	}
+.banner .right form .user span{
+	width:39px;
+	height:40px;
+	border-right:1px solid #bdbdbd;
+	float:left;
+	background:#f4f4f4 url(../images/r.png) no-repeat center center;
+	cursor:pointer;
+	}	
+		
+.banner .right form div input{
+	height:38px;
+	width:254px;
+	font-size:14px;
+	color:#999999;
+	outline:none;
+	float:left;
+	border:none;
+	padding-left:11px;
+	}
+.banner .right form .pwd{
+	width:307px;
+	height:40px;
+	border:1px solid #bdbdbd;
+	margin-left:20px;
+	margin-top:20px;
+	}		
+.banner .right form .pwd span{
+	width:39px;
+	height:40px;
+	border-right:1px solid #bdbdbd;
+	float:left;
+	background:#f4f4f4 url(../images/key.png) no-repeat center center;
+	cursor:pointer;
+	}
+.banner .right .forget{
+	width:307px;
+	height:35px;
+	float:left;
+	margin-left:20px;
+	font-size:12px;
+	}	
+.banner .right .forget a{
+	float:right;
+	text-decoration:none;
+	color:#666666;
+	margin-top:22px;
+	}	
+.banner .right .btn{
+	width:305px;
+	height:35px;
+	background-color:#e4393c;
+	margin-left:21px;
+	float:left;
+	margin-top:22px;
+	text-align:center;
+	line-height:35px;
+	font-size:18px;
+	color:#fff;
+	border:1px solid #e85356;
+	}
+.banner .right .bottom{
+	width:347px;
+	height:50px;
+	float:left;
+	background-color:#fcfcfc;
+	}
+.banner .right .bottom .left{
+	width:120px;
+	height:50px;
+	margin-left:20px;
+	float:left;
+	}	
+.banner .right .bottom .left a{
+	font-size:12px;
+	float:left;
+	color:#666666;
+	text-decoration:none;
+	line-height:50px;
+	padding-left:23px;
+	background:url(../images/qq.png) no-repeat;
+	background-position-y:16px;
+	}
+.banner .right .bottom .left span{
+	border:1px solid #d5ccd5;
+	height:11px;
+	margin-top:20px;
+	float:left;
+	margin:20px 14px;
+	}	
+.banner .right .bottom .left .br{
+	font-size:12px;
+	float:left;
+	color:#666666;
+	text-decoration:none;
+	line-height:50px;
+	padding-left:23px;
+	background:url(../images/wx.jpg) no-repeat;
+	background-position-y:16px;
+	
+	}				
+.banner .right .bottom .right{
+	width:100px;
+	height:50px;
+	float:right;
+	border:0;
+	margin-top:0px;
+	}
+.banner .right .bottom .right a{
+	font-size:12px;
+	float:left;
+	color:#666666;
+	text-decoration:none;
+	line-height:50px;
+	padding-left:23px;
+	background:url(../images/a.jpg) no-repeat;
+	background-position-y:16px;
+	}	
+.nav{
+	width:846px;
+	height:147px;
+	margin:0 auto;
+	}
+.nav p{
+	
+	}	
+.nav .p1 a{
+	color:#666666;
+	text-decoration:none;
+	font-size:12px;
+	float:left;
+	margin-top:23px;
+	margin-right:15px;
+	margin-left:14px;
+	}	
+.nav .p1 span{
+	border-right:1px solid #956695;
+	height:11px;
+	float:left;
+	margin-top:24px;
+	margin-bottom:16px;
+	}						
+.nav .p2{
+	font-size:12px;
+	color:#666666;
+	margin-left:300px;
+	}	

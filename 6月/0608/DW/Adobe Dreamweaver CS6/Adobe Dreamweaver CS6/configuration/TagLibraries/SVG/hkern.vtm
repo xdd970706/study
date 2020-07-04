@@ -1,0 +1,17 @@
+<tag name="hkern" casesensitive="yes" endtag="no">
+	<tagformat indentcontents="yes" formatcontents="yes" nlbeforetag="1" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1" />
+	<attributes>
+		<attrib name="id" type="Text" casesensitive="yes"/>
+		<attrib name="xml:base" type="Text" casesensitive="yes"/>
+		<attrib name="xml:lang" type="Text" casesensitive="yes"/>
+		<attrib name="xml:space" type="Enumerated" casesensitive="yes">
+			<attriboption value="default" caption="default" />
+			<attriboption value="preserve" caption="preserve" />
+		</attrib>
+		<attrib name="u1" type="Text" casesensitive="yes"/>
+		<attrib name="g1" type="Text" casesensitive="yes"/>
+		<attrib name="u2" type="Text" casesensitive="yes"/>
+		<attrib name="g2" type="Text" casesensitive="yes"/>
+		<attrib name="k" type="Text" casesensitive="yes"/>
+	</attributes>
+</tag>

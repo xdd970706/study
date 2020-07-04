@@ -1,0 +1,22 @@
+<VERSIONS xmlns:MMString="http://www.macromedia.com/schemes/dat/string/">
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/HTML" FILENAME="HTML_ALL.vtv" NAME="HTML20" PARENT="None"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/HTML_2" FILENAME="HTML_ALL.vtv" NAME="HTML32" PARENT="HTML20"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/HTML_3" FILENAME="HTML_ALL.vtv" NAME="HTML4" PARENT="HTML32"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/XHTML" FILENAME="XHTML10S.vtv" NAME="XHTML10S" PARENT="None" XML="Yes"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/XHTML_5" FILENAME="XHTML10T.vtv" NAME="XHTML10T" PARENT="None" XML="Yes"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/XHTML_6" FILENAME="XHTML10F.vtv" NAME="XHTML10F" PARENT="None" XML="Yes"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/Internet" FILENAME="HTML_ALL.vtv" NAME="IE3" PARENT="None"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/Internet_8" FILENAME="HTML_ALL.vtv" NAME="IE4" PARENT="None"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/Netscape" FILENAME="HTML_ALL.vtv" NAME="NN3" PARENT="None"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/Netscape_10" FILENAME="HTML_ALL.vtv" NAME="NN4" PARENT="None"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/Basic" FILENAME="CF_ALL.vtv" NAME="CF" PARENT="None"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/ColdFusion" FILENAME="CF_ALL.vtv" NAME="CF30" PARENT="CF"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/ColdFusion_13" FILENAME="CF_ALL.vtv" NAME="CF31" PARENT="CF30"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/ColdFusion_14" FILENAME="CF_ALL.vtv" NAME="CF40" PARENT="CF31"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/ColdFusion_15" FILENAME="CF_ALL.vtv" NAME="CF45" PARENT="CF40"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/ColdFusion_16" FILENAME="CF_ALL.vtv" NAME="CF50" PARENT="CF45"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/ColdFusion_17" FILENAME="CF_ALL.vtv" NAME="CFMX" PARENT="CF50"/>
+	<VERKEY ACTIVE="YES" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/ColdFusion_18" FILENAME="CF_ALL.vtv" NAME="CFMX7" PARENT="CFMX"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/Synchronized" FILENAME="SMIL.vtv" NAME="SMIL" PARENT="None"/>
+	<VERKEY ACTIVE="NO" MMString:DISPLAY="TagLibraries/Validator/Versions_vtv/VERKEY/DISPLAY/Wireless" FILENAME="WML.vtv" NAME="WML" PARENT="None"/>
+</VERSIONS>

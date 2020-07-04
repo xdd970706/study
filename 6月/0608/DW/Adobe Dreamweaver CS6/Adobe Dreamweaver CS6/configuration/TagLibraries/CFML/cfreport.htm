@@ -1,0 +1,235 @@
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfreport/title" /></title>
+  <link rel="stylesheet" href="../../fields.css">
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script src="RBlaunch.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var TYPELIST;
+var FORMATLIST;
+var PDFENCRYPTIONLIST;
+var PDFPERMISSIONSLIST;
+var theUIObjects;
+
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj,theUIObjects);
+}
+
+function applyTag(tagNodeObj)
+{
+  var format = FORMATLIST.getValue();
+  if( format.toLowerCase() == "pdf" ){
+  	theUIObjects  = new Array(TYPELIST, FORMATLIST, PDFENCRYPTIONLIST, PDFPERMISSIONSLIST);
+  }
+  else {
+  	theUIObjects  = new Array(TYPELIST, FORMATLIST);
+  }
+  tagDialog.applyTagCommon(tagNodeObj,theUIObjects);
+}
+
+function initializeUI()
+{
+  TYPELIST = new ListControl("thetype");
+  tagDialog.populateDropDownList(TYPELIST, theReportTypeCap, theReportTypeVal, 0);
+  
+  FORMATLIST = new ListControl("theformat");
+  tagDialog.populateDropDownList(FORMATLIST, theReportFormatCap, theReportFormatVal, 0);
+ 
+  PDFENCRYPTIONLIST = new ListControl("theencryption");
+  tagDialog.populateDropDownList(PDFENCRYPTIONLIST, theReportPDFEncryptionCap, theReportPDFEncryptionVal, 0);
+
+  PDFPERMISSIONSLIST = new ListControl("thepermissions");
+  tagDialog.populateDropDownList(PDFPERMISSIONSLIST, theReportPDFPermissionsCap, theReportPDFPermissionsVal, 0);
+ 
+  theUIObjects  = new Array(TYPELIST, FORMATLIST, PDFENCRYPTIONLIST, PDFPERMISSIONSLIST);
+}
+
+function callRB(templateObjectName) {
+	var templateObj = dwscripts.findDOMObject(templateObjectName);
+	launchRB(templateObj.value);
+}
+
+function syncTemplatePath(sourceObjectName, targetObjectName) 
+{
+	var sourceObj = dwscripts.findDOMObject(sourceObjectName);
+	var targetObj = dwscripts.findDOMObject(targetObjectName);
+	if( sourceObj && targetObj ){
+		targetObj.value = sourceObj.value;
+	}
+}
+
+</script>
+</head>
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cfreport/div/name/General">
+  <table border="0" cellspacing="4">
+   
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Select" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetemplate" type="text" class="basicTextField" id="attr:cfreport:template" onBlur="syncTemplatePath('thetemplate', 'edittemplate');" attname="template" required="true" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cfreport/button/browseBtn/Browse" onClick="tagDialog.browseFile('thetemplate');focus(this);syncTemplatePath('thetemplate', 'edittemplate');" />
+		<input type="button" name="edit" MMString:value="TagLibraries/CFML/cfreport/button/edit/Edit" onClick="callRB('thetemplate');" alt="Run CF Report Builder" />
+		<input type="image" src="../../Objects/CFML Advanced/CFReportBuilder_button.png" name="CFRBimage" />
+      </td>
+    </tr>
+	
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Format" /> </td>
+      <td nowrap="nowrap">
+        <select name="theformat" class="oneWordOptionList" id="attr:cfreport:format" attname="format" editable="false" required="true">
+		</select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Name" /> </td>
+      <td nowrap="nowrap">
+        <input name="thename" type="text" class="basicTextField" id="attr:cfreport:name" attname="name" />
+       
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Filename" /> </td>
+      <td nowrap="nowrap">
+        <input name="thefilename" type="text" class="basicTextField" id="attr:cfreport:filename" attname="filename" />
+       </td>
+    </tr>
+    <tr>
+      <td valign="top" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Query" /> </td>
+      <td nowrap="nowrap">
+		<input name="thequery" type="text" class="basicTextField" id="attr:cfreport:query" attname="query" />
+      </td>
+    </tr>
+    <tr>
+       <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfreport:overwrite" name="overwrite" attname="overwrite" truevalue="yes" falsevalue="no" /><MMString:loadString id="TagLibraries/CFML/cfreport/checkbox/overwrite/Overwrite" /></td>
+      <MMString:loadString id="TagLibraries/CFML/cfreport/checkbox/overwrite/Overwrite" /></td>
+    </tr>
+    
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfreport/div/name/CF">
+	<table border="0" cellspacing="4">
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Create" /> </td>
+      <td nowrap="nowrap">
+        <input type="button" name="create" MMString:value="TagLibraries/CFML/cfreport/button/create/Create" onClick="newTemplate();" />
+		<input type="image" src="../../Objects/CFML Advanced/CFReportBuilder_button.png" name="CFRBimage" />
+      </td>
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Edit" /> </td>
+		  <td nowrap="nowrap">
+			<input name="edittemplate" type="text" class="basicTextField" onBlur="syncTemplatePath('edittemplate', 'thetemplate');" id="attr:cfreport:edittemplate" attname="template" />&nbsp;
+			<input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cfreport/button/browseBtn/Browse" onClick="tagDialog.browseFile('edittemplate');focus(this);syncTemplatePath('edittemplate', 'thetemplate');" />
+			<input type="button" name="edit" MMString:value="TagLibraries/CFML/cfreport/button/edit/Edit" onClick="callRB('edittemplate');" alt="Run CF Report Builder" />
+			<input type="image" src="../../Objects/CFML Advanced/CFReportBuilder_button.png" name="CFRBimage" />
+		  </td>
+    </tr>
+	</table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfreport/div/name/Criteria">
+  <textarea name="html:cfreport:innerHTML" class="contentsField"  wrap="VIRTUAL" attname="innerHTML"></textarea>
+</div>
+<div MMString:name="TagLibraries/CFML/cfreport/div/name/PDF">
+	<table border="0" cellspacing="4">
+		<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Encryption" /> </td>
+      <td nowrap="nowrap">
+        <select name="theencryption" type="text" class="oneWordOptionList" id="attr:cfreport:encryption" attname="encryption" >
+		</select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Owner" /></td>
+      <td nowrap="nowrap">
+        <input name="theownerpassword" class="basicTextField" id="attr:cfreport:ownerpassword" attname="ownerpassword" />
+      </td>
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/User" /></td>
+      <td nowrap="nowrap">
+        <input name="theuserpassword" class="basicTextField" id="attr:cfreport:userpassword" attname="userpassword" />
+      </td>
+    </tr>
+	<tr>
+      <td valign="top" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Permissions" /></td>
+      <td nowrap="nowrap">
+        <select name="thepermissions" size="8" multiple class="multiWordOptionList" style="width:200px;" id="attr:cfreport:permissions" attname="permissions" editable="false" >
+		</select>        
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfreport/div/name/Crystal">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Report" /> </td>
+      <td nowrap="nowrap">
+        <input name="thereport" type="text" class="basicTextField" id="attr:cfreport:report" attname="report" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cfreport/button/browseBtn/Browse" onClick="tagDialog.browseFile('thereport');focus(this)" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Order" /> </td>
+      <td nowrap="nowrap">
+        <input name="theorderby" type="text" class="basicTextField" id="attr:cfreport:orderby" attname="orderby" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Type" /> </td>
+      <td nowrap="nowrap">
+        <select name="thetype" class="oneWordOptionList" id="attr:cfreport:type" attname="type" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Data" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedatasource" type="text" class="medTField" id="attr:cfreport:datasource" attname="datasource" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/User_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theusername" type="text" class="medTField" id="attr:cfreport:username" attname="username" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Password" /> </td>
+      <td nowrap="nowrap">
+        <input name="thepassword" type="text" class="medTField" id="attr:cfreport:password" attname="password" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Timeout" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetimeout" type="text" class="medTField" id="attr:cfreport:timeout" attname="timeout" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfreport/text/Formula" /> </td>
+      <td nowrap="nowrap">
+        <input name="theformula" type="text" class="medTField" id="attr:cfreport:formula" attname="formula" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

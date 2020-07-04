@@ -1,0 +1,36 @@
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Toolbars/MM/VisualAidsMenu/title" /></title>
+
+<script language="JavaScript">
+function canAcceptCommand()
+{
+	var dom = dw.getDocumentDOM();
+	return (dom != null && (dom.getView() != 'browse'));
+}
+
+function getMenuID()
+{
+	var dom = dw.getDocumentDOM();
+	var menuID = '';
+	if (dom)
+	{
+		var view = dom.getView();
+		if (view == 'design' || view == 'split')
+		{
+			menuID = 'DWDesignVisualAidsPopup';
+		}
+		else
+		{
+			menuID = '';
+		}
+	}
+	return menuID;
+}
+</script>
+</head>
+
+<body>
+</body>
+</html>

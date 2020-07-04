@@ -1,0 +1,117 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/title" /></title>
+  <link rel="stylesheet" href="../../fields.css">
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Controls/Scripts/MultiStateCheckBox.js"></script>
+<script>
+var theReadOnlyMultiStateCheckBox = new MultiStateCheckBox("thereadonly");
+var theVisibleMultiStateCheckBox = new MultiStateCheckBox("thevisible");
+
+
+function initializeUI() {
+  theReadOnlyMultiStateCheckBox.initializeUI(); 
+  theVisibleMultiStateCheckBox.initializeUI(); 
+}
+  
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj); 
+}
+
+function updateUI(itemName)
+{
+  switch(itemName)
+  {
+    case "readonly":
+	{
+	  theReadOnlyMultiStateCheckBox.updateUI(); 
+	  break; 
+	} 	
+    case "visible":
+	{
+	  theVisibleMultiStateCheckBox.updateUI(); 
+	  break; 
+	} 	
+  }
+}
+
+</script>
+
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/ASPNet/BoundColumn/div/name/General"> 
+  <input type="hidden" name="therunat" attname="runat" value="server" required="true" /> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Data" /> </td>
+      <td nowrap="nowrap">
+        <input name="theDataField" TYPE="text" class="basicTextField" id="aspnet:boundcolumn:datafield" attname="DataField" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Data_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedataformatstring" TYPE="text" class="basicTextField" id="aspnet:boundcolumn:DataFormatString" attname="dataformatstring" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Footer" /> </td>
+      <td nowrap="nowrap">
+        <input name="thefootertext" TYPE="text" class="basicTextField" id="aspnet:boundcolumn:FooterText" attname="footertext" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Header" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheaderimageurl" TYPE="text" class="basicTextField" id="aspnet:boundcolumn:HeaderImageURL" attname="headerimageurl" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Header_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheaderstyle" TYPE="text" class="basicTextField" id="aspnet:boundcolumn:HeaderStyle" attname="headerstyle" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Header_2" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheadertext" TYPE="text" class="basicTextField" id="aspnet:boundcolumn:HeaderText" attname="headertext" />
+      </td>
+    </tr>        
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Sort" /> </td>
+      <td nowrap="nowrap">
+        <input name="thesortexpression" TYPE="text" class="basicTextField" id="aspnet:boundcolumn:sortexpression" attname="sortexpression" />
+      </td>
+    </tr>     
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="thereadonly" attname="readonly" type="image" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13" onClick="updateUI('readonly');" > 
+        <MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Read" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="thevisible" attname="visible" type="image" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13" onClick="updateUI('visible');" > 
+        <MMString:loadString id="TagLibraries/ASPNet/BoundColumn/text/Visible" />
+      </td>
+    </tr> 
+  </table>
+</div>
+</body>
+</html>

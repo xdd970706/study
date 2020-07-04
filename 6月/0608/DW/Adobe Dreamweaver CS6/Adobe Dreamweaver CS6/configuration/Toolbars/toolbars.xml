@@ -1,0 +1,817 @@
+<?xml version="1.0"?>
+<!DOCTYPE toolbarset SYSTEM "-//Macromedia//DWExtension toolbar 5.0">
+<toolbarset xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+    <!-- main toolbar -->
+
+    <toolbar id="DW_Toolbar_Main" MMString:label="DW_Toolbar_Main/toolbar/label" backgroundStyle="gradient">
+
+  <radiobutton id="DW_CodeView"
+    image_nowIgnored="Toolbars/images/MM/codeView.png"
+    MMString:tooltip="DW_CodeView/radiobutton/tooltip"
+    domRequired="FALSE"
+    MMString:label="DW_CodeView/radiobutton/label"
+    buttonGroup="Document View"
+    enabled="dw.getActiveWindow() != null"
+    checked="dw.getActiveWindow() != null && dw.getActiveWindow().getView() == 'code'"
+            command="dw.getActiveWindow().setView('code', true)"
+    update="onViewChange"/>
+      
+<!--
+  <radiobutton id="DW_SplitCodeView"
+    unused_image="Toolbars/images/MM/splitCodeView.png"
+    MMString:tooltip="DW_SplitCodeView/radiobutton/tooltip"
+    MMString:label="DW_SplitCodeView/radiobutton/label"
+    domRequired="FALSE"
+    buttonGroup="Document View"
+    enabled="dw.getActiveWindow() != null"
+    checked="dw.getActiveWindow() != null && dw.getActiveWindow().getView() == 'split code'"
+    command="dw.getActiveWindow().setView('split code', true)"
+    update="onViewChange"/>
+-->
+
+  <radiobutton id="DW_SplitView"
+    image_nowIgnored="Toolbars/images/MM/splitView.png"
+    MMString:tooltip="DW_SplitView/radiobutton/tooltip"
+    MMString:label="DW_SplitView/radiobutton/label"
+    domRequired="FALSE"
+    buttonGroup="Document View"
+    enabled="dw.getActiveWindow() != null && dw.canShowDesignView(dw.getActiveWindow())"
+            checked="dw.getActiveWindow() != null && dw.getActiveWindow().getView() == 'split'"
+            command="dw.getActiveWindow().setView('split', true)"
+    update="onViewChange"/>
+
+  <radiobutton id="DW_DesignView"
+    image_nowIgnored="Toolbars/images/MM/designView.png"
+    MMString:label="DW_DesignView/radiobutton/label"
+    MMString:tooltip="DW_DesignView/radiobutton/tooltip"
+    domRequired="FALSE"
+    buttonGroup="Document View"
+    enabled="dw.getActiveWindow() != null && dw.canShowDesignView(dw.getActiveWindow())"
+            checked="dw.getActiveWindow() != null && dw.getActiveWindow().getView() == 'design'"
+            command="dw.getActiveWindow().setView('design', true)"
+    update="onViewChange"/>
+
+      <!-- Note: context-sensitive tooltip handled in Menus/MM/LiveView.htm (actually .js) -->
+      <checkbutton id="DW_LiveView"
+    image_nowIgnored="Toolbars/images/MM/liveView.png"
+    MMString:tooltip="DW_LiveView/checkbutton/tooltip"
+    MMString:label="DW_LiveView/checkbutton/label"
+    file="Menus/MM/LiveView.htm"
+    arguments="'live_view'"
+    buttonGroup="Document LiveView"
+    update="onViewChange,onEveryIdle"
+    showif="true"/>
+
+  <separator/>
+
+      <!-- Note: context-sensitive tooltip handled in Menus/MM/LiveView.htm (actually .js) -->
+      <checkbutton id="DW_LiveCode"
+        image_nowIgnored="Toolbars/images/MM/liveCode.png"
+        MMString:tooltip="DW_LiveCode/checkbutton/tooltip"
+        MMString:label="DW_LiveCode/checkbutton/label"
+        file="Menus/MM/LiveView.htm"
+        arguments="'live_code'"
+        buttonGroup="Document LiveCode"
+        update="onViewChange,onEveryIdle"/>
+
+      <checkbutton id="DW_InspectMode"
+        image_nowIgnored="Toolbars/images/MM/inspectMode.png"
+        MMString:tooltip="DW_InspectMode/checkbutton/tooltip/liveViewAndInspectOn"
+        MMString:label="DW_InspectMode/checkbutton/label"
+        file="Menus/MM/LiveView.htm"
+        arguments="'inspect'"
+        buttonGroup="Inspect Mode"
+        update="onViewChange,onEveryIdle"/>
+
+
+      <button id="Browse_Back"
+        image="Toolbars/images/MM/P_Back_Sm_N.png"
+        MMString:tooltip="Browse_Back/button/tooltip"
+        file="Menus/MM/Browser_Controls.htm"
+        arguments="'back_button'"
+        update="onBrowserPageBusyChange,onViewChange,onSelChange"/>
+
+      <button id="Browse_Forward"
+        image="Toolbars/images/MM/P_Forward_Sm_N.png"
+        MMString:tooltip="Browse_Forward/button/tooltip"
+        file="Menus/MM/Browser_Controls.htm"
+        arguments="'forward_button'"
+        update="onBrowserPageBusyChange,onViewChange,onSelChange"/>
+
+      <!--
+		<menubutton id="Browse_History"
+			image="Toolbars/images/MM/menuDropdown.png"
+			MMString:tooltip="Browse_History/button/tooltip"
+			file="Menus/MM/Browser_Controls.htm"
+			arguments="'page_navigation_history_button'"
+			update="onBrowserPageBusyChange,onViewChange"/>
+-->
+
+      <button id="Browse_Refresh_Stop"
+        image="Toolbars/images/MM/P_Stop_Sm_N.png"
+        MMString:tooltip="Browse_Stop/button/tooltip"
+        file="Menus/MM/Browser_Controls.htm"
+        arguments="'refresh_stop_button'"
+        update="onBrowserPageBusyChange,onViewChange,onSelChange"/>
+
+      <!--
+		<button id="Browse_Stop"
+			image="Toolbars/images/MM/P_Stop_Sm_N.png"
+			MMString:tooltip="Browse_Stop/button/tooltip"
+			file="Menus/MM/Browser_Controls.htm"
+			arguments="'stop_button',"
+			update="onBrowserPageBusyChange,onViewChange"/>
+
+		<button id="Browse_Refresh"
+			image="Toolbars/images/MM/refresh.png"
+			MMString:tooltip="Browse_Refresh/button/tooltip"
+			file="Menus/MM/Browser_Controls.htm"
+			arguments="'refresh_button','toolbar'"
+			update="onViewChange"/>
+
+		<button id="Browse_RefreshStyles"
+			image="Toolbars/images/MM/P_CSSRefresh_Sm_N.png"
+			MMString:tooltip="Browse_RefreshStyles/button/tooltip"
+			file="Menus/MM/Browser_Controls.htm"
+			arguments="'refresh_styles_button'"
+			update="onViewChange"/>
+-->
+      <button id="Browse_OutOfSync"
+        image="Toolbars/images/MM/P_Home_Sm_N.png"
+        MMString:tooltip="Browse_Home/button/toolip"
+        file="Menus/MM/Browser_Controls.htm"
+        arguments="'liveview_out_of_sync_button'"
+        update="onBrowserPageBusyChange,onViewChange"/>
+
+      <!--
+		<button id="Browse_EditDocument"
+			image="Toolbars/images/MM/P_EditLiveView_Sm_N.png"
+			MMString:tooltip="Browse_EditDocument/button/tooltip"
+			file="Menus/MM/Browser_Controls.htm"
+			arguments="'liveview_browser_edit_button'"
+			update="onBrowserPageBusyChange,onViewChange"/>
+-->
+
+      <combobox id="Address_URL"
+        width="250"
+        MMString:tooltip="Address_URL/combobox/tooltip"
+        file="Toolbars/MM/AddressURL.htm"
+        escape="true"
+        update="onBrowserPageBusyChange,onViewChange"
+        showif="dw.getActiveWindow() != null && (dw.getActiveWindow().getDesignViewMode() == 'live' || dw.getActiveWindow().getView() == 'browse')"/>
+
+      <!--
+		<checkbutton id="Browse_FollowTheNext"
+			image="Toolbars/images/MM/P_FolowLink_Sm_N.png"
+			MMString:tooltip="Browse_FollowLinks/button/tooltip"
+			file="Menus/MM/LiveView_Options.htm"
+			arguments="'follow_the_next_link'"
+			update="onViewChange,onEveryIdle"/>
+-->
+
+      <menubutton id="DW_LiveViewOptions"
+        image="Toolbars/images/MM/viewoptions.png"
+        enabled="dw.getActiveWindow() != null && dw.canShowDesignView(dw.getActiveWindow())&& dw.getDocumentDOM() != null && !dw.getDocumentDOM().getExpandedTablesMode() && !dw.getLiveDataMode() && dw.getActiveWindow().getView() != 'browse'"
+        MMString:tooltip="menus/DWPopup_LiveViewOptions/tooltip"
+        menuID="DWLiveViewOptionsPopup"
+        update="onViewChange"
+        showif="dw.getActiveWindow() != null && dw.getActiveWindow().getDesignViewMode() == 'live'"/>
+
+      <separator   
+        showif="dw.getActiveWindow() != null && dw.getActiveWindow().getDesignViewMode() == 'live'"/>
+
+    <menubutton id="DW_ViewSize"
+      image="Toolbars/images/MM/PL_MultiscreenPreview_R.png"
+	  MMString:tooltip="DW_ViewSize/menubutton/tooltip"
+      enabled="dw.getDocumentDOM() != null"
+      menuID="DWViewSizePopup_MSP"/>
+
+      <menubutton id="DW_Preview"
+          image="Toolbars/images/MM/preview.png"
+            MMString:tooltip="DW_Preview/menubutton/tooltip"
+          enabled="dw.getDocumentDOM() != null"
+          menuID="DWPIBPopup"/>
+
+      <menubutton id="DW_FileTransfer"
+        image="Toolbars/images/MM/fileTransfer.png"
+        MMString:tooltip="DW_FileTransfer/menubutton/tooltip"
+        enabled="dw.getDocumentDOM() != null"
+        menuID="DWDocStatePopup"/>
+            
+
+      <menubutton id="DW_Validator"
+			image="Toolbars/images/MM/T_Validator_Lg_N.png"
+			MMString:tooltip="DW_Validator/menubutton/tooltip"
+			menuID="DWValidateTabStart"
+			enabled="dw.getDocumentDOM() != null"
+			update="onViewChange"/>
+
+      <menubutton id="DW_BCC"
+        image="Toolbars/images/MM/bcc.png"
+        MMString:label_nowIgnored="DW_BCC/button/label"
+        MMString:tooltip="DW_BCC/menubutton/tooltip"
+        file="Toolbars/MM/BCC.htm"
+        update="onViewChange,onValidationChange"/>
+
+      <menubutton id="DW_VisualAids"
+			image="Toolbars/images/MM/T_VisualAids_Lg_N.png"
+			showif="dw.getDocumentDOM() != null && (dw.getDocumentDOM().getView() == 'split' || dw.getDocumentDOM().getView() == 'design'|| dw.getDocumentDOM().getView() == 'live')"
+			MMString:tooltip="DW_VisualAids/menubutton/tooltip"
+			update="onViewChange"
+			menuID="DWDesignVisualAidsPopup"/>
+
+      <button id="DW_DocRefresh"
+        image="Toolbars/images/MM/refresh.png"
+        MMString:tooltip="DW_DocRefresh/button/tooltip"
+        showif="dw.getActiveWindow() != null && (dw.getActiveWindow().getDesignViewMode() != 'live' && dw.getActiveWindow().getView() != 'browse')"
+        enabled="dw.getDocumentDOM() != null && (dw.getDocumentDOM().getDesignViewMode() == 'live' || (dw.getDocumentDOM().getView() != 'browse' && !dw.getDocumentDOM().isDesignViewUpdated()))"
+        command="dw.getDocumentDOM().synchronizeDocument(); if( dw.getActiveWindow() != null && dw.getActiveWindow().getDesignViewMode() == 'live' ) dw.getActiveWindow().synchronizeLiveView(true);"
+        update="onViewChange,onCodeViewSyncChange"/>
+
+<!--		<separator platform="win"/> -->
+
+      <editcontrol id="DW_SetTitle"
+			MMString:label="DW_SetTitle/editcontrol/label"
+			MMString:tooltip="DW_SetTitle/editcontrol/tooltip"
+			width="150"
+			file="Toolbars/MM/EditTitle.htm"
+      showif="dw.getActiveWindow() != null && (dw.getActiveWindow().getDesignViewMode() != 'live' && dw.getActiveWindow().getView() != 'browse')"/>/>
+<!--
+        <button id="DW_Reference"
+            image="Toolbars/images/MM/reference.png"
+            MMString:tooltip="DW_Reference/button/tooltip"
+            enabled="dw.getDocumentDOM() != null"
+            domRequired="false"
+            command="dw.updateReference()"
+			update="onViewChange"/>
+
+        <menubutton id="DW_CodeNav"
+            image="Toolbars/images/MM/codenav.png"
+            MMString:tooltip="DW_CodeNav/menubutton/tooltip"
+            enabled="dw.getFocus() == 'textView' || dw.getFocus() == 'html'"
+            menuID="DWCodeNavPopup"
+			update="onViewChange"/>
+-->
+</toolbar>
+	
+    <!-- Standard toolbar -->
+
+    <toolbar id="Standard_Toolbar" MMString:label="Standard_Toolbar/toolbar/label" initiallyVisible="false" backgroundStyle="gradient">
+
+
+        <button id="DW_New"
+            image="Toolbars/images/MM/new.gif"
+            MMString:tooltip="DW_New/button/tooltip"
+			domRequired="FALSE"
+            command="dw.newDocument()"/>
+
+		<separator/>
+       
+
+        <button id="DW_Open"
+            image="Toolbars/images/MM/open.gif"
+            MMString:tooltip="DW_Open/button/tooltip"
+			domRequired="FALSE"
+            command="dw.openDocument()"/>
+
+
+        <button id="DW_BrowseInBridge"
+            image="Toolbars/images/MM/bridgeFolder.png"
+            MMString:tooltip="DW_BrowseInBridge/button/tooltip"
+			file="Menus/MM/BrowseInBridge.htm"
+			domRequired="FALSE"/>
+
+
+        <button id="DW_Save"
+            image="Toolbars/images/MM/save.gif"
+            MMString:tooltip="DW_Save/button/tooltip"
+            file="Menus/MM/File_Save.htm"
+			domRequired="FALSE"
+			update="onEveryIdle"/>
+
+
+        <button id="DW_SaveAll"
+            image="Toolbars/images/MM/saveall.gif"
+            MMString:tooltip="DW_SaveAll/button/tooltip"
+            enabled="dw.canSaveAll()"
+			domRequired="FALSE"
+            command="dw.saveAll()"/>
+
+
+        <button id="DW_PrintCode"
+            image="Toolbars/images/MM/T_Print_Sm_N.png"
+            MMString:tooltip="DW_PrintCode/button/tooltip"
+			domRequired="false" 
+			enabled="dw.getFocus() != 'site' && dw.getFocus()!='browser' && dw.getDocumentDOM() != null" 
+			command="dw.printCode(true, dw.getDocumentDOM())"/>
+
+		<separator/>
+
+		<button id="DW_Cut"
+            image="Toolbars/images/MM/cut.gif"
+            MMString:tooltip="DW_Cut/button/tooltip"
+			enabled="dw.canClipCut()"
+			domRequired="FALSE"
+            command="dw.clipCut()"
+			update="onEveryIdle"/>
+
+
+        <button id="DW_Copy"
+            image="Toolbars/images/MM/copy.gif"
+            MMString:tooltip="DW_Copy/button/tooltip"
+			enabled="dw.canClipCopy()"
+			domRequired="FALSE"
+            command="dw.clipCopy()"
+			update="onEveryIdle"/>
+
+
+        <button id="DW_Paste"
+            image="Toolbars/images/MM/paste.gif"
+            MMString:tooltip="DW_Paste/button/tooltip"
+			enabled="dw.canClipPaste()"
+			domRequired="FALSE"
+            command="dw.clipPaste()"
+			update="onEveryIdle"/>
+
+		<separator/>
+
+        <button id="DW_Undo"
+            image="Toolbars/images/MM/undo.gif"
+            MMString:tooltip="DW_Undo/button/tooltip"
+            file="Menus/MM/Edit_Clipboard.htm"
+			arguments="'undo'"
+			update="onEveryIdle"/>
+
+
+        <button id="DW_Redo"
+            image="Toolbars/images/MM/redo.gif"
+            MMString:tooltip="DW_Redo/button/tooltip"
+            file="Menus/MM/Edit_Clipboard.htm"
+			arguments="'redo'"
+			update="onEveryIdle"/>
+
+	</toolbar>
+    
+    <!-- Code view toolbar -->
+
+    <toolbar id="DW_CodeView_Toolbar" MMString:label="DW_CodeView_Toolbar/toolbar/label" container="Code View" initiallyVisible="true" backgroundStyle="gradient">
+
+
+        <menubutton id="DW_OpenDocuments"
+            image="Toolbars/images/MM/T_OpenDocs_Sm_N.png"
+            MMString:tooltip="DW_OpenDocuments/menubutton/tooltip"
+            enabled="dw.getDocumentDOM() != null"
+            menuID="DWOpenDocumentsPopup"
+            update="onViewChange" />
+
+      <button id="DW_CodeNavigator"
+          image="Toolbars/images/MM/P_CodeNavigator_Sm_N.png"
+          MMString:tooltip="CodeNavigator/codeviewToolbar/tooltip"
+          domRequired="false"
+          enabled="dw.canPopupCodeNavigator()"
+          command="dw.popupCodeNavigator()"
+          update="onViewChange,onSelChange" />
+
+      <separator/>
+
+      <button id="DW_CollapseFullTag"
+            image="Toolbars/images/MM/T_CollapseTag_Sm_N.png"
+            MMString:tooltip="DW_CollapseFullTag/button/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            command="if (dw.getKeyState('Alt')) { dw.getDocumentDOM().collapseFullTagInverse(!dw.getKeyState('Cmd')); } else { dw.getDocumentDOM().collapseFullTag(!dw.getKeyState('Cmd')); }"
+            update="onViewChange" />
+
+
+        <button id="DW_CollapseSelection"
+            image="Toolbars/images/MM/T_CollapseSel_Sm_N.png"
+            MMString:tooltip="DW_CollapseSelection/button/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            command="if (dw.getKeyState('Alt')) { dw.getDocumentDOM().collapseSelectedCodeFragmentInverse(!dw.getKeyState('Cmd')); } else { dw.getDocumentDOM().collapseSelectedCodeFragment(!dw.getKeyState('Cmd')); }"
+            update="onViewChange" />
+
+
+        <button id="DW_ExpandAll"
+            image="Toolbars/images/MM/T_ExpandAll_Sm_N.png"
+            MMString:tooltip="DW_ExpandAll/button/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            command="dw.getDocumentDOM().expandAllCodeFragments();"
+            update="onViewChange" />
+
+        <separator/>
+
+        <button id="DW_SelectParentTag"
+            image="Toolbars/images/MM/T_SelectParent_Sm_N.png"
+            MMString:tooltip="DW_SelectParentTag/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getDocumentDOM() != null && (dw.getFocus() == 'document' && dw.getDocumentDOM().getFocus() != 'head') || (dw.getFocus(true) != 'document')" 
+            command="if (dw.getFocus(true) == 'textView' || dw.getFocus(true) == 'html') { dw.getDocumentDOM().source.selectParentTag(); } else { dw.getDocumentDOM().selectParent(); }"
+            update="onViewChange,onSelChange" />
+      
+
+        <button id="DW_BalanceBraces"
+            image="Toolbars/images/MM/T_BalanceBraces_Sm_N.png"
+            MMString:tooltip="DW_BalanceBraces/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document'" 
+            command="dw.getDocumentDOM().source.balanceBracesTextView()"
+            update="onViewChange,onSelChange" />
+
+      <!--
+
+        <button id="DW_GotoLine"
+            image="Toolbars/images/MM/T_GotoLine_Sm_N.png"
+            MMString:tooltip="DW_GotoLine/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document'" 
+            command="dw.setFocus('textView');dw.runCommand('GoToLine.htm')" 
+            update="onViewChange" />
+
+-->
+        <separator/>
+
+        <checkbutton id="DW_ShowLineNumbers"
+            image="Toolbars/images/MM/T_LineNumbers_Sm_N.png"
+            MMString:tooltip="DW_ShowLineNumbers/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.getDocumentDOM() != null && dw.getDocumentDOM().getShowLineNumbers()"
+            command="dw.getDocumentDOM().setShowLineNumbers(!dw.getDocumentDOM().getShowLineNumbers())"
+            update="onEveryIdle" />
+
+
+        <checkbutton id="DW_ShowInvalidHTML"
+            image="Toolbars/images/MM/T_InvalidCode_Sm_N.png"
+            MMString:tooltip="DW_ShowInvalidHTML/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.getDocumentDOM() != null && dw.getDocumentDOM().getShowInvalidHTML()"
+            command="dw.getDocumentDOM().setShowInvalidHTML(!dw.getDocumentDOM().getShowInvalidHTML())"
+            update="onEveryIdle" />
+
+
+        <checkbutton id="DW_WordWrap"
+            image="Toolbars/images/MM/T_WordWrap_Sm_N.png"
+            MMString:tooltip="DW_WordWrap/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.getDocumentDOM() != null && dw.getDocumentDOM().getShowWordWrap()" 
+            command="dw.getDocumentDOM().setShowWordWrap(!dw.getDocumentDOM().getShowWordWrap())"
+            update="onEveryIdle" />
+
+<!--
+
+        <checkbutton id="DW_ShowHiddenCharacters"
+            image="Toolbars/images/MM/T_HiddenChar_Sm_N.png"
+            MMString:tooltip="DW_ShowHiddenCharacters/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.getDocumentDOM() != null && dw.getDocumentDOM().getShowHiddenCharacters()" 
+            command="dw.getDocumentDOM().setShowHiddenCharacters(!dw.getDocumentDOM().getShowHiddenCharacters())"
+            update="onEveryIdle" />
+
+-->
+<!--
+
+        <checkbutton id="DW_SyntaxColoring"
+            image="Toolbars/images/MM/T_SyntaxColoring_Sm_N.png"
+            MMString:tooltip="DW_SyntaxColoring/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.getDocumentDOM() != null && dw.getDocumentDOM().getShowSyntaxColoring()"
+            command="dw.getDocumentDOM().setShowSyntaxColoring(!dw.getDocumentDOM().getShowSyntaxColoring())"
+            update="onEveryIdle" />
+
+-->
+<!--
+
+        <checkbutton id="DW_AutoIndent"
+            image="Toolbars/images/MM/T_AutoIndent_Sm_N.png"
+            MMString:tooltip="DW_AutoIndent/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.getDocumentDOM() != null && dw.getDocumentDOM().getShowAutoIndent()" 
+            command="dw.getDocumentDOM().setShowAutoIndent(!dw.getDocumentDOM().getShowAutoIndent())" 
+            update="onEveryIdle" />
+
+-->
+      <checkbutton id="DW_ShowSyntaxAlerts"
+          image="Shared/MM/Images/toggleSyntaxError.png"
+          MMString:tooltip="DW_ShowSyntaxAlerts/checkbutton/tooltip"
+          domRequired="false"
+          enabled="true"
+          checked="dw.getDocumentDOM() != null && dw.getDocumentDOM().getShowSyntaxErrorAlerts()"
+          command="dw.getDocumentDOM().setShowSyntaxErrorAlerts(!dw.getDocumentDOM().getShowSyntaxErrorAlerts())"
+          update="onEveryIdle" />
+
+      <separator/>
+
+        <menubutton id="DW_ApplyComment"
+            image="Toolbars/images/MM/T_Comment_Sm_N.png"
+            MMString:tooltip="DW_ApplyComment/menubutton/tooltip"
+            enabled="dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            menuID="DWCommentCodePopup"
+            update="onViewChange" />
+
+
+        <button id="DW_RemoveComment"
+            image="Toolbars/images/MM/T_UnComment_Sm_N.png"
+            MMString:tooltip="DW_RemoveComment/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document' && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            command="dw.getDocumentDOM().source.removeComment()" 
+            update="onViewChange,onSelChange" />
+
+
+        <button id="DW_WrapTag"
+            image="Toolbars/images/MM/T_WrapTag_Sm_N.png"
+            MMString:tooltip="DW_WrapTag/button/tooltip"
+            domRequired="false" 
+            file="Toolbars/MM/WrapTag.htm" 
+            update="onEveryIdle" />
+
+
+        <menubutton id="DW_RecentSnippets"
+            image="Toolbars/images/MM/T_Snippets_Sm_N.png"
+            MMString:tooltip="DW_RecentSnippets/menubutton/tooltip"
+            domRequired="false" 
+            enabled="dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            menuID="DWRecentSnippetsPopup"
+            update="onViewChange" />
+
+
+      <menubutton id="DW_CSSCodePopup"
+          image="Toolbars/images/MM/T_CSS_Sm_N.png"
+          MMString:tooltip="DW_CSSCodePopup/menubutton/tooltip"
+          enabled="dw.getDocumentDOM() != null && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+          menuID="DWCSSCodePopup"
+          update="onViewChange" />
+
+      <separator/>
+
+        <button id="DW_IndentCode"
+            image="Toolbars/images/MM/T_Indent_Sm_N.png"
+            MMString:tooltip="DW_IndentCode/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document' && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            command="dw.setFocus('textView');dw.getDocumentDOM().source.indentTextView()"
+            update="onViewChange,onSelChange" />
+
+
+        <button id="DW_OutdentCode"
+            image="Toolbars/images/MM/T_Outdent_Sm_N.png"
+            MMString:tooltip="DW_OutdentCode/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document' && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            command="dw.setFocus('textView');dw.getDocumentDOM().source.outdentTextView()"
+            update="onViewChange,onSelChange" />
+
+
+        <menubutton id="DW_FormatSource"
+            image="Toolbars/images/MM/T_FormatCode_Sm_N.png"
+            MMString:tooltip="DW_FormatSource/menubutton/tooltip"
+            enabled="dw.getDocumentDOM() != null && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            menuID="DWFormatCodePopup"
+            update="onViewChange" />
+
+<!--
+
+        <menubutton id="DW_ConvertTools"
+            image="Toolbars/images/MM/T_CodeConversion_Sm_N.png"
+            MMString:tooltip="DW_ConvertTools/menubutton/tooltip"
+            enabled="dw.getDocumentDOM() != null"
+            menuID="DWConversionToolsPopup"
+            update="onViewChange" />
+
+-->
+	</toolbar>
+    
+    <!-- Code inspector toolbar -->
+
+    <toolbar id="DW_CodeInspector_Toolbar" MMString:label="DW_CodeInspector_Toolbar/toolbar/label" container="Code Inspector" initiallyVisible="true" backgroundStyle="gradient">
+
+
+        <menubutton id="DW_CodeInspector_OpenDocuments"
+            image="Toolbars/images/MM/T_OpenDocs_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_OpenDocuments/menubutton/tooltip"
+            enabled="dw.getDocumentDOM() != null"
+            menuID="DWOpenDocumentsPopup"
+            update="onViewChange" />
+
+        <button id="DW_CodeInspector_CodeNavigator"
+           image="Toolbars/images/MM/P_CodeNavigator_Sm_N.png"
+           MMString:tooltip="CodeNavigator/codeviewToolbar/tooltip"
+           domRequired="false"
+           enabled="dw.canPopupCodeNavigator()"
+           command="dw.setFocus('html');dw.popupCodeNavigator()"
+           update="onViewChange,onSelChange" />
+
+        <separator/>
+
+        <button id="DW_CodeInspector_CollapseFullTag"
+            image="Toolbars/images/MM/T_CollapseTag_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_CollapseFullTag/button/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            command="if (dw.getKeyState('Alt')) { dw.htmlInspector.collapseFullTagInverse(!dw.getKeyState('Cmd')); } else { dw.htmlInspector.collapseFullTag(!dw.getKeyState('Cmd')); }"
+            update="onViewChange" />
+
+
+        <button id="DW_CodeInspector_CollapseSelection"
+            image="Toolbars/images/MM/T_CollapseSel_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_CollapseSelection/button/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            command="if (dw.getKeyState('Alt')) { dw.htmlInspector.collapseSelectedCodeFragmentInverse(!dw.getKeyState('Cmd')); } else { dw.htmlInspector.collapseSelectedCodeFragment(!dw.getKeyState('Cmd')); }"
+            update="onViewChange" />
+
+
+        <button id="DW_CodeInspector_ExpandAll"
+            image="Toolbars/images/MM/T_ExpandAll_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_ExpandAll/button/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            command="dw.htmlInspector.expandAllCodeFragments();"
+            update="onViewChange" />
+
+        <separator/>
+
+        <button id="DW_CodeInspector_SelectParentTag"
+            image="Toolbars/images/MM/T_SelectParent_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_SelectParentTag/button/tooltip"
+            domRequired="false" 
+            enabled="(dw.getFocus() == 'document' && dw.getDocumentDOM().getFocus() != 'head') || (dw.getFocus(true) != 'document')" 
+            command="if (dw.getFocus(true) == 'html') {dw.htmlInspector.balanceTag();} else { dw.getDocumentDOM().source.selectParentTag();}"
+            update="onViewChange,onSelChange" />
+
+
+        <button id="DW_CodeInspector_BalanceBraces"
+            image="Toolbars/images/MM/T_BalanceBraces_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_BalanceBraces/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document'" 
+            command="dw.getDocumentDOM().source.balanceBracesTextView()"
+            update="onViewChange,onSelChange" />
+
+      <!--
+
+        <button id="DW_CodeInspector_GotoLine"
+            image="Toolbars/images/MM/T_GotoLine_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_GotoLine/button/tooltip"
+            domRequired="false"
+            enabled="dw.getFocus(true) != 'document'" 
+            command="dw.setFocus('html');dw.runCommand('GoToLine.htm')" 
+            update="onViewChange" />
+
+-->
+        <separator/>
+
+        <checkbutton id="DW_CodeInspector_ShowLineNumbers"
+            image="Toolbars/images/MM/T_LineNumbers_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_ShowLineNumbers/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.htmlInspector.getShowLineNumbers()" 
+            command="dw.htmlInspector.setShowLineNumbers(!dw.htmlInspector.getShowLineNumbers())"
+            update="onEveryIdle" />
+
+
+        <checkbutton id="DW_CodeInspector_ShowInvalidHTML"
+            image="Toolbars/images/MM/T_InvalidCode_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_ShowInvalidHTML/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.htmlInspector.getShowInvalidHTML()"
+            command="dw.htmlInspector.setShowInvalidHTML(!dw.htmlInspector.getShowInvalidHTML())"
+            update="onEveryIdle" />
+
+
+        <checkbutton id="DW_CodeInspector_WordWrap"
+            image="Toolbars/images/MM/T_WordWrap_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_WordWrap/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.htmlInspector.getShowWordWrap()" 
+            command="dw.htmlInspector.setShowWordWrap(!dw.htmlInspector.getShowWordWrap())"
+            update="onEveryIdle" />
+
+<!--
+
+        <checkbutton id="DW_CodeInspector_ShowHiddenCharacters"
+            image="Toolbars/images/MM/T_HiddenChar_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_ShowHiddenCharacters/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.htmlInspector.getShowHiddenCharacters()" 
+            command="dw.htmlInspector.setShowHiddenCharacters(!dw.htmlInspector.getShowHiddenCharacters())"
+            update="onEveryIdle" />
+
+-->
+<!--		
+
+        <checkbutton id="DW_CodeInspector_SyntaxColoring"
+            image="Toolbars/images/MM/T_SyntaxColoring_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_SyntaxColoring/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.htmlInspector.getShowSyntaxColoring()"
+            command="dw.htmlInspector.setShowSyntaxColoring(!dw.htmlInspector.getShowSyntaxColoring())"
+            update="onEveryIdle" />
+
+-->
+<!--
+
+        <checkbutton id="DW_CodeInspector_AutoIndent"
+            image="Toolbars/images/MM/T_AutoIndent_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_AutoIndent/checkbutton/tooltip"
+            domRequired="false" 
+            enabled="true" 
+            checked="dw.htmlInspector.getShowAutoIndent()" 
+            command="dw.htmlInspector.setShowAutoIndent(!dw.htmlInspector.getShowAutoIndent())" 
+            update="onEveryIdle" />
+
+-->
+        <separator/>
+
+        <menubutton id="DW_CodeInspector_ApplyComment"
+            image="Toolbars/images/MM/T_Comment_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_ApplyComment/menubutton/tooltip"
+            enabled="dw.getDocumentDOM() != null && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            menuID="DWCommentCodeInspectPopup"
+            update="onViewChange" />
+
+
+        <button id="DW_CodeInspector_RemoveComment"
+            image="Toolbars/images/MM/T_UnComment_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_RemoveComment/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document' && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            command="dw.setFocus('html'); dw.getActiveWindow().source.removeComment()" 
+            update="onViewChange,onSelChange" />
+
+
+        <button id="DW_CodeInspector_WrapTag"
+            image="Toolbars/images/MM/T_WrapTag_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_WrapTag/button/tooltip"
+            domRequired="false" 
+            file="Toolbars/MM/WrapTag.htm" 
+            update="onEveryIdle" />
+
+
+        <menubutton id="DW_CodeInspector_RecentSnippets"
+            image="Toolbars/images/MM/T_Snippets_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_RecentSnippets/menubutton/tooltip"
+            domRequired="false" 
+            enabled="dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            menuID="DWRecentSnippetsPopup"
+            update="onViewChange" />
+
+
+      <menubutton id="DW_CodeInspector_CSSCodePopup"
+          image="Toolbars/images/MM/T_CSS_Sm_N.png"
+          MMString:tooltip="DW_CodeInspector_CSSCodePopup/menubutton/tooltip"
+          enabled="dw.getDocumentDOM() != null && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+          menuID="DWCSSCodePopup"
+          update="onViewChange" />
+
+      <separator/>
+
+        <button id="DW_CodeInspector_IndentCode"
+            image="Toolbars/images/MM/T_Indent_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_IndentCode/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document' && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            command="dw.setFocus('html');dw.getDocumentDOM().source.indentTextView()"
+            update="onViewChange,onSelChange" />
+
+
+        <button id="DW_CodeInspector_OutdentCode"
+            image="Toolbars/images/MM/T_Outdent_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_OutdentCode/button/tooltip"
+            domRequired="false" 
+            enabled="dw.getFocus(true) != 'document' && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            command="dw.setFocus('html');dw.getDocumentDOM().source.outdentTextView()"
+            update="onViewChange,onSelChange" />
+
+
+        <menubutton id="DW_CodeInspector_FormatSource"
+            image="Toolbars/images/MM/T_FormatCode_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_FormatSource/menubutton/tooltip"
+            enabled="dw.getDocumentDOM() != null && dw.getActiveWindow(true) != null && dw.getActiveWindow(true).allowsEdits()"
+            menuID="DWFormatCodeInspectorPopup"
+            update="onViewChange" />
+
+<!--
+
+        <menubutton id="DW_CodeInspector_ConvertTools"
+            image="Toolbars/images/MM/T_CodeConversion_Sm_N.png"
+            MMString:tooltip="DW_CodeInspector_ConvertTools/menubutton/tooltip"
+            enabled="dw.getDocumentDOM() != null"
+            menuID="DWConversionToolsPopup"
+            update="onViewChange" />
+
+-->
+	</toolbar>
+</toolbarset>

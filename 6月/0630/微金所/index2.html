@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+      <!-- 设置当前html文件的字符编码 -->
+    <meta charset="utf-8">
+    <!-- 设置浏览器的兼容模式版本 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 移动端页面视口属性设置 -->
+   <!-- 设置在手机浏览器中打开网页能够自动适应（包含设置物理屏幕大小，以及内容缩放比例） -->
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>微金所-bootstrap实例</title>
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- 条件注释的作用，判断浏览器版本，是否满足条件 -->
+    <!--[if lt IE 9]>
+      <script src="/lib/html5shiv/html5shiv.min.js""></script>
+      <script src="/lib/respond/respond.min.js"></script>
+    <![endif]-->
+    <link href="/css/main.css" rel="stylesheet">
+    <style>
+    .container{
+      height: 1000px;
+      background-color: #f40;
+    }
+    /* 媒体查询 */
+    @media (min-width:768px){
+      .container{
+        width: 750px;
+      }
+    }
+    @media (min-width:992px){
+      .container{
+        width: 970px;
+      }
+    }
+    @media (min-width:1200px){
+      .container{
+        width:1180px;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <!-- bootstrap的js是依赖于jquery的 -->
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

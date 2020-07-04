@@ -1,0 +1,45 @@
+<tag name="font-face" casesensitive="yes" endtag="yes">
+	<tagformat indentcontents="yes" formatcontents="yes" nlbeforetag="1" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1" />
+	<attributes>
+		<attrib name="id" type="Text" casesensitive="yes"/>
+		<attrib name="xml:base" type="Text" casesensitive="yes"/>
+		<attrib name="xml:lang" type="Text" casesensitive="yes"/>
+		<attrib name="xml:space" type="Enumerated" casesensitive="yes">
+			<attriboption value="default" caption="default" />
+			<attriboption value="preserve" caption="preserve" />
+		</attrib>
+		<attrib name="font-family" type="Font" casesensitive="yes"/>
+		<attrib name="font-style" type="Text" casesensitive="yes"/>
+		<attrib name="font-variant" type="Text" casesensitive="yes"/>
+		<attrib name="font-weight" type="Text" casesensitive="yes"/>
+		<attrib name="font-stretch" type="Text" casesensitive="yes"/>
+		<attrib name="font-size" type="Text" casesensitive="yes"/>
+		<attrib name="unicode-range" type="Text" casesensitive="yes"/>
+		<attrib name="units-per-em" type="Text" casesensitive="yes"/>
+		<attrib name="panose-1" type="Text" casesensitive="yes"/>
+		<attrib name="stemv" type="Text" casesensitive="yes"/>
+		<attrib name="stemh" type="Text" casesensitive="yes"/>
+		<attrib name="slope" type="Text" casesensitive="yes"/>
+		<attrib name="cap-height" type="Text" casesensitive="yes"/>
+		<attrib name="x-height" type="Text" casesensitive="yes"/>
+		<attrib name="accent-height" type="Text" casesensitive="yes"/>
+		<attrib name="ascent" type="Text" casesensitive="yes"/>
+		<attrib name="descent" type="Text" casesensitive="yes"/>
+		<attrib name="widths" type="Text" casesensitive="yes"/>
+		<attrib name="bbox" type="Text" casesensitive="yes"/>
+		<attrib name="ideographic" type="Text" casesensitive="yes"/>
+		<attrib name="alphabetic" type="Text" casesensitive="yes"/>
+		<attrib name="mathematical" type="Text" casesensitive="yes"/>
+		<attrib name="hanging" type="Text" casesensitive="yes"/>
+		<attrib name="v-ideographic" type="Text" casesensitive="yes"/>
+		<attrib name="v-alphabetic" type="Text" casesensitive="yes"/>
+		<attrib name="v-mathematical" type="Text" casesensitive="yes"/>
+		<attrib name="v-hanging" type="Text" casesensitive="yes"/>
+		<attrib name="underline-position" type="Text" casesensitive="yes"/>
+		<attrib name="underline-thickness" type="Text" casesensitive="yes"/>
+		<attrib name="strikethrough-position" type="Text" casesensitive="yes"/>
+		<attrib name="strikethrough-thickness" type="Text" casesensitive="yes"/>
+		<attrib name="overline-position" type="Text" casesensitive="yes"/>
+		<attrib name="overline-thickness" type="Text" casesensitive="yes"/>
+	</attributes>
+</tag>

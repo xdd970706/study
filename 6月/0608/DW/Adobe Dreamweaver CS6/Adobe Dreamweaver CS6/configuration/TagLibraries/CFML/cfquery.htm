@@ -1,0 +1,167 @@
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfquery/title" /></title>
+  <link rel="stylesheet" href="../../fields.css">
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var DBTYPELIST;
+var theUIObjects;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	DBTYPELIST = new ListControl("thedbtype"); 
+	theUIObjects = new Array(DBTYPELIST); 
+
+  tagDialog.populateDropDownList(DBTYPELIST, theQueryDBTypeCap, theQueryDBTypeVal, 1)
+}
+
+</script>
+</head>
+
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cfquery/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline"> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Query" /> </td>
+      <td nowrap="nowrap">
+        <input name="thename" type="text" class="medTField" id="attr:cfquery:name" attname="name" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Data" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedatasource" type="text" class="basicTextField" id="attr:cfquery:datasource" attname="datasource" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/User" /> </td>
+      <td nowrap="nowrap">
+        <input name="theusername" type="text" class="basicTextField" id="attr:cfquery:username" attname="username" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Password" /> </td>
+      <td nowrap="nowrap">
+        <input name="thepassword" type="text" class="basicTextField" id="attr:cfquery:password" attname="password" />
+      </td>
+    </tr>
+	<tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Result" /> </td>
+      <td nowrap="nowrap">
+        <input name="theresult" type="text" class="basicTextField" id="attr:cfquery:result" attname="result" />
+      </td>
+    </tr>
+    <tr> 
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/SQL" /> </td>
+      <td nowrap="nowrap">
+        <textarea name="innerHTML" attname="innerHTML" id="aspnet:panel:onunload" class="contentsField" ></textarea>
+      </td> 
+    </tr>  
+  </table> 
+</div>
+
+<div MMString:name="TagLibraries/CFML/cfquery/div/name/Connection"> 
+  <table border="0" cellspacing="4">
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/DB" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedbserver" type="text" class="basicTextField" id="attr:cfquery:dbserver" attname="dbserver" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/DB_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedbname" type="text" class="basicTextField" id="attr:cfquery:dbname" attname="dbname" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Provider" /> </td>
+      <td nowrap="nowrap">
+        <input name="theprovider" type="text" class="basicTextField" id="attr:cfquery:provider" attname="provider" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Provider_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theproviderdsn" type="text" class="basicTextField" id="attr:cfquery:providerdsn" attname="providerdsn" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Connect" /> </td>
+      <td nowrap="nowrap">
+        <input name="theconnectstring" type="text" class="basicTextField" id="attr:cfquery:connectstring" attname="connectstring" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/DB_2" /> </td>
+      <td nowrap="nowrap"> 
+        <select name="thedbtype" class="oneWordOptionList" id="attr:cfquery:dbtype" attname="dbtype" editable="true">
+        </select>
+      </td>
+    </tr> 
+    <tr valign="baseline">  
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Max" /> </td>
+      <td nowrap="nowrap">
+        <input name="themaxrows" type="text" class="medTField" id="attr:cfquery:maxrows" attname="maxrows" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Timeout" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetimeout" type="text" class="medTField" id="attr:cfquery:timeout" attname="timeout" />
+      </td>
+    </tr>
+    <tr nowrap="nowrap"> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Block" /> </td>
+      <td nowrap="nowrap">
+        <input name="theblockfactor" type="text" class="medTField" id="attr:cfquery:blockfactor" attname="blockfactor" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfquery:debug" name="thedebug" attname="debug" truevalue="1" falsevalue="" />
+        <MMString:loadString id="TagLibraries/CFML/cfquery/checkbox/thedebug/Print" /></td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/CFML/cfquery/div/name/Persistent"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Cached" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecachedafter" type="text" class="basicTextField" id="attr:cfquery:cachedafter" attname="cachedafter" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfquery/text/Cached_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecachedwithin" type="text" class="basicTextField" id="attr:cfquery:cachedwithin" attname="cachedwithin" />
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

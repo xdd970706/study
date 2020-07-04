@@ -1,0 +1,288 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfslider/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var ALIGNLIST;
+var FONTLIST;
+var LOOKANDFEELLIST;
+var theUIObjects;
+
+// Color control elements
+var COLORP_BACK, COLORP_FORE;
+var TEXT_BACK, TEXT_TEXT;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects);
+  updateColors();
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects);
+}
+
+function updateUI(itemName)
+{
+  switch(itemName)
+  {
+    case "backColorPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_BACK,TEXT_BACK,true);
+      break;
+    }
+    case "backcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK,true);
+      break;
+    }
+    case "textColorPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_TEXT,TEXT_TEXT,true);
+      break;
+    }
+    case "textcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_TEXT,TEXT_TEXT,true);
+      break;
+    }
+  }
+}
+
+function updateColors()
+{
+  tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK);
+  tagDialog.updateColorPicker("colorField",COLORP_TEXT,TEXT_TEXT);
+}
+
+function initializeUI()
+{
+	ALIGNLIST = new ListControl("thealign");
+	FONTLIST = new ListControl("thefont");
+	LOOKANDFEELLIST = new ListControl("thelookandfeel");
+	theUIObjects = new Array(ALIGNLIST,FONTLIST,LOOKANDFEELLIST);
+
+  COLORP_BACK = dwscripts.findDOMObject("backColorPicker");
+  COLORP_TEXT = dwscripts.findDOMObject("textColorPicker");
+
+  TEXT_BACK = dwscripts.findDOMObject("thebackcolor");
+  TEXT_TEXT = dwscripts.findDOMObject("thetextcolor");
+
+  updateColors();
+  tagDialog.populateDropDownList(FONTLIST, dw.getSystemFontList('all'), dw.getSystemFontList('all'), 1);
+  tagDialog.populateDropDownList(ALIGNLIST, theVericalAlignmentsCap, theVericalAlignmentsVal, 1);
+  tagDialog.populateDropDownList(LOOKANDFEELLIST, theLookAndFeelCap, theLookAndFeelVal, 1);
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cfslider/div/name/General">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Name" /> </td>
+      <td nowrap="nowrap">
+        <input name="thename" type="text" class="medTField" id="attr:cfslider:name" attname="name" required="true" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Value" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevalue" type="text" class="basicTextField" id="attr:cfslider:value" attname="value" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Label" /> </td>
+      <td nowrap="nowrap">
+        <input name="thelabel" type="text" class="basicTextField" id="attr:cfslider:label" attname="label" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Range" /> </td>
+      <td nowrap="nowrap">
+        <input name="therange" type="text" class="basicTextField" id="attr:cfslider:range" attname="range" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Alignment" /> </td>
+      <td nowrap="nowrap">
+        <select name="thealign" class="alignList" id="attr:cfslider:cfslider:align" attname="align">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Message" /> </td>
+      <td nowrap="nowrap">
+        <input name="themessage" type="text" class="basicTextField" id="attr:cfslider:message" attname="message" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Image" /> </td>
+      <td nowrap="nowrap">
+        <input name="theimg" type="text" class="basicTextField" id="attr:cfslider:img" attname="img" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cfslider/button/browseBtn/Browse" onClick="tagDialog.browseFile('theimg');focus(this)">
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Scale" /> </td>
+      <td nowrap="nowrap">
+        <input name="thescale" type="text" class="medTField" id="attr:cfslider:scale" attname="scale" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Height" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheight" type="text" class="smallNumOrChar" id="attr:cfslider:height" attname="height" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Width" /> </td>
+      <td nowrap="nowrap">
+        <input name="thewidth" type="text" class="smallNumOrChar" id="attr:cfslider:width" attname="width" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Vertical" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevspace" type="text" class="smallNumOrChar" id="attr:cfslider:vspace" attname="vspace" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Horizontal" /> </td>
+      <td nowrap="nowrap">
+        <input name="thehspace" type="text" class="smallNumOrChar" id="attr:cfslider:hspace" attname="hspace" />
+      </td>
+    </tr>
+</table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfslider/div/name/Advanced">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Look" /> </td>
+      <td nowrap="nowrap">
+        <select name="thelookandfeel" class="oneWordOptionList" id="attr:cfslider:lookandfeel" attname="lookandfeel">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Font" /> </td>
+      <td nowrap="nowrap">
+        <select name="thefont" class="fontList" id="attr:cfslider:font" attname="font" editable="true">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Font_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thefontsize" type="text" class="smallNumOrChar" id="attr:cfslider:fontsize" attname="fontsize" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Background" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="backColorPicker" value="" onChange="updateUI('backColorPicker')"> <input name="thebackcolor" type="text" class="smallTField" id="att:body:backcolor" onBlur="updateUI('backcolor')" value="" attname="backcolor">
+        <img src="../../Shared/MM/Images/transparent.gif" width="10" height="1"> <!-- spacer - do not remove -->
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Text" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="textColorPicker" value="" onChange="updateUI('textColorPicker')"> <input name="thetextcolor" type="text" class="smallTField" id="att:cfslider:textcolor" onBlur="updateUI('textcolor')" value="" attname="textcolor">
+        <img src="../../Shared/MM/Images/transparent.gif" width="10" height="1"> <!-- spacer - do not remove -->
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/onValidate" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonvalidate" type="text" class="basicTextField" id="attr:cfslider:onvalidate" attname="onvalidate" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/onError" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonerror" type="text" class="basicTextField" id="attr:cfslider:onerror" attname="onerror" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Not" /> </td>
+      <td nowrap="nowrap">
+        <input name="thenotsupported" type="text" class="basicTextField" id="attr:cfslider:notsupported" attname="notsupported" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfslider:bold" name="thebold" attname="bold" truevalue="yes" falsevalue="" />
+        <MMString:loadString id="TagLibraries/CFML/cfslider/checkbox/thebold/Bold" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfslider:italic" name="theitalic" attname="italic" truevalue="yes" falsevalue="" />
+        <MMString:loadString id="TagLibraries/CFML/cfslider/checkbox/theitalic/Italic" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfslider:refreshlabel" name="therefreshlabel" attname="refreshlabel" truevalue="" falsevalue="no" checked="true" />
+        <MMString:loadString id="TagLibraries/CFML/cfslider/checkbox/therefreshlabel/Refresh" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfslider:vertical" name="thevertical" attname="vertical" truevalue="yes" falsevalue="" />
+        <MMString:loadString id="TagLibraries/CFML/cfslider/checkbox/thevertical/Vertical" />
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfslider/div/name/Tick">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Images" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetickmarkimages" type="text" class="basicTextField" id="attr:cfslider:tickmarkimages" attname="tickmarkimages" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfslider/text/Labels" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetickmarklabels" type="text" class="basicTextField" id="attr:cfslider:tickmarklabels" attname="tickmarklabels" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfslider:tickmarkmajor" name="thetickmarkmajor" attname="tickmarkmajor" truevalue="yes" falsevalue="" />
+        <MMString:loadString id="TagLibraries/CFML/cfslider/checkbox/thetickmarkmajor/Major" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfslider:tickmarkminor" name="thetickmarkminor" attname="tickmarkminor" truevalue="yes" falsevalue="" />
+        <MMString:loadString id="TagLibraries/CFML/cfslider/checkbox/thetickmarkminor/Minor" />
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

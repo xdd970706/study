@@ -1,0 +1,13 @@
+<participant name="transRepeatRegion_End">
+  <translator>
+    <searchPatterns>
+      <searchPattern paramNames="rs"><![CDATA[/\}\s*while\s*\(\$row_([^\r\n]*?)\s*=\s*mysql_fetch_assoc\([^\r\n]*?\)\);\s*\?>/i]]></searchPattern>
+      <searchPattern requiredLocation="leading"><![CDATA[/do\s*\{\s*\?>/i]]></searchPattern>
+    </searchPatterns>
+    <translations>
+      <translation whereToSearch="directive" translationType="tabbed region end">
+        <closeTag>MM_REPEATEDREGION</closeTag>
+      </translation>
+    </translations>
+  </translator>
+</participant>

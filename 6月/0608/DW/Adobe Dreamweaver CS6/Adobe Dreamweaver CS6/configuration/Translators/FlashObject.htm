@@ -1,0 +1,315 @@
+<html>
+<head>
+<!-- Copyright 2006-2007 Adobe Systems Incorporated.  All rights reserved. -->
+<title>SWFObject</title>
+<meta http-equiv="Content-Type" content="text/html; charset=">
+
+<!-- common includes for any widget translator -->
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscriptsServer.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/AssetInfoClass.js"></script>
+<script type="text/javascript" src="../Shared/Flash/FlashObjectUtils.js"></script>
+
+<script type="text/javascript">
+
+//regular expression to find all swfObject function calls
+var swfObjectIdRegExp = /swfobject\.registerObject\s*?\(\s*?['"](\w+?)['"](\s|.)*?\)\s*;/g;
+
+function getFlashAssets()
+{
+    var assetList = new Array();
+	var tempObj;
+
+	tempObj = new Object();
+	tempObj.fullPath = "Shared/Flash/"+FlashObjectLibraryFile;
+	tempObj.file = "Scripts/"+FlashObjectLibraryFile;
+	tempObj.type = "javascript";
+
+    assetList.push(tempObj);
+
+	tempObj = new Object();
+	tempObj.fullPath = "Shared/Flash/expressInstall.swf";
+	tempObj.file = "Scripts/expressInstall.swf";
+	tempObj.type = "";
+
+    assetList.push(tempObj);
+
+    return assetList;  
+}
+
+function translateSwfObjectsInDOM(dom, origSourceStr, widgetIdRegExp)
+{
+	if( typeof dom == 'undefined' )
+	{
+		return;
+	}
+	
+	//prepare to handle error conditions
+	var brokenFlashSearches = new Array();
+	var brokenFlashObject = new Array();
+	
+	//render widgets in other files
+	dw.useTranslatedSource(true);
+	
+	//Only search in script tags
+	var scriptTags = dom.getElementsByTagName("script");
+	for( var i = 0; i < scriptTags.length; i++ )
+	{
+		var scriptTag = scriptTags[i];
+		var scriptStr = scriptTag.innerHTML;
+		if( !scriptStr || scriptStr.length <= 0 )
+			continue;
+	
+		//Tokenize all the servermarkup in the document so we can find dynamic widgets easier
+		var tokenMap = new Object();
+		var sourceStr = dwscripts.tokenizeServerMarkup(dom, scriptStr, tokenMap);
+		
+		//begin searching
+		var widgetIdMatch = widgetIdRegExp.exec(sourceStr);
+
+		while( widgetIdMatch )
+		{
+			if( widgetIdMatch.length >= 1 )
+			{
+				var widgetFullMatch = widgetIdMatch[0];
+				var widgetType = "Flash ";
+				var widgetId = widgetIdMatch[1];
+
+				//remove any servermarkup tokens
+				widgetFullMatch = dwscripts.untokenizeServerMarkup(widgetFullMatch, tokenMap);
+				widgetId = dwscripts.untokenizeServerMarkup(widgetId, tokenMap);
+
+				//see if the widgets html node is still in the document
+				var ele = dom.getElementById(widgetId);
+				
+				if(typeof ele == 'undefined') 
+				{
+				    if (flashVideoInEdit && widgetId != flashVideoInEdit.id)
+				    {
+    					//check our dom reference to see if we've already warned about this match
+	    				//so we only warn the user once each time the doc is opened
+		    			if( typeof dom.FlashTranslatorWarnings == 'undefined' )
+			    			dom.FlashTranslatorWarnings = new Array;
+					
+				    	if( typeof dom.FlashTranslatorWarnings[widgetFullMatch] == 'undefined' )
+					    {
+						    var searchObj = new Object;
+    						searchObj.searchString = widgetFullMatch;
+	    					searchObj.searchSource = true;
+		    				searchObj.matchCase = true;
+			    			searchObj.matchWholeWord = true;
+				    		searchObj.searchWhat = "document";
+						
+					    	brokenFlashSearches.push(searchObj);
+						
+						    brokenFlashObject.push(widgetFullMatch);
+						    dom.FlashTranslatorWarnings[widgetFullMatch] = true;
+					    }
+					}
+				}
+				else
+				{
+				    //add a delete handler for this widget to remove the constructor
+				    var deleteFunction = getFlashDeleteFunction(widgetFullMatch, widgetId);
+				    ele.addEventListener( "DOMNodeRemovedFromDocument", deleteFunction , false ); 
+    					
+				    var insertFunction = getFlashInsertFunction(widgetFullMatch, widgetId, dom);
+				    ele.addEventListener( "DOMNodeInsertedIntoDocument", insertFunction , false ); 					
+				}
+			}
+			
+			widgetIdMatch = widgetIdRegExp.exec(sourceStr);
+		}
+	}
+
+	//prompt to find all the missing objects
+	if( brokenFlashSearches.length > 0 )
+	{
+		//user has swffix function call without the corresponding code, prompt to delete
+		var message = "<p>" + dw.loadString("flash/missing Flash object") + "</p>";
+		
+		for( var i = 0 ; i < brokenFlashObject.length ; i++ ) {
+			message += "<p>" + brokenFlashObject[i] + "</p>";
+		}
+			
+		var onYes = function() {
+			
+			var searches = brokenFlashSearches;
+			var clearPreviousFindResults = true;
+			
+			for( var i = 0 ; i < searches.length ; i++ )
+			{
+				dw.setUpFind(searches[i]);
+				dw.findAll(true, dom, clearPreviousFindResults);
+				clearPreviousFindResults = false;
+			}
+		}
+		dwscripts.askYesNo(message, MM.BTN_Yes, onYes);
+	}
+}
+
+//This function returns the function that gets called whenever a node is deleted. We need
+//to create the function in it's own function so the closure is clear.
+function getFlashDeleteFunction(removeString, widgetId)
+{
+	var deleteFunction = function(e)
+	{
+		var targetDom = e.target.ownerDocument;					
+		var scriptTags = targetDom.getElementsByTagName("script");
+		for( var i = 0; i < scriptTags.length; i++ )
+		{
+			var str = scriptTags[i].innerHTML;
+			var index = str.indexOf(removeString);
+			if( index >= 0 )
+			{
+				var strBefore = str.substr(0, index);
+				var strAfter = str.substr(index+removeString.length);
+				while( strBefore.length > 0 && ( strBefore.charAt(strBefore.length-1) == ' ' ||
+												strBefore.charAt(strBefore.length-1) == '\t' ||
+												strBefore.charAt(strBefore.length-1) == '\n' ||
+												strBefore.charAt(strBefore.length-1) == '\r' ) )
+				{
+					strBefore = strBefore.substr(0, strBefore.length-1);
+				}
+				// We'll store the new InnerHTML to newInnerHTML and we'll decide later whether we'll replace the inner value with this
+				// one or we'll simply remove the SCRIPT tag.
+				var newInnerHTML = strBefore + strAfter;
+
+				// Look if there is any valid JS code remining in the SCRIPT tag; of empty (or only comments were found) => go and remove it
+				var tempInnerHTML = newInnerHTML;
+				if (tempInnerHTML && tempInnerHTML.replace)
+				{
+					tempInnerHTML = tempInnerHTML.replace(/[\r\n]*(?:\<\!\-\-|\/\/\-\-\>)[\r\n]*/gi, "");
+					tempInnerHTML = tempInnerHTML.replace(/[\r\n\s\t]*/gi, "")
+				}
+				
+				// If the InnerHTML is empty, we'll remove the entire SCRIPT tag.
+				if (tempInnerHTML === "")
+				{
+					scriptTags[i].outerHTML = "";
+				}
+				else
+				{
+					scriptTags[i].innerHTML = newInnerHTML;
+				}
+				
+				// Search for all Flash objects, but not the current one (compared by ID)
+				var count = 0;
+				var swfTags = targetDom.getElementsByTagName("object");
+				for( var j = 0; j < swfTags.length; j++ )
+				{
+					var curObjId = swfTags[j].getAttribute("id");
+					if (curObjId && curObjId != widgetId)
+			                count++;
+				}
+		        
+				if (count == 0)		        
+				{
+					// There are no more Flash objects, we'll remove the assets as well
+					var assets = getFlashAssets();
+
+					var tags = new Array();
+					tags = tags.concat(targetDom.getElementsByTagName("script"));
+					tags = tags.concat(targetDom.getElementsByTagName("link"));
+					
+					for (var j=0; j<tags.length; j++)
+					{
+						var tag = tags[j];
+						if (tag && tag.getAttribute)
+						{
+							// Get the value to search; the attribute is different according to tag name: script or link
+							var valueToSearch = tag.getAttribute("src");
+							if (!valueToSearch)
+							{
+								valueToSearch = tag.getAttribute("href");
+							}
+
+							// Once we have a value, we test it against all assets
+							if (valueToSearch)
+							{
+								for (var k=0; k<assets.length; k++)
+								{
+									if (assets[k].type)
+									{
+										// If the current tag's value matches an asset we'll remove the tag from page
+										if (valueToSearch.match && valueToSearch.match(new RegExp("(?:^|[\\/\\\\])" + dwscripts.escRegExpChars(assets[k].file) + "$", "gi")))
+										{
+											tag.outerHTML = "";
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	};
+	return deleteFunction;
+}
+
+function getFlashInsertFunction(constructorJs, widgetId, curDom)
+{
+	var insertFunction = function(e)
+	{
+		var targetDom = e.target.ownerDocument;	
+		var newId = e.target.id;
+		var newConJs = constructorJs;
+
+		var assetList = new Array();
+
+		// Construct the assets list using the array of assets returned by the static getAssets() function
+		var assets = getFlashAssets();
+		for (var i=0; i<assets.length; i++)
+		{
+			assetInfo = new AssetInfo(assets[i].fullPath, assets[i].file, assets[i].type, "false");
+			assetList.push(assetInfo);
+		}
+		
+		if (assetList && assetList.length)
+		{
+			targetDom.copyAssets(assetList);
+		}
+
+		//id got renamed on paste, update our constructor
+		if( newId && newId != widgetId )
+		{
+			newConJs = newConJs.replace( widgetId, newId, "gm" );
+		}
+		
+		targetDom.addJavaScript(newConJs, false);
+	};
+	return insertFunction;
+}
+
+function translateDOM( dom, sourceStr )
+{
+	if( typeof dom == 'undefined' )
+	{
+		return;
+	}
+	
+	translateSwfObjectsInDOM(dom, sourceStr, swfObjectIdRegExp);
+}
+
+function getTranslatorInfo()
+{
+	returnArray = new Array(7);
+	
+	returnArray[0] = "SWF_OBJECT"			// The translatorClass
+	returnArray[1] = "SWF Object"			// The title
+	returnArray[2] = "0"					// The number of extensions. 0 indicates to run against all extensions
+	returnArray[3] = "1"					// The number of expressions"
+	returnArray[4] = ".registerObject"			// Expression for open
+	returnArray[5] = "byString"				// Run if doc contains expr
+	returnArray[6] = "50"					// priority order to apply translator
+		
+	return returnArray;
+} // getTranslatorInfo()
+</script>
+</head>
+
+<body>
+</body>
+</html>

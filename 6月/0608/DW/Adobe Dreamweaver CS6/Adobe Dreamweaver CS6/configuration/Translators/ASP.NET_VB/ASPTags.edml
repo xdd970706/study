@@ -1,0 +1,18 @@
+<participant name="ASPTags">
+	<translator priority="250">
+		<searchPatterns>
+			<searchPattern requiredLocation="tagName"><![CDATA[/asp:(?:panel|content)/i]]></searchPattern>
+		</searchPatterns>
+		<translations>
+			<translation whereToSearch="tag+asp:panel" limitSearch="tagOnly" translationType="external">
+				<display><![CDATA[translatePanelRealDom]]></display>
+			</translation>
+		</translations>
+		<translations>
+			<translation whereToSearch="tag+asp:content" limitSearch="tagOnly" translationType="external">
+				<display><![CDATA[translateContentRealDom]]></display>
+			</translation>
+		</translations>
+	</translator>
+</participant>
+

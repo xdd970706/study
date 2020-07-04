@@ -1,0 +1,271 @@
+<!-- spry attributes that are common across tags -->
+<crosstag_attributes>
+	<attribgroup id="spryRegionAttrs" name="Spry">
+    <attrib name="spry:" type="Prefix" />
+    <attrib name="spry:region"		  type="spryDataSet" allowmultiplevalues="yes"/>
+		<attrib name="spry:detailregion"  type="spryDataSet" allowmultiplevalues="yes"/>
+		<taggroup>
+			<tag name="div"/>
+			<tag name="span"/>
+			<tag name="a"/>
+			<tag name="abbr"/>
+			<tag name="acronym"/>
+			<tag name="address"/>
+			<tag name="applet"/>
+			<tag name="area"/>
+			<tag name="b"/>
+			<tag name="bdo"/>
+			<tag name="big"/>
+			<tag name="blockquote"/>
+			<tag name="body"/>
+			<tag name="button"/>
+			<tag name="caption"/>
+			<tag name="center"/>
+			<tag name="cite"/>
+			<tag name="code"/>
+			<tag name="dd"/>
+			<tag name="del"/>
+			<tag name="dir"/>
+			<tag name="div"/>
+			<tag name="dfn"/>
+			<tag name="dl"/>
+			<tag name="dt"/>
+			<tag name="em"/>
+			<tag name="fieldset"/>
+			<tag name="font"/>
+			<tag name="form"/>
+			<tag name="frame"/>
+			<tag name="h1"/>
+			<tag name="h2"/>
+			<tag name="h3"/>
+			<tag name="h4"/>
+			<tag name="h5"/>
+			<tag name="h6"/>
+			<tag name="hr"/>
+			<tag name="i"/>
+			<tag name="img"/>
+			<tag name="input"/>
+			<tag name="ins"/>
+			<tag name="kbd"/>
+			<tag name="label"/>
+			<tag name="legend"/>
+			<tag name="li"/>
+			<tag name="link"/>
+			<tag name="map"/>
+			<tag name="menu"/>
+			<tag name="noscript"/>
+			<tag name="object"/>
+			<tag name="ol"/>
+			<tag name="optgroup"/>
+			<tag name="option"/>
+			<tag name="p"/>
+			<tag name="param"/>
+			<tag name="pre"/>
+			<tag name="q"/>
+			<tag name="s"/>
+			<tag name="samp"/>
+			<tag name="select"/>
+			<tag name="small"/>
+			<tag name="span"/>
+			<tag name="strike"/>
+			<tag name="strong"/>
+			<tag name="sub"/>
+			<tag name="sup"/>
+			<tag name="td"/>
+			<tag name="textarea"/>
+			<tag name="th"/>
+			<tag name="tt"/>
+			<tag name="u"/>
+			<tag name="ul"/>
+			<tag name="var"/>
+		</taggroup>
+	</attribgroup> 
+	<attribgroup id="spryRepeatAttrs" name="Spry">		
+		<attrib name="spry:repeat"		    type="spryDataSet" allowmultiplevalues="yes"/>
+		<attrib name="spry:repeatchildren"  type="spryDataSet" allowmultiplevalues="yes"/>
+		<attrib name="spry:test"/>
+		<attrib name="spry:content"/>
+		<attrib name="spry:if"/>
+		<attrib name="spry:choose"/>
+		<attrib name="spry:when"/>
+		<attrib name="spry:default"/>
+		<attrib name="spry:state" type="Enumerated">
+			<attriboption value="ready"   caption="ready"/>
+			<attriboption value="loading" caption="loading"/>
+			<attriboption value="error"  caption="error"/>
+		</attrib>	
+		<taggroup>
+			<tag name="div"/>
+			<tag name="span"/>
+			<tag name="a"/>
+			<tag name="abbr"/>
+			<tag name="acronym"/>
+			<tag name="address"/>
+			<tag name="applet"/>
+			<tag name="area"/>
+			<tag name="b"/>
+			<tag name="bdo"/>
+			<tag name="big"/>
+			<tag name="blockquote"/>
+			<tag name="body"/>
+			<tag name="button"/>
+			<tag name="caption"/>
+			<tag name="center"/>
+			<tag name="cite"/>
+			<tag name="code"/>
+			<tag name="col"/>
+			<tag name="colgroup"/>
+			<tag name="dd"/>
+			<tag name="del"/>
+			<tag name="dir"/>
+			<tag name="div"/>
+			<tag name="dfn"/>
+			<tag name="dl"/>
+			<tag name="dt"/>
+			<tag name="em"/>
+			<tag name="fieldset"/>
+			<tag name="font"/>
+			<tag name="form"/>
+			<tag name="frame"/>
+			<tag name="frameset"/>
+			<tag name="h1"/>
+			<tag name="h2"/>
+			<tag name="h3"/>
+			<tag name="h4"/>
+			<tag name="h5"/>
+			<tag name="h6"/>
+			<tag name="hr"/>
+			<tag name="i"/>
+			<tag name="img"/>
+			<tag name="input"/>
+			<tag name="ins"/>
+			<tag name="kbd"/>
+			<tag name="label"/>
+			<tag name="legend"/>
+			<tag name="li"/>
+			<tag name="link"/>
+			<tag name="map"/>
+			<tag name="menu"/>
+			<tag name="noscript"/>
+			<tag name="object"/>
+			<tag name="ol"/>
+			<tag name="optgroup"/>
+			<tag name="option"/>
+			<tag name="p"/>
+			<tag name="param"/>
+			<tag name="pre"/>
+			<tag name="q"/>
+			<tag name="s"/>
+			<tag name="samp"/>
+			<tag name="select"/>
+			<tag name="small"/>
+			<tag name="span"/>
+			<tag name="strike"/>
+			<tag name="strong"/>
+			<tag name="style"/>
+			<tag name="sub"/>
+			<tag name="sup"/>
+			<tag name="table"/>
+			<tag name="tbody"/>
+			<tag name="td"/>
+			<tag name="textarea"/>
+			<tag name="tfoot"/>
+			<tag name="th"/>
+			<tag name="thead"/>
+			<tag name="tr"/>
+			<tag name="tt"/>
+			<tag name="u"/>
+			<tag name="ul"/>
+			<tag name="var"/>
+		</taggroup>
+	</attribgroup> 
+	<attribgroup id="spryBehaviorAttrs" name="Spry">		
+		<attrib name="spry:hover"        type="cssStyle"/>
+		<attrib name="spry:select"       type="cssStyle"/>
+		<attrib name="spry:selected"/>
+		<attrib name="spry:selectgroup"/>
+		<attrib name="spry:odd"	         type="cssStyle"/>
+		<attrib name="spry:even"         type="cssStyle"/>
+		<attrib name="spry:setrow"       type="spryDataSet"/>
+		<attrib name="spry:setrownumber" type="spryDataSet"/>
+		<attrib name="spry:sort"         type="spryDataReferences" allowmultiplevalues="yes"/>
+		<taggroup>
+			<tag name="a"/>
+			<tag name="abbr"/>
+			<tag name="acronym"/>
+			<tag name="address"/>
+			<tag name="applet"/>
+			<tag name="area"/>
+			<tag name="b"/>
+			<tag name="bdo"/>
+			<tag name="big"/>
+			<tag name="blockquote"/>
+			<tag name="body"/>
+			<tag name="button"/>
+			<tag name="caption"/>
+			<tag name="center"/>
+			<tag name="cite"/>
+			<tag name="code"/>
+			<tag name="dd"/>
+			<tag name="del"/>
+			<tag name="dir"/>
+			<tag name="div"/>
+			<tag name="dfn"/>
+			<tag name="dl"/>
+			<tag name="dt"/>
+			<tag name="em"/>
+			<tag name="fieldset"/>
+			<tag name="font"/>
+			<tag name="form"/>
+			<tag name="frame"/>
+			<tag name="h1"/>
+			<tag name="h2"/>
+			<tag name="h3"/>
+			<tag name="h4"/>
+			<tag name="h5"/>
+			<tag name="h6"/>
+			<tag name="hr"/>
+			<tag name="i"/>
+			<tag name="img"/>
+			<tag name="input"/>
+			<tag name="ins"/>
+			<tag name="kbd"/>
+			<tag name="label"/>
+			<tag name="legend"/>
+			<tag name="li"/>
+			<tag name="link"/>
+			<tag name="map"/>
+			<tag name="menu"/>
+			<tag name="noscript"/>
+			<tag name="object"/>
+			<tag name="ol"/>
+			<tag name="optgroup"/>
+			<tag name="option"/>
+			<tag name="p"/>
+			<tag name="param"/>
+			<tag name="pre"/>
+			<tag name="q"/>
+			<tag name="s"/>
+			<tag name="samp"/>
+			<tag name="select"/>
+			<tag name="small"/>
+			<tag name="span"/>
+			<tag name="strike"/>
+			<tag name="strong"/>
+			<tag name="style"/>
+			<tag name="sub"/>
+			<tag name="sup"/>
+			<tag name="table"/>
+			<tag name="tbody"/>
+			<tag name="td"/>
+			<tag name="textarea"/>
+			<tag name="tfoot"/>
+			<tag name="th"/>
+			<tag name="tr"/>
+			<tag name="tt"/>
+			<tag name="u"/>
+			<tag name="ul"/>
+			<tag name="var"/>
+		</taggroup>
+	</attribgroup> 
+</crosstag_attributes>

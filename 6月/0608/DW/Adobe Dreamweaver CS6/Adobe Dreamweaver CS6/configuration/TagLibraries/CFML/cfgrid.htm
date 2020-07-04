@@ -1,0 +1,551 @@
+<!-- Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfgrid/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var ALIGNLIST;
+var SELECTMODELIST;
+var FONTLIST;
+var GRIDDATAALIGNLIST;
+var ROWHEADERALIGNLIST;
+var ROWHEADERFONTLIST;
+var COLHEADERALIGNLIST;
+var COLHEADERFONTLIST;
+var theUIObjects;
+var FORMATLIST;
+// Color control elements
+var COLORP_BGCOLOR, COLORP_SELECT, COLORP_TEXTCOLOR, COLORP_COLHEAD, COLORP_ROWHEAD;
+var TEXT_BGCOLOR, TEXT_SELECT, TEXT_TEXTCOLOR, TEXT_COLHEADCOLOR, TEXT_ROWHEADCOLOR;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects);
+  updateColors();
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects);
+}
+
+function updateUI(itemName)
+{
+  switch(itemName)
+  {
+    case "bgColorPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_BGCOLOR,TEXT_BGCOLOR,true);
+      break;
+    }
+    case "bgcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BGCOLOR,TEXT_BGCOLOR,true);
+      break;
+    }
+    case "selectColorPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_SELECT,TEXT_SELECT,true);
+      break;
+    }
+    case "selectcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_SELECT,TEXT_SELECT,true);
+      break;
+    }
+    case "textColorPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_TEXTCOLOR,TEXT_TEXTCOLOR,true);
+      break;
+    }
+    case "textcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_TEXTCOLOR,TEXT_TEXTCOLOR,true);
+      break;
+    }
+    case "columnTextColorPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_COLHEAD,TEXT_COLHEADCOLOR,true);
+      break;
+    }
+    case "colheadertextcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_COLHEAD,TEXT_COLHEADCOLOR,true);
+      break;
+    }
+    case "rowTextColorPicker":
+    {
+      tagDialog.updateColorPicker("colorPicker",COLORP_ROWHEAD,TEXT_ROWHEADCOLOR,true);
+      break;
+    }
+    case "rowheadertextcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_ROWHEAD,TEXT_ROWHEADCOLOR,true);
+      break;
+    }
+  }
+}
+
+function updateColors()
+{
+  tagDialog.updateColorPicker("colorField",COLORP_BGCOLOR,TEXT_BGCOLOR);
+  tagDialog.updateColorPicker("colorField",COLORP_SELECT,TEXT_SELECT);
+  tagDialog.updateColorPicker("colorField",COLORP_TEXTCOLOR,TEXT_TEXTCOLOR);
+  tagDialog.updateColorPicker("colorField",COLORP_COLHEAD,TEXT_COLHEADCOLOR);
+  tagDialog.updateColorPicker("colorField",COLORP_ROWHEAD,TEXT_ROWHEADCOLOR);
+}
+
+function initializeUI()
+{
+	ALIGNLIST = new ListControl("thealign");
+	SELECTMODELIST = new ListControl("theselectmode");
+	FONTLIST = new ListControl("thefont");
+	GRIDDATAALIGNLIST = new ListControl("thegriddataalign");
+	ROWHEADERALIGNLIST = new ListControl("therowheaderalign");
+	ROWHEADERFONTLIST = new ListControl("therowheaderfont");
+	COLHEADERALIGNLIST = new ListControl("thecolheaderalign");
+	COLHEADERFONTLIST = new ListControl("thecolheaderfont");
+	FORMATLIST = new ListControl("theformat");
+
+	theUIObjects = new Array(FORMATLIST,ALIGNLIST, SELECTMODELIST,FONTLIST,GRIDDATAALIGNLIST,ROWHEADERALIGNLIST,ROWHEADERFONTLIST,COLHEADERALIGNLIST,COLHEADERFONTLIST);
+
+  COLORP_BGCOLOR = dwscripts.findDOMObject("bgColorPicker");
+  COLORP_SELECT = dwscripts.findDOMObject("selectColorPicker");
+  COLORP_TEXTCOLOR = dwscripts.findDOMObject("textColorPicker");
+  COLORP_COLHEAD = dwscripts.findDOMObject("columnTextColorPicker");
+  COLORP_ROWHEAD = dwscripts.findDOMObject("rowTextColorPicker");
+
+  TEXT_BGCOLOR = dwscripts.findDOMObject("thebgcolor");
+  TEXT_SELECT = dwscripts.findDOMObject("theselectcolor");
+  TEXT_TEXTCOLOR = dwscripts.findDOMObject("thetextcolor");
+  TEXT_COLHEADCOLOR = dwscripts.findDOMObject("thecolheadertextcolor");
+  TEXT_ROWHEADCOLOR = dwscripts.findDOMObject("therowheadertextcolor");
+
+  tagDialog.populateDropDownList(ALIGNLIST, theVericalAlignmentsCap, theVericalAlignmentsVal, 1);
+  tagDialog.populateDropDownList(SELECTMODELIST, theSelectModeCap, theSelectModeVal, 0);
+  tagDialog.populateDropDownList(FONTLIST, dw.getSystemFontList('all'), dw.getSystemFontList('all'), 1);
+  tagDialog.populateDropDownList(GRIDDATAALIGNLIST, theGridDataAlignCap, theGridDataAlignVal, 0);
+  tagDialog.populateDropDownList(ROWHEADERALIGNLIST, theGridDataAlignCap, theGridDataAlignVal, 0);
+  tagDialog.populateDropDownList(ROWHEADERFONTLIST, dw.getSystemFontList('all'), dw.getSystemFontList('all'), 1);
+  tagDialog.populateDropDownList(COLHEADERALIGNLIST, theGridDataAlignCap, theGridDataAlignVal, 0);
+  tagDialog.populateDropDownList(COLHEADERFONTLIST, dw.getSystemFontList('all'), dw.getSystemFontList('all'), 1);
+  tagDialog.populateDropDownList(FORMATLIST, theGridFormatCap, theGridFormatVal, 0);
+
+	GRIDDATAALIGNLIST.setIndex(0);
+	ROWHEADERALIGNLIST.setIndex(0);
+	COLHEADERALIGNLIST.setIndex(0);
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cfgrid/div/name/General">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Name" /> </td>
+      <td nowrap="nowrap">
+        <input name="thename" type="text" class="medTField" id="attr:cfgrid:name" attname="name" required="true" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Format" /> </td>
+      <td nowrap="nowrap">
+        <select name="theformat" class="oneWordoptionList" id="attr:cfgrid:format" attname="format" >
+		</select>
+      </td>
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Query" /> </td>
+      <td nowrap="nowrap">
+        <input name="thequery" type="text" class="medTField" id="attr:cfgrid:query" attname="query" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/onValidate" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonvalidate" type="text" class="medTField" id="attr:cfgrid:onvalidate" attname="onvalidate" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/onError" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonerror" type="text" class="medTField" id="attr:cfgrid:onerror" attname="onerror" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Not" /> </td>
+      <td nowrap="nowrap">
+        <input name="thenotsupported" type="text" class="medTField" id="attr:cfgrid:notsupported" attname="notsupported" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Alignment" /> </td>
+      <td nowrap="nowrap">
+        <select name="thealign" class="alignList" id="attr:cfgrid:align" attname="align" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Data" /> </td>
+      <td nowrap="nowrap">
+        <select name="thegriddataalign" class="alignList" id="attr:cfgrid:griddataalign" attname="griddataalign" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Font" /> </td>
+      <td nowrap="nowrap">
+        <select name="thefont" class="fontList" id="attr:cfgrid:thefont" attname="font" editable="true">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Font_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thefontsize" type="text" class="smallNumOrChar" id="attr:cfgrid:fontsize" attname="fontsize" />
+      </td>
+    </tr>
+	
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Height" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheight" type="text" class="smallNumOrChar" id="attr:cfgrid:height" attname="height" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Width" /> </td>
+      <td nowrap="nowrap">
+        <input name="thewidth" type="text" class="smallNumOrChar" id="attr:cfgrid:width" attname="width" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Background" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="bgColorPicker" value="" onChange="updateUI('bgColorPicker')"> <input name="thebgcolor" type="text" class="smallTField" id="att:cfgrid:bgcolor" onBlur="updateUI('bgcolor')" value="" attname="bgcolor">
+        <img src="../../Shared/MM/Images/transparent.gif" width="10" height="1"> <!-- spacer - do not remove -->
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Text" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="textColorPicker" value="" onChange="updateUI('textColorPicker')"> <input name="thetextcolor" type="text" class="smallTField" id="att:cfgrid:textcolor" onBlur="updateUI('textcolor')" value="" attname="textcolor">
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfgrid/div/name/Advanced">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Select" /> </td>
+      <td nowrap="nowrap">
+        <select name="theselectmode" class="oneWordOptionList" id="attr:cfgrid:selectmode" attname="selectmode" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Vertical" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevspace" type="text" class="smallNumOrChar" id="attr:cfgrid:vspace" attname="vspace" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Horizontal" /> </td>
+      <td nowrap="nowrap">
+        <input name="thehspace" type="text" class="smallNumOrChar" id="attr:cfgrid:hspace" attname="hspace" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Max" /> </td>
+      <td nowrap="nowrap">
+        <input name="themaxrows" type="text" class="smallNumOrChar" id="attr:cfgrid:maxrows" attname="maxrows" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Select_1" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="selectColorPicker" value="" onChange="updateUI('selectColorPicker')"> <input name="theselectcolor" type="text" class="smallTField" id="att:cfgrid:selectcolor" onBlur="updateUI('selectcolor')" value="" attname="selectcolor">
+        <img src="../../Shared/MM/Images/transparent.gif" width="10" height="1"> <!-- spacer - do not remove -->
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:bold" name="thebold" attname="bold" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thebold/Bold" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:italic" name="theitalic" attname="italic" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/theitalic/Italic" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:autowidth" name="theautowidth" attname="autowidth" truevalue="true" falsevalue="false" checked="true" /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/theautowidth/AutoWidth" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:insert" name="theinsert" attname="insert" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/theinsert/Allow" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:delete" name="thedelete" attname="delete" truevalue="yes" /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thedelete/Allow" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:sort" name="thesort" attname="sort" truevalue="yes" /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thesort/Sort" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:gridlines" name="thegridlines" attname="gridlines" truevalue="yes"  checked="true" /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thegridlines/Grid" />
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfgrid/div/name/Flash">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="medTField" id="attr:cfgrid:style" attname="style" />
+		
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Tooltip" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetooltip" type="text" class="medTField" id="attr:cfgrid:tooltip" attname="tooltip" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/onChange" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonchange" type="text" class="medTField" id="attr:cfgrid:onchange" attname="onchange" />
+      </td>
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/onBlur" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonblur" type="text" class="medTField" id="attr:cfgrid:onblur" attname="onblur" />
+      </td>
+    </tr>
+	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/onFocus" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonfocus" type="text" class="medTField" id="attr:cfgrid:onfocus" attname="onfocus" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:enabled" name="theenabled" attname="enabled" truevalue="yes" checked /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/theenabled/Enabled" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:visible" name="thevisible" attname="visible" truevalue="yes" checked /><MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thevisible/Visible" />
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfgrid/div/name/HREF">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/HREF" /> </td>
+      <td nowrap="nowrap">
+        <input name="thehref" type="text" class="medTField" id="attr:cfgrid:href" attname="href" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/HREF_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thehrefkey" type="text" class="medTField" id="attr:cfgrid:hrefkey" attname="hrefkey" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/URL" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetarget" type="text" class="medTField" id="attr:cfgrid:target" attname="target" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:appendkey" name="theappendkey" attname="appendkey" truevalue="yes"  checked="true" /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/theappendkey/Append" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:highlighthref" name="thehighlighthref" attname="highlighthref" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thehighlighthref/Highlight" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div MMString:name="TagLibraries/CFML/cfgrid/div/name/Row">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Header" /> </td>
+      <td nowrap="nowrap">
+        <select name="therowheaderalign" class="alignList" id="attr:cfgrid:rowheaderalign" attname="rowheaderalign" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Font" /> </td>
+      <td nowrap="nowrap">
+        <select name="therowheaderfont" class="fontList" id="attr:cfgrid:rowheaderfont" attname="rowheaderfont" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Font_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="therowheaderfontsize" type="text" class="smallNumOrChar" id="attr:cfgrid:rowheaderfontsize" attname="rowheaderfontsize" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Header_1" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="rowTextColorPicker" value="" onChange="updateUI('rowTextColorPicker')"> <input name="therowheadertextcolor" type="text" class="smallTField" id="att:cfgrid:rowheadertextcolor" onBlur="updateUI('rowheadertextcolor')" value="" attname="rowheadertextcolor">
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Row" /> </td>
+      <td nowrap="nowrap">
+        <input name="therowheight" type="text" class="smallNumOrChar" id="attr:cfgrid:rowheight" attname="rowheight" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Header_2" /> </td>
+      <td nowrap="nowrap">
+        <input name="therowheaderwidth" type="text" class="smallNumOrChar" id="attr:cfgrid:rowheaderwidth" attname="rowheaderwidth" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:rowheaderbold" name="therowheaderbold" attname="rowheaderbold" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thebold/Bold" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:rowheaderitalic" name="therowheaderitalic" attname="rowheaderitalic" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/theitalic/Italic" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:rowheaders" name="therowheaders" attname="rowheaders" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/therowheaders/Display" />
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfgrid/div/name/Column">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Header" /> </td>
+      <td nowrap="nowrap">
+        <select name="thecolheaderalign" class="alignList" id="attr:cfgrid:colheaderalign" attname="colheaderalign" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Font" /> </td>
+      <td nowrap="nowrap">
+        <select name="thecolheaderfont" class="fontList" id="attr:cfgrid:colheaderfont" attname="colheaderfont" editable="false">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Font_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecolheaderfontsize" type="text" class="smallNumOrChar" id="attr:cfgrid:colheaderfontsize" attname="colheaderfontsize" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Header_1" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="columnTextColorPicker" value="" onChange="updateUI('columnTextColorPicker')"> <input name="thecolheadertextcolor" type="text" class="smallTField" id="att:cfgrid:colheadertextcolor" onBlur="updateUI('colheadertextcolor')" value="" attname="colheadertextcolor">
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:colheaderbold" name="thecolheaderbold" attname="colheaderbold" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thebold/Bold" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:colheaderitalic" name="thecolheaderitalic" attname="colheaderitalic" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/theitalic/Italic" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:colheaders" name="thecolheaders" attname="colheaders" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thecolheaders/Display" />
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/CFML/cfgrid/div/name/Button">
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Insert" /> </td>
+      <td nowrap="nowrap">
+        <input name="theinsertbutton" type="text" class="medTField" id="attr:cfgrid:insertbutton" attname="insertbutton" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Delete" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedeletebutton" type="text" class="medTField" id="attr:cfgrid:deletebutton" attname="deletebutton" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Sort" /> </td>
+      <td nowrap="nowrap">
+        <input name="thesortascendingbutton" type="text" class="medTField" id="attr:cfgrid:sortascendingbutton" attname="sortascendingbutton" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfgrid/text/Sort_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="thesortdescendingbutton" type="text" class="medTField" id="attr:cfgrid:sortdescendingbutton" attname="sortdescendingbutton" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp; </td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfgrid:picturebar" name="thepicturebar" attname="picturebar" truevalue="yes"  /> <MMString:loadString id="TagLibraries/CFML/cfgrid/checkbox/thepicturebar/Picture" />
+      </td>
+    </tr>
+  </table>
+</div>
+</html>

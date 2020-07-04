@@ -1,0 +1,1694 @@
+<html>
+<head>
+	<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+	<script type="text/javascript" src="../Shared/Common/Scripts/dwscriptsServer.js"></script>
+	<script type="text/javascript" src="../Shared/Common/Scripts/dwscriptsExtData.js"></script>
+	<script type="text/javascript" src="../Shared/MM/Scripts/Class/FileClass.js"></script>
+	<script type="text/javascript" src="../Shared/MM/Scripts/event.js"></script>
+	<script type="text/javascript" src="../Shared/MM/Scripts/Cmn/UI.js"></script>
+	<script type="text/javascript" src="helpDocs.js"></script>
+	<!-- This file was moved between DW4 and DWMX.  The file is loaded at startup
+		with SHARE-IN-MEMORY turned on, so that callers can include it using either
+		its old or new location -->
+	<script type="text/javascript" src="../Shared/Common/Scripts/ListControlClass.js"></script>
+	<script type="text/javascript">
+// Copyright 2001-2007 Adobe Systems Incorporated.  All rights reserved.
+
+
+//This script initializes the MM extension by adding any
+// javascript functions, classes, or variables that should be
+// made GLOBAL to all extensions.
+//
+//Once the item has been assigned to an MM equivalent, it can
+// then be referenced from any extension with Dreamweaver.
+// (for example: "MM.<function>()" or "x = new MM.<class>()")
+//
+//NOTE: Any script attached in this way, that refers to the 'document' object
+// will actually be refering to this file, so general UI commands will need
+// to have the current document object passed in as a parameter.
+
+MM.File  = File;
+MM.event = event;
+
+// Initialize error strings
+initErrorStrings();
+
+// Initialize HTML help index
+MM.HELP_errorFileNotFound   = dw.loadString('Startup/MMinit/MM.HELP_errorFileNotFound');
+MM.HELP_errorViewerNotFound   = dw.loadString('Startup/MMinit/MM.HELP_errorViewerNotFound');
+MM.HELP_errorNoJavaScript = dw.loadString('Startup/MMinit/MM.HELP_errorNoJavaScript');
+
+// Check to see if we should paste Fireworks HTML
+if (typeof MM.event != 'undefined')
+{
+  MM.event.registerFnCall('dw.clipPaste()', 'PasteFireworksHTML.htm');
+  MM.event.registerFnCall('dw.clipPasteHTML()', 'PasteFireworksHTML.htm');
+}
+
+
+function initErrorStrings()
+{
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+// Can be used by any object, command, menu command, etc. (used to be
+// under master-detail page set group, but I extracted it and made it
+// more generic.) -LMH 10.02.02
+MM.MSG_saveDocument   = dw.loadString('Startup/MMinit/MM.MSG_saveDocument');
+
+
+//********* Commands *************
+
+MM.TYPE_Image = dw.loadString('Startup/MMinit/MM.TYPE_Image');
+MM.TYPE_Shockwave = dw.loadString('Startup/MMinit/MM.TYPE_Shockwave');
+MM.TYPE_Text = dw.loadString('Startup/MMinit/MM.TYPE_Text');
+MM.TYPE_Separator = dw.loadString('Startup/MMinit/MM.TYPE_Separator');
+MM.TYPE_Form = dw.loadString('Startup/MMinit/MM.TYPE_Form');
+MM.TYPE_Frame = dw.loadString('Startup/MMinit/MM.TYPE_Frame');
+MM.TYPE_Layer = dw.loadString('Startup/MMinit/MM.TYPE_Layer');
+MM.TYPE_Button = dw.loadString('Startup/MMinit/MM.TYPE_Button');
+MM.TYPE_MainWindow = dw.loadString('Startup/MMinit/MM.TYPE_MainWindow');
+
+MM.BTN_OK     = dw.loadString('Startup/MMinit/MM.BTN_OK');
+MM.BTN_Cancel = dw.loadString('Startup/MMinit/MM.BTN_Cancel');
+MM.BTN_Apply  = dw.loadString('Startup/MMinit/MM.BTN_Apply');
+MM.BTN_Export = dw.loadString('Startup/MMinit/MM.BTN_Export');
+MM.BTN_Insert = dw.loadString('Startup/MMinit/MM.BTN_Insert');
+MM.BTN_Help   = dw.loadString('Startup/MMinit/MM.BTN_Help');
+MM.BTN_Add =    dw.loadString('Startup/MMinit/MM.BTN_Add');
+MM.BTN_Remove = dw.loadString('Startup/MMinit/MM.BTN_Remove');
+MM.BTN_Yes    = dw.loadString('Startup/MMinit/MM.BTN_Yes');
+MM.BTN_No     = dw.loadString('Startup/MMinit/MM.BTN_No');
+
+MM.BTN_Refresh = dw.loadString('Startup/MMinit/MM.BTN_Refresh');
+MM.BTN_Process = dw.loadString('Startup/MMinit/MM.BTN_Process');
+MM.BTN_Login   = dw.loadString('Startup/MMinit/MM.BTN_Login');
+MM.BTN_ModifyDataSources = dw.loadString('Startup/MMinit/MM.BTN_ModifyDataSources');
+
+MM.MSG_AutoFormAdd = dw.loadString('Startup/MMinit/MM.MSG_AutoFormAdd');
+
+// jschang 9/22/00h
+// localizable variables for instrumentation commands in
+// folder configuration/debugger
+MM.MSG_dbgTypeError             = dw.loadString('Startup/MMinit/MM.MSG_dbgTypeError');
+MM.MSG_dbgTypeWarning           = dw.loadString('Startup/MMinit/MM.MSG_dbgTypeWarning');
+MM.MSG_dbgResultsTitle          = dw.loadString('Startup/MMinit/MM.MSG_dbgResultsTitle');
+MM.MSG_dbgColHeadFile           = dw.loadString('Startup/MMinit/MM.MSG_dbgColHeadFile');
+MM.MSG_dbgColHeadLine           = dw.loadString('Startup/MMinit/MM.MSG_dbgColHeadLine');
+MM.MSG_dbgColHeadType           = dw.loadString('Startup/MMinit/MM.MSG_dbgColHeadType');
+MM.MSG_dbgColHeadDescription    = dw.loadString('Startup/MMinit/MM.MSG_dbgColHeadDescription');
+MM.MSG_dbgButtonGoTo            = dw.loadString('Startup/MMinit/MM.MSG_dbgButtonGoTo');
+
+// For #32352 (Debugging messages become junk if the encoding is non-SHIFT_JIS on J build)
+// We have arrays of messages. Use the localized message only if the encoding is SHIFT_JIS on J build.
+strDbgNoScript = dw.loadString('Startup/MMinit/strDbgNoScript')
+	+ dw.loadString('Startup/MMinit/strDbgNoScript_1')
+	+ dw.loadString('Startup/MMinit/strDbgNoScript_2')
+	+ dw.loadString('Startup/MMinit/strDbgNoScript_3');
+strDbgNoApplet = dw.loadString('Startup/MMinit/strDbgNoApplet')
+	+ dw.loadString('Startup/MMinit/strDbgNoApplet_1')
+	+ dw.loadString('Startup/MMinit/strDbgNoApplet_2')
+	+ dw.loadString('Startup/MMinit/strDbgNoApplet_3');
+strDbgNoScriptDB = dw.loadString('Startup/MMinit/strDbgNoScriptDB')
+	+ dw.loadString('Startup/MMinit/strDbgNoScriptDB_1')
+	+ dw.loadString('Startup/MMinit/strDbgNoScriptDB_2')
+	+ dw.loadString('Startup/MMinit/strDbgNoScriptDB_3');
+strDbgNoAppletDB = dw.loadString('Startup/MMinit/strDbgNoAppletDB')
+	+ dw.loadString('Startup/MMinit/strDbgNoAppletDB_1')
+	+ dw.loadString('Startup/MMinit/strDbgNoAppletDB_2')
+	+ dw.loadString('Startup/MMinit/strDbgNoAppletDB_3');
+
+MM.MSG_dbgStartDebugging  = new Array(dw.loadString('Startup/MMinit/MM.MSG_dbgStartDebugging'), dw.loadString('Startup/MMinit/MM.MSG_dbgStartDebugging_1'));
+MM.MSG_dbgStartDebugging2 = new Array(dw.loadString('Startup/MMinit/MM.MSG_dbgStartDebugging2'),dw.loadString('Startup/MMinit/MM.MSG_dbgStartDebugging2_1'));
+
+
+MM.MSG_InvalidColor = dw.loadString('Startup/MMinit/MM.MSG_InvalidColor');
+//debugger for double-byte path name warning in NS
+MM.MSG_dbgDoubleBytePathNS    = dw.loadString('Startup/MMinit/MM.MSG_dbgDoubleBytePathNS');
+
+//********* Paste Fix *************
+
+MM.MSG_odWordUnableToSaveAs = dw.loadString('Startup/MMinit/MM.MSG_odWordUnableToSaveAs');
+MM.MSG_odExcelUnableToSaveAs = dw.loadString('Startup/MMinit/MM.MSG_odExcelUnableToSaveAs');
+MM.MSG_odProblem = dw.loadString('Startup/MMinit/MM.MSG_odProblem');
+MM.MSG_odWarnWithLink = dw.loadString('Startup/MMinit/MM.MSG_odWarnWithLink');
+MM.MSG_odWarn = dw.loadString('Startup/MMinit/MM.MSG_odWarn');
+MM.MSG_odStopWithLink = dw.loadString('Startup/MMinit/MM.MSG_odStopWithLink');
+MM.MSG_odStop = dw.loadString('Startup/MMinit/MM.MSG_odStop');
+
+
+
+//********* Inspectors *************
+
+//SSI Common
+MM.MSG_NoSiteForSiteRelURLs = dw.loadString('Startup/MMinit/MM.MSG_NoSiteForSiteRelURLs');
+MM.MSG_NotSavedForDocRelURLs = dw.loadString('Startup/MMinit/MM.MSG_NotSavedForDocRelURLs');
+MM.MSG_CannotConvertURLToIncludeFile = dw.loadString('Startup/MMinit/MM.MSG_CannotConvertURLToIncludeFile');
+MM.MSG_CannotConvertURLToVirtualFile = dw.loadString('Startup/MMinit/MM.MSG_CannotConvertURLToVirtualFile');
+MM.MSG_UnableToEdit = dw.loadString('Startup/MMinit/MM.MSG_UnableToEdit');
+
+
+//********* Shared Scripts *************
+
+// Checkbox Class
+MM.MSG_CouldNotFindNamedCheckbox = dw.loadString('Startup/MMinit/MM.MSG_CouldNotFindNamedCheckbox');
+
+// Num Recs Class
+MM.MSG_NeedNumberOfRecords = dw.loadString('Startup/MMinit/MM.MSG_NeedNumberOfRecords')
+MM.MSG_NeedValidNumberOfRecords = dw.loadString('Startup/MMinit/MM.MSG_NeedValidNumberOfRecords')
+
+//********* Objects *************
+MM.MSG_SpecialCharNonLatinEncode   = dw.loadString('Startup/MMinit/MM.MSG_SpecialCharNonLatinEncode');
+MM.MSG_InvalidName = dw.loadString('Startup/MMinit/MM.MSG_InvalidName');
+MM.MSG_EmptyName = dw.loadString('Startup/MMinit/MM.MSG_EmptyName');
+MM.MSG_DuplicateName = dw.loadString('Startup/MMinit/MM.MSG_DuplicateName');
+
+// Dynamic Table
+MM.MSG_NeedBlankOrNumberZeroOrGreater = dw.loadString('Startup/MMinit/MM.MSG_NeedBlankOrNumberZeroOrGreater');
+MM.MSG_NeedValidSelectionForDynamicTable = dw.loadString('Startup/MMinit/MM.MSG_NeedValidSelectionForDynamicTable');
+MM.LABEL_Border = dw.loadString('Startup/MMinit/MM.LABEL_Border');
+MM.LABEL_CellPadding = dw.loadString('Startup/MMinit/MM.LABEL_CellPadding');
+MM.LABEL_CellSpacing = dw.loadString('Startup/MMinit/MM.LABEL_CellSpacing');
+
+// Master Detail
+MM.MSG_NeedValidSelectionForMasterDetail = dw.loadString('Startup/MMinit/MM.MSG_NeedValidSelectionForMasterDetail');
+MM.MSG_NeedUniqueDetailPageName = dw.loadString('Startup/MMinit/MM.MSG_NeedUniqueDetailPageName');
+MM.MSG_NeedSavedDocumentForMasterDetail = dw.loadString('Startup/MMinit/MM.MSG_NeedSavedDocumentForMasterDetail') +
+	dw.loadString('Startup/MMinit/MM.MSG_NeedSavedDocumentForMasterDetail_1');
+MM.MSG_NeedValidDetailPageName = dw.loadString('Startup/MMinit/MM.MSG_NeedValidDetailPageName') +
+	dw.loadString('Startup/MMinit/MM.MSG_NeedValidDetailPageName_1')
+
+// Server Object Error Dialogs & Panel Instructions
+// Note: keep the s% around the same keywords if the phrasing is rearranged;
+// They represent opening and closing link tags
+// Note: non-breaking spaces used below to make the dialog wider.
+MM.MSG_BeforeUsingDynamicData = dw.loadString('Startup/MMinit/MM.MSG_BeforeUsingDynamicData');
+MM.MSG_BeforeInsertingServerObject = dw.loadString('Startup/MMinit/MM.MSG_BeforeInsertingServerObject');
+MM.MSG_CreateSite =   dw.loadString('Startup/MMinit/MM.MSG_CreateSite');
+MM.MSG_CreateServer = dw.loadString('Startup/MMinit/MM.MSG_CreateServer');
+MM.MSG_ChooseDynamicDocType = dw.loadString('Startup/MMinit/MM.MSG_ChooseDynamicDocType');
+MM.MSG_SetAppServer = dw.loadString('Startup/MMinit/MM.MSG_SetAppServer');
+MM.MSG_SetURLPrefix = dw.loadString('Startup/MMinit/MM.MSG_SetURLPrefix');
+MM.MSG_SetRDSPassword = dw.loadString('Startup/MMinit/MM.MSG_SetRDSPassword');
+MM.MSG_CreateCFDataSource = dw.loadString('Startup/MMinit/MM.MSG_CreateCFDataSource');
+MM.MSG_CreateRecordset = dw.loadString('Startup/MMinit/MM.MSG_CreateRecordset');
+MM.MSG_ClickPlusBtnToCreateConn = dw.loadString('Startup/MMinit/MM.MSG_ClickPlusBtnToCreateConn');
+MM.MSG_DeployToTestingServerBin = dw.loadString('Startup/MMinit/MM.MSG_DeployToTestingServerBin');
+
+MM.MSG_NoRecordsetsFromSPs = dw.loadString('Startup/MMinit/MM.MSG_NoRecordsetsFromSPs')
+	+ dw.loadString('Startup/MMinit/MM.MSG_NoRecordsetsFromSPs_1');
+
+//********* Reports *************
+MM.MSG_noteColon = dw.loadString('Startup/MMinit/MM.MSG_noteColon');
+MM.MSG_warningColon = dw.loadString('Startup/MMinit/MM.MSG_warningColon');
+MM.MSG_errorColon = dw.loadString('Startup/MMinit/MM.MSG_errorColon');
+
+//********* Customize Favorite Objects Command *************
+MM.LABEL_CustomizeObjectsAll = dw.loadString('Startup/MMinit/MM.LABEL_CustomizeObjectsAll');
+MM.MSG_CustomizeObjectsAlreadyAdded = dw.loadString('Startup/MMinit/MM.MSG_CustomizeObjectsAlreadyAdded')
+
+//********* Tag Importers *************
+MM.MSG_legalTagLibraryName = dw.loadString('Startup/MMinit/MM.MSG_legalTagLibraryName');
+MM.MSG_legalTagName = dw.loadString('Startup/MMinit/MM.MSG_legalTagName');
+MM.MSG_legalAttributeName = dw.loadString('Startup/MMinit/MM.MSG_legalAttributeName');
+MM.MSG_missingTagLibraryName = dw.loadString('Startup/MMinit/MM.MSG_missingTagLibraryName');
+MM.MSG_missingTagName = dw.loadString('Startup/MMinit/MM.MSG_missingTagName');
+MM.MSG_missingAttributeName = dw.loadString('Startup/MMinit/MM.MSG_missingAttributeName');
+MM.MSG_noServerModel = dw.loadString('Startup/MMinit/MM.MSG_noServerModel');
+MM.MSG_tagLibraryAlreadyExists = dw.loadString('Startup/MMinit/MM.MSG_tagLibraryAlreadyExists');
+MM.MSG_tagAlreadyExists = dw.loadString('Startup/MMinit/MM.MSG_tagAlreadyExists');
+MM.MSG_attributeAlreadyExists = dw.loadString('Startup/MMinit/MM.MSG_attributeAlreadyExists');
+MM.MSG_noTagSpecified = dw.loadString('Startup/MMinit/MM.MSG_noTagSpecified');
+MM.MSG_tagLibraryBeforeTag = dw.loadString('Startup/MMinit/MM.MSG_tagLibraryBeforeTag');
+MM.MSG_tagLibraryBeforeAttribute = dw.loadString('Startup/MMinit/MM.MSG_tagLibraryBeforeAttribute');
+MM.MSG_tagBeforeAttribute = dw.loadString('Startup/MMinit/MM.MSG_tagBeforeAttribute');
+MM.MSG_libraryNameTooLong = dw.loadString('Startup/MMinit/MM.MSG_libraryNameTooLong');
+MM.MSG_tagNameTooLong = dw.loadString('Startup/MMinit/MM.MSG_tagNameTooLong');
+
+//*********** JavaScript Developer Warnings/Errors ************
+MM.MSG_createStaticClass = dw.loadString('Startup/MMinit/MM.MSG_createStaticClass');
+MM.MSG_createVitualClass = dw.loadString('Startup/MMinit/MM.MSG_createVitualClass');
+MM.MSG_overrideVirtualFunction = dw.loadString('Startup/MMinit/MM.MSG_overrideVirtualFunction');
+MM.MSG_unknownNodeObject = dw.loadString('Startup/MMinit/MM.MSG_unknownNodeObject');
+MM.MSG_mismatchedArrayLength = dw.loadString('Startup/MMinit/MM.MSG_mismatchedArrayLength');
+
+//************* UltraDev Constants ****************
+//Generic
+MM.LABEL_NoTables      = dw.loadString('Startup/MMinit/MM.LABEL_NoTables');
+MM.LABEL_NoColumns     = dw.loadString('Startup/MMinit/MM.LABEL_NoColumns');
+MM.LABEL_NoRecordsets  = dw.loadString('Startup/MMinit/MM.LABEL_NoRecordsets');
+MM.LABEL_NoProcedures  = dw.loadString('Startup/MMinit/MM.LABEL_NoProcedures');
+MM.LABEL_NoForms       = dw.loadString('Startup/MMinit/MM.LABEL_NoForms');
+MM.LABEL_NoFields      = dw.loadString('Startup/MMinit/MM.LABEL_NoFields');
+MM.LABEL_NoConnections = dw.loadString('Startup/MMinit/MM.LABEL_NoConnections');
+MM.LABEL_NoTags        = dw.loadString('Startup/MMinit/MM.LABEL_NoTags');
+MM.LABEL_Unnamed       = dw.loadString('Startup/MMinit/MM.LABEL_Unnamed');
+MM.LABEL_Unidentified  = dw.loadString('Startup/MMinit/MM.LABEL_Unidentified');
+MM.LABEL_Ignore        = dw.loadString('Startup/MMinit/MM.LABEL_Ignore');
+MM.LABEL_NoValue       = dw.loadString('Startup/MMinit/MM.LABEL_NoValue');
+MM.LABEL_OutOfDate     = dw.loadString('Startup/MMinit/MM.LABEL_OutOfDate');
+MM.LABEL_Loading       = dw.loadString('Startup/MMinit/MM.LABEL_Loading');
+MM.LABEL_NoSpryDataSets = dw.loadString('Startup/MMinit/MM.LABEL_NoSpryDataSets');
+
+//Move, Go To
+MM.MSG_NoRecordsets    = dw.loadString('Startup/MMinit/MM.MSG_NoRecordsets');
+MM.MSG_LinkNotSelected = dw.loadString('Startup/MMinit/MM.MSG_LinkNotSelected');
+MM.MSG_NoTags          = dw.loadString('Startup/MMinit/MM.MSG_NoTags');
+MM.MSG_RsNotFound      = dw.loadString('Startup/MMinit/MM.MSG_RsNotFound');
+MM.MSG_ColNotFound     = dw.loadString('Startup/MMinit/MM.MSG_ColNotFound');
+MM.MSG_NeedRs          = dw.loadString('Startup/MMinit/MM.MSG_NeedRs');
+MM.MSG_NeedColumn      = dw.loadString('Startup/MMinit/MM.MSG_NeedColumn');
+MM.MSG_NeedParamName   = dw.loadString('Startup/MMinit/MM.MSG_NeedParamName');
+MM.MSG_NeedParamValue   = dw.loadString('Startup/MMinit/MM.MSG_NeedParamValue');
+MM.MSG_NeedUrl         = dw.loadString('Startup/MMinit/MM.MSG_NeedUrl');
+
+MM.MSG_NeedServerModelForSO = dw.loadString('Startup/MMinit/MM.MSG_NeedServerModelForSO');
+MM.MSG_NeedCommandFileForSO = dw.loadString('Startup/MMinit/MM.MSG_NeedCommandFileForSO');
+
+MM.MSG_NeedRepeatRegionForSB = dw.loadString('Startup/MMinit/MM.MSG_NeedRepeatRegionForSB');
+MM.MSG_NeedRepeatRegionForSO = dw.loadString('Startup/MMinit/MM.MSG_NeedRepeatRegionForSO');
+MM.NeedRepeatRegionForRecordset =
+	dw.loadString('Startup/MMinit/MM.NeedRepeatRegionForRecordset') +
+	dw.loadString('Startup/MMinit/MM.NeedRepeatRegionForRecordset_1') +
+	dw.loadString('Startup/MMinit/MM.NeedRepeatRegionForRecordset_2');
+MM.NeedRepeatRegionWithPageNav =
+	dw.loadString('Startup/MMinit/MM.NeedRepeatRegionWithPageNav') +
+	dw.loadString('Startup/MMinit/MM.NeedRepeatRegionWithPageNav_1') +
+	dw.loadString('Startup/MMinit/MM.NeedRepeatRegionWithPageNav_2') +
+	dw.loadString('Startup/MMinit/MM.NeedRepeatRegionWithPageNav_3');
+MM.MSG_RepeatRegionWithPageNavExists =
+	dw.loadString('Startup/MMinit/MM.MSG_RepeatRegionWithPageNavExists') +
+	dw.loadString('Startup/MMinit/MM.MSG_RepeatRegionWithPageNavExists_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_RepeatRegionWithPageNavExists_2') +
+	dw.loadString('Startup/MMinit/MM.MSG_RepeatRegionWithPageNavExists_3');
+
+MM.MSG_WarnAboutRepeatRegionForRecordset = dw.loadString('Startup/MMinit/MM.MSG_WarnAboutRepeatRegionForRecordset');
+MM.MSG_RepeatRegionExistsForRecordset = dw.loadString('Startup/MMinit/MM.MSG_RepeatRegionExistsForRecordset');
+
+MM.MSG_WarnAboutPageNavForDataSet = dw.loadString('Startup/MMinit/MM.MSG_WarnAboutPageNavForDataSet');
+
+MM.LABEL_TitleMoveToSpecific     = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToSpecific');
+MM.LABEL_TitleGoToDetail         = dw.loadString('Startup/MMinit/MM.LABEL_TitleGoToDetail');
+MM.LABEL_TitleGoToRelated        = dw.loadString('Startup/MMinit/MM.LABEL_TitleGoToRelated');
+
+MM.LABEL_TitleDeleteRecord       = dw.loadString('Startup/MMinit/MM.LABEL_TitleDeleteRecord');
+MM.LABEL_TitleInsertRecord       = dw.loadString('Startup/MMinit/MM.LABEL_TitleInsertRecord');
+MM.LABEL_TitleUpdateRecord       = dw.loadString('Startup/MMinit/MM.LABEL_TitleUpdateRecord');
+
+MM.LABEL_TitleMoveToFirst        = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToFirst');
+MM.LABEL_TitleMoveToFirstPlural  = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToFirstPlural');
+MM.LABEL_TitleMoveToPrev         = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToPrev');
+MM.LABEL_TitleMoveToPrevPlural   = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToPrevPlural');
+MM.LABEL_TitleMoveToNext         = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToNext');
+MM.LABEL_TitleMoveToNextPlural   = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToNextPlural');
+MM.LABEL_TitleMoveToLast         = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToLast');
+MM.LABEL_TitleMoveToLastPlural   = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToLastPlural');
+
+MM.LABEL_TitleShowIfEmptySet       = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfEmptySet');
+MM.LABEL_TitleShowIfNotEmptySet    = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfNotEmptySet');
+MM.LABEL_TitleShowIfLastRecord     = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfLastRecord');
+MM.LABEL_TitleShowIfNotLastRecord  = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfNotLastRecord');
+MM.LABEL_TitleShowIfFirstRecord    = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfFirstRecord');
+MM.LABEL_TitleShowIfNotFirstRecord = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfNotFirstRecord');
+
+MM.LABEL_TitleMoveToFirstPage    = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToFirstPage');
+MM.LABEL_TitleMoveToPrevPage     = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToPrevPage');
+MM.LABEL_TitleMoveToNextPage     = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToNextPage');
+MM.LABEL_TitleMoveToLastPage     = dw.loadString('Startup/MMinit/MM.LABEL_TitleMoveToLastPage')
+
+MM.LABEL_TitleShowIfLastPage     = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfLastPage');
+MM.LABEL_TitleShowIfNotLastPage  = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfNotLastPage');
+MM.LABEL_TitleShowIfFirstPage    = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfFirstPage');
+MM.LABEL_TitleShowIfNotFirstPage = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfNotFirstPage');
+
+MM.LABEL_TitleRSStatsFirst       = dw.loadString('Startup/MMinit/MM.LABEL_TitleRSStatsFirst');
+MM.LABEL_TitleRSStatsLast        = dw.loadString('Startup/MMinit/MM.LABEL_TitleRSStatsLast');
+MM.LABEL_TitleRSStatsTotal       = dw.loadString('Startup/MMinit/MM.LABEL_TitleRSStatsTotal');
+
+MM.LABEL_SelectionLink           = dw.loadString('Startup/MMinit/MM.LABEL_SelectionLink');
+MM.LABEL_CreateNewLink           = dw.loadString('Startup/MMinit/MM.LABEL_CreateNewLink');
+MM.LABEL_NewDetailLinkLabel      = dw.loadString('Startup/MMinit/MM.LABEL_NewDetailLinkLabel');
+MM.LABEL_NewRelatedLinkLabel     = dw.loadString('Startup/MMinit/MM.LABEL_NewRelatedLinkLabel');
+MM.LABEL_NewMoveToFirstLinkLabel = dw.loadString('Startup/MMinit/MM.LABEL_NewMoveToFirstLinkLabel');
+MM.LABEL_NewMoveToPrevLinkLabel  = dw.loadString('Startup/MMinit/MM.LABEL_NewMoveToPrevLinkLabel');
+MM.LABEL_NewMoveToNextLinkLabel  = dw.loadString('Startup/MMinit/MM.LABEL_NewMoveToNextLinkLabel');
+MM.LABEL_NewMoveToLastLinkLabel  = dw.loadString('Startup/MMinit/MM.LABEL_NewMoveToLastLinkLabel');
+
+MM.LABEL_DeleteColAction    = dw.loadString('Startup/MMinit/MM.LABEL_DeleteColAction');
+MM.LABEL_InsertColAction    = dw.loadString('Startup/MMinit/MM.LABEL_InsertColAction');
+MM.LABEL_UpdateColAction    = dw.loadString('Startup/MMinit/MM.LABEL_UpdateColAction');
+
+//Java Bean
+MM.LABEL_JavaBean            = dw.loadString('Startup/MMinit/MM.LABEL_JavaBean');
+MM.LABEL_JavaSetProperty    = dw.loadString('Startup/MMinit/MM.LABEL_JavaSetProperty');
+MM.LABEL_JavaGetProperty    = dw.loadString('Startup/MMinit/MM.LABEL_JavaGetProperty');
+MM.LABEL_JavaBeanCollection  = dw.loadString('Startup/MMinit/MM.LABEL_JavaBeanCollection');
+MM.LABEL_JBNotInitialized    = dw.loadString('Startup/MMinit/MM.LABEL_JBNotInitialized');
+MM.LABEL_JBAllProp          = dw.loadString('Startup/MMinit/MM.LABEL_JBAllProp');
+MM.LABEL_JBAllPropValue      = dw.loadString('Startup/MMinit/MM.LABEL_JBAllPropValue');
+MM.LABEL_JBGetPackageName    = dw.loadString('Startup/MMinit/MM.LABEL_JBGetPackageName');
+MM.MSG_NoJavaBeans          = dw.loadString('Startup/MMinit/MM.MSG_NoJavaBeans');
+MM.MSG_NoJavaBeanName        = dw.loadString('Startup/MMinit/MM.MSG_NoJavaBeanName');
+MM.MSG_InvalidJavaBeanName  = dw.loadString('Startup/MMinit/MM.MSG_InvalidJavaBeanName');
+MM.MSG_DupeJavaBeanName      = dw.loadString('Startup/MMinit/MM.MSG_DupeJavaBeanName');
+MM.MSG_SelectAJavaClass      = dw.loadString('Startup/MMinit/MM.MSG_SelectAJavaClass');
+MM.MSG_ErrSelectAJavaClass    = dw.loadString('Startup/MMinit/MM.MSG_ErrSelectAJavaClass');
+MM.MSG_SelectAJavaCollectionClass  = dw.loadString('Startup/MMinit/MM.MSG_SelectAJavaCollectionClass');
+MM.MSG_ErrSelectAJavaCollectionClass = dw.loadString('Startup/MMinit/MM.MSG_ErrSelectAJavaCollectionClass');
+MM.LABEL_GetTLDPackageName    = dw.loadString('Startup/MMinit/MM.LABEL_GetTLDPackageName');
+MM.LABEL_GetJSTFolderName      = dw.loadString('Startup/MMinit/MM.LABEL_GetJSTFolderName');
+MM.MSG_JNDIError        = dw.loadString('Startup/MMinit/MM.MSG_JNDIError') +
+	dw.loadString('Startup/MMinit/MM.MSG_JNDIError_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_JNDIError_2')+
+	dw.loadString('Startup/MMinit/MM.MSG_JNDIError_3') +
+	dw.loadString('Startup/MMinit/MM.MSG_JNDIError_4');
+
+MM.MSG_FailedToCreateFolder      = dw.loadString('Startup/MMinit/MM.MSG_FailedToCreateFolder');
+MM.MSG_SuccessFolder        = dw.loadString('Startup/MMinit/MM.MSG_SuccessFolder');
+MM.MSG_FolderExists          = dw.loadString('Startup/MMinit/MM.MSG_FolderExists');
+MM.MSG_FailedToCreateFile      = dw.loadString('Startup/MMinit/MM.MSG_FailedToCreateFile');
+MM.MSG_SuccessFile          = dw.loadString('Startup/MMinit/MM.MSG_SuccessFile');
+MM.MSG_FileExists          = dw.loadString('Startup/MMinit/MM.MSG_FileExists');
+
+
+//Edit Ops
+MM.MSG_OnlyOneServerBehAllowed = dw.loadString('Startup/MMinit/MM.MSG_OnlyOneServerBehAllowed');
+MM.MSG_NoForms        = dw.loadString('Startup/MMinit/MM.MSG_NoForms');
+MM.MSG_NoConnection   = dw.loadString('Startup/MMinit/MM.MSG_NoConnection');
+MM.MSG_NoTables       = dw.loadString('Startup/MMinit/MM.MSG_NoTables');
+MM.MSG_NoColumns      = dw.loadString('Startup/MMinit/MM.MSG_NoColumns');
+MM.MSG_NoFormFields   = dw.loadString('Startup/MMinit/MM.MSG_NoFormFields');
+MM.MSG_NoFormColumn   = dw.loadString('Startup/MMinit/MM.MSG_NoFormColumn');
+MM.MSG_NoColumnInRS   = dw.loadString('Startup/MMinit/MM.MSG_NoColumnInRS');
+MM.MSG_EditOpExists   = dw.loadString('Startup/MMinit/MM.MSG_EditOpExists');
+MM.LABEL_Numeric      = dw.loadString('Startup/MMinit/MM.LABEL_Numeric');
+MM.LABEL_FileRedirect = dw.loadString('Startup/MMinit/MM.LABEL_FileRedirect');
+MM.MSG_NoDataSource   = dw.loadString('Startup/MMinit/MM.MSG_NoDataSource');
+MM.MSG_NoTablesInDS   = dw.loadString('Startup/MMinit/MM.MSG_NoTablesInDS');
+
+
+MM.MSG_ConnNotFound   = dw.loadString('Startup/MMinit/MM.MSG_ConnNotFound')
+MM.MSG_TableNotFound  = dw.loadString('Startup/MMinit/MM.MSG_TableNotFound');
+MM.MSG_TColNotFound   = dw.loadString('Startup/MMinit/MM.MSG_TColNotFound');
+MM.MSG_FormFieldsNotFound = dw.loadString('Startup/MMinit/MM.MSG_FormFieldsNotFound');
+
+MM.MSG_ElemIsCheckbox = dw.loadString('Startup/MMinit/MM.MSG_ElemIsCheckbox');
+
+//Edit Ops v5
+MM.MSG_NoCFDataSource   = dw.loadString('Startup/MMinit/MM.MSG_NoCFDataSource');
+
+// Masks to define whether or not a column has a mapping
+MM.LABEL_IsNotMappedMask    = dw.loadString('Startup/MMinit/MM.LABEL_IsNotMappedMask');
+MM.LABEL_IsNotMappedKeyMask = dw.loadString('Startup/MMinit/MM.LABEL_IsNotMappedKeyMask');
+MM.LABEL_IsMappedMask       = dw.loadString('Startup/MMinit/MM.LABEL_IsMappedMask');
+MM.LABEL_IsMappedKeyMask    = dw.loadString('Startup/MMinit/MM.LABEL_IsMappedKeyMask');
+
+MM.MSG_NoMappedColumns = dw.loadString('Startup/MMinit/MM.MSG_NoMappedColumns');
+MM.MSG_NoMappedKey     = dw.loadString('Startup/MMinit/MM.MSG_NoMappedKey');
+MM.MSG_MapColumnToExistingElement = dw.loadString('Startup/MMinit/MM.MSG_MapColumnToExistingElement')
+	+ dw.loadString('Startup/MMinit/MM.MSG_MapColumnToExistingElement_1')
+	+ dw.loadString('Startup/MMinit/MM.MSG_MapColumnToExistingElement_2');
+
+MM.LABEL_NeverCheckIfParamIsDefined = dw.loadString('Startup/MMinit/MM.LABEL_NeverCheckIfParamIsDefined');
+MM.MSG_InvalidCheckIfIsDefinedVarName  = dw.loadString('Startup/MMinit/MM.MSG_InvalidCheckIfIsDefinedVarName');
+MM.MSG_InvalidPrimaryKeyVarName        = dw.loadString('Startup/MMinit/MM.MSG_InvalidPrimaryKeyVarName');
+MM.MSG_NoPrimaryKeyValue               = dw.loadString('Startup/MMinit/MM.MSG_NoPrimaryKeyValue');
+
+//Dynamic Elements
+MM.LABEL_DynamicTextTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicTextTitle');
+
+MM.MSG_NothingEntered                 = dw.loadString('Startup/MMinit/MM.MSG_NothingEntered');
+MM.MSG_ValueGreaterThanZero           = dw.loadString('Startup/MMinit/MM.MSG_ValueGreaterThanZero');
+MM.MSG_ValueGreaterThanOrEqualToZero  = dw.loadString('Startup/MMinit/MM.MSG_ValueGreaterThanOrEqualToZero');
+MM.MSG_CouldNotFindMyCode        = dw.loadString('Startup/MMinit/MM.MSG_CouldNotFindMyCode');
+MM.MSG_CouldNotFindSource1        = dw.loadString('Startup/MMinit/MM.MSG_CouldNotFindSource1');
+MM.MSG_NoCheckboxes           = dw.loadString('Startup/MMinit/MM.MSG_NoCheckboxes');
+MM.MSG_NeedDynamicCheckboxValue      = dw.loadString('Startup/MMinit/MM.MSG_NeedDynamicCheckboxValue');
+MM.MSG_NeedCheckboxBooleanValue      = dw.loadString('Startup/MMinit/MM.MSG_NeedCheckboxBooleanValue');
+
+MM.LABEL_DynamicRadioTitle         = dw.loadString('Startup/MMinit/MM.LABEL_DynamicRadioTitle');
+MM.LABEL_DynamicRadioGroupTitle    = dw.loadString('Startup/MMinit/MM.LABEL_DynamicRadioGroupTitle');
+MM.MSG_NoRadioBtns                 = dw.loadString('Startup/MMinit/MM.MSG_NoRadioBtns');
+MM.MSG_NeedSelectEqualToExpression = dw.loadString('Startup/MMinit/MM.MSG_NeedSelectEqualToExpression')
+MM.MSG_NotAppliedToAllButtons      = dw.loadString('Startup/MMinit/MM.MSG_NotAppliedToAllButtons') +
+	dw.loadString('Startup/MMinit/MM.MSG_NotAppliedToAllButtons_1');
+MM.MSG_RadioValuesHaveChanged = dw.loadString('Startup/MMinit/MM.MSG_RadioValuesHaveChanged')
+	+ dw.loadString('Startup/MMinit/MM.MSG_RadioValuesHaveChanged_1')
+	+ dw.loadString('Startup/MMinit/MM.MSG_RadioValuesHaveChanged_2')
+	+ dw.loadString('Startup/MMinit/MM.MSG_RadioValuesHaveChanged_3')
+MM.MSG_RadioGroupHasServerBehavior = dw.loadString('Startup/MMinit/MM.MSG_RadioGroupHasServerBehavior') +
+	dw.loadString('Startup/MMinit/MM.MSG_RadioGroupHasServerBehavior_1')
+
+
+
+MM.LABEL_DynamicTextfieldTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicTextfieldTitle');
+MM.MSG_NoTextfield = dw.loadString('Startup/MMinit/MM.MSG_NoTextfield');
+MM.MSG_TextfieldHasServerBehavior = dw.loadString('Startup/MMinit/MM.MSG_TextfieldHasServerBehavior') +
+	dw.loadString('Startup/MMinit/MM.MSG_TextfieldHasServerBehavior_1')
+
+MM.LABEL_DynamicHiddenTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicHiddenTitle');
+MM.MSG_NoHiddenField = dw.loadString('Startup/MMinit/MM.MSG_NoHiddenField');
+
+MM.LABEL_DynamicPasswordTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicPasswordTitle');
+MM.MSG_NoPasswordField = dw.loadString('Startup/MMinit/MM.MSG_NoPasswordField');
+
+MM.LABEL_DynamicListMenuTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicListMenuTitle');
+MM.MSG_NoListMenus = dw.loadString('Startup/MMinit/MM.MSG_NoListMenus') +
+	dw.loadString('Startup/MMinit/MM.MSG_NoListMenus_1')
+MM.MSG_MenuHasServerBehavior = dw.loadString('Startup/MMinit/MM.MSG_MenuHasServerBehavior') +
+	dw.loadString('Startup/MMinit/MM.MSG_MenuHasServerBehavior_1')
+MM.MSG_NoDynamicOptOrSel = dw.loadString('Startup/MMinit/MM.MSG_NoDynamicOptOrSel');
+MM.MSG_NoOptionsForDynSel = dw.loadString('Startup/MMinit/MM.MSG_NoOptionsForDynSel');
+
+MM.LABEL_DynCheckboxTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynCheckboxTitle');
+MM.MSG_CheckboxHasServerBehavior = dw.loadString('Startup/MMinit/MM.MSG_CheckboxHasServerBehavior') +
+	dw.loadString('Startup/MMinit/MM.MSG_CheckboxHasServerBehavior_1')
+
+MM.LABEL_DynamicAttrTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicAttrTitle');
+
+// The next block of strings must be identical to the title of the associated
+//   server behavior htm file.
+MM.LABEL_DynamicRadioSBFileTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicRadioSBFileTitle');
+MM.LABEL_DynamicRadioSBFileTitleMX = dw.loadString('Startup/MMinit/MM.LABEL_DynamicRadioSBFileTitleMX');
+MM.LABEL_DynCheckboxSBFileTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynCheckboxSBFileTitle');
+MM.LABEL_DynCheckboxSBFileTitleJSP = dw.loadString('Startup/MMinit/MM.LABEL_DynCheckboxSBFileTitleJSP');
+MM.LABEL_DynamicListMenuSBFileTitle = dw.loadString('Startup/MMinit/MM.LABEL_DynamicListMenuSBFileTitle');
+
+//Show Region
+MM.MSG_RequiresMoveTo  = dw.loadString('Startup/MMinit/MM.MSG_RequiresMoveTo');
+MM.MSG_FixMoveTo       = dw.loadString('Startup/MMinit/MM.MSG_FixMoveTo');
+MM.MSG_RequiresSelection = dw.loadString('Startup/MMinit/MM.MSG_RequiresSelection');
+MM.MSG_InvalidCondition  = dw.loadString('Startup/MMinit/MM.MSG_InvalidCondition') +
+	dw.loadString('Startup/MMinit/MM.MSG_InvalidCondition_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_InvalidCondition_2') +
+	dw.loadString('Startup/MMinit/MM.MSG_InvalidCondition_3');
+MM.MSG_NoOverlappingHideRegions = MM.MSG_NoOverlappingRepeatAndHide;
+MM.MSG_NoOverlappingHideAndRepeat = MM.MSG_NoOverlappingRepeatAndHide;
+
+MM.LABEL_HideIfEmptySet       = dw.loadString('Startup/MMinit/MM.LABEL_HideIfEmptySet');
+MM.LABEL_HideIfNotEmptySet    = dw.loadString('Startup/MMinit/MM.LABEL_HideIfNotEmptySet');
+MM.LABEL_HideIfLastRecord     = dw.loadString('Startup/MMinit/MM.LABEL_HideIfLastRecord');
+MM.LABEL_HideIfNotLastRecord  = dw.loadString('Startup/MMinit/MM.LABEL_HideIfNotLastRecord');
+MM.LABEL_HideIfFirstRecord    = dw.loadString('Startup/MMinit/MM.LABEL_HideIfFirstRecord');
+MM.LABEL_HideIfNotFirstRecord = dw.loadString('Startup/MMinit/MM.LABEL_HideIfNotFirstRecord');
+MM.LABEL_HideTabbedOutlineLabel    = dw.loadString('Startup/MMinit/MM.LABEL_HideTabbedOutlineLabel')
+
+//Command
+MM.LABEL_TitleCommand = dw.loadString('Startup/MMinit/MM.LABEL_TitleCommand');
+MM.LABEL_None = dw.loadString('Startup/MMinit/MM.LABEL_None');
+MM.LABEL_EmptyOption = dw.loadString('Startup/MMinit/MM.LABEL_EmptyOption');
+MM.LABEL_CTStoredProc = dw.loadString('Startup/MMinit/MM.LABEL_CTStoredProc');
+MM.LABEL_CTInsert = dw.loadString('Startup/MMinit/MM.LABEL_CTInsert');
+MM.LABEL_CTUpdate = dw.loadString('Startup/MMinit/MM.LABEL_CTUpdate');
+MM.LABEL_CTDelete= dw.loadString('Startup/MMinit/MM.LABEL_CTDelete');
+MM.LABEL_ParamRow = dw.loadString('Startup/MMinit/MM.LABEL_ParamRow');
+MM.LABEL_AddToColumn = dw.loadString('Startup/MMinit/MM.LABEL_AddToColumn');
+MM.LABEL_AddToValue = dw.loadString('Startup/MMinit/MM.LABEL_AddToValue');
+MM.LABEL_AddToSet = dw.loadString('Startup/MMinit/MM.LABEL_AddToSet');
+MM.LABEL_AddToWhere = dw.loadString('Startup/MMinit/MM.LABEL_AddToWhere');
+MM.LABEL_AddToDelete = dw.loadString('Startup/MMinit/MM.LABEL_AddToDelete');
+MM.LABEL_AddProc = dw.loadString('Startup/MMinit/MM.LABEL_AddProc');
+MM.LABEL_SPColumns = dw.loadString('Startup/MMinit/MM.LABEL_SPColumns');
+MM.LABEL_SQLColumns = dw.loadString('Startup/MMinit/MM.LABEL_SQLColumns');
+
+MM.MSG_MissingCommandText = dw.loadString('Startup/MMinit/MM.MSG_MissingCommandText');
+MM.MSG_MissingCommandName = dw.loadString('Startup/MMinit/MM.MSG_MissingCommandName');
+MM.MSG_InvalidCommandName = dw.loadString('Startup/MMinit/MM.MSG_InvalidCommandName');
+MM.MSG_MissingCommandType = dw.loadString('Startup/MMinit/MM.MSG_MissingCommandType');
+MM.MSG_TypeMissing = dw.loadString('Startup/MMinit/MM.MSG_TypeMissing');
+MM.MSG_DefaultValMissing = dw.loadString('Startup/MMinit/MM.MSG_DefaultValMissing');
+MM.MSG_RunTimeValMissing = dw.loadString('Startup/MMinit/MM.MSG_RunTimeValMissing');
+MM.MSG_MissingParamName = dw.loadString('Startup/MMinit/MM.MSG_MissingParamName');
+MM.MSG_NoRecordsetName = dw.loadString('Startup/MMinit/MM.MSG_NoRecordsetName');
+MM.MSG_NotValidCommandTextForSP = dw.loadString('Startup/MMinit/MM.MSG_NotValidCommandTextForSP');
+MM.MSG_NotValidCommandTextForInsert = dw.loadString('Startup/MMinit/MM.MSG_NotValidCommandTextForInsert');
+MM.MSG_NotValidCommandTextForUpdate = dw.loadString('Startup/MMinit/MM.MSG_NotValidCommandTextForUpdate');
+MM.MSG_NotValidCommandTextForDelete = dw.loadString('Startup/MMinit/MM.MSG_NotValidCommandTextForDelete');
+MM.MSG_OnlyAnSPCanReturnARecordset = dw.loadString('Startup/MMinit/MM.MSG_OnlyAnSPCanReturnARecordset');
+MM.MSG_InvalidParamName = dw.loadString('Startup/MMinit/MM.MSG_InvalidParamName');
+MM.MSG_ParamNameAlreadyExists = dw.loadString('Startup/MMinit/MM.MSG_ParamNameAlreadyExists');
+MM.MSG_InvalidParamNameNotInSQL = dw.loadString('Startup/MMinit/MM.MSG_InvalidParamNameNotInSQL');
+MM.MSG_InvalidCFParamNameNotInSQL = dw.loadString('Startup/MMinit/MM.MSG_InvalidCFParamNameNotInSQL');
+MM.MSG_InvalidCFParamType = dw.loadString('Startup/MMinit/MM.MSG_InvalidCFParamType');
+MM.MSG_MissingDirection = dw.loadString('Startup/MMinit/MM.MSG_MissingDirection');
+MM.MSG_MissingSQLType = dw.loadString('Startup/MMinit/MM.MSG_MissingSQLType');
+MM.MSG_InvalidSQLType = dw.loadString('Startup/MMinit/MM.MSG_InvalidSQLType');
+MM.MSG_MissingSizeVal = dw.loadString('Startup/MMinit/MM.MSG_MissingSizeVal');
+MM.MSG_DupeCommandName = dw.loadString('Startup/MMinit/MM.MSG_DupeCommandName');
+MM.MSG_DupeRecordsetName = dw.loadString('Startup/MMinit/MM.MSG_DupeRecordsetName');
+MM.MSG_CommandAndRecordsetDiffNames = dw.loadString('Startup/MMinit/MM.MSG_CommandAndRecordsetDiffNames');
+MM.MSG_ReservedWord = dw.loadString('Startup/MMinit/MM.MSG_ReservedWord');
+MM.MSG_InvalidRecordsetName = dw.loadString('Startup/MMinit/MM.MSG_InvalidRecordsetName');
+MM.MSG_InvalidSelection = dw.loadString('Startup/MMinit/MM.MSG_InvalidSelection');
+MM.MSG_SelectTable = dw.loadString('Startup/MMinit/MM.MSG_SelectTable');
+MM.MSG_SelectColumn = dw.loadString('Startup/MMinit/MM.MSG_SelectColumn');
+MM.MSG_EmptyParamList = dw.loadString('Startup/MMinit/MM.MSG_EmptyParamList');
+MM.MSG_InvalidSQL = dw.loadString('Startup/MMinit/MM.MSG_InvalidSQL');
+MM.MSG_SelectTableOrColumn = dw.loadString('Startup/MMinit/MM.MSG_SelectTableOrColumn');
+MM.MSG_StoredProcedure = dw.loadString('Startup/MMinit/MM.MSG_StoredProcedure');
+MM.MSG_CallableAndResultsetDiffNames = dw.loadString('Startup/MMinit/MM.MSG_CallableAndResultsetDiffNames');
+MM.MSG_ParamDefaultValMissing = dw.loadString('Startup/MMinit/MM.MSG_ParamDefaultValMissing');
+
+//Recordsets
+MM.LABEL_TitleRecordset = dw.loadString('Startup/MMinit/MM.LABEL_TitleRecordset');
+
+//Spry XML Dataset
+MM.LABEL_SpryDataSet = dw.loadString('Startup/MMinit/MM.LABEL_SpryDataSet');
+
+MM.MSG_NoConnectionForRecordset = dw.loadString('Startup/MMinit/MM.MSG_NoConnectionForRecordset') +
+	dw.loadString('Startup/MMinit/MM.MSG_NoConnectionForRecordset_1');
+MM.MSG_ConnectionPathInvalid = dw.loadString('Startup/MMinit/MM.MSG_ConnectionPathInvalid');
+MM.MSG_SBOutOfDate     = dw.loadString('Startup/MMinit/MM.MSG_SBOutOfDate');
+MM.MSG_NoTableSelected = dw.loadString('Startup/MMinit/MM.MSG_NoTableSelected');
+MM.MSG_UpdateRecordsetRefs = dw.loadString('Startup/MMinit/MM.MSG_UpdateRecordsetRefs');
+MM.MSG_UpdateStoredProcRefs = dw.loadString('Startup/MMinit/MM.MSG_UpdateStoredProcRefs');
+MM.MSG_UnknownParamType = dw.loadString('Startup/MMinit/MM.MSG_UnknownParamType');
+MM.MSG_StoredProcWarning = dw.loadString('Startup/MMinit/MM.MSG_StoredProcWarning');
+MM.MSG_MissingParamNames = dw.loadString('Startup/MMinit/MM.MSG_MissingParamNames');
+MM.MSG_MissingConnection = dw.loadString('Startup/MMinit/MM.MSG_MissingConnection');
+MM.MSG_MissingParameterDefault = dw.loadString('Startup/MMinit/MM.MSG_MissingParameterDefault');
+MM.MSG_MissingParameterName = dw.loadString('Startup/MMinit/MM.MSG_MissingParameterName');
+MM.MSG_WarnDependentsOnDelete = dw.loadString('Startup/MMinit/MM.MSG_WarnDependentsOnDelete')
+	+ dw.loadString('Startup/MMinit/MM.MSG_WarnDependentsOnDelete_1');
+
+MM.MSG_SBCreateCFDataSource = dw.loadString('Startup/MMinit/MM.MSG_SBCreateCFDataSource');
+
+MM.MSG_ARecordsetWasAdded = dw.loadString('Startup/MMinit/MM.MSG_ARecordsetWasAdded');
+
+//Repeat Region
+MM.LABEL_TitleRepeatRegion = dw.loadString('Startup/MMinit/MM.LABEL_TitleRepeatRegion');
+MM.MSG_DuplicateRR = dw.loadString('Startup/MMinit/MM.MSG_DuplicateRR');
+MM.MSG_CouldNotFindRecordsetName  = dw.loadString('Startup/MMinit/MM.MSG_CouldNotFindRecordsetName');
+MM.MSG_CouldNotFindColumnName     = dw.loadString('Startup/MMinit/MM.MSG_CouldNotFindColumnName');
+MM.MSG_CouldNotFindFieldName      = dw.loadString('Startup/MMinit/MM.MSG_CouldNotFindFieldName');
+MM.MSG_NestedRepeat = dw.loadString('Startup/MMinit/MM.MSG_NestedRepeat');
+MM.MSG_SelectionContainsRepeatedRegion = dw.loadString('Startup/MMinit/MM.MSG_SelectionContainsRepeatedRegion') +
+	dw.loadString('Startup/MMinit/MM.MSG_SelectionContainsRepeatedRegion_1');
+MM.MSG_SelectionIsInsideOfRepeatedRegion = dw.loadString('Startup/MMinit/MM.MSG_SelectionIsInsideOfRepeatedRegion') +
+	dw.loadString('Startup/MMinit/MM.MSG_SelectionIsInsideOfRepeatedRegion_1');
+MM.MSG_NoOverlappingRepeatAndHide = dw.loadString('Startup/MMinit/MM.MSG_NoOverlappingRepeatAndHide')+
+	dw.loadString('Startup/MMinit/MM.MSG_NoOverlappingRepeatAndHide_1');
+MM.MSG_NoRepeatsInCfoutput = dw.loadString('Startup/MMinit/MM.MSG_NoRepeatsInCfoutput');
+MM.LABEL_RepeatTabbedOutlineLabel  = dw.loadString('Startup/MMinit/MM.LABEL_RepeatTabbedOutlineLabel');
+
+MM.MSG_NoOverlappingRegions = dw.loadString('Startup/MMinit/MM.MSG_NoOverlappingRegions');
+MM.MSG_NoNestedRegions = dw.loadString('Startup/MMinit/MM.MSG_NoNestedRegions');
+MM.MSG_InvalidPageSize = dw.loadString('Startup/MMinit/MM.MSG_InvalidPageSize');
+MM.MSG_InvalidMaxRows = dw.loadString('Startup/MMinit/MM.MSG_InvalidMaxRows');
+MM.MSG_InvalidStartRow = dw.loadString('Startup/MMinit/MM.MSG_InvalidStartRow');
+
+// Conditional Region
+MM.LABEL_ConditionalTabbedOutlineLabel = dw.loadString('Startup/MMinit/MM.LABEL_ConditionalTabbedOutlineLabel');
+MM.LABEL_MultConditionalTabbedOutlineLabel = dw.loadString('Startup/MMinit/MM.LABEL_MultConditionalTabbedOutlineLabel');
+
+//CFRecordset
+MM.LABEL_TitleCFQuery = dw.loadString('Startup/MMinit/MM.LABEL_TitleCFQuery');
+MM.LABEL_ParamAttributesName = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesName');
+MM.LABEL_ParamAttributesType = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesType');
+MM.LABEL_ParamAttributesDefault = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesDefault');
+MM.MSG_InvalidSelectionCF = dw.loadString('Startup/MMinit/MM.MSG_InvalidSelectionCF');
+MM.MSG_ParameterAlreadyDefined = dw.loadString('Startup/MMinit/MM.MSG_ParameterAlreadyDefined');
+MM.MSG_ShouldOverwriteParameter = dw.loadString('Startup/MMinit/MM.MSG_ShouldOverwriteParameter') +
+	dw.loadString('Startup/MMinit/MM.MSG_ShouldOverwriteParameter_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_ShouldOverwriteParameter_2') +
+	dw.loadString('Startup/MMinit/MM.MSG_ShouldOverwriteParameter_3');
+
+//CFParam
+MM.MSG_ProvideParamName = dw.loadString('Startup/MMinit/MM.MSG_ProvideParamName');
+MM.MSG_ProvideUniqueParamName = dw.loadString('Startup/MMinit/MM.MSG_ProvideUniqueParamName');
+
+//CFStoredProc
+MM.LABEL_TitleStoredProc = dw.loadString('Startup/MMinit/MM.LABEL_TitleStoredProc');
+MM.LABEL_StoredProcRecordset = dw.loadString('Startup/MMinit/MM.LABEL_StoredProcRecordset');
+MM.MSG_NoStoredProcText = dw.loadString('Startup/MMinit/MM.MSG_NoStoredProcText');
+MM.MSG_NoStoredProcName = dw.loadString('Startup/MMinit/MM.MSG_NoStoredProcName');
+MM.MSG_InvalidStoredProcName = dw.loadString('Startup/MMinit/MM.MSG_InvalidStoredProcName');
+MM.MSG_DupeStoredProcName   = dw.loadString('Startup/MMinit/MM.MSG_DupeStoredProcName');
+MM.LABEL_StoredProcParamRow = dw.loadString('Startup/MMinit/MM.LABEL_StoredProcParamRow');
+MM.MSG_InvalidRunTimeVal = dw.loadString('Startup/MMinit/MM.MSG_InvalidRunTimeVal');
+MM.MSG_MissingCFSQLType = dw.loadString('Startup/MMinit/MM.MSG_MissingCFSQLType')
+MM.MSG_InvalidCFSQLType = dw.loadString('Startup/MMinit/MM.MSG_InvalidCFSQLType');
+MM.MSG_NeedCFSQLType    = dw.loadString('Startup/MMinit/MM.MSG_NeedCFSQLType');
+MM.MSG_SQLDataTypeUnknown = dw.loadString('Startup/MMinit/MM.MSG_SQLDataTypeUnknown')
+MM.MSG_SQLTypeNotInMap      = dw.loadString('Startup/MMinit/MM.MSG_SQLTypeNotInMap');
+MM.MSG_SQLTypeAsNumNotInMap = dw.loadString('Startup/MMinit/MM.MSG_SQLTypeAsNumNotInMap');
+MM.MSG_DirStringFromCFType  = dw.loadString('Startup/MMinit/MM.MSG_DirStringFromCFType');
+MM.MSG_DirString            = dw.loadString('Startup/MMinit/MM.MSG_DirString');
+MM.MSG_DirNum               = dw.loadString('Startup/MMinit/MM.MSG_DirNum');
+MM.MSG_VarIsReservedWord    = dw.loadString('Startup/MMinit/MM.MSG_VarIsReservedWord');
+// version5 additions
+MM.LABEL_DBVarName = dw.loadString('Startup/MMinit/MM.LABEL_DBVarName');
+MM.LABEL_VarType = dw.loadString('Startup/MMinit/MM.LABEL_VarType');
+MM.LABEL_CFSQLType = dw.loadString('Startup/MMinit/MM.LABEL_CFSQLType');
+MM.LABEL_VarValue = dw.loadString('Startup/MMinit/MM.LABEL_VarValue');
+MM.LABEL_VarTestValue = dw.loadString('Startup/MMinit/MM.LABEL_VarTestValue');
+MM.LABEL_CFVarName = dw.loadString('Startup/MMinit/MM.LABEL_CFVarName');
+MM.MSG_MissingVariableNames = dw.loadString('Startup/MMinit/MM.MSG_MissingVariableNames');
+MM.MSG_NoVariableForDefault = dw.loadString('Startup/MMinit/MM.MSG_NoVariableForDefault') +
+	dw.loadString('Startup/MMinit/MM.MSG_NoVariableForDefault_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_NoVariableForDefault_2');
+MM.MSG_EnterTestValuesToContinue = dw.loadString('Startup/MMinit/MM.MSG_EnterTestValuesToContinue') +
+	dw.loadString('Startup/MMinit/MM.MSG_EnterTestValuesToContinue_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_EnterTestValuesToContinue_2');
+MM.MSG_WarnDelParentStoredProc = dw.loadString('Startup/MMinit/MM.MSG_WarnDelParentStoredProc') +
+	dw.loadString('Startup/MMinit/MM.MSG_WarnDelParentStoredProc_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_WarnDelParentStoredProc_2');
+MM.MSG_WarnDeleteReturnedRS = dw.loadString('Startup/MMinit/MM.MSG_WarnDeleteReturnedRS') +
+	dw.loadString('Startup/MMinit/MM.MSG_WarnDeleteReturnedRS_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_WarnDeleteReturnedRS_2');
+MM.MSG_MissingStatusVarName = dw.loadString('Startup/MMinit/MM.MSG_MissingStatusVarName');
+MM.MSG_InvalidStatusVarName = dw.loadString('Startup/MMinit/MM.MSG_InvalidStatusVarName');
+MM.MSG_StatusVarIsReservedWord = dw.loadString('Startup/MMinit/MM.MSG_StatusVarIsReservedWord')
+	+ dw.loadString('Startup/MMinit/MM.MSG_StatusVarIsReservedWord_1');
+MM.MSG_DupeStatusVarName = dw.loadString('Startup/MMinit/MM.MSG_DupeStatusVarName')
+	+ dw.loadString('Startup/MMinit/MM.MSG_DupeStatusVarName_1');
+MM.MSG_MissingParamDirection = dw.loadString('Startup/MMinit/MM.MSG_MissingParamDirection');
+MM.MSG_MissingParamCFSQLType = dw.loadString('Startup/MMinit/MM.MSG_MissingParamCFSQLType');
+MM.MSG_InvalidParamCFSQLType = dw.loadString('Startup/MMinit/MM.MSG_InvalidParamCFSQLType');
+MM.MSG_MissingParamRunTimeVal = dw.loadString('Startup/MMinit/MM.MSG_MissingParamRunTimeVal');
+MM.MSG_InvalidParamRunTimeVal = dw.loadString('Startup/MMinit/MM.MSG_InvalidParamRunTimeVal');
+MM.MSG_MissingParamTestValue = dw.loadString('Startup/MMinit/MM.MSG_MissingParamTestValue');
+MM.MSG_MissingReturnVarName = dw.loadString('Startup/MMinit/MM.MSG_MissingReturnVarName');
+MM.MSG_InvalidReturnVarName   = dw.loadString('Startup/MMinit/MM.MSG_InvalidReturnVarName');
+MM.MSG_ReturnVarIsReservedWord  = dw.loadString('Startup/MMinit/MM.MSG_ReturnVarIsReservedWord');
+MM.MSG_DupeVariableName     = dw.loadString('Startup/MMinit/MM.MSG_DupeVariableName');
+
+//JSP Callable
+MM.LABEL_TitleCallable = dw.loadString('Startup/MMinit/MM.LABEL_TitleCallable');
+MM.MSG_NoSQLStatement = dw.loadString('Startup/MMinit/MM.MSG_NoSQLStatement');
+MM.MSG_NoCallableName = dw.loadString('Startup/MMinit/MM.MSG_NoCallableName');
+MM.MSG_InvalidCallableName = dw.loadString('Startup/MMinit/MM.MSG_InvalidCallableName');
+MM.MSG_NotValidCallableTextForSP = dw.loadString('Startup/MMinit/MM.MSG_NotValidCallableTextForSP');
+
+//JSP Prepared
+MM.LABEL_TitlePrepared = dw.loadString('Startup/MMinit/MM.LABEL_TitlePrepared');
+MM.MSG_NoPreparedName = dw.loadString('Startup/MMinit/MM.MSG_NoPreparedName');
+MM.MSG_InvalidPreparedName = dw.loadString('Startup/MMinit/MM.MSG_InvalidPreparedName');
+MM.MSG_MissingPreparedType = dw.loadString('Startup/MMinit/MM.MSG_MissingPreparedType');
+MM.LABEL_AddToColumn = "COLUMN";
+MM.LABEL_AddToSet = dw.loadString('Startup/MMinit/MM.LABEL_AddToSet');
+MM.LABEL_AddToWhere = dw.loadString('Startup/MMinit/MM.LABEL_AddToWhere');
+MM.LABEL_AddToDelete = dw.loadString('Startup/MMinit/MM.LABEL_AddToDelete');
+MM.MSG_NotValidPreparedTextForSP = dw.loadString('Startup/MMinit/MM.MSG_NotValidPreparedTextForSP');
+MM.MSG_NotValidPreparedTextForInsert = dw.loadString('Startup/MMinit/MM.MSG_NotValidPreparedTextForInsert');
+MM.MSG_NotValidPreparedTextForUpdate = dw.loadString('Startup/MMinit/MM.MSG_NotValidPreparedTextForUpdate');
+MM.MSG_NotValidPreparedTextForDelete = dw.loadString('Startup/MMinit/MM.MSG_NotValidPreparedTextForDelete');
+
+//Recordset Navigation Bar
+MM.MSG_rsNavigationBarSaveDocument = dw.loadString('Startup/MMinit/MM.MSG_rsNavigationBarSaveDocument');
+
+//Recordset Navigation Status
+MM.LABEL_RSNavBeforeFirst = dw.loadString('Startup/MMinit/MM.LABEL_RSNavBeforeFirst');
+MM.LABEL_RSNavBeforeLast  = dw.loadString('Startup/MMinit/MM.LABEL_RSNavBeforeLast');
+MM.LABEL_RSNavBeforeTotal = dw.loadString('Startup/MMinit/MM.LABEL_RSNavBeforeTotal');
+MM.LABEL_RSNavAfterTotal  = dw.loadString('Startup/MMinit/MM.LABEL_RSNavAfterTotal');;
+MM.LABEL_RSNavExampleText = dw.loadString('Startup/MMinit/MM.LABEL_RSNavExampleText');
+MM.LABEL_RSNavTotal = dw.loadString('Startup/MMinit/MM.LABEL_RSNavTotal');
+
+//Master-Detail Page Set
+MM.MSG_invalidRS = dw.loadString('Startup/MMinit/MM.MSG_invalidRS');
+MM.MSG_detailPageDialog = dw.loadString('Startup/MMinit/MM.MSG_detailPageDialog');
+MM.MSG_columnsEmpty = dw.loadString('Startup/MMinit/MM.MSG_columnsEmpty');
+MM.MSG_invalidDetailPageName = dw.loadString('Startup/MMinit/MM.MSG_invalidDetailPageName');
+MM.MSG_invalidLinkFromColumn = dw.loadString('Startup/MMinit/MM.MSG_invalidLinkFromColumn');
+MM.MSG_invalidUniqueKeyColumn = dw.loadString('Startup/MMinit/MM.MSG_invalidUniqueKeyColumn');
+
+//Radio Group
+MM.LABEL_Radio                  = dw.loadString('Startup/MMinit/MM.LABEL_Radio');
+MM.LABEL_RadioGroupDefaultName  = dw.loadString('Startup/MMinit/MM.LABEL_RadioGroupDefaultName');
+MM.MSG_NoRadioGroupName         = dw.loadString('Startup/MMinit/MM.MSG_NoRadioGroupName');
+MM.MSG_EnterLabelAndValue       = dw.loadString('Startup/MMinit/MM.MSG_EnterLabelAndValue');
+MM.MSG_NeedAtLeastOneButton     = dw.loadString('Startup/MMinit/MM.MSG_NeedAtLeastOneButton')
+MM.MSG_NeedARadioGroupName      = dw.loadString('Startup/MMinit/MM.MSG_NeedARadioGroupName');
+
+//Dynamic Menu
+MM.MSG_CompleteMandatoryMenuValues = dw.loadString('Startup/MMinit/MM.MSG_CompleteMandatoryMenuValues');
+MM.LABEL_DynamicMenuDefaultName    = dw.loadString('Startup/MMinit/MM.LABEL_DynamicMenuDefaultName');
+MM.MSG_CreateUsingSB = dw.loadString('Startup/MMinit/MM.MSG_CreateUsingSB')
+	+ dw.loadString('Startup/MMinit/MM.MSG_CreateUsingSB_1');
+
+
+//Repeated Region
+MM.LABEL_RepeatedRegionContent  =  dw.loadString('Startup/MMinit/MM.LABEL_RepeatedRegionContent');
+
+//ASP.NET DataGrid + other ASP.NET objects/server behaviors
+
+MM.MSG_EmptyID               = dw.loadString('Startup/MMinit/MM.MSG_EmptyID');
+MM.MSG_InvalidID             = dw.loadString('Startup/MMinit/MM.MSG_InvalidID');
+MM.MSG_InvalidIDAutoFix      = dw.loadString('Startup/MMinit/MM.MSG_InvalidIDAutoFix');
+MM.MSG_NeedUniqueID          = dw.loadString('Startup/MMinit/MM.MSG_NeedUniqueID');
+MM.MSG_ValueOutOfRange       = dw.loadString('Startup/MMinit/MM.MSG_ValueOutOfRange');
+MM.MSG_DupeDataGrid          = dw.loadString('Startup/MMinit/MM.MSG_DupeDataGrid')
+MM.MSG_UseMinusButton        = dw.loadString('Startup/MMinit/MM.MSG_UseMinusButton')
+MM.LABEL_DefaultColumnTitle  = dw.loadString('Startup/MMinit/MM.LABEL_DefaultColumnTitle');
+MM.LABEL_BoundColumnType     = dw.loadString('Startup/MMinit/MM.LABEL_BoundColumnType');
+MM.LABEL_TemplateColumnType  = dw.loadString('Startup/MMinit/MM.LABEL_TemplateColumnType');
+MM.LABEL_HyperlinkColumnType = dw.loadString('Startup/MMinit/MM.LABEL_HyperlinkColumnType');
+MM.LABEL_EditCmdColumnType   = dw.loadString('Startup/MMinit/MM.LABEL_EditCmdColumnType');
+MM.LABEL_DeleteColumnType    = dw.loadString('Startup/MMinit/MM.LABEL_DeleteColumnType');
+MM.LABEL_CancelCmdText       = dw.loadString('Startup/MMinit/MM.LABEL_CancelCmdText');
+MM.LABEL_EditCmdText         = dw.loadString('Startup/MMinit/MM.LABEL_EditCmdText');
+MM.LABEL_UpdateCmdText       = dw.loadString('Startup/MMinit/MM.LABEL_UpdateCmdText');
+MM.LABEL_OtherType           = dw.loadString('Startup/MMinit/MM.LABEL_OtherType');
+MM.LABEL_UserDefined         = dw.loadString('Startup/MMinit/MM.LABEL_UserDefined');
+
+MM.MSG_EmptyField = dw.loadString('Startup/MMinit/MM.MSG_EmptyField');
+MM.MSG_Form_RunAtAttrExists = dw.loadString('Startup/MMinit/MM.MSG_Form_RunAtAttrExists');
+MM.MSG_NoForm_RunAtAttrExists = dw.loadString('Startup/MMinit/MM.MSG_NoForm_RunAtAttrExists');
+
+//ASP.NET DataList
+MM.LABEL_HeaderTemplateDesc = dw.loadString('Startup/MMinit/MM.LABEL_HeaderTemplateDesc');
+MM.LABEL_ItemTemplateDesc = dw.loadString('Startup/MMinit/MM.LABEL_ItemTemplateDesc');
+MM.LABEL_AltItemTemplateDesc = dw.loadString('Startup/MMinit/MM.LABEL_AltItemTemplateDesc');
+MM.LABEL_EditItemTemplateDesc  = dw.loadString('Startup/MMinit/MM.LABEL_EditItemTemplateDesc');
+MM.LABEL_SelectedItemTemplateDesc  = dw.loadString('Startup/MMinit/MM.LABEL_SelectedItemTemplateDesc');
+MM.LABEL_SeparatorTemplateDesc  = dw.loadString('Startup/MMinit/MM.LABEL_SeparatorTemplateDesc');
+MM.LABEL_FooterTemplateDesc = dw.loadString('Startup/MMinit/MM.LABEL_FooterTemplateDesc');
+
+MM.MSG_InvalidColumnCount = dw.loadString('Startup/MMinit/MM.MSG_InvalidColumnCount')
+MM.MSG_DupeDataList       = dw.loadString('Startup/MMinit/MM.MSG_DupeDataList')
+
+//**** Inspectors *****
+//ASP Cmd
+MM.MSG_InvalidTimeout =dw.loadString('Startup/MMinit/MM.MSG_InvalidTimeout');
+
+//ASP Recordset
+MM.LABEL_CTForwardOnly = dw.loadString('Startup/MMinit/MM.LABEL_CTForwardOnly');
+MM.LABEL_CTKeyset = dw.loadString('Startup/MMinit/MM.LABEL_CTKeyset');
+MM.LABEL_CTDynamic = dw.loadString('Startup/MMinit/MM.LABEL_CTDynamic');
+MM.LABEL_CTStatic = dw.loadString('Startup/MMinit/MM.LABEL_CTStatic');
+
+MM.LABEL_CLClient = dw.loadString('Startup/MMinit/MM.LABEL_CLClient');
+MM.LABEL_CLServer = dw.loadString('Startup/MMinit/MM.LABEL_CLServer');
+
+MM.LABEL_LTReadOnly=dw.loadString('Startup/MMinit/MM.LABEL_LTReadOnly');
+MM.LABEL_LTPessimistic = dw.loadString('Startup/MMinit/MM.LABEL_LTPessimistic');
+MM.LABEL_LTOptimistic = dw.loadString('Startup/MMinit/MM.LABEL_LTOptimistic');
+MM.LABEL_LTBatchOptimistic = dw.loadString('Startup/MMinit/MM.LABEL_LTBatchOptimistic');
+
+//ASP RR
+MM.MSG_InvalidRepeatName = dw.loadString('Startup/MMinit/MM.MSG_InvalidRepeatName')
+MM.MSG_MissingRepeatName = dw.loadString('Startup/MMinit/MM.MSG_MissingRepeatName')
+
+//CF Query
+MM.LABEL_DefaultDBType = dw.loadString('Startup/MMinit/MM.LABEL_DefaultDBType');
+
+//JSP Callable
+MM.MSG_DuplicateCallableName = dw.loadString('Startup/MMinit/MM.MSG_DuplicateCallableName')
+
+//JSP Prepared
+MM.MSG_DuplicatePreparedName = dw.loadString('Startup/MMinit/MM.MSG_DuplicatePreparedName');
+
+//ASP.NET DataGrid
+MM.MSG_InvalidCellSpacing    = dw.loadString('Startup/MMinit/MM.MSG_InvalidCellSpacing');
+MM.MSG_InvalidCellPadding    = dw.loadString('Startup/MMinit/MM.MSG_InvalidCellPadding');
+
+//********* Commands *************
+
+//Application
+MM.MSG_NoName = dw.loadString('Startup/MMinit/MM.MSG_NoName');
+
+//Recordset, Simple Recordset
+MM.MSG_RunTimeValNotCFFormat = dw.loadString('Startup/MMinit/MM.MSG_RunTimeValNotCFFormat')
+MM.MSG_YouNeedAConnection = dw.loadString('Startup/MMinit/MM.MSG_YouNeedAConnection') +
+	dw.loadString('Startup/MMinit/MM.MSG_YouNeedAConnection_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_YouNeedAConnection_2')
+MM.MSG_NoRecordsetSQLStatement = dw.loadString('Startup/MMinit/MM.MSG_NoRecordsetSQLStatement');
+MM.MSG_NoSelectStatement = dw.loadString('Startup/MMinit/MM.MSG_NoSelectStatement');
+MM.MSG_CanOnlyUseButtonsOnSelectStatements = dw.loadString('Startup/MMinit/MM.MSG_CanOnlyUseButtonsOnSelectStatements');
+MM.MSG_SQLNotSimple = dw.loadString('Startup/MMinit/MM.MSG_SQLNotSimple');
+MM.LABEL_AddSelect = dw.loadString('Startup/MMinit/MM.LABEL_AddSelect');
+MM.BTN_Simple = dw.loadString('Startup/MMinit/MM.BTN_Simple');
+MM.BTN_Test = dw.loadString('Startup/MMinit/MM.BTN_Test');
+MM.BTN_DataPreview = dw.loadString('Startup/MMinit/MM.BTN_DataPreview');
+
+MM.BTN_ConnDefine  = dw.loadString('Startup/MMinit/MM.BTN_ConnDefine');
+MM.BTN_ConnDSN    = dw.loadString('Startup/MMinit/MM.BTN_ConnDSN');
+MM.BTN_Import    = dw.loadString('Startup/MMinit/MM.BTN_Import');
+MM.BTN_Done      =  dw.loadString('Startup/MMinit/MM.BTN_Done');
+MM.BTN_Build    =  dw.loadString('Startup/MMinit/MM.BTN_Build');
+
+MM.MSG_CannotTestInsertUpdateDelete = dw.loadString('Startup/MMinit/MM.MSG_CannotTestInsertUpdateDelete');
+MM.MSG_ConnErrs = dw.loadString('Startup/MMinit/MM.MSG_ConnErrs')
+MM.MSG_SelectColumns = dw.loadString('Startup/MMinit/MM.MSG_SelectColumns')
+MM.BTN_Advanced = dw.loadString('Startup/MMinit/MM.BTN_Advanced');
+MM.MSG_CanOnlyUseThisOperatorOnAString = dw.loadString('Startup/MMinit/MM.MSG_CanOnlyUseThisOperatorOnAString');
+MM.MSG_MissingFilterVal = dw.loadString('Startup/MMinit/MM.MSG_MissingFilterVal');
+MM.LABEL_ASP_Param_Types= new Array(dw.loadString('Startup/MMinit/MM.LABEL_ASP_Param_Types'),dw.loadString('Startup/MMinit/MM.LABEL_ASP_Param_Types_1'),dw.loadString('Startup/MMinit/MM.LABEL_ASP_Param_Types_2'),dw.loadString('Startup/MMinit/MM.LABEL_ASP_Param_Types_3'),dw.loadString('Startup/MMinit/MM.LABEL_ASP_Param_Types_4'),dw.loadString('Startup/MMinit/MM.LABEL_ASP_Param_Types_5'));
+MM.LABEL_ASPNET_Param_Types= new Array(dw.loadString('Startup/MMinit/MM.LABEL_ASPNET_Param_Types'),dw.loadString('Startup/MMinit/MM.LABEL_ASPNET_Param_Types_1'),dw.loadString('Startup/MMinit/MM.LABEL_ASPNET_Param_Types_2'),dw.loadString('Startup/MMinit/MM.LABEL_ASPNET_Param_Types_3'),dw.loadString('Startup/MMinit/MM.LABEL_ASPNET_Param_Types_4'),dw.loadString('Startup/MMinit/MM.LABEL_ASPNET_Param_Types_5'));
+MM.LABEL_CF_Param_Types= new Array(dw.loadString('Startup/MMinit/MM.LABEL_CF_Param_Types'),dw.loadString('Startup/MMinit/MM.LABEL_CF_Param_Types_1'),dw.loadString('Startup/MMinit/MM.LABEL_CF_Param_Types_2'),dw.loadString('Startup/MMinit/MM.LABEL_CF_Param_Types_3'),dw.loadString('Startup/MMinit/MM.LABEL_CF_Param_Types_4'),dw.loadString('Startup/MMinit/MM.LABEL_CF_Param_Types_5'));
+MM.LABEL_JSP_Param_Types= new Array(dw.loadString('Startup/MMinit/MM.LABEL_JSP_Param_Types'),dw.loadString('Startup/MMinit/MM.LABEL_JSP_Param_Types_1'),dw.loadString('Startup/MMinit/MM.LABEL_JSP_Param_Types_2'));
+MM.LABEL_PHP_Param_Types= new Array(dw.loadString('Startup/MMinit/MM.LABEL_PHP_Param_Types'),dw.loadString('Startup/MMinit/MM.LABEL_PHP_Param_Types_1'),dw.loadString('Startup/MMinit/MM.LABEL_PHP_Param_Types_2'),dw.loadString('Startup/MMinit/MM.LABEL_PHP_Param_Types_3'),dw.loadString('Startup/MMinit/MM.LABEL_PHP_Param_Types_4'),dw.loadString('Startup/MMinit/MM.LABEL_PHP_Param_Types_5'));
+MM.MSG_DupeColumnWarning = dw.loadString('Startup/MMinit/MM.MSG_DupeColumnWarning');
+
+//Compound Object Edit Ops (these objects call commands, which do the work)
+MM.MSG_NeedRecordsetForObject = dw.loadString('Startup/MMinit/MM.MSG_NeedRecordsetForObject');
+MM.MSG_NeedOneColumnInList = dw.loadString('Startup/MMinit/MM.MSG_NeedOneColumnInList');
+MM.LABEL_ColGrid= new Array(dw.loadString('Startup/MMinit/MM.LABEL_ColGrid'),dw.loadString('Startup/MMinit/MM.LABEL_ColGrid_1'),dw.loadString('Startup/MMinit/MM.LABEL_ColGrid_2'),dw.loadString('Startup/MMinit/MM.LABEL_ColGrid_3'));
+MM.LABEL_RadioGrid= new Array(dw.loadString('Startup/MMinit/MM.LABEL_RadioGrid'),dw.loadString('Startup/MMinit/MM.LABEL_RadioGrid_1'));
+MM.LABEL_MenuGrid= new Array(dw.loadString('Startup/MMinit/MM.LABEL_MenuGrid'),dw.loadString('Startup/MMinit/MM.LABEL_MenuGrid_1'));
+// note: the LABEL variables cannot be listed in an array
+// due to the structure and complexity of the command file
+MM.LABEL_TextField     = dw.loadString('Startup/MMinit/MM.LABEL_TextField');
+MM.LABEL_TextArea      = dw.loadString('Startup/MMinit/MM.LABEL_TextArea');
+MM.LABEL_Menu          = dw.loadString('Startup/MMinit/MM.LABEL_Menu');
+MM.LABEL_CheckBox      = dw.loadString('Startup/MMinit/MM.LABEL_CheckBox');
+MM.LABEL_RadioGroup    = dw.loadString('Startup/MMinit/MM.LABEL_RadioGroup');
+MM.LABEL_FileField     = dw.loadString('Startup/MMinit/MM.LABEL_FileField');
+MM.LABEL_HiddenField   = dw.loadString('Startup/MMinit/MM.LABEL_HiddenField');
+MM.LABEL_PasswordField = dw.loadString('Startup/MMinit/MM.LABEL_PasswordField');
+
+//Edit Op field formats
+MM.LABEL_Text          = dw.loadString('Startup/MMinit/MM.LABEL_Text');
+MM.LABEL_Numeric       = "Numeric";
+MM.LABEL_Date          = dw.loadString('Startup/MMinit/MM.LABEL_Date');
+MM.LABEL_DateMSAccess  = dw.loadString('Startup/MMinit/MM.LABEL_DateMSAccess');
+MM.LABEL_CheckBoxYN    = dw.loadString('Startup/MMinit/MM.LABEL_CheckBoxYN');
+MM.LABEL_CheckBox10    = dw.loadString('Startup/MMinit/MM.LABEL_CheckBox10');
+MM.LABEL_CheckBoxNeg10 = dw.loadString('Startup/MMinit/MM.LABEL_CheckBoxNeg10');
+MM.LABEL_CheckBoxAccess= dw.loadString('Startup/MMinit/MM.LABEL_CheckBoxAccess');
+
+MM.LABEL_Delimiter   = dw.loadString('Startup/MMinit/MM.LABEL_Delimiter') // used to separate label:[form field]
+MM.LABEL_RadioButtons = dw.loadString('Startup/MMinit/MM.LABEL_RadioButtons');
+MM.LABEL_MenuItems    = dw.loadString('Startup/MMinit/MM.LABEL_MenuItems');
+MM.BTN_InsertRecord  = dw.loadString('Startup/MMinit/MM.BTN_InsertRecord'); // appears on Submit button in user's document
+MM.BTN_UpdateRecord  = dw.loadString('Startup/MMinit/MM.BTN_UpdateRecord'); // appears on Submit button in user's document
+MM.LABEL_Element     = dw.loadString('Startup/MMinit/MM.LABEL_Element');       // as in, "form element"
+MM.LABEL_Label       = dw.loadString('Startup/MMinit/MM.LABEL_Label');         // as in the label which appears by a form widget
+MM.LABEL_Password    = dw.loadString('Startup/MMinit/MM.LABEL_Password');      // used to guess if a db col is used to store a password
+MM.MSG_NeedRecordsetForOption = dw.loadString('Startup/MMinit/MM.MSG_NeedRecordsetForOption');
+MM.MSG_NoMoreColumnsToAdd     = dw.loadString('Startup/MMinit/MM.MSG_NoMoreColumnsToAdd')
+MM.MSG_NoConnectionSelected   = dw.loadString('Startup/MMinit/MM.MSG_NoConnectionSelected');
+MM.Msg_NoColumnsInTable = dw.loadString('Startup/MMinit/MM.Msg_NoColumnsInTable');
+MM.Msg_UnsupportedColumnsInTable = dw.loadString('Startup/MMinit/MM.Msg_UnsupportedColumnsInTable');
+MM.MSG_NoDataSourceSelected   = dw.loadString('Startup/MMinit/MM.MSG_NoDataSourceSelected');
+
+
+//ColdFusion RDS Command
+MM.MSG_EnterPassword = dw.loadString('Startup/MMinit/MM.MSG_EnterPassword');
+
+//JSP Driver List Dialog
+MM.MSG_EnterDriver = dw.loadString('Startup/MMinit/MM.MSG_EnterDriver');
+
+//Sort Table & Format Table Commands
+MM.MSG_SomeServerBehaviorsNotAllowed = dw.loadString('Startup/MMinit/MM.MSG_SomeServerBehaviorsNotAllowed')
+MM.MSG_RegionServerBehaviorsNotAllowed = dw.loadString('Startup/MMinit/MM.MSG_RegionServerBehaviorsNotAllowed')
+
+//Radio Properties and Menu Properties Commands
+MM.LABEL_radioPropLabelPrefix = dw.loadString('Startup/MMinit/MM.LABEL_radioPropLabelPrefix');
+MM.LABEL_menuPropLabelPrefix = dw.loadString('Startup/MMinit/MM.LABEL_menuPropLabelPrefix');
+
+//************** Log In Server Behaviors ***************
+
+//COMMON
+MM.MSG_OnlyOneInstanceAllowed = dw.loadString('Startup/MMinit/MM.MSG_OnlyOneInstanceAllowed') +
+	dw.loadString('Startup/MMinit/MM.MSG_OnlyOneInstanceAllowed_1');
+
+//Login User
+MM.LABEL_TitleLoginUser = dw.loadString('Startup/MMinit/MM.LABEL_TitleLoginUser');
+
+MM.LABEL_NoRecordsetFieldsFound = dw.loadString('Startup/MMinit/MM.LABEL_NoRecordsetFieldsFound');
+MM.MSG_MustSelectConnection     = dw.loadString('Startup/MMinit/MM.MSG_MustSelectConnection');
+MM.MSG_MustSelectTable          = dw.loadString('Startup/MMinit/MM.MSG_MustSelectTable');
+
+MM.MSG_LoginUserNoValidForms    = dw.loadString('Startup/MMinit/MM.MSG_LoginUserNoValidForms') +
+	dw.loadString('Startup/MMinit/MM.MSG_LoginUserNoValidForms_1')
+MM.MSG_LoginUserNoFormOnPage    = dw.loadString('Startup/MMinit/MM.MSG_LoginUserNoFormOnPage');
+MM.MSG_MustHaveSomethingInForm  = dw.loadString('Startup/MMinit/MM.MSG_MustHaveSomethingInForm') +
+	dw.loadString('Startup/MMinit/MM.MSG_MustHaveSomethingInForm_1')
+MM.MSG_MustSupplyRedirectPages  = dw.loadString('Startup/MMinit/MM.MSG_MustSupplyRedirectPages');
+MM.MSG_LoginUserNoTablesFound   = dw.loadString('Startup/MMinit/MM.MSG_LoginUserNoTablesFound') +
+	dw.loadString('Startup/MMinit/MM.MSG_LoginUserNoTablesFound_1');
+MM.MSG_LoginUserPageRestricted  = dw.loadString('Startup/MMinit/MM.MSG_LoginUserPageRestricted') +
+	dw.loadString('Startup/MMinit/MM.MSG_LoginUserPageRestricted_1');
+MM.MSG_MustSelectUserNamePassword=dw.loadString('Startup/MMinit/MM.MSG_MustSelectUserNamePassword');
+
+
+
+
+//Restrict Access To Page
+MM.LABEL_TitleRestrictAccess     = dw.loadString('Startup/MMinit/MM.LABEL_TitleRestrictAccess');
+MM.MSG_MustSupplyUnauthorizedURL = dw.loadString('Startup/MMinit/MM.MSG_MustSupplyUnauthorizedURL');
+MM.MSG_UnknownAccessLevels       = dw.loadString('Startup/MMinit/MM.MSG_UnknownAccessLevels') +
+	dw.loadString('Startup/MMinit/MM.MSG_UnknownAccessLevels_1');
+MM.MSG_AccessListNotEnabled      = dw.loadString('Startup/MMinit/MM.MSG_AccessListNotEnabled') +
+	dw.loadString('Startup/MMinit/MM.MSG_AccessListNotEnabled_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_AccessListNotEnabled_2');
+MM.MSG_NoAccessLevelsSelected    = dw.loadString('Startup/MMinit/MM.MSG_NoAccessLevelsSelected') +
+	dw.loadString('Startup/MMinit/MM.MSG_NoAccessLevelsSelected_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_NoAccessLevelsSelected_2');
+MM.MSG_RestAccessLoginPage       = dw.loadString('Startup/MMinit/MM.MSG_RestAccessLoginPage') +
+	dw.loadString('Startup/MMinit/MM.MSG_RestAccessLoginPage_1');
+MM.MSG_RestAccessWrongProtType   = dw.loadString('Startup/MMinit/MM.MSG_RestAccessWrongProtType') +
+	dw.loadString('Startup/MMinit/MM.MSG_RestAccessWrongProtType_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_RestAccessWrongProtType_2') +
+	dw.loadString('Startup/MMinit/MM.MSG_RestAccessWrongProtType_3') +
+	dw.loadString('Startup/MMinit/MM.MSG_RestAccessWrongProtType_4');
+
+//Logout User
+MM.LABEL_TitleLogoutUser         = dw.loadString('Startup/MMinit/MM.LABEL_TitleLogoutUser');
+MM.LABEL_LogoutNewLinkLabel      = dw.loadString('Startup/MMinit/MM.LABEL_LogoutNewLinkLabel');
+MM.MSG_LogoutLinkIsMissing       = dw.loadString('Startup/MMinit/MM.MSG_LogoutLinkIsMissing');
+
+//Check New Username
+MM.LABEL_TitleRedirectIfUsernameFound = dw.loadString('Startup/MMinit/MM.LABEL_TitleRedirectIfUsernameFound');
+
+MM.MSG_MustHaveInsertBehavior = dw.loadString('Startup/MMinit/MM.MSG_MustHaveInsertBehavior') +
+	dw.loadString('Startup/MMinit/MM.MSG_MustHaveInsertBehavior_1');
+MM.MSG_InsertBehaviorMissing  = dw.loadString('Startup/MMinit/MM.MSG_InsertBehaviorMissing') +
+	dw.loadString('Startup/MMinit/MM.MSG_InsertBehaviorMissing_1');
+MM.MSG_OutOfSyncWithInsert    = dw.loadString('Startup/MMinit/MM.MSG_OutOfSyncWithInsert') +
+	dw.loadString('Startup/MMinit/MM.MSG_OutOfSyncWithInsert_1');
+MM.MSG_MustSupplyRedirectPage = dw.loadString('Startup/MMinit/MM.MSG_MustSupplyRedirectPage');
+MM.MSG_NoInsertBehavior       = dw.loadString('Startup/MMinit/MM.MSG_NoInsertBehavior');
+MM.MSG_NoFormElementFound     = dw.loadString('Startup/MMinit/MM.MSG_NoFormElementFound');
+
+//********* DataSources *************
+
+//Application
+MM.MSG_DefineApplication = dw.loadString('Startup/MMinit/MM.MSG_DefineApplication')
+
+MM.MSG_DefineSite = dw.loadString('Startup/MMinit/MM.MSG_DefineSite')
+MM.MSG_DesignNotesOff = dw.loadString('Startup/MMinit/MM.MSG_DesignNotesOff');
+MM.MSG_PleaseSaveSite = dw.loadString('Startup/MMinit/MM.MSG_PleaseSaveSite');
+
+//ASP Command
+MM.MSG_CantDelColumn    = dw.loadString('Startup/MMinit/MM.MSG_CantDelColumn');
+MM.LABEL_FirstRecordIndex = dw.loadString('Startup/MMinit/MM.LABEL_FirstRecordIndex');
+MM.LABEL_LastRecordIndex  = dw.loadString('Startup/MMinit/MM.LABEL_LastRecordIndex');
+MM.LABEL_TotalRecordIndex = dw.loadString('Startup/MMinit/MM.LABEL_TotalRecordIndex');
+
+//Request
+MM.MSG_RequestGiveName = dw.loadString('Startup/MMinit/MM.MSG_RequestGiveName')
+
+//Session
+MM.MSG_DefineSession = dw.loadString('Startup/MMinit/MM.MSG_DefineSession')
+
+//Application
+MM.MSG_DefineApplication = dw.loadString('Startup/MMinit/MM.MSG_DefineApplication_1')
+
+//Form
+MM.MSG_DefineForm = dw.loadString('Startup/MMinit/MM.MSG_DefineForm');
+
+//Client
+MM.MSG_DefineClient = dw.loadString('Startup/MMinit/MM.MSG_DefineClient');
+
+//Cookie
+MM.MSG_DefineCookie = dw.loadString('Startup/MMinit/MM.MSG_DefineCookie');
+
+//Client
+MM.MSG_DefineClient = dw.loadString('Startup/MMinit/MM.MSG_DefineClient_1');
+
+//URL
+MM.MSG_DefineURL = dw.loadString('Startup/MMinit/MM.MSG_DefineURL');
+
+//Server
+MM.MSG_DefineServer = dw.loadString('Startup/MMinit/MM.MSG_DefineServer');
+
+//Variables
+MM.MSG_DefineVariables = dw.loadString('Startup/MMinit/MM.MSG_DefineVariables');
+
+// Environment
+MM.MSG_DefineEnvironment = dw.loadString('Startup/MMinit/MM.MSG_DefineEnvironment');
+
+// Connection CF
+MM.LABEL_ConnectionVar = dw.loadString('Startup/MMinit/MM.LABEL_ConnectionVar');
+MM.MSG_NeedCFDataSourceVar = dw.loadString('Startup/MMinit/MM.MSG_NeedCFDataSourceVar');
+MM.BTN_ShowAdvancedSettings  = dw.loadString('Startup/MMinit/MM.BTN_ShowAdvancedSettings');
+MM.BTN_HideAdvancedSettings = dw.loadString('Startup/MMinit/MM.BTN_HideAdvancedSettings');
+
+//********* Translators *************
+
+//Common
+MM.MSG_ShortFileNotFound = dw.loadString('Startup/MMinit/MM.MSG_ShortFileNotFound');
+
+//ASP
+MM.MSG_ResponseBuffer = dw.loadString('Startup/MMinit/MM.MSG_ResponseBuffer')
+
+//********* Shared Controls *************
+
+//Tag menu
+MM.MSG_NoSpecificTag = dw.loadString('Startup/MMinit/MM.MSG_NoSpecificTag');
+MM.MSG_CouldNotFindSelectedNode = dw.loadString('Startup/MMinit/MM.MSG_CouldNotFindSelectedNode');
+MM.MSG_CannotApplyInLiveData = dw.loadString('Startup/MMinit/MM.MSG_CannotApplyInLiveData');
+
+//********* Shared Scripts *************
+
+// SB Manager
+MM.MSG_NoXmlFile = dw.loadString('Startup/MMinit/MM.MSG_NoXmlFile');
+MM.MSG_NoGroupDataFile = dw.loadString('Startup/MMinit/MM.MSG_NoGroupDataFile');
+MM.MSG_NoNodeSpecForRelInsert = dw.loadString('Startup/MMinit/MM.MSG_NoNodeSpecForRelInsert');
+MM.MSG_NoMatchForParameter = dw.loadString('Startup/MMinit/MM.MSG_NoMatchForParameter');
+MM.MSG_ErrProcessingInsText     = dw.loadString('Startup/MMinit/MM.MSG_ErrProcessingInsText');
+MM.MSG_ErrMisplacedElseIf       = dw.loadString('Startup/MMinit/MM.MSG_ErrMisplacedElseIf');
+MM.MSG_ErrMisplacedElse         = dw.loadString('Startup/MMinit/MM.MSG_ErrMisplacedElse');
+MM.MSG_ErrMisplacedEndif        = dw.loadString('Startup/MMinit/MM.MSG_ErrMisplacedEndif');
+MM.MSG_ErrMisplacedLoop         = dw.loadString('Startup/MMinit/MM.MSG_ErrMisplacedLoop');
+MM.MSG_ErrMisplacedEndloop      = dw.loadString('Startup/MMinit/MM.MSG_ErrMisplacedEndloop');
+MM.MSG_ErrLoopParamNotArray     = dw.loadString('Startup/MMinit/MM.MSG_ErrLoopParamNotArray');
+MM.MSG_ErrLoopParamsDiffLen     = dw.loadString('Startup/MMinit/MM.MSG_ErrLoopParamsDiffLen');
+MM.MSG_ErrArrayUsedOutsideLoop  = dw.loadString('Startup/MMinit/MM.MSG_ErrArrayUsedOutsideLoop')
+MM.MSG_ErrUnterminatedIf        = dw.loadString('Startup/MMinit/MM.MSG_ErrUnterminatedIf');
+MM.MSG_ErrUnterminatedLoop      = dw.loadString('Startup/MMinit/MM.MSG_ErrUnterminatedLoop');
+MM.MSG_ErrLoopHasNoParams       = dw.loadString('Startup/MMinit/MM.MSG_ErrLoopHasNoParams');
+MM.MSG_ErrCouldNotEvalDirective = dw.loadString('Startup/MMinit/MM.MSG_ErrCouldNotEvalDirective');
+MM.MSG_ErrUnrecognizedDirective = dw.loadString('Startup/MMinit/MM.MSG_ErrUnrecognizedDirective');
+
+
+//********* Connections *************
+
+// Late in the DuctTape development cycle, we decided to move some of the Connection
+// Manager from Javascript to C.  Rather than creating new C-level string resources,
+// I temporarily added code to ConnectionManager.cpp that references some the the
+// strings in this section. [dgeorge 10/03/00]
+
+// Connection Common
+MM.MSG_SelectName = dw.loadString('Startup/MMinit/MM.MSG_SelectName');
+MM.MSG_InvalidConnectionName = dw.loadString('Startup/MMinit/MM.MSG_InvalidConnectionName');
+MM.MSG_ConnectionExists = dw.loadString('Startup/MMinit/MM.MSG_ConnectionExists');
+MM.MSG_SpecifyDriver = dw.loadString('Startup/MMinit/MM.MSG_SpecifyDriver');
+MM.MSG_SpecifyUrlString = dw.loadString('Startup/MMinit/MM.MSG_SpecifyUrlString');
+MM.MSG_SpecifyConnString = dw.loadString('Startup/MMinit/MM.MSG_SpecifyConnString');
+MM.MSG_NoServerCfDSNs = dw.loadString('Startup/MMinit/MM.MSG_NoServerCfDSNs');
+MM.MSG_NoLocalOdbcDSNs = dw.loadString('Startup/MMinit/MM.MSG_NoLocalOdbcDSNs');
+MM.MSG_ConnFileReadOnly = dw.loadString('Startup/MMinit/MM.MSG_ConnFileReadOnly');
+MM.MSG_FileAlreadyExists = dw.loadString('Startup/MMinit/MM.MSG_FileAlreadyExists');
+MM.MSG_MacNameTooLong = dw.loadString('Startup/MMinit/MM.MSG_MacNameTooLong');
+MM.MSG_InvalidConnectionName2 = dw.loadString('Startup/MMinit/MM.MSG_InvalidConnectionName2');
+
+//HTTP-ErrorCodes
+MM.MSG_HTTP200 = dw.loadString('Startup/MMinit/MM.MSG_HTTP200');
+MM.MSG_HTTP400 = dw.loadString('Startup/MMinit/MM.MSG_HTTP400');
+MM.MSG_HTTP404 = dw.loadString('Startup/MMinit/MM.MSG_HTTP404');
+MM.MSG_HTTP405 = dw.loadString('Startup/MMinit/MM.MSG_HTTP405');
+MM.MSG_HTTP500 = dw.loadString('Startup/MMinit/MM.MSG_HTTP500');
+MM.MSG_HTTP503 = dw.loadString('Startup/MMinit/MM.MSG_HTTP503');
+
+//********* Tag Importers *************
+
+MM.MSG_ImportHTTPError   = dw.loadString('Startup/MMinit/MM.MSG_ImportHTTPError');
+MM.MSG_ImportHTTPTimeout   = dw.loadString('Startup/MMinit/MM.MSG_ImportHTTPTimeout');
+MM.MSG_ImportCreateError = dw.loadString('Startup/MMinit/MM.MSG_ImportCreateError');
+MM.MSG_URIMissing     = dw.loadString('Startup/MMinit/MM.MSG_URIMissing');
+MM.MSG_PrefixMissing   = dw.loadString('Startup/MMinit/MM.MSG_PrefixMissing');
+MM.MSG_TLDPackageName   = dw.loadString('Startup/MMinit/MM.MSG_TLDPackageName');
+MM.MSG_JSTFolderName   = dw.loadString('Startup/MMinit/MM.MSG_JSTFolderName');
+MM.MSG_JSPSiteMissing   = dw.loadString('Startup/MMinit/MM.MSG_JSPSiteMissing');
+MM.MSG_JSPServerMissing   = dw.loadString('Startup/MMinit/MM.MSG_JSPServerMissing');
+MM.MSG_JSPFileExtension   = dw.loadString('Startup/MMinit/MM.MSG_JSPFileExtension');
+MM.MSG_JARDoesNotContainTLD    = dw.loadString('Startup/MMinit/MM.MSG_JARDoesNotContainTLD');
+MM.MSG_TLDDoesNotContainTag    = dw.loadString('Startup/MMinit/MM.MSG_TLDDoesNotContainTag');
+MM.MSG_JSTDoesNotContainTag    = dw.loadString('Startup/MMinit/MM.MSG_JSTDoesNotContainTag');
+MM.MSG_ImportNoTLDsINWEBXML    = dw.loadString('Startup/MMinit/MM.MSG_ImportNoTLDsINWEBXML');
+MM.MSG_UpdateTagLibrary      = dw.loadString('Startup/MMinit/MM.MSG_UpdateTagLibrary');
+MM.MSG_JARCONTAINSMULTIPLETLDS  = dw.loadString('Startup/MMinit/MM.MSG_JARCONTAINSMULTIPLETLDS');
+MM.MSG_JspPrefixInvalidName    = dw.loadString('Startup/MMinit/MM.MSG_JspPrefixInvalidName');
+MM.MSG_JspPrefixReserved    = dw.loadString('Startup/MMinit/MM.MSG_JspPrefixReserved');
+MM.MSG_ASPNETSiteMissing    = dw.loadString('Startup/MMinit/MM.MSG_ASPNETSiteMissing');
+MM.MSG_ASPNETServerMissing    = dw.loadString('Startup/MMinit/MM.MSG_ASPNETServerMissing');
+
+//********* WebServices *************
+
+MM.MSG_ProxyGenNameMissing       =  dw.loadString('Startup/MMinit/MM.MSG_ProxyGenNameMissing');
+MM.MSG_ProxyGenCompileCmdMissing  =  dw.loadString('Startup/MMinit/MM.MSG_ProxyGenCompileCmdMissing');
+MM.MSG_ProxyCompileCmdMissing    =  dw.loadString('Startup/MMinit/MM.MSG_ProxyCompileCmdMissing');
+MM.MSG_ProxyDestOutputDirMissing  =  dw.loadString('Startup/MMinit/MM.MSG_ProxyDestOutputDirMissing');
+MM.MSG_ProxyDestOutputDirLengthInvalid =dw.loadString('Startup/MMinit/MM.MSG_ProxyDestOutputDirLengthInvalid');
+MM.MSG_ProxyServerModelsMissing    =  dw.loadString('Startup/MMinit/MM.MSG_ProxyServerModelsMissing');
+MM.MSG_WSDLFileReadError      =   dw.loadString('Startup/MMinit/MM.MSG_WSDLFileReadError');
+MM.MSG_LocalWSDLFileCreateError    =  dw.loadString('Startup/MMinit/MM.MSG_LocalWSDLFileCreateError');
+MM.MSG_BatchFileRunError      =   dw.loadString('Startup/MMinit/MM.MSG_BatchFileRunError');
+MM.MSG_CreateBatchFileError      =  dw.loadString('Startup/MMinit/MM.MSG_CreateBatchFileError');
+MM.MSG_WebServicesFolderMissing    =    dw.loadString('Startup/MMinit/MM.MSG_WebServicesFolderMissing');
+MM.MSG_WSDLFileNameMissing      =   dw.loadString('Startup/MMinit/MM.MSG_WSDLFileNameMissing');
+MM.MSG_IncorrectNodeNameError    =  dw.loadString('Startup/MMinit/MM.MSG_IncorrectNodeNameError');
+MM.MSG_IncorrectProxyChooserExtError=   dw.loadString('Startup/MMinit/MM.MSG_IncorrectProxyChooserExtError');
+MM.MSG_WSProxyNotFoundWarning    =  dw.loadString('Startup/MMinit/MM.MSG_WSProxyNotFoundWarning');
+MM.MSG_OutputFileMissing      =  dw.loadString('Startup/MMinit/MM.MSG_OutputFileMissing');
+MM.MSG_OutputFileReadError      =   dw.loadString('Startup/MMinit/MM.MSG_OutputFileReadError');
+MM.MSG_OutputDirInvalidError    =  dw.loadString('Startup/MMinit/MM.MSG_OutputDirInvalidError');
+MM.MSG_OutputDirMissingError    =  dw.loadString('Startup/MMinit/MM.MSG_OutputDirMissingError');
+MM.LABEL_OutputDirCreate      =  dw.loadString('Startup/MMinit/MM.LABEL_OutputDirCreate');
+MM.MSG_OutputDirCreationError    =  dw.loadString('Startup/MMinit/MM.MSG_OutputDirCreationError');
+MM.MSG_SelectOutputProxyDir      =   dw.loadString('Startup/MMinit/MM.MSG_SelectOutputProxyDir');
+MM.MSG_WinProxyGeneratorInstructions=   dw.loadString('Startup/MMinit/MM.MSG_WinProxyGeneratorInstructions');
+MM.MSG_InvalidTokensError      =  dw.loadString('Startup/MMinit/MM.MSG_InvalidTokensError');
+MM.MSG_GenerateProxyField      =  dw.loadString('Startup/MMinit/MM.MSG_GenerateProxyField');
+MM.MSG_CompileProxyField      =  dw.loadString('Startup/MMinit/MM.MSG_CompileProxyField');
+MM.MSG_DefaultOutputDirField    =  dw.loadString('Startup/MMinit/MM.MSG_DefaultOutputDirField');
+MM.MSG_UnknownWSDLFormat      =  dw.loadString('Startup/MMinit/MM.MSG_UnknownWSDLFormat');
+MM.MSG_NoLanguageSignature      =  dw.loadString('Startup/MMinit/MM.MSG_NoLanguageSignature');
+MM.MSG_MissingAxisXercesJars    =  dw.loadString('Startup/MMinit/MM.MSG_MissingAxisXercesJars');
+MM.MSG_UnableToRunJavac        =  dw.loadString('Startup/MMinit/MM.MSG_UnableToRunJavac');
+MM.MSG_UnableToGenerateProxy    =  dw.loadString('Startup/MMinit/MM.MSG_UnableToGenerateProxy');
+MM.MSG_FieldsNode          =  dw.loadString('Startup/MMinit/MM.MSG_FieldsNode');
+MM.MSG_PropertiesNode        =  dw.loadString('Startup/MMinit/MM.MSG_PropertiesNode');
+MM.LocationProxyClass			= dw.loadString('Startup/MMinit/MM.LocationProxyClass');
+MM.FolderProxyClass			= dw.loadString('Startup/MMinit/MM.FolderProxyClass');
+
+//********* Components *************
+
+MM.LABEL_Tables = dw.loadString('Startup/MMinit/MM.LABEL_Tables');
+MM.LABEL_Views = dw.loadString('Startup/MMinit/MM.LABEL_Views');
+MM.LABEL_StoredProcs = dw.loadString('Startup/MMinit/MM.LABEL_StoredProcs');
+MM.LABEL_Required = dw.loadString('Startup/MMinit/MM.LABEL_Required');
+MM.LABEL_AddUsingWSDLName = dw.loadString('Startup/MMinit/MM.LABEL_AddUsingWSDLName');
+MM.LABEL_EditUsingWSDLName = dw.loadString('Startup/MMinit/MM.LABEL_EditUsingWSDLName');
+MM.LABEL_MarkupTags = dw.loadString('Startup/MMinit/MM.LABEL_MarkupTags');
+MM.LABEL_ProxyGetClassName = dw.loadString('Startup/MMinit/MM.LABEL_ProxyGetClassName');
+
+MM.MSG_WinWebServicesInstructions  = dw.loadString('Startup/MMinit/MM.MSG_WinWebServicesInstructions');
+MM.MSG_WinJavaBeanInstructions  =    dw.loadString('Startup/MMinit/MM.MSG_WinJavaBeanInstructions');
+MM.MSG_MacWebServicesInstructions  = dw.loadString('Startup/MMinit/MM.MSG_MacWebServicesInstructions');
+MM.MSG_MacJavaBeanInstructions  =    dw.loadString('Startup/MMinit/MM.MSG_MacJavaBeanInstructions');
+MM.MSG_JavaBeanAddToolTipText  =    dw.loadString('Startup/MMinit/MM.MSG_JavaBeanAddToolTipText');
+MM.MSG_JavaBeanDeleteToolTipText  =    dw.loadString('Startup/MMinit/MM.MSG_JavaBeanDeleteToolTipText');
+MM.MSG_WebServicesAddToolTipText  =    dw.loadString('Startup/MMinit/MM.MSG_WebServicesAddToolTipText');
+MM.MSG_WebServicesDeleteToolTipText  =    dw.loadString('Startup/MMinit/MM.MSG_WebServicesDeleteToolTipText');
+MM.MSG_WebServicesRegenToolTipText  =    dw.loadString('Startup/MMinit/MM.MSG_WebServicesRegenToolTipText');
+MM.MSG_WebServicesEditToolTipText   =    dw.loadString('Startup/MMinit/MM.MSG_WebServicesEditToolTipText');
+MM.MSG_WebServicesDeployToolTipText = dw.loadString('Startup/MMinit/MM.MSG_WebServicesDeployToolTipText');
+MM.MSG_ComponentNotSupportedServerModel = dw.loadString('Startup/MMinit/MM.MSG_ComponentNotSupportedServerModel');
+MM.MSG_JavaBeanComponentType      = dw.loadString('Startup/MMinit/MM.MSG_JavaBeanComponentType');
+MM.MSG_WebServicesComponentType      = dw.loadString('Startup/MMinit/MM.MSG_WebServicesComponentType');
+MM.MSG_EditWebServiceSelectionMissing  = dw.loadString('Startup/MMinit/MM.MSG_EditWebServiceSelectionMissing');
+MM.MSG_DBInstructions          = dw.loadString('Startup/MMinit/MM.MSG_DBInstructions');
+MM.MSG_CFDBInstructions          = dw.loadString('Startup/MMinit/MM.MSG_CFDBInstructions');
+MM.MSG_CFDBInstructions1        = dw.loadString('Startup/MMinit/MM.MSG_CFDBInstructions1');
+MM.MSG_CFDBInstructions2        = dw.loadString('Startup/MMinit/MM.MSG_CFDBInstructions2');
+MM.MSG_SystemDataSources        = dw.loadString('Startup/MMinit/MM.MSG_SystemDataSources');
+MM.MSG_ProxyChooserClassNameMissing    = dw.loadString('Startup/MMinit/MM.MSG_ProxyChooserClassNameMissing');
+MM.MSG_IntrospectorNameMissing      = dw.loadString('Startup/MMinit/MM.MSG_IntrospectorNameMissing');
+MM.MSG_ViewData              = dw.loadString('Startup/MMinit/MM.MSG_ViewData');
+MM.MSG_JavaBean_InstructionsTitle    = dw.loadString('Startup/MMinit/MM.MSG_JavaBean_InstructionsTitle');
+MM.MSG_JavaBean_InstructionsStep1    = dw.loadString('Startup/MMinit/MM.MSG_JavaBean_InstructionsStep1');
+MM.MSG_JavaBean_InstructionsStep2    = dw.loadString('Startup/MMinit/MM.MSG_JavaBean_InstructionsStep2');
+MM.MSG_ProxyChooseFolder        = dw.loadString('Startup/MMinit/MM.MSG_ProxyChooseFolder');
+MM.MSG_ProxyNotFound          = dw.loadString('Startup/MMinit/MM.MSG_ProxyNotFound');
+
+
+//********* Generic databse setup instructions *************
+
+MM.MSG_Dynamic_InstructionsTitle  = dw.loadString('Startup/MMinit/MM.MSG_Dynamic_InstructionsTitle');
+MM.MSG_Dynamic_InstructionsStep1  = dw.loadString('Startup/MMinit/MM.MSG_Dynamic_InstructionsStep1');
+MM.MSG_Dynamic_InstructionsStep1A  = dw.loadString('Startup/MMinit/MM.MSG_Dynamic_InstructionsStep1A');
+MM.MSG_Dynamic_InstructionsStep2  = dw.loadString('Startup/MMinit/MM.MSG_Dynamic_InstructionsStep2');
+MM.MSG_ColdFusion_InstructionsStep2  = dw.loadString('Startup/MMinit/MM.MSG_ColdFusion_InstructionsStep2');
+MM.MSG_Dynamic_InstructionsStep3  = dw.loadString('Startup/MMinit/MM.MSG_Dynamic_InstructionsStep3');
+MM.MSG_Dynamic_InstructionsStep3A  = dw.loadString('Startup/MMinit/MM.MSG_Dynamic_InstructionsStep3A');
+
+//********* CFCs *************
+
+MM.MSG_CFC_InstructionsTitle  = dw.loadString('Startup/MMinit/MM.MSG_CFC_InstructionsTitle');
+// step 1 is the same as MM.MSG_Dynamic_InstructionsStep1
+// step 2 is the same as MM.MSG_ColdFusion_InstructionsStep2
+// step 3 is the same as MM.MSG_Dynamic_InstructionsStep3
+// step 4 is the same as MM.MSG_SetRDSPassword.
+MM.MSG_CFC_InstructionsStep5  = dw.loadString('Startup/MMinit/MM.MSG_CFC_InstructionsStep5');
+
+MM.MSG_CFCAddToolTipText  = dw.loadString('Startup/MMinit/MM.MSG_CFCAddToolTipText');
+MM.MSG_CFCsComponentType  = dw.loadString('Startup/MMinit/MM.MSG_CFCsComponentType');
+MM.MSG_CFCsCreateToolTipText  = dw.loadString('Startup/MMinit/MM.MSG_CFCsCreateToolTipText');
+MM.MSG_CFCsInsertToolTipText  = dw.loadString('Startup/MMinit/MM.MSG_CFCsInsertToolTipText');
+MM.MSG_CFCsDetailsToolTipText  = dw.loadString('Startup/MMinit/MM.MSG_CFCsDetailsToolTipText');
+MM.MSG_CFCsRefreshToolTipText  = dw.loadString('Startup/MMinit/MM.MSG_CFCsRefreshToolTipText');
+MM.MSG_CFC_PropertiesNodeText  = dw.loadString('Startup/MMinit/MM.MSG_CFC_PropertiesNodeText');
+MM.MSG_CFC_ThisCFCNodeText    = dw.loadString('Startup/MMinit/MM.MSG_CFC_ThisCFCNodeText');
+MM.MSG_CFC_ThisPackageNodeText  = dw.loadString('Startup/MMinit/MM.MSG_CFC_ThisPackageNodeText');
+MM.MSG_CFC_ThisServerNodeText  = dw.loadString('Startup/MMinit/MM.MSG_CFC_ThisServerNodeText');
+MM.MSG_CFC_AnyServerNodeText  = dw.loadString('Startup/MMinit/MM.MSG_CFC_AnyServerNodeText');
+MM.MSG_CFC_AKindOf        = dw.loadString('Startup/MMinit/MM.MSG_CFC_AKindOf');
+MM.MSG_CFC_Required        = dw.loadString('Startup/MMinit/MM.MSG_CFC_Required');
+MM.MSG_CFC_Optional        = dw.loadString('Startup/MMinit/MM.MSG_CFC_Optional');
+MM.MSG_CFC_CannotFindEntityToEdit  = dw.loadString('Startup/MMinit/MM.MSG_CFC_CannotFindEntityToEdit');
+MM.MSG_CFC_PartiallyParsedTree  = dw.loadString('Startup/MMinit/MM.MSG_CFC_PartiallyParsedTree');
+MM.MSG_CFC_FailedToParseTree  = dw.loadString('Startup/MMinit/MM.MSG_CFC_FailedToParseTree');
+MM.MSG_CFC_LocalAndAppServerPathsNotSame  = dw.loadString('Startup/MMinit/MM.MSG_CFC_LocalAndAppServerPathsNotSame');
+MM.MSG_CFC_AppServerAccessType  = dw.loadString('Startup/MMinit/MM.MSG_CFC_AppServerAccessType');
+MM.MSG_CFC_LocalPathToFiles    = dw.loadString('Startup/MMinit/MM.MSG_CFC_LocalPathToFiles');
+MM.MSG_CFC_AppServerPathToFile  = dw.loadString('Startup/MMinit/MM.MSG_CFC_AppServerPathToFile');
+
+MM.MSG_CFC_ParseErrEndQuote      = dw.loadString('Startup/MMinit/MM.MSG_CFC_ParseErrEndQuote');
+MM.MSG_CFC_ParseErrUnexpectedEQU  = dw.loadString('Startup/MMinit/MM.MSG_CFC_ParseErrUnexpectedEQU');
+MM.MSG_CFC_ParseErrValue      = dw.loadString('Startup/MMinit/MM.MSG_CFC_ParseErrValue');
+MM.MSG_CFC_wddxPacketParserError  = dw.loadString('Startup/MMinit/MM.MSG_CFC_wddxPacketParserError');
+MM.MSG_CFC_UnnamedPackage      = dw.loadString('Startup/MMinit/MM.MSG_CFC_UnnamedPackage');
+MM.MSG_CFC_PleasePutAValueHere    = dw.loadString('Startup/MMinit/MM.MSG_CFC_PleasePutAValueHere');
+MM.MSG_CFC_PleasePutAVariableHere  = dw.loadString('Startup/MMinit/MM.MSG_CFC_PleasePutAVariableHere');
+MM.MSG_CFC_PleasePutAnIDfor      = dw.loadString('Startup/MMinit/MM.MSG_CFC_PleasePutAnIDfor');
+MM.MSG_CFC_Invocation_Instruction1  = dw.loadString('Startup/MMinit/MM.MSG_CFC_Invocation_Instruction1');
+MM.MSG_CFC_Invocation_Instruction2  = dw.loadString('Startup/MMinit/MM.MSG_CFC_Invocation_Instruction2');
+MM.MSG_CFC_Invocation_Instruction3  = dw.loadString('Startup/MMinit/MM.MSG_CFC_Invocation_Instruction3');
+MM.MSG_CFC_Invocation_Instruction4  = dw.loadString('Startup/MMinit/MM.MSG_CFC_Invocation_Instruction4');
+MM.MSG_CFC_Invocation_Instruction5  = dw.loadString('Startup/MMinit/MM.MSG_CFC_Invocation_Instruction5');
+MM.MSG_CFC_Invocation_Instruction6  = dw.loadString('Startup/MMinit/MM.MSG_CFC_Invocation_Instruction6');
+
+MM.MSG_CFC_Details        = dw.loadString('Startup/MMinit/MM.MSG_CFC_Details');
+MM.MSG_CFC_TTT_Name        = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Name');
+MM.MSG_CFC_TTT_Physicalpath    = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Physicalpath');
+MM.MSG_CFC_TTT_Extends      = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Extends');
+MM.MSG_CFC_TTT_Access      = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Access');
+MM.MSG_CFC_TTT_ReturnType    = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_ReturnType');
+MM.MSG_CFC_TTT_OutputAllowed  = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_OutputAllowed');
+MM.MSG_CFC_TTT_Type        = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Type');
+MM.MSG_CFC_TTT_Required      = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Required');
+MM.MSG_CFC_TTT_Roles      = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Roles');
+MM.MSG_CFC_TTT_ImplementedIn  = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_ImplementedIn');
+MM.MSG_CFC_TTT_Inherited    = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Inherited');
+MM.MSG_CFC_TTT_DefaultValue    = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_DefaultValue');
+MM.MSG_CFC_TTT_Error      = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Error');
+MM.MSG_CFC_TTT_Error_Short    = dw.loadString('Startup/MMinit/MM.MSG_CFC_TTT_Error_Short');
+
+//********* Web Services *************
+
+MM.MSG_WebService_InstructionsTitle  = dw.loadString('Startup/MMinit/MM.MSG_WebService_InstructionsTitle');
+// step 1 is the same as MM.MSG_Dynamic_InstructionsStep1
+// step 2 is the same as MM.MSG_Dynamic_InstructionsStep2
+MM.MSG_WebService_InstructionsStep3 = dw.loadString('Startup/MMinit/MM.MSG_WebService_InstructionsStep3');
+MM.MSG_WebService_InstructionsStep4 = dw.loadString('Startup/MMinit/MM.MSG_WebService_InstructionsStep4');
+
+//********* Server Debug Output *************
+
+// step 1 is the same as MM.MSG_Dynamic_InstructionsStep1
+// step 2 is the same as MM.MSG_Dynamic_InstructionsStep2
+MM.MSG_ServerDebug_InstructionsStep3  = dw.loadString('Startup/MMinit/MM.MSG_ServerDebug_InstructionsStep3');
+
+//********* Reflector Error Messages *************
+
+MM.MSG_ErrNodeName            = dw.loadString('Startup/MMinit/MM.MSG_ErrNodeName');
+MM.MSG_OUTOFMEMORY            = dw.loadString('Startup/MMinit/MM.MSG_OUTOFMEMORY');
+MM.MSG_INVALIDSIGNATURE          = dw.loadString('Startup/MMinit/MM.MSG_INVALIDSIGNATURE');
+MM.MSG_INVALIDFILENAME          = dw.loadString('Startup/MMinit/MM.MSG_INVALIDFILENAME');
+MM.MSG_READFAILURE            = dw.loadString('Startup/MMinit/MM.MSG_READFAILURE');
+MM.MSG_UNKNOWNERROR            = dw.loadString('Startup/MMinit/MM.MSG_UNKNOWNERROR');
+MM.MSG_COMERROR              = dw.loadString('Startup/MMinit/MM.MSG_COMERROR');
+MM.MSG_MISSINGPROXYGENERATOR      = dw.loadString('Startup/MMinit/MM.MSG_MISSINGPROXYGENERATOR');
+
+/************************** TEMPLATES *************************/
+MM.MSG_AlreadyEdit = dw.loadString('Startup/MMinit/MM.MSG_AlreadyEdit');
+MM.MSG_WrappingExistingEdit = dw.loadString('Startup/MMinit/MM.MSG_WrappingExistingEdit');
+MM.MSG_SaveDW4First = dw.loadString('Startup/MMinit/MM.MSG_SaveDW4First');
+MM.MSG_CantInsertRepeatEntry = dw.loadString('Startup/MMinit/MM.MSG_CantInsertRepeatEntry');
+MM.MSG_EditAttrNoTemplate = dw.loadString('Startup/MMinit/MM.MSG_EditAttrNoTemplate');
+MM.MSG_EditAttrLocked = dw.loadString('Startup/MMinit/MM.MSG_EditAttrLocked');
+MM.MSG_InEdit = dw.loadString('Startup/MMinit/MM.MSG_InEdit');
+MM.MSG_NoRepeatEntries = dw.loadString('Startup/MMinit/MM.MSG_NoRepeatEntries');
+
+MM.RepeatTableRowsWarning    = dw.loadString('Startup/MMinit/MM.RepeatTableRowsWarning');
+MM.CantSaveAsTemplateMessage = dw.loadString('Startup/MMinit/MM.CantSaveAsTemplateMessage');
+MM.MakeInstanceFirst = dw.loadString('Startup/MMinit/MM.MakeInstanceFirst');
+
+MM.TEMPLATE_UTILS_IllegalName = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_IllegalName');
+MM.TEMPLATE_UTILS_IllegalLabel = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_IllegalLabel');
+MM.TEMPLATE_UTILS_EmptyName = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_EmptyName');
+MM.TEMPLATE_UTILS_AlreadyExists = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_AlreadyExists');
+MM.TEMPLATE_UTILS_AlreadyExists_Repeat = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_AlreadyExists_Repeat');
+MM.TEMPLATE_UTILS_NumberNotAllowed = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_NumberNotAllowed');
+MM.TEMPLATE_UTILS_DoCreateParam = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_DoCreateParam');
+MM.TEMPLATE_UTILS_DoSaveAsTemplate = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_DoSaveAsTemplate');
+MM.TEMPLATE_UTILS_NoEditAreas = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_NoEditAreas');
+MM.TEMPLATE_UTILS_CantInsertRepeatHere = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_CantInsertRepeatHere');
+MM.TEMPLATE_UTILS_CantInsertOptionalHere = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_CantInsertOptionalHere');
+MM.TEMPLATE_UTILS_CantInsertEditableHere = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_CantInsertEditableHere');
+MM.TEMPLATE_UTILS_CantMakeEditableAttrHere = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_CantMakeEditableAttrHere');
+MM.TEMPLATE_UTILS_FeedYourHead = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_FeedYourHead');
+MM.TEMPLATE_UTILS_EditOverlap = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_EditOverlap');
+MM.TEMPLATE_UTILS_CantRemoveDW4TemplateContent = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_CantRemoveDW4TemplateContent');
+MM.TEMPLATE_UTILS_Label_Yes = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_Label_Yes');
+MM.TEMPLATE_UTILS_Label_No =  dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_Label_No');
+MM.TEMPLATE_UTILS_Label_OK =  dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_Label_OK');
+MM.TEMPLATE_UTILS_Label_Cancel =  dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_Label_Cancel');
+MM.TEMPLATE_UTILS_LocalEdit_Suffix = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_LocalEdit_Suffix');
+MM.TEMPLATE_UTILS_MultipleCellsNotAllowed = dw.loadString('Startup/MMinit/MM.TEMPLATE_UTILS_MultipleCellsNotAllowed');
+
+/**** OPTIONAL CONTENT *****/
+MM.Optional_LABEL_Basic    = dw.loadString('Startup/MMinit/MM.Optional_LABEL_Basic');
+MM.Optional_LABEL_Advanced = dw.loadString('Startup/MMinit/MM.Optional_LABEL_Advanced');
+
+MM.Optional_MSG_None  = dw.loadString('Startup/MMinit/MM.Optional_MSG_None'); //Used in params popup.
+MM.Optional_MSG_MustPick = dw.loadString('Startup/MMinit/MM.Optional_MSG_MustPick')
+
+MM.Optional_MSG_ParamExists = dw.loadString('Startup/MMinit/MM.Optional_MSG_ParamExists');
+
+MM.NewTemplateWarning = dw.loadString('Startup/MMinit/MM.NewTemplateWarning');
+MM.FunkyNestingWarning = dw.loadString('Startup/MMinit/MM.FunkyNestingWarning');
+MM.FunkyNestingWarning2 = dw.loadString('Startup/MMinit/MM.FunkyNestingWarning2');
+
+MM.LABEL_StoredProcDataSet      = dw.loadString('Startup/MMinit/MM.LABEL_StoredProcDataSet');
+MM.LABEL_TitleShowIfEmptyDataSet  = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfEmptyDataSet');
+MM.LABEL_TitleShowIfNotEmptyDataSet  = dw.loadString('Startup/MMinit/MM.LABEL_TitleShowIfNotEmptyDataSet');
+MM.MSG_NoDataSetName        = dw.loadString('Startup/MMinit/MM.MSG_NoDataSetName');
+MM.MSG_DupeDataSetName        = dw.loadString('Startup/MMinit/MM.MSG_DupeDataSetName');
+MM.MSG_InvalidDataSetName = dw.loadString('Startup/MMinit/MM.MSG_InvalidDataSetName');
+MM.MSG_UpdateDataSetRefs      = dw.loadString('Startup/MMinit/MM.MSG_UpdateDataSetRefs');
+
+MM.MSG_NeedPageNavDataSet =
+	dw.loadString('Startup/MMinit/MM.MSG_NeedPageNavDataSet') +
+	dw.loadString('Startup/MMinit/MM.MSG_NeedPageNavDataSet_1');
+
+MM.MSG_DataSetNotPageNav =
+	dw.loadString('Startup/MMinit/MM.MSG_DataSetNotPageNav') +
+	dw.loadString('Startup/MMinit/MM.MSG_DataSetNotPageNav_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_DataSetNotPageNav_2') +
+	dw.loadString('Startup/MMinit/MM.MSG_DataSetNotPageNav_3');
+
+MM.MSG_DataSetAlreadyPaging =
+	dw.loadString('Startup/MMinit/MM.MSG_DataSetAlreadyPaging') +
+	dw.loadString('Startup/MMinit/MM.MSG_DataSetAlreadyPaging_1');
+
+// These strings appear in the Insert > Server menu
+// The underscores represent the neumonic character
+
+MM.MENU_Recordset = dw.loadString('Startup/MMinit/MM.MENU_Recordset');
+MM.MENU_RecordsetNavBar = dw.loadString('Startup/MMinit/MM.MENU_RecordsetNavBar');
+MM.MENU_RecordsetNavStatus = dw.loadString('Startup/MMinit/MM.MENU_RecordsetNavStatus');
+
+MM.MENU_DataSet = dw.loadString('Startup/MMinit/MM.MENU_DataSet');
+MM.MENU_DataSetNavBar = dw.loadString('Startup/MMinit/MM.MENU_DataSetNavBar');
+MM.MENU_DataSetNavStatus = dw.loadString('Startup/MMinit/MM.MENU_DataSetNavStatus');
+
+// ASP.NET Recordset/Stored Proc dialogss
+MM.LABEL_ParamAttributesType = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesType');
+MM.LABEL_ParamAttributesRuntimeValue = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesRuntimeValue');
+MM.LABEL_ParamAttributesValue = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesValue');
+MM.LABEL_ParamAttributesDefaultValue = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesDefaultValue');
+MM.LABEL_ParamAttributesSize = dw.loadString('Startup/MMinit/MM.LABEL_ParamAttributesSize');
+MM.LABEL_ParamPlaceholder = "&nbsp;";
+MM.MSG_NeedParamTestValue = dw.loadString('Startup/MMinit/MM.MSG_NeedParamTestValue');
+MM.MSG_MissingParamSize = dw.loadString('Startup/MMinit/MM.MSG_MissingParamSize');
+
+//  ASP.NET DataGrid dialogs
+MM.MSG_NeedColumnTitle = dw.loadString('Startup/MMinit/MM.MSG_NeedColumnTitle');
+MM.LABEL_DataGridColunmNames= new Array(dw.loadString('Startup/MMinit/MM.LABEL_DataGridColunmNames'),dw.loadString('Startup/MMinit/MM.LABEL_DataGridColunmNames_1'));
+MM.LABEL_LinkButton = dw.loadString('Startup/MMinit/MM.LABEL_LinkButton');
+MM.LABEL_PushButton = dw.loadString('Startup/MMinit/MM.LABEL_PushButton');
+MM.LABEL_DataGridEditItemTemplateDesc =
+	dw.loadString('Startup/MMinit/MM.LABEL_DataGridEditItemTemplateDesc') +
+	dw.loadString('Startup/MMinit/MM.LABEL_DataGridEditItemTemplateDesc_1') +
+	dw.loadString('Startup/MMinit/MM.LABEL_DataGridEditItemTemplateDesc_2') +
+	dw.loadString('Startup/MMinit/MM.LABEL_DataGridEditItemTemplateDesc_3');
+
+MM.MSG_MySQLWantsHostName =
+	dw.loadString('Startup/MMinit/MM.MSG_MySQLWantsHostName') +
+	dw.loadString('Startup/MMinit/MM.MSG_MySQLWantsHostName_1');
+
+MM.MSG_MySQLWantsUserName =
+	dw.loadString('Startup/MMinit/MM.MSG_MySQLWantsUserName') +
+	dw.loadString('Startup/MMinit/MM.MSG_MySQLWantsUserName_1');
+
+MM.MSG_MySQLWantsPassword =
+	dw.loadString('Startup/MMinit/MM.MSG_MySQLWantsPassword') +
+	dw.loadString('Startup/MMinit/MM.MSG_MySQLWantsPassword_1');
+
+MM.MSG_MySQLRequiresDatabase = dw.loadString('Startup/MMinit/MM.MSG_MySQLRequiresDatabase') ;
+
+
+//  OLE DB templates
+
+MM.OLE_DB_TEMPLATE_Oracle_Microsoft_Provider = dw.loadString('Startup/MMinit/MM.OLE_DB_TEMPLATE_Oracle_Microsoft_Provider');
+MM.OLE_DB_TEMPLATE_Oracle_Oracle_Provider = dw.loadString('Startup/MMinit/MM.OLE_DB_TEMPLATE_Oracle_Oracle_Provider');
+MM.OLE_DB_TEMPLATE_Microsoft_SQL_Server = dw.loadString('Startup/MMinit/MM.OLE_DB_TEMPLATE_Microsoft_SQL_Server');
+MM.OLE_DB_TEMPLATE_Microsoft_Access_97 = dw.loadString('Startup/MMinit/MM.OLE_DB_TEMPLATE_Microsoft_Access_97');
+MM.OLE_DB_TEMPLATE_Microsoft_Access_2000 = dw.loadString('Startup/MMinit/MM.OLE_DB_TEMPLATE_Microsoft_Access_2000');
+MM.OLE_DB_TEMPLATE_UDL_File = dw.loadString('Startup/MMinit/MM.OLE_DB_TEMPLATE_UDL_File');
+
+MM.LABEL_TitleDataSet        = dw.loadString('Startup/MMinit/MM.LABEL_TitleDataSet');
+MM.LABEL_TitleDataGrid	     = dw.loadString('Startup/MMinit/MM.LABEL_TitleDataGrid');
+MM.LABEL_TitleDataList       = dw.loadString('Startup/MMinit/MM.LABEL_TitleDataList');
+MM.LABEL_TitleASPButton      = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPButton');
+MM.LABEL_TitleASPImageButton = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPImageButton');
+MM.LABEL_TitleASPTextbox     = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPTextbox');
+MM.LABEL_TitleASPCheckbox    = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPCheckbox');
+MM.LABEL_TitleASPRadiobutton = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPRadiobutton');
+MM.LABEL_TitleASPLabel       = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPLabel');
+MM.LABEL_TitleASPDropDownList    = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPDropDownList');
+MM.LABEL_TitleASPListBox         = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPListBox');
+MM.LABEL_TitleASPCheckBoxList    = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPCheckBoxList');
+MM.LABEL_TitleASPRadioButtonList = dw.loadString('Startup/MMinit/MM.LABEL_TitleASPRadioButtonList');
+
+// loading control errors
+
+MM.MSG_MENU_ERROR_1 = dw.loadString('Startup/MMinit/MM.MSG_MENU_ERROR_1');
+MM.MSG_MENU_ERROR_2 = dw.loadString('Startup/MMinit/MM.MSG_MENU_ERROR_2');
+MM.MSG_MENU_ERROR_3 = dw.loadString('Startup/MMinit/MM.MSG_MENU_ERROR_3');
+MM.MSG_MENU_ERROR_4 = dw.loadString('Startup/MMinit/MM.MSG_MENU_ERROR_4');
+MM.MSG_MENU_ERROR_5 = dw.loadString('Startup/MMinit/MM.MSG_MENU_ERROR_5');
+MM.MSG_MENU_ERROR_6 = dw.loadString('Startup/MMinit/MM.MSG_MENU_ERROR_6');
+MM.MSG_MENU_ERROR_7 = dw.loadString('Startup/MMinit/MM.MSG_MENU_ERROR_7')
+
+// UsableNet extensions
+MM.LABEL_MANUAL	  = dw.loadString('Startup/MMinit/MM.LABEL_MANUAL');
+
+//Spry XML Dataset
+MM.LABEL_DTColumn						= dw.loadString('Startup/MMinit/MM.LABEL_DTColumn');
+MM.LABEL_DDColumn						= dw.loadString('Startup/MMinit/MM.LABEL_DDColumn');
+MM.LABEL_DisplayColumn					= dw.loadString('Startup/MMinit/MM.LABEL_DisplayColumn');
+MM.LABEL_ValueColumn					= dw.loadString('Startup/MMinit/MM.LABEL_ValueColumn');
+MM.LABEL_SpryColGrid= new Array(dw.loadString('Startup/MMinit/MM.LABEL_SpryColGrid'),dw.loadString('Startup/MMinit/MM.LABEL_SpryColGrid_1'));
+MM.LABEL_SpryColTypeGrid= new Array(dw.loadString('Startup/MMinit/MM.LABEL_SpryColTypeGrid'),dw.loadString('Startup/MMinit/MM.LABEL_SpryColTypeGrid_1'));
+MM.LABEL_SpryType						= dw.loadString('Startup/MMinit/MM.LABEL_SpryType');
+MM.LABEL_TypeString						= dw.loadString('Startup/MMinit/MM.LABEL_TypeString');
+MM.MSG_Spry_DSName_DataReferences		= dw.loadString('Startup/MMinit/MM.MSG_Spry_DSName_DataReferences')
+MM.MSG_Spry_XMLFeed_DataReferences		= dw.loadString('Startup/MMinit/MM.MSG_Spry_XMLFeed_DataReferences')
+MM.MSG_Spry_XPath_DataReferences		= dw.loadString('Startup/MMinit/MM.MSG_Spry_XPath_DataReferences')
+MM.MSG_Spry_Del_DataReferences			= dw.loadString('Startup/MMinit/MM.MSG_Spry_Del_DataReferences')
+MM.MSG_DefineASpryDS					= dw.loadString('Startup/MMinit/MM.MSG_DefineASpryDS');
+MM.MSG_GetSchemaBeforePreviewing		= dw.loadString('Startup/MMinit/MM.MSG_GetSchemaBeforePreviewing');
+MM.MSG_DefineASpryXPathBeforePreviewing	= dw.loadString('Startup/MMinit/MM.MSG_DefineASpryXPathBeforePreviewing');
+MM.MSG_DefineASpryXMLFeed				= dw.loadString('Startup/MMinit/MM.MSG_DefineASpryXMLFeed');
+MM.MSG_DefineASpryXPath					= dw.loadString('Startup/MMinit/MM.MSG_DefineASpryXPath');
+MM.MSG_DefineASpryDSName				= dw.loadString('Startup/MMinit/MM.MSG_DefineASpryDSName');
+MM.MSG_InvalidCharsInSpryDSName			= dw.loadString('Startup/MMinit/MM.MSG_InvalidCharsInSpryDSName');
+MM.MSG_EnterAutoRefreshMilliSeconds		= dw.loadString('Startup/MMinit/MM.MSG_EnterAutoRefreshMilliSeconds')
+MM.MSG_InvalidCharsInSpryAutoRefreshMS	= dw.loadString('Startup/MMinit/MM.MSG_InvalidCharsInSpryAutoRefreshMS');
+MM.MSG_NestedSpryRegions				= dw.loadString('Startup/MMinit/MM.MSG_NestedSpryRegions');
+MM.MSG_InsertASpryRegion				= dw.loadString('Startup/MMinit/MM.MSG_InsertASpryRegion')
+MM.MSG_SpryRegionsNeedToBeInsideTheBody = dw.loadString('Startup/MMinit/MM.MSG_SpryRegionsNeedToBeInsideTheBody');
+MM.MSG_DataSetExisting					= dw.loadString('Startup/MMinit/MM.MSG_DataSetExisting');
+MM.LABEL_SpryDataTypeCols= new Array(dw.loadString('Startup/MMinit/MM.LABEL_SpryDataTypeCols'),dw.loadString('Startup/MMinit/MM.LABEL_SpryDataTypeCols_1'),dw.loadString('Startup/MMinit/MM.LABEL_SpryDataTypeCols_2'),dw.loadString('Startup/MMinit/MM.LABEL_SpryDataTypeCols_3'));
+
+
+//Spry Repeat List
+MM.SPRY_REPEAT_DESC_UL_TAG				= dw.loadString('Startup/MMinit/MM.SPRY_REPEAT_DESC_UL_TAG');
+MM.SPRY_REPEAT_DESC_OL_TAG				= dw.loadString('Startup/MMinit/MM.SPRY_REPEAT_DESC_OL_TAG');
+MM.SPRY_REPEAT_DESC_DL_TAG				= dw.loadString('Startup/MMinit/MM.SPRY_REPEAT_DESC_DL_TAG');
+MM.SPRY_REPEAT_DESC_SELECT_TAG			= dw.loadString('Startup/MMinit/MM.SPRY_REPEAT_DESC_SELECT_TAG');
+
+//sort
+MM.LABEL_SortNo							= dw.loadString('Startup/MMinit/MM.LABEL_SortNo');
+MM.LABEL_SortYes						= dw.loadString('Startup/MMinit/MM.LABEL_SortYes');
+
+//sort order
+MM.LABEL_SortAsc						= dw.loadString('Startup/MMinit/MM.LABEL_SortAsc');
+MM.LABEL_SortDesc						= dw.loadString('Startup/MMinit/MM.LABEL_SortDesc');
+MM.LABEL_SortToggle						= dw.loadString('Startup/MMinit/MM.LABEL_SortToggle');
+
+//sort order value
+MM.VALUE_SortAsc						= dw.loadString('Startup/MMinit/MM.VALUE_SortAsc');
+MM.VALUE_SortDesc						= dw.loadString('Startup/MMinit/MM.VALUE_SortDesc');
+MM.VALUE_SortToggle						= dw.loadString('Startup/MMinit/MM.VALUE_SortToggle');
+
+//sortable value
+MM.VALUE_SortNo							= dw.loadString('Startup/MMinit/MM.VALUE_SortNo');
+MM.VALUE_SortYes						= dw.loadString('Startup/MMinit/MM.VALUE_SortYes');
+
+// Shared file errors
+
+// first %s - function name, second - variable name, third - string that we're having trouble parsing.
+MM.MSG_ParsingError = dw.loadString('Startup/MMinit/MM.MSG_ParsingError');
+
+//Added for ColdFusion 7 for Dreamweaver extension
+// messages
+
+MM.MSG_ValuePositiveInteger				= dw.loadString('Startup/MMinit/MM.MSG_ValuePositiveInteger');
+MM.MSG_CFC_PP_InstructionsTitle			= dw.loadString('Startup/MMinit/MM.MSG_CFC_PP_InstructionsTitle')
+MM.MSG_CFC_old_AdvRS					= dw.loadString('Startup/MMinit/MM.MSG_CFC_old_AdvRS');
+MM.MSG_CFC_Bad							= dw.loadString('Startup/MMinit/MM.MSG_CFC_Bad');
+MM.MSG_RS_Type_Block					= dw.loadString('Startup/MMinit/MM.MSG_RS_Type_Block');
+MM.MSG_Select_Function					= dw.loadString('Startup/MMinit/MM.MSG_Select_Function')
+MM.MSG_Choose_Package					= dw.loadString('Startup/MMinit/MM.MSG_Choose_Package');
+MM.MSG_Choose_Component					= dw.loadString('Startup/MMinit/MM.MSG_Choose_Component');
+MM.MSG_Choose_Function					= dw.loadString('Startup/MMinit/MM.MSG_Choose_Function');
+MM.MSG_Invalid_SQL						= dw.loadString('Startup/MMinit/MM.MSG_Invalid_SQL');
+MM.MSG_Enter_Function_Name				= dw.loadString('Startup/MMinit/MM.MSG_Enter_Function_Name');
+MM.MSG_Valid_Function_Name				= dw.loadString('Startup/MMinit/MM.MSG_Valid_Function_Name');
+MM.MSG_Existing_Function_Name			= dw.loadString('Startup/MMinit/MM.MSG_Existing_Function_Name');
+MM.MSG_NO_CFCOMPONENT					= dw.loadString('Startup/MMinit/MM.MSG_NO_CFCOMPONENT');
+MM.MSG_NoAdminPassword					= dw.loadString('Startup/MMinit/MM.MSG_NoAdminPassword');
+MM.MSG_CFError							= dw.loadString('Startup/MMinit/MM.MSG_CFError') +
+	dw.loadString('Startup/MMinit/MM.MSG_CFError_1') +
+	dw.loadString('Startup/MMinit/MM.MSG_CFError_2') +
+	dw.loadString('Startup/MMinit/MM.MSG_CFError_3');
+MM.MSG_DebuggingComplete				= dw.loadString('Startup/MMinit/MM.MSG_DebuggingComplete');
+MM.MSG_DatabaseRequired					= dw.loadString('Startup/MMinit/MM.MSG_DatabaseRequired');
+MM.MSG_DatabaseFileRequired				= dw.loadString('Startup/MMinit/MM.MSG_DatabaseFileRequired');
+MM.MSG_ODBCDSNRequired					= dw.loadString('Startup/MMinit/MM.MSG_ODBCDSNRequired');
+MM.MSG_SIDNameRequired					= dw.loadString('Startup/MMinit/MM.MSG_SIDNameRequired');
+MM.MSG_HostNameRequired					= dw.loadString('Startup/MMinit/MM.MSG_HostNameRequired');
+MM.MSG_InformixServerNameRequired		= dw.loadString('Startup/MMinit/MM.MSG_InformixServerNameRequired');
+MM.MSG_JDBCUrlRequired					= dw.loadString('Startup/MMinit/MM.MSG_JDBCUrlRequired');
+MM.MSG_DriverClassRequired				= dw.loadString('Startup/MMinit/MM.MSG_DriverClassRequired');
+MM.MSG_DataSourceTestOK					= dw.loadString('Startup/MMinit/MM.MSG_DataSourceTestOK');
+MM.MSG_DSNAlreadyExists					= dw.loadString('Startup/MMinit/MM.MSG_DSNAlreadyExists');
+MM.MSG_CFCNameRequired					= dw.loadString('Startup/MMinit/MM.MSG_CFCNameRequired');
+MM.MSG_CFCDirectoryRequired				= dw.loadString('Startup/MMinit/MM.MSG_CFCDirectoryRequired');
+MM.MSG_CFCRecordsetRequired				= dw.loadString('Startup/MMinit/MM.MSG_CFCRecordsetRequired');
+MM.MSG_CFCFunctionNameRequired			= dw.loadString('Startup/MMinit/MM.MSG_CFCFunctionNameRequired');
+MM.MSG_CFCDatasourceRequired			= dw.loadString('Startup/MMinit/MM.MSG_CFCDatasourceRequired');
+MM.MSG_CFCTableRequired					= dw.loadString('Startup/MMinit/MM.MSG_CFCTableRequired');
+MM.MSG_CFCFileWriteError				= dw.loadString('Startup/MMinit/MM.MSG_CFCFileWriteError');
+MM.MSG_CFCFileExists					= dw.loadString('Startup/MMinit/MM.MSG_CFCFileExists');
+MM.MSG_CFCFileMissing					= dw.loadString('Startup/MMinit/MM.MSG_CFCFileMissing');
+MM.MSG_CFCFilenameError					= dw.loadString('Startup/MMinit/MM.MSG_CFCFilenameError');
+MM.MSG_CFCComponentNotInSite			= dw.loadString('Startup/MMinit/MM.MSG_CFCComponentNotInSite');
+MM.MSG_CFCUploadError					= dw.loadString('Startup/MMinit/MM.MSG_CFCUploadError');
+MM.MSG_DSWrongRestrictConn				= dw.loadString('Startup/MMinit/MM.MSG_DSWrongRestrictConn');
+MM.MSG_NewComponentNoValidFunction		= dw.loadString('Startup/MMinit/MM.MSG_NewComponentNoValidFunction');
+MM.MSG_NewComponentNoCFCsUploaded		= dw.loadString('Startup/MMinit/MM.MSG_NewComponentNoCFCsUploaded');
+MM.MSG_DSDescriptionNoClosedComment		= dw.loadString('Startup/MMinit/MM.MSG_DSDescriptionNoClosedComment');
+MM.MSG_DSConnStrNoClosedComment			= dw.loadString('Startup/MMinit/MM.MSG_DSConnStrNoClosedComment');
+MM.MSG_DSDescrFoundCommentTagUnclosed	= dw.loadString('Startup/MMinit/MM.MSG_DSDescrFoundCommentTagUnclosed');
+MM.MSG_DSConnStrFoundCommentTagUnclosed	= dw.loadString('Startup/MMinit/MM.MSG_DSConnStrFoundCommentTagUnclosed');
+MM.MSG_CFAdminPasswordRequired			= dw.loadString('Startup/MMinit/MM.MSG_CFAdminPasswordRequired');
+MM.MSG_CFErrorOccured					= dw.loadString('Startup/MMinit/MM.MSG_CFErrorOccured');
+MM.MSG_DebuggingOff						= dw.loadString('Startup/MMinit/MM.MSG_DebuggingOff');
+MM.MSG_RestoringLiveDebugButton			= dw.loadString('Startup/MMinit/MM.MSG_RestoringLiveDebugButton');
+
+//--------------- END LOCALIZEABLE   ---------------
+
+  //********* Non-localizable Variable Names *************
+  MM.LABEL_Request  = "Request";
+  MM.LABEL_RequestJSP  = "request";
+  MM.LABEL_Session  = "Session";
+  MM.LABEL_SessionJSP  = "session";
+  MM.LABEL_Application = "Application";
+  MM.LABEL_Form = "Form";
+  MM.LABEL_Client = "Client";
+  MM.LABEL_Cookie = "Cookie";
+  MM.LABEL_CGI = "CGI";
+  MM.LABEL_URL = "URL";
+  MM.LABEL_Server = "Server";
+  MM.LABEL_Variables = "Variables";
+  MM.LABEL_Environment = "Environment";
+  
+  //Dynamic Data
+  MM.LABEL_DynamicExpression = "text";
+
+  MM.BTN_EngInsertRecord  = "Insert Record"; // appears on Submit button in user's document - leave in English for Latin1 docs
+  MM.BTN_EngUpdateRecord  = "Update Record"; // appears on Submit button in user's document
+
+  MM.MSG_dbgNoScript = new Array(strDbgNoScript, strDbgNoScriptDB);
+  MM.MSG_dbgNoApplet = new Array(strDbgNoApplet, strDbgNoAppletDB);
+
+  MM.OptionalAutonamePreamble = "OptionalRegion"; //Used for autonaming optional regions
+  MM.EditAutonamePreamble = "EditRegion";
+  MM.RepeatAutonamePreamble = "RepeatRegion";
+
+  // Leave in English for Latin1 docs in Asian languages to prevent corruption
+  MM.LABEL_EngRSNavBeforeFirst = "Records";
+  MM.LABEL_EngRSNavBeforeLast  = "to";
+  MM.LABEL_EngRSNavBeforeTotal = "of";
+  MM.LABEL_EngRSNavAfterTotal  = "";
+
+  MM.LABEL_EngNewMoveToFirstLinkLabel = "First";
+  MM.LABEL_EngNewMoveToPrevLinkLabel  = "Previous";
+  MM.LABEL_EngNewMoveToNextLinkLabel  = "Next";
+  MM.LABEL_EngNewMoveToLastLinkLabel  = "Last";
+
+  //********* Inspectors Coordinates *************
+
+  //ASP Command
+  MM.POS_AspCommand_Timeoutlabel_Left    = 94;
+  MM.POS_AspCommand_Timeoutlabel_Top    = 65;
+  MM.POS_AspCommand_PreparedSelection_Top  = 65;
+
+  //ASP Recordset
+  MM.POS_AspRecordset_SQLLayer_Left        = 104;
+  MM.POS_AspRecordset_ConnectionNameLayer_Left  = 104;
+  MM.POS_AspRecordset_CursorTypelabel_Top      = 52;
+  MM.POS_AspRecordset_CursorLocationlabel_Top    = 72;
+
+  //ASP RepeatedRegion
+  MM.POS_AspRepeatRegion_TimesLayerShowAllLabel_Top  = 28;
+  MM.POS_AspRepeatRegion_TimesLayerShowAllLabel_Left  = 357;
+
+  //ColdFusion CFLOOP
+  MM.POS_CFLoop_TimesLayerShowAllLabel_Top  = 28;
+  MM.POS_CFLoop__TimesLayerShowAllLabel_Left  = 357;
+
+  //ColdFusion CFQUERY
+  MM.POS_CFQuery_CursorTypelabel_Top  = 45;
+  MM.POS_CFQuery_CursorTypelabel_Left  = 114;
+
+  //ColdFusion STOREDPROC
+  MM.POS_CFStoredProc_Timeoutlabel_Top  = 44;
+  MM.POS_CFStoredProc_ReturnResultsetLayer_Top = 52;
+
+  //JSP Callable
+  MM.POS_JspCallable_TimeOutlabel_Left  = 94;
+  MM.POS_JspCallable_ReturnRecordsLayer_Left = 101;
+
+  //JSP Prepared
+  MM.POS_JspPrepared_ConnectionNameLayer_Left = 105;
+
+  //JSP RepeatedRegion
+  MM.POS_JspRepeatRegion_TimesLayerShowAllLabel_Top  = 28;
+  MM.POS_JspRepeatRegion_TimesLayerShowAllLabel_Left  = 357;
+
+  //JSP Resultset
+  MM.POS_JspResultset_ResultsetTypelabel_Top  = 52;
+  MM.POS_JspResultset_MaxRowslabel_Top    = 68;
+  MM.POS_JspResultset_TimeOutlabel_Top    = 68;
+  MM.POS_JspResultset_TimeOutlabel_Left    = 222;
+  MM.POS_JspResultset_MaxRowslabel_Left    = 103;
+
+  //Recordset Command
+  MM.POS_Recordset_PlusLayer_Left    = 74;
+  MM.POS_Recordset_MinusLayer_Left  = 96;
+
+  //ASP Command
+  MM.POS_AspCommand_PlusLayer_Left  = 65;
+  MM.POS_AspCommand_MinusLayer_Left  = 87;
+
+  //JSP Callable (SB)
+  MM.POS_JspCallable_PlusLayer_Left  = 74;
+  MM.POS_JspCallable_MinusLayer_Left  = 96;
+  MM.POS_JspCallable_PlusLayer_Top  = 122;
+  MM.POS_JspCallable_MinusLayer_Top  = 122;
+
+  //JSP Prepared (SB)
+  MM.POS_JspPrepared_PlusLayer_Left  = 73;
+  MM.POS_JspPrepared_MinusLayer_Left  = 95;
+
+  //ColdFusion STOREDPROC (SB)
+  MM.POS_CFStoredProc_PlusLayer_Left  = 75;
+  MM.POS_CFStoredProc_MinusLayer_Left  = 97;
+
+  //JavaBean
+  MM.POS_JavaBean_Top = 188;
+
+  // The following are used when generating unique
+  // recordset/dataset names (i.e. "Recordset1").
+  // The translations (if there are any) shouldn't
+  // contain high-ascii or double-byte.
+
+  MM.LABEL_RecordsetBaseName = "Recordset";
+  MM.LABEL_DataSetBaseName = "DataSet";
+  MM.LABEL_DataGridBaseName = "DataGrid";
+  MM.LABEL_DataListBaseName = "DataList";
+  MM.LABEL_SpryDataSetName = "Spry XML Data Set";
+  MM.LABEL_SpryDataSetBaseName = "ds";
+
+  MM.VALUE_SpryDataTypeCols	 = new Array("string", "number", "date", "image");
+	
+  //Spry Validation Widgets
+  MM.SPRY_ValidationWidgetsGroup = new Array("Spry.Widget.ValidationTextField","Spry.Widget.ValidationSelect","Spry.Widget.ValidationCheckbox","Spry.Widget.ValidationTextarea");
+	
+  //Spry Widget Constructors
+  MM.SPRY_WidgetConstructors = new Array();
+}
+
+	</script>
+</head>
+<body>
+</body>
+</html>

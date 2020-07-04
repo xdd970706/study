@@ -1,0 +1,144 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/applet/title" /></title>
+  
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var ALIGNLIST;
+var theUIObjects; 
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	ALIGNLIST = new ListControl("thealign"); 
+	theUIObjects  = new Array(ALIGNLIST); 
+
+  tagDialog.populateDropDownList(ALIGNLIST, theAlignObjectCap, theAlignObjectVal, 1); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/HTML/applet/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Code" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecode" type="text" class="basicTextField" id="attr:applet:code" attname="code" required="true" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/HTML/applet/button/browseBtn/Browse" onClick="tagDialog.browseFile('thecode');focus(this)">
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Codebase" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecodebase" type="text" class="basicTextField" id="attr:applet:codebase" attname="codebase" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/HTML/applet/button/browseBtn/Browse" onClick="tagDialog.browseFile('thecodebase');focus(this)">
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Archive" /> </td>
+      <td nowrap="nowrap">
+        <input name="thearchive" type="text" class="basicTextField" id="attr:applet:archive" attname="archive" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Name" /> </td>
+      <td nowrap="nowrap">
+        <input name="thename" type="text" class="medTField" id="attr:applet:name" attname="name" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Alignment" /> </td>
+      <td nowrap="nowrap">
+        <select name="thealign" class="alignList" id="attr:applet:align" attname="align">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Height" /> </td>
+      <td nowrap="nowrap">
+        <input name="theheight" type="text" class="smallNumOrChar" id="attr:applet:height" attname="height" required="true" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Width" /> </td>
+      <td nowrap="nowrap">
+        <input name="thewidth" type="text" class="smallNumOrChar" id="attr:applet:width" attname="width" required="true" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Vertical" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevspace" type="text" class="smallNumOrChar" id="attr:applet:vspace" attname="vspace" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Horizontal" /> </td>
+      <td nowrap="nowrap">
+        <input name="thehspace" type="text" class="smallNumOrChar" id="attr:applet:hspace" attname="hspace" />
+      </td>
+    </tr>
+  </table> 
+</div> 
+<div MMString:name="TagLibraries/HTML/applet/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:applet:class" attname="class" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:applet:id" attname="id" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:applet:class" attname="style" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:applet:title" attname="title" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/applet/text/Alt" /> </td>
+      <td nowrap="nowrap">
+        <input name="thealt" type="text" class="basicTextField" id="attr:applet:alt" attname="alt" />
+      </td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/HTML/applet/div/name/Alternate"> 
+  <textarea name="thealtcontent" attname="innerHTML" id="attr:applet:altcontent" class="contentsField"  wrap="VIRTUAL"></textarea>
+</div> 
+</body>
+</html>

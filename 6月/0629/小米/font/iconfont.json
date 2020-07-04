@@ -1,0 +1,65 @@
+{
+  "id": "1912275",
+  "name": "xiaomi",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "590998",
+      "name": "对话框",
+      "font_class": "duihuakuang",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "945236",
+      "name": "发现",
+      "font_class": "faxian",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "3462543",
+      "name": "首页 copy",
+      "font_class": "shouyecopy",
+      "unicode": "e6a3",
+      "unicode_decimal": 59043
+    },
+    {
+      "icon_id": "7511285",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "8958595",
+      "name": "我 的 (1)",
+      "font_class": "wode",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "9657578",
+      "name": "分类",
+      "font_class": "fenlei1",
+      "unicode": "e70a",
+      "unicode_decimal": 59146
+    },
+    {
+      "icon_id": "14657749",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "15022539",
+      "name": "购物车",
+      "font_class": "gouwuche",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}

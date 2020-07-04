@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+  ADOBE CONFIDENTIAL
+  ___________________
+
+  Copyright 2008 Adobe Systems Incorporated
+  All Rights Reserved.
+
+  NOTICE:  All information contained herein is, and remains
+  the property of Adobe Systems Incorporated and its suppliers,
+  if any.  The intellectual and technical concepts contained
+  herein are proprietary to Adobe Systems Incorporated and its
+  suppliers and may be covered by U.S. and Foreign Patents,
+  patents in process, and are protected by trade secret or copyright law.
+  Dissemination of this information or reproduction of this material
+  is strictly forbidden unless prior written permission is obtained
+  from Adobe Systems Incorporated.
+
+  AdobePatentID="B564"
+  AdobePatentID="B565"
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css">
+  body {
+    background-color: #E0E0E0;
+  }
+  .spacer {
+    background-color: #FFFFFF;
+    height: 1px;
+  }
+  .tplRow {
+    display: none;
+  }
+  .header {
+    background-color: #CCCCCC;
+  }
+  .headerText {
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+  }
+  .disabledText {
+    color: #808080;
+  }
+</style>
+</head>
+
+<body>
+<form name="styleSheetsForm">
+  <table border="0" width="100%" cellpadding="0" cellspacing="0" id="styleSheetsListTable">
+    <tr class="header">
+      <td colspan="2"><div id="headerContentDIV" class="headerText">{STYLESHEET_URL_HEADER}</div></td>
+    </tr>
+    <tr>
+      <td class="spacer" colspan="2"></td>
+    </tr>
+    <mm:stylesheetList></mm:stylesheetList>
+  </table>
+</form>
+
+<div style="display: none">
+    <!-- Template rows used to generate the content of the table -->
+    <mm:stylesheetLine>
+      <tr>
+        <td class="spacer" colspan="2"></td>
+      </tr>
+    </mm:stylesheetLine>
+    <mm:stylesheetItemEnabled>
+      <tr>
+        <td width="1%">
+          <input type="checkbox" name="styleSheetURLCheckbox_{rowNo}" id="styleSheetURLCheckbox_{rowNo}" value="{STYLESHEET_URL}" {checked} userData="{userData}" />
+        </td>
+        <td nowrap><label for="styleSheetURLCheckbox_{rowNo}">{STYLESHEET_URL}</label></td>
+      </tr>
+    </mm:stylesheetItemEnabled>
+    <mm:stylesheetItemDisabled>
+      <tr>
+        <td width="1%">
+          <input type="checkbox" name="styleSheetURLCheckbox_{rowNo}" id="styleSheetURLCheckbox_{rowNo}" value="{STYLESHEET_URL}" {checked} disabled="disabled" userData="{userData}" />
+        </td>
+        <td class="disabledText" nowrap><label for="styleSheetURLCheckbox_{rowNo}">{STYLESHEET_URL}</label></td>
+      </tr>
+    </mm:stylesheetItemDisabled>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!-- ICE attributes that are common across tags -->
+<crosstag_attributes>
+	<attribgroup id="ICERepeatingGroupAttrs" name="ICE">
+    <attrib name="ice:" type="Prefix" />
+    <attrib name="ice:repeatinggroup" type="Enumerated" allowmultiplevalues="yes">
+    	<attriboption caption="all" value='*' />
+    	<attriboption caption="up" value='up' />
+    	<attriboption caption="down" value='down' />
+    	<attriboption caption="add" value='add' />
+    	<attriboption caption="remove" value='remove' />
+		</attrib>
+		<taggroup>
+			<tag name="div"/>
+			<tag name="li"/>
+			<tag name="ol"/>
+			<tag name="ul"/>
+			<tag name="table"/>
+			<tag name="tbody"/>
+			<tag name="tfoot"/>
+			<tag name="thead"/>
+			<tag name="td"/>
+			<tag name="th"/>
+		</taggroup>
+	</attribgroup>
+	<attribgroup id="ICERepeatingRegionAttrs" name="ICE">
+		<attrib name="ice:repeating" type="Enumerated">
+    	<attriboption caption="true" value="true" />
+		</attrib>
+		<taggroup>
+			<tag name="a" />
+			<tag name="abbr" />
+			<tag name="acronym" />
+			<tag name="address" />
+			<tag name="b" />
+			<tag name="big" />
+			<tag name="blockquote" />
+			<tag name="center" />
+			<tag name="cite" />
+			<tag name="code" />
+			<tag name="dd" />
+			<tag name="dfn" />
+			<tag name="dir" />
+			<tag name="div" />
+			<tag name="dl" />
+			<tag name="dt" />
+			<tag name="em" />
+			<tag name="font" />
+			<tag name="h1" />
+			<tag name="h2" />
+			<tag name="h3" />
+			<tag name="h4" />
+			<tag name="h5" />
+			<tag name="h6" />
+			<tag name="hr" />
+			<tag name="i" />
+			<tag name="img" />
+			<tag name="ins" />
+			<tag name="kbd" />
+			<tag name="label" />
+			<tag name="li" />
+			<tag name="menu" />
+			<tag name="ol" />
+			<tag name="p" />
+			<tag name="pre" />
+			<tag name="q" />
+			<tag name="s" />
+			<tag name="samp" />
+			<tag name="small" />
+			<tag name="span" />
+			<tag name="strike" />
+			<tag name="strong" />
+			<tag name="sub" />
+			<tag name="sup" />
+			<tag name="table" />
+			<tag name="tbody" />
+			<tag name="tr" />
+			<tag name="tt" />
+			<tag name="u" />
+			<tag name="ul" />
+			<tag name="var" />
+    </taggroup>
+	</attribgroup>
+	<attribgroup id="ICEEditableRegionAttrs" name="ICE">
+		<attrib name="ice:editable" type="Enumerated" allowmultiplevalues="yes">
+    	<attriboption caption="all" value='*' />
+    	<attriboption caption="bold" value='bold' />
+    	<attriboption caption="italic" value='italic' />
+    	<attriboption caption="underline" value='underline' />
+    	<attriboption caption="align_left" value='align_left' />
+    	<attriboption caption="align_center" value='align_center' />
+    	<attriboption caption="align_right" value='align_right' />
+    	<attriboption caption="align_justify" value='align_justify' />
+    	<attriboption caption="font_face" value='font_face' />
+    	<attriboption caption="font_size" value='font_size' />
+    	<attriboption caption="paragraph_styles" value='paragraph_styles' />
+    	<attriboption caption="indent" value='indent' />
+    	<attriboption caption="outdent" value='outdent' />
+    	<attriboption caption="ordered_list" value='ordered_list' />
+    	<attriboption caption="unordered_list" value='unordered_list' />
+    	<attriboption caption="background_color" value='background_color' />
+    	<attriboption caption="font_color" value='font_color' />
+    	<attriboption caption="css_styles" value='css_styles' />
+    	<!--attriboption caption="table" value='table' /-->
+    	<attriboption caption="media" value='media' />
+    	<attriboption caption="hyperlink" value='hyperlink' />
+		</attrib>
+		<taggroup>
+			<tag name="div"/>
+			<tag name="td"/>
+			<tag name="th"/>
+		</taggroup>
+	</attribgroup>
+</crosstag_attributes>

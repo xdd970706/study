@@ -1,0 +1,30 @@
+<tag name="stop" casesensitive="yes" endtag="yes">
+	<tagformat indentcontents="yes" formatcontents="yes" nlbeforetag="1" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1" />
+	<attributes>
+		<attrib name="id" type="Text" casesensitive="yes"/>
+		<attrib name="xml:base" type="Text" casesensitive="yes"/>
+		<attrib name="xml:lang" type="Text" casesensitive="yes"/>
+		<attrib name="xml:space" type="Enumerated" casesensitive="yes">
+			<attriboption value="default" caption="default" />
+			<attriboption value="preserve" caption="preserve" />
+		</attrib>
+		<attrib name="style" type="Style" casesensitive="yes"/>
+		<attrib name="class" type="CssStyle" casesensitive="yes"/>
+		<attrib name="color" type="Color" casesensitive="yes"/>
+		<attrib name="color-interpolation" type="Enumerated" casesensitive="yes">
+			<attriboption value="auto" caption="auto" />
+			<attriboption value="inherit" caption="inherit" />
+			<attriboption value="linearRGB" caption="linearRGB" />
+			<attriboption value="sRGB" caption="sRGB" />
+		</attrib>
+		<attrib name="color-rendering" type="Enumerated" casesensitive="yes">
+			<attriboption value="auto" caption="auto" />
+			<attriboption value="inherit" caption="inherit" />
+			<attriboption value="optimizeQuality" caption="optimizeQuality" />
+			<attriboption value="optimizeSpeed" caption="optimizeSpeed" />
+		</attrib>
+		<attrib name="stop-color" type="Color" casesensitive="yes"/>
+		<attrib name="stop-opacity" type="Text" casesensitive="yes"/>
+		<attrib name="offset" type="Text" casesensitive="yes"/>
+	</attributes>
+</tag>

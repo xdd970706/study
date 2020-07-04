@@ -1,0 +1,119 @@
+<tag name="LINK" BIND="HREF" endtag="no">
+<tagformat nlbeforetag="1" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1"/>
+<tagdialog file="link.htm" />
+  <attributes>
+    <attrib name="HREF" type="Relativepath"/>
+    <attrib name="REL" type="Enumerated">
+      <attriboption value="alternate" caption="alternate"/>
+      <attriboption value="alternate stylesheet" caption="alternate stylesheet"/>
+      <attriboption value="appendix" caption="appendix"/>
+      <attriboption value="archives" caption="archives"/>
+      <attriboption value="author" caption="author"/>
+      <attriboption value="chapter" caption="chapter"/>
+      <attriboption value="contents" caption="contents"/>
+      <attriboption value="copyright" caption="copyright"/>
+      <attriboption value="first" caption="first"/>
+      <attriboption value="glossary" caption="glossary"/>
+      <attriboption value="help" caption="help"/>
+      <attriboption value="icon" caption="icon"/>
+      <attriboption value="index" caption="index"/>
+      <attriboption value="last" caption="last"/>
+      <attriboption value="license" caption="license"/>
+      <attriboption value="next" caption="next"/>
+      <attriboption value="pingback" caption="pingback"/>
+      <attriboption value="prefetch" caption="prefetch"/>
+      <attriboption value="prev" caption="prev"/>
+      <attriboption value="previous" caption="previous (some browsers)"/>
+      <attriboption value="search" caption="search"/>
+      <attriboption value="section" caption="section"/>
+      <attriboption value="sidebar" caption="sidebar"/>
+      <attriboption value="start" caption="start"/>
+      <attriboption value="stylesheet" caption="stylesheet"/>
+      <attriboption value="subsection" caption="subsection"/>
+      <attriboption value="shortcut icon" caption="shortcut icon"/>
+      <attriboption value="tag" caption="tag"/>
+      <attriboption value="up" caption="up"/>
+		</attrib>
+    <attrib name="REV" type="Enumerated">
+      <attriboption value="alternate" caption="alternate"/>
+      <attriboption value="appendix" caption="appendix"/>
+      <attriboption value="bookmark" caption="bookmark"/>
+      <attriboption value="chapter" caption="chapter"/>
+      <attriboption value="contents" caption="contents"/>
+      <attriboption value="copyright" caption="copyright"/>
+      <attriboption value="glossary" caption="glossary"/>
+      <attriboption value="help" caption="help"/>
+      <attriboption value="index" caption="index"/>
+      <attriboption value="next" caption="next"/>
+      <attriboption value="prev" caption="prev"/>
+      <attriboption value="previous" caption="previous (some browsers)"/>
+      <attriboption value="section" caption="section"/>
+      <attriboption value="start" caption="start"/>
+      <attriboption value="stylesheet" caption="stylesheet"/>
+      <attriboption value="subsection" caption="subsection"/>
+      <attriboption value="shortcut icon" caption="shortcut icon"/>
+		</attrib>
+    <attrib name="SIZES"/>
+    <attrib name="TITLE"/>
+    <attrib name="TYPE" type="Enumerated">
+      <attriboption value="text/css" caption="text/css"/>
+      <attriboption value="text/javascript" caption="text/javascript"/>
+		</attrib>
+    <attrib name="MEDIA" type="Enumerated" allowmultiplevalues="yes">
+      <attriboption value="screen"/>
+      <attriboption value="tty"/>
+      <attriboption value="tv"/>
+      <attriboption value="projection"/>
+      <attriboption value="handheld"/>
+      <attriboption value="print"/>
+      <attriboption value="braille"/>
+      <attriboption value="embossed"/>
+      <attriboption value="speech"/>
+      <attriboption value="all"/>
+      <attriboption value="width"/>
+      <attriboption value="min-width"/>
+      <attriboption value="max-width"/>
+      <attriboption value="height"/>
+      <attriboption value="min-height"/>
+      <attriboption value="max-height"/>
+      <attriboption value="device-width"/>
+      <attriboption value="min-device-width"/>
+      <attriboption value="max-device-width"/>
+      <attriboption value="device-height"/>
+      <attriboption value="min-device-height"/>
+      <attriboption value="max-device-height"/>
+      <attriboption value="orientation"/>
+      <attriboption value="aspect-ratio"/>
+      <attriboption value="min-aspect-ratio"/>
+      <attriboption value="max-aspect-ratio"/>
+      <attriboption value="device-aspect-ratio"/>
+      <attriboption value="min-device-aspect-ratio"/>
+      <attriboption value="max-device-aspect-ratio"/>
+      <attriboption value="color"/>
+      <attriboption value="min-color"/>
+      <attriboption value="max-color"/>
+      <attriboption value="color-index"/>
+      <attriboption value="min-color-index"/>
+      <attriboption value="max-color-index"/>
+      <attriboption value="monochrome"/>
+      <attriboption value="min-monochrome"/>
+      <attriboption value="max-monochrome"/>
+      <attriboption value="resolution"/>
+      <attriboption value="min-resolution"/>
+      <attriboption value="max-resolution"/>
+      <attriboption value="scan"/>
+      <attriboption value="grid"/>      
+		</attrib>
+    <attrib name="DISABLED" type="Flag"/>
+    <attrib name="CLASS" type="cssStyle"/>
+    <attrib name="ID" type="cssId"/>
+    <attrib name="HREFLANG"/>
+    <attrib name="STYLE" type="Style"/>
+	</attributes>
+	<attribcategories>
+		<attribgroup name="General" elements="href,rel,rev,title,hreflang,charset" />
+		<attribgroup name="HTML 4.0" elements="media,type" />
+		<attribgroup name="CSS/Accessibility" elements="class,id,style,label" />
+		<attribgroup name="Language" elements="dir,lang" />
+	</attribcategories>
+</tag>

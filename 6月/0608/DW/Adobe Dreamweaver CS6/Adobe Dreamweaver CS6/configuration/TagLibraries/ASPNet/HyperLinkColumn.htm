@@ -1,0 +1,144 @@
+<!-- Copyright 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Controls/Scripts/MultiStateCheckBox.js"></script>
+<script>
+
+var theVisibleMultiStateCheckBox; 
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj); 
+}
+
+function updateUI(itemName)
+{
+  switch(itemName)
+  {
+    case "visible":
+	  {
+	    theVisibleMultiStateCheckBox.updateUI(); 
+	    break; 
+	  } 	
+  }
+}
+
+function initializeUI()
+{
+  theVisibleMultiStateCheckBox = new MultiStateCheckBox("thevisible");
+  theVisibleMultiStateCheckBox.initializeUI(); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/ASPNet/HyperLinkColumn/div/name/General"> 
+  <input type="hidden" name="therunat" attname="runat" value="server" required="true" /> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Text" /> </td>
+      <td nowrap="nowrap">
+        <input name="theText" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:Text" attname="Text" />
+      </td>
+    </tr>   
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Navigation" /> </td>
+      <td nowrap="nowrap">
+        <input name="theNavigateUrl" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:NavigateUrl" attname="NavigateUrl" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Target" /> </td>
+      <td nowrap="nowrap">
+        <input name="theTarget" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:Target" attname="Target" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Data" /> </td>
+      <td nowrap="nowrap">
+        <input name="theDataNavigateUrlField" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:DataNavigateUrlField" attname="DataNavigateUrlField" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Data_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theDataNavigateUrlFormatString" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:DataNavigateUrlFormatString" attname="DataNavigateUrlFormatString" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Data_2" /> </td>
+      <td nowrap="nowrap">
+        <input name="theDataTextField" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:DataTextField" attname="DataTextField" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Data_3" /> </td>
+      <td nowrap="nowrap">
+        <input name="theDataTextFormatString" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:DataTextFormatString" attname="DataTextFormatString" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Footer" /> </td>
+      <td nowrap="nowrap">
+        <input name="theFooterStyle" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:FooterStyle" attname="FooterStyle" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Footer_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theFooterText" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:FooterText" attname="FooterText" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Header" /> </td>
+      <td nowrap="nowrap">
+        <input name="theHeaderImageUrl" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:HeaderImageUrl" attname="HeaderImageUrl" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Header_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theHeaderStyle" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:HeaderStyle" attname="HeaderStyle" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Header_2" /> </td>
+      <td nowrap="nowrap">
+        <input name="theHeaderText" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:HeaderText" attname="HeaderText" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Item" /> </td>
+      <td nowrap="nowrap">
+        <input name="theItemStyle" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:ItemStyle" attname="ItemStyle" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Sort" /> </td>
+      <td nowrap="nowrap">
+        <input name="theSortExpression" type="text" class="basicTextField" id="aspnet:hyperlinkcolumn:SortExpression" attname="SortExpression" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input name="thevisible" attname="visible" type="image" value="disabled" truevalue="true" falsevalue="false" src="../../Shared/MM/Images/checkbox_dis.gif" width="13" height="13" onClick="updateUI('visible');" > 
+        <MMString:loadString id="TagLibraries/ASPNet/HyperLinkColumn/text/Visible" />
+      </td>
+    </tr>  
+  </table>
+</body>
+</html>	

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				width: 200px;
+				height: 300px;
+				margin: 50px auto;
+			}
+			ul li{
+				width: 200px;
+				height: 300px;
+				list-style: none;
+				margin: 100px 0;
+				border: 1px solid;
+				/*透视属性（景深）：近大远小*/
+				perspective: 500px;
+			}
+			ul li img{
+				width: 200px;
+				height: 300px;
+			}
+			/*旋转：X轴 上下  Y轴 左右 Z轴 顺时针或者逆时针 deg度数*/
+			ul li:nth-child(1) img{
+				transform: rotateX(45deg);
+			}
+			ul li:nth-child(2) img{
+				transform: rotateY(45deg);
+			}
+			ul li:nth-child(3) img{
+				transform: rotateZ(45deg);
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li><img src="img/21.jpg" ></li>
+			<li><img src="img/5.jpg" ></li>
+			<li><img src="img/9.jpg" ></li>
+		</ul>
+	</body>
+</html>

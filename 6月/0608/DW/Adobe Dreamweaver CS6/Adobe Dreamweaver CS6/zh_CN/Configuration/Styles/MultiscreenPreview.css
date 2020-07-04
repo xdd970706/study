@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2008 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and may be covered by U.S. and Foreign Patents,
+* patents in process, and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+*
+* AdobePatentID="B564"
+* AdobePatentID="B565"
+*
+**************************************************************************/
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin:0;
+	font-size: 11pt;	
+}
+input[type=button] {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9pt;	
+}
+#fileField {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11pt;	
+}
+#browserSmallDiv {
+	position:absolute;
+	top: 90px;
+	left: 20px;
+	width: 320px;
+	height: 300px;
+}
+#browserMediumDiv {
+	position:absolute;
+	top: 90px;
+	left: 380px;
+	width: 768px;
+	height: 300px;
+}
+#browserLargeDiv {
+	position:absolute;
+	top: 430px;
+	left: 20px;
+	width: 1108px;
+	height: 300px;
+}
+table#toolBar {
+	margin: 20px;	
+	margin-top: 10px;
+}
+#backButton, #forwardButton, #refreshButton, #homeButton {
+	margin-top: 3px;
+}
+.viewPortLabel {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;	
+	padding-bottom: 5px;	
+}
+.addressbarLabel {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;	
+	padding-bottom: 5px;
+	font-weight: 400;
+}
+#docNeededView {	
+	padding: 50px;
+	text-align: center;	
+}
+#loadingView {
+	padding: 50px;
+	text-align: center;
+	background: #d6d6d6;
+	height: 2500px;
+}
+#fileEditbox {
+	width: 710px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11pt;
+	color: #999;
+	background: #efefef;
+}

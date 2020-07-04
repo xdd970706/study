@@ -1,0 +1,47 @@
+  day1
+Hyper
+Text
+Markup
+Language
+EXtensible
+HyperText
+WHAT WG
+script
+World
+Wide
+Web
+Consortium
+index
+cellspacing
+cellpadding
+align
+colspan
+rowspan
+center
+width
+height
+border
+h r e f  
+table
+self
+blank
+form 
+method
+action
+password
+
+submit
+reset
+radio
+checkbox
+disabled
+checked
+select
+option
+textarea
+cols
+rows
+type
+button
+span
+value

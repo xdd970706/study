@@ -1,0 +1,119 @@
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfinvoke/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var LOGINSTORAGELIST;
+var theUIObjects;
+
+/****************************************************************/
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj,theUIObjects);
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj,theUIObjects);
+}
+
+function initializeUI()
+{
+  
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/CFML/cfinvoke/div/name/cfinvoke">
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+	    <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Component" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecomponent" type="text" class="basicTextField" id="attr:cfinvoke:component" attname="component" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+	    <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Method" /> </td>
+      <td nowrap="nowrap">
+        <input name="themethod" type="text" class="basicTextField" id="attr:cfinvoke:method" attname="method" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+	    <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Return" /> </td>
+      <td nowrap="nowrap">
+        <input name="thereturnvariable" type="text" class="basicTextField" id="attr:cfinvoke:returnvariable" attname="returnvariable" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+	    <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Argument" /> </td>
+      <td nowrap="nowrap">
+        <input name="theargumentcollection" type="text" class="basicTextField" id="attr:cfinvoke:argumentcollection" attname="argumentcollection" />
+      </td>
+    </tr>
+	</table>
+	</div>
+	<div MMString:name="TagLibraries/CFML/cfinvoke/div/name/Webservice">
+	<table border="0" cellspacing="4">
+    <tr valign="baseline">
+	    <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Webservice" /> </td>
+      <td nowrap="nowrap">
+        <input name="thewebservice" class="basicTextField" id="attr:cfinvoke:webservice" attname="webservice" />
+       
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/User" /> </td>
+      <td nowrap="nowrap"><input name="theusername" type="text" class="basicTextField" id="attr:cfinvoke:username" attname="username" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Password" /> </td> 
+      <td nowrap="nowrap"><input type="text" class="basicTextField" id="attr:cfinvoke:password" name="thepassword" attname="password" />
+        </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Timeout" /> </td> 
+      <td nowrap="nowrap"><input type="text" class="basicTextField" id="attr:cfinvoke:timeout" name="thetimeout" attname="timeout" />
+        </td>
+    </tr>
+	<tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Service" /> </td> 
+      <td nowrap="nowrap"><input type="text" class="basicTextField" id="attr:cfinvoke:serviceport" name="theserviceport" attname="serviceport" />
+        </td>
+    </tr>
+	<tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Proxy" /> </td> 
+      <td nowrap="nowrap"><input type="text" class="basicTextField" id="attr:cfinvoke:proxyserver" name="theproxyserver" attname="proxyserver" />
+        </td>
+    </tr>
+	<tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Proxy_1" /> </td> 
+      <td nowrap="nowrap"><input type="text" class="basicTextField" id="attr:cfinvoke:proxyport" name="theproxyport" attname="proxyport" />
+        </td>
+    </tr>
+	<tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Proxy_2" /> </td> 
+      <td nowrap="nowrap"><input type="text" class="basicTextField" id="attr:cfinvoke:proxyuser" name="theproxyuser" attname="proxyuser" />
+        </td>
+    </tr>
+	<tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfinvoke/text/Proxy_3" /> </td> 
+      <td nowrap="nowrap"><input type="text" class="basicTextField" id="attr:cfinvoke:proxypassword" name="theproxypassword" attname="proxypassword" />
+        </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

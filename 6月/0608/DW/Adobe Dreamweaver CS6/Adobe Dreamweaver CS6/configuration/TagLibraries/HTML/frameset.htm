@@ -1,0 +1,140 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/frameset/title" /></title>
+  
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script>
+var COLORP_BORDER;  
+var TEXT_BORDER; 
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj); 
+  initializeUI(); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj); 
+}
+
+function updateUI(itemName)
+{
+  switch(itemName)
+  {
+    case "borderColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_BORDER,TEXT_BORDER);
+      break;
+    }
+    case "bordercolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BORDER,TEXT_BORDER);
+      break;
+    }
+  }
+}
+
+function initializeUI()
+{
+  COLORP_BORDER = dwscripts.findDOMObject("borderColorPicker");
+  TEXT_BORDER = dwscripts.findDOMObject("thebordercolor");
+
+  tagDialog.updateColorPicker("colorField",COLORP_BORDER,TEXT_BORDER);
+
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI();">
+
+<div MMString:name="TagLibraries/HTML/frameset/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Rows" /> </td>
+      <td nowrap="nowrap">
+        <input name="therows" type="text" class="smallNumOrChar" id="attr:frameset:rows" attname="rows" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Cols" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecols" type="text" class="smallNumOrChar" id="attr:frameset:cols" attname="cols" />
+      </td>
+    </tr>
+	</table>
+</div>
+<div MMString:name="TagLibraries/HTML/frameset/div/name/Browser">
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:frameset:frameborder" name="theframeborder" attname="frameborder" truevalue="yes" falsevalue="no" checked="true" /> <MMString:loadString id="TagLibraries/HTML/frameset/checkbox/theframeborder/Show" />&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/3" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/3" />&nbsp;<img src="../../Shared/MM/Images/Opera.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Opera" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/4" />
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Border" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="borderColorPicker" value="" onChange="updateUI('borderColorPicker')"> 
+        <input name="thebordercolor" type="text" class="smallTField" id="att:frameset:bordercolor" onBlur="updateUI('bordercolor')" value="" attname="bordercolor">&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/4" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/3" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Border_1" /> </td>
+      <td nowrap="nowrap">
+        <input name="theborder" type="text" class="smallNumOrChar" id="attr:frameset:border" attname="border" />&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/4" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/3" />&nbsp;<img src="../../Shared/MM/Images/Opera.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Opera" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/21" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Frame" /> </td>
+      <td nowrap="nowrap">
+        <input name="theframespacing" type="text" class="smallNumOrChar" id="attr:frameset:framespacing" attname="framespacing" />&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/frameset/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/frameset/text/3" />
+      </td>
+    </tr>
+  </table> 
+</div> 
+<div MMString:name="TagLibraries/HTML/frameset/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:frameset:class" attname="class" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:frameset:id" attname="id" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:frameset:class" attname="style" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/frameset/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:frameset:title" attname="title" />
+      </td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/HTML/frameset/div/name/Events"> 
+  <div MMString:name="TagLibraries/HTML/frameset/div/name/onLoad"> 
+    <textarea name="theonLoad" attname="onLoad" id="attr:frameset:onload" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/frameset/div/name/onUnload"> 
+    <textarea name="theonUnload" attname="onUnload" id="attr:frameset:onunload" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+</div>
+</body>
+</html>

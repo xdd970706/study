@@ -1,0 +1,193 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/tbody/title" /></title>
+  
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var LANGUAGELIST; 
+var DIRLIST;
+var ALIGNLIST;
+var VALIGNLIST;
+var theUIObjects; 
+
+// Color control elements
+var COLORP_BACK, COLORP_BORDER, COLORP_BORDERLIGHT, COLORP_BORDERDARK;  
+var TEXT_BACK, TEXT_BORDER, TEXT_BORDERLIGHT, TEXT_BORDERDARK;  
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+  updateColors();
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function updateUI(itemName)
+{
+  switch(itemName)
+  {
+    case "backColorPicker":
+    { 
+      tagDialog.updateColorPicker("colorPicker",COLORP_BACK,TEXT_BACK);
+      break;
+    }
+    case "backcolor":
+    {
+      tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK);
+      break;
+    }
+  }
+}
+
+function updateColors()
+{
+  tagDialog.updateColorPicker("colorField",COLORP_BACK,TEXT_BACK);
+}
+
+function initializeUI()
+{
+	LANGUAGELIST = new ListControl("thelang"); 
+	DIRLIST = new ListControl("thedir"); 
+	ALIGNLIST = new ListControl("thealign"); 
+	VALIGNLIST = new ListControl("thevalign"); 
+
+	theUIObjects  = new Array(LANGUAGELIST,DIRLIST,ALIGNLIST,VALIGNLIST); 
+
+  COLORP_BACK = dwscripts.findDOMObject("backColorPicker");
+  TEXT_BACK = dwscripts.findDOMObject("thebackcolor");
+
+  updateColors(); 
+  tagDialog.populateDropDownList(LANGUAGELIST, theLanguagesCap, theLanguagesVal, 1); 
+  tagDialog.populateDropDownList(DIRLIST, theDirectionCap, theDirectionVal, 1); 
+  tagDialog.populateDropDownList(ALIGNLIST, theHAlignCap, theHAlignVal, 1); 
+  tagDialog.populateDropDownList(VALIGNLIST, theVAlignStandardFourCap, theVAlignStandardFourVal, 1); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/HTML/tbody/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Horizontal" /> </td>
+      <td nowrap="nowrap">
+        <select name="thealign" class="alignList" id="attr:tbody:align" attname="align">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Verical" /> </td>
+      <td nowrap="nowrap">
+        <select name="thevalign" class="alignList" id="attr:tbody:valign" attname="valign">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Background" /> </td>
+      <td nowrap="nowrap">
+        <input type="mmcolorbutton" name="backColorPicker" value="" onChange="updateUI('backColorPicker')"> <input name="thebackcolor" type="text" class="smallTField" id="attr:tbody:backcolor" onBlur="updateUI('backcolor')" value="" attname="bgcolor">&nbsp;<img src="../../Shared/MM/Images/IE.gif" MMString:alt="TagLibraries/HTML/tbody/img/alt/Internet" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/tbody/text/4" />&nbsp;<img src="../../Shared/MM/Images/Netscape.gif" MMString:alt="TagLibraries/HTML/tbody/img/alt/Netscape" align="absmiddle">&nbsp;<MMString:loadString id="TagLibraries/HTML/tbody/text/6" /> 
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/HTML/tbody/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:tbody:class" attname="class" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:tbody:id" attname="id" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:tbody:class" attname="style" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:tbody:title" attname="title" />
+      </td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/HTML/tbody/div/name/Language"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Direction" /> </td>
+      <td nowrap="nowrap">
+        <select name="thedir" class="dirLangList" id="attr:tbody:dir" attname="dir"> 
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap"></td>
+      <td nowrap="nowrap"></td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/tbody/text/Language" /> </td>
+      <td nowrap="nowrap">
+        <select name="thelang" class="dirLangList" id="attr:tbody:lang" attname="lang" editable="true"> 
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/HTML/tbody/div/name/Events"> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onClick"> 
+    <textarea name="theonClick" attname="onClick" id="attr:tbody:onclick" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onDblClick"> 
+    <textarea name="theonDblClick" attname="onDblClick" id="attr:tbody:ondblclick" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onMouseDown"> 
+    <textarea name="theonMouseDown" attname="onMouseDown" id="attr:tbody:onmousedown" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onMouseUp"> 
+    <textarea name="theonMouseUp" attname="onMouseUp" id="attr:tbody:onmouseup" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onMouseOver"> 
+    <textarea name="theonMouseOver" attname="onMouseOver" id="attr:tbody:onmouseover" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onMouseMove"> 
+    <textarea name="theonMouseMove" attname="onMouseMove" id="attr:tbody:onmousemove" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onMouseOut"> 
+    <textarea name="theonMouseOut" attname="onMouseOut" id="attr:tbody:onmouseout" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onKeyPress"> 
+    <textarea name="theonKeyPress" attname="onKeyPress" id="attr:tbody:onkeypress" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onKeyDown"> 
+    <textarea name="theonKeyDown" attname="onKeyDown" id="attr:tbody:onkeydown" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/tbody/div/name/onKeyUp"> 
+    <textarea name="theonKeyUp" attname="onKeyUp" id="attr:tbody:onkeyup" class="contentsField"  wrap="virtual"></textarea>
+  </div> 
+</div>
+</body>
+</html>

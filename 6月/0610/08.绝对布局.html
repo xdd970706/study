@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>绝对布局</title>
+<style>
+body,html,.container{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+/*左右进行绝对定位*/
+.left,.right{
+    position: absolute;
+    height:100%;
+    top: 0;
+    background: #333;
+}
+.left{
+    left: 0;
+    width: 200px;
+}
+.right{
+    right: 0;
+    width: 200px;
+}
+/*中间用margin空出左右元素所占的空间*/
+.main{
+    height:100%;
+    margin: 0 200px;
+    background: red;
+}
+/*或者中间也进行绝对定位*/
+.main{
+    position: absolute;
+    height:100%;
+    left: 200px;
+    right:200px;
+    background: red;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <div class="left">Left</div>
+    <div class="main">脱离了文档流，高度未知会出现问题，可用性差</div>
+    <div class="right">Right</div>
+</div>
+
+
+</body>
+</html>

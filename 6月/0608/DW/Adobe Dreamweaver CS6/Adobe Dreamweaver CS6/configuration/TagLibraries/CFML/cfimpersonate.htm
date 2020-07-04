@@ -1,0 +1,79 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfimpersonate/title" /></title>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var TYPELIST;
+var theUIObjects;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	TYPELIST = new ListControl("thetype"); 
+	theUIObjects = new Array(TYPELIST); 
+
+  tagDialog.populateDropDownList(TYPELIST, theImpersonateTypeVal, theImpersonateTypeVal, 0)
+}
+
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cfimpersonate/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfimpersonate/text/User" /> </td>
+      <td nowrap="nowrap">
+        <input name="theusername" type="text" class="basicTextField" id="attr:cfimpersonate:username" attname="username" required="true" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfimpersonate/text/Password" /> </td>
+      <td nowrap="nowrap">
+        <input name="password" type="text" class="basicTextField" id="attr:cfimpersonate:password" attname="password" required="true" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfimpersonate/text/SecurityContext" /> </td>
+      <td nowrap="nowrap">
+        <input name="thesecuritycontext" type="text" class="basicTextField" id="attr:cfimpersonate:securitycontext" attname="securitycontext" required="true" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfimpersonate/text/Type" /> </td>
+      <td nowrap="nowrap">
+	    <select name="thetype" class="smallNumOrCharList" id="attr:cfimpersonate:type" attname="type">
+           
+        </select>
+      </td>
+    </tr> 
+    <tr> 
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfimpersonate/text/Code" /> </td>
+      <td nowrap="nowrap">
+        <textarea name="thecode"  wrap="VIRTUAL" class="stringOrMsgField" id="attr:jrun:sendmail:theinnerhtml" attname="innerHTML"></textarea>      
+      </td>
+    </tr>
+  </table>
+</div> 
+</body>
+</html>

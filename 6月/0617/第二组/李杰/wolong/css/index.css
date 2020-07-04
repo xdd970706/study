@@ -1,0 +1,309 @@
+@charset "utf-8";
+/* CSS Document */
+/*重置样式*/
+*{margin:0;padding:0;}
+ul li{list-style:none;}
+a{text-decoration:none;}
+/*整个页面的容器*/
+.wolong_web{
+	width:1000px;
+	margin:0 auto;
+	}
+/*网页头部*/
+.header{
+	width:1000px;
+	height:100px;
+	}
+/*网页头部--logo部分*/
+.header .logo{
+	width:244px;
+	height:23px;
+	float:left;
+	margin-left:20px;
+	margin-top:40px;
+	}
+/*网页头部--form表单部分*/
+.header form{
+	width:225px;
+	height:26px;
+	float:right;
+	margin-right:20px;
+	margin-top:39px;
+	background-color:#f1f1f1;
+	}
+.header form .search{
+	width:180px;
+	height:26px;
+	margin-left:15px;
+	border:none;/*input默认自带2px的边框，要去掉*/
+	outline:none;/*input默认自带的蓝色框，要去掉*/
+	float:left;
+	background-color:#f1f1f1;
+	}
+.header form .btn{
+	width:30px;
+	height:26px;
+	border:none;
+	outline:none;
+	float:left;
+	background-color:#f1f1f1;
+	background-image:url(../images/search.jpg);
+	background-repeat:no-repeat;
+	background-position:center center;
+	cursor:pointer;
+	/*
+	缩写形式
+	background:#f1f1f1 url(../images/btn1.jpg) no-repeat center center;
+	*/
+	}
+/*导航栏*/
+.nav{
+	width:1000px;
+	height:60px;
+	background-color:#323232;
+	}
+.nav ul{
+	width:960px;
+	height:60px;
+	margin-left:20px;
+	}
+.nav ul li{
+	width:119px;
+	height:60px;
+	line-height:60px;
+	font-size:12px;
+	text-align:center;
+	float:left;
+	border-right:1px solid #494949;
+	}
+.nav ul li a{
+	color:#ffffff;
+	}
+/*轮播图*/
+.lunbo_image{
+	width:1000px;
+	height:463px;
+	}
+/*新闻列表*/
+.news{
+	width:1000px;
+	height:264px;
+	}
+.news h3{
+	font-weight:normal;
+	font-size:17px;
+	color:#4e4e4e;
+	float:left;
+	margin-left:20px;
+	margin-top:36px;
+	}
+/*新闻列表-左边的部分*/
+.news .left{
+	width:480px;
+	height:240px;
+	float:left;
+	margin-right:20px;
+	}
+.news .left img{
+	float:right;
+	margin-top:30px;
+	}
+.news .left ul{
+	margin-top:80px;
+	margin-left:20px;
+	}
+.news .left ul li{
+	font-size:12px;
+	line-height:24px;
+	padding-left:13px;
+	background:url(../images/list.png) no-repeat left center;
+	}
+.news .left ul li a{color:#525252;}
+.news .left ul li span{float:right;color:#898989;}
+/*新闻列表-中间的部分*/
+.news .center{
+	width:240px;
+	height:240px;
+	float:left;
+	background-color:#f1f1f1;
+	}
+.news .center .text_p{
+	width:192px;
+	height:114px;
+	margin-top:88px;
+	margin-left:20px;
+	}
+.news .center .text_p .p_one{
+	font-size:12px;
+	line-height:24px;
+	color:#505050;
+	margin-bottom:17px;
+	}
+.news .center .text_p .p_one span{font-size:13px;}
+.news .center .text_p .p_two{
+	font-size:12px;
+	line-height:24px;
+	color:#8d8d8d;
+	}
+/*新闻列表-右边的部分*/
+.news .right{
+	width:260px;
+	height:240px;
+	float:left;
+	background:#fafafa url(../images/flower.jpg) no-repeat 166px 122px;
+	}
+.news .right .text_p2{
+	width:180px;
+	height:112px;
+	margin-top:80px;
+	margin-left:23px;
+	background:url(../images/more.jpg) no-repeat left bottom;
+	}
+.news .right .text_p2 p{
+	font-size:12px;
+	line-height:24px;
+	color:#5c5c5c
+	}
+/*卧龙市场*/
+.market{
+	width:1000px;
+	height:281px;
+	}
+.market .wrap{
+	width:960px;
+	height:281px;
+	margin-left:20px;
+	}
+.market .wrap .top{
+	width:960px;
+	height:40px;
+	}
+.market .wrap .top h3{
+	font-weight:normal;
+	font-size:17px;
+	color:#1c1c1c;
+	float:left;
+	margin-top:5px;
+	margin-left:3px;
+	}
+.market .wrap .top img{float:right;margin-top:1px;}
+.market .wrap dl{
+	float:left;
+	width:210px;
+	height:214px;
+	margin:0 20px;
+	}
+.market .wrap dl dd{
+	font-size:12px;
+	line-height:24px;
+	color:#525252;
+	margin-top:13px;
+	}
+.market .wrap dl img{
+	width:210px;
+	height:137px;
+	}
+/*产物中心*/
+.chanwu{
+	width:1000px;
+	height:223px;
+	background-color:#e5e5e5;
+	padding-top:27px;
+	}
+.chanwu h3{
+	font-size:14px;
+	font-weight:normal;
+	margin-left:12px;
+	color:#606060;
+	}
+.chanwu .container{
+	
+	width:1000px;
+	height:196px;
+	}
+.chanwu .container ul{
+	float:left;
+	}
+.chanwu .container  .u{
+	margin-left:67px;
+	margin-right:65px;
+	}
+.chanwu .container ul li{
+	font-size:12px;
+	line-height:24px;
+	padding-left:19px;
+	background:url(../images/gt.jpg) no-repeat 5px center;
+	}
+.chanwu .container ul li a{
+	color:#5e5e5e;
+	}
+/*产物中心-左边部分*/
+
+.chanwu .left{
+	width:453px;
+	height:196px;
+	float:left;
+	margin-left:20px;
+	}
+.chanwu .left .biaoti{
+	width:453px;
+	height:29px;
+	border-bottom:1px solid #c1c1c1;
+	margin-bottom:14px;
+	}
+/*产物中心-中间部分*/
+.chanwu .center{
+	width:152px;
+	height:196px;
+	float:left;
+	margin:0 50px;
+	}
+.chanwu .center .biaoti{
+	width:152px;
+	height:29px;
+	border-bottom:1px solid #c1c1c1;
+	margin-bottom:14px;
+	}
+/*产物中心-右边部分*/
+.chanwu .right{
+	width:257px;
+	height:196px;
+	float:left;
+	background:url(../images/map.png) no-repeat 34px 44px;
+	}
+.chanwu .right .biaoti{
+	width:257px;
+	height:29px;
+	border-bottom:1px solid #c1c1c1;
+	margin-bottom:14px;
+	}
+/*底部*/
+.foot{
+	width:1000px;
+	height:82px;
+	}
+.foot .links{
+	width:250px;
+	height:24px;
+	font-size:12px;
+	line-height:24px;
+	margin-left:20px;
+	margin-top:23px;
+	float:left;
+	}
+.foot .links span{color:#858585;}
+.foot .links a{color:#858585;}
+.foot p{
+	font-size:12px;
+	line-height:24px;
+	margin-left:20px;
+	margin-top:23px;
+	color:#858585;
+	float:right;
+	margin-right:14px;
+	}
+.foot p img{
+	width:20px;
+	height:15px;
+	margin-right:6px;
+	}

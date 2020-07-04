@@ -1,0 +1,215 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0;padding:0;}
+ul,ol{list-style:none;}
+a{text-decoration:none;color:black;}
+.clear{overflow:hidden;}
+
+.box{
+	width:992px;
+	height:80px;
+	margin:0 auto;
+	}
+
+.box .logo{
+	width:292px;
+	background:url(../images/2.png) no-repeat 193px -4px;
+	}
+.box .lon {
+	  float:right;
+	  margin-top:-13px;
+	  font-size:12px;
+	}
+.box .lon a{
+	padding-left:23px;
+	background:url(../images/3.png) no-repeat left 2px;
+}
+
+.box1{
+	width:100%;
+	height:40px;
+	background-color:#fff8f0;
+	}	
+.box1 div{
+	width:990px;
+	height:40px;
+	margin:0 auto;
+	font-size:12px;
+	line-height:40px;
+	}	
+.box1 div p{
+	padding-left:120px;
+	background:url(../images/4.jpg) no-repeat 98px 12px;
+	}
+.box2{
+	width:100%;
+	height:475px;
+	background-color:#e93854;
+	}
+.box2 .ban{
+	width:990px;
+	height:100%;
+	margin:0 auto;
+    background:url(../images/5.png) no-repeat center center;
+	}
+.box2 .ban .right{
+	width:346px;
+	height:402px;
+	background-color:white;
+	float:right;
+	margin-top:10px;
+	}
+.box2 .ban .right .top{
+	height:40px;
+	background:#fff8f0 url(../images/4.jpg) no-repeat 30px center;
+	font-size:12px;
+	line-height:40px;
+	padding-left:52px;
+	color:#999999;
+	}
+.box2 .ban .right .link{
+	height:54px;
+	border-bottom:1px solid #f4f4f4;
+	}
+.box2 .ban .right .link a{
+	float:left;
+	width:173px;
+	height:19px;
+	margin-top:19px;
+	text-align:center;
+	}	
+.box2 .ban .right .link .br{
+	width:172px;
+	border-left:1px solid #f4f4f4;
+	font-weight:bold;
+	color:#e45760;
+	}
+.box2 .ban .right form{
+	height:222px;
+	border-bottom:1px solid #f4f4f4;
+	padding:0 20px;
+	padding-top:34px;
+	}
+.box2 .ban .right form .username{
+	margin-bottom:20px;}
+.box2 .ban .right form div{
+	width:304px;
+	height:38px;
+	border:1px solid #bdbdbd;
+	}	
+.box2 .ban .right form div span{
+	float:left;
+	width:38px;
+	height:38px;
+	border-right:1px solid #bdbdbd;
+    background:#f4f4f4 url(../images/17.jpg) no-repeat center center;
+	cursor:pointer;
+	}
+
+.box2 .ban .right form div input{		
+  float:left;	
+	height:38px;
+	border:none;
+	outline:none;
+	padding-left:12px;
+	color:#999999;
+	}
+.box2 .ban .right form .userpwd span{
+background:#f4f4f4 url(../images/10.jpg) no-repeat center center;
+	}
+.box2 .ban .right form .form-link{
+	height:60px;
+	line-height:60px;
+	font-size:12px;
+	border:none;
+	}
+	
+.box2 .ban .right form .form-link a	{
+	float:right;
+}
+
+.box2 .ban .right form button{
+	width:300px;
+	height:34px;
+	background-color:#e4393c;
+	border:none;
+	outline:none;
+	font-size:17px;
+	color:#ffffff;
+	}
+.box2 .ban .right  .bottom{
+	height:50px;
+	}	
+	
+.box2 .ban .right  .bottom .left{
+       width:58px;
+	   height:18px;
+	   float:left;
+	   margin-left:21px;
+	   margin-top:16px;
+	   font-size:12px;
+	   line-height:18px;
+	}	
+.box2 .ban .right .bottom .left a{
+	width:33px;
+	height:18px;
+	background:url(../images/7.jpg) no-repeat left center;
+	float:left;
+	padding-left:23px;
+	} 
+.box2 .ban .right  .bottom .right{
+       width:58px;
+	   height:18px;
+	   margin-top:16px;
+	   background:url(../images/8.jpg) no-repeat 12px center;
+	   border-left:1px solid #d5ccd5;
+	    float:left;
+	}		
+
+.box2 .ban .right  .bottom  .right a{
+	font-size:12px;
+    line-height:18px;
+	float:right;
+	}
+	
+.box2 .ban .right  .bottom  .boxr{
+	width:97px;
+	height:18px;
+	font-size:12px;
+	padding-left:21px;
+	margin-top:18px;
+	float:right;
+	}
+
+.box2 .ban .right  .bottom  .boxr a{
+    color:#e4393c;
+	float:left;
+	background:url(../images/11.jpg) no-repeat 0px center;
+	}
+.box3{
+	width:100%;
+	height:127px;
+	background-color:#ffffff;
+	}
+.box4{
+	width:1000px;
+	font-size:12px;
+	height:15px;
+	margin:20px auto;
+	}
+.box4 a{
+	padding:0 15px;
+	text-decoration:none;
+	border-right:1px solid #7d7db7;
+    color:#666666;
+	}
+.box5{
+	width:268px;
+	height:15px;
+	margin:15px auto;
+	}	
+.box5 p{
+	font-size:13px;
+	color:cf9566;
+	}

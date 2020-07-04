@@ -1,0 +1,234 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+	}
+ul,ol{
+	list-style:none;
+	}
+a{
+	text-decoration:none;
+	color:black;
+	}
+.clear{
+	overflow:hidden;
+	}
+/*header*/
+.header{
+	width:1000px;
+	height:80px;
+	margin:0 auto;
+	}
+.header .logo{
+	width:290px;
+	height:54px;
+	margin-top:15px;
+	float:left;
+	background:url(../images/login.png) no-repeat 192px 20px;
+	}
+.header .login{
+	float:right;
+	margin-top:51px;
+	font-size:12px;
+	}
+.header .login a{
+	padding-left:23px;
+	background:url(../images/a.png) no-repeat  left 3px;
+	}
+/*info*/
+.info{
+	width:100%;
+	height:40px;
+	background-color:#fff8f0;
+	}
+.info div{
+	width:990px;
+	height:40px;
+	margin:0 auto;
+	font-size:12px;
+	line-height:40px;
+	}
+.info div p{
+	padding-left:120px;
+	background:url(../images/info.png) no-repeat 98px 12px;
+	}
+	
+/*banner*/
+.banner{
+	width:100%;
+	height:475px;
+	background-color:#e93854;
+	}
+.banner .main{
+	width:990px;
+	height:100%;
+	margin:0 auto;
+	background:url(../images/banner.png) no-repeat center center;
+	}
+.banner .main .right{
+	width:346px;
+	height:402px;
+	background-color:white;
+	float:right;
+	margin-top:10px;
+	}
+.banner .main .right .top{
+	height:40px;
+	background:#fff8f0 url(../images/info.png) no-repeat 30px center;
+	font-size:12px;
+	line-height:40px;
+	padding-left:52px;
+	color:#999999;
+	}
+.banner .main .right .link{
+	height:54px;
+	border-bottom:1px solid #f4f4f4;
+	}
+.banner .main .right .link a{
+	float:left;
+	width:173px;
+	height:19px;
+	margin-top:18px;
+	text-align:center;
+	}
+.banner .main .right .link .br{
+	width:172px;
+	border-left: 1px solid #f4f4f4;
+	font-weight:bold;
+	color:#e45760;
+	}
+.banner .main .right form{
+	width:222px;
+	border-bottom:1px solid #f4f4f4;
+	padding:0 20px;
+	padding-top:33px;
+	}
+.banner .main .right form .username{
+	margin-bottom:20px;
+	}
+.banner .main .right form div{
+	width:304px;
+	height:38px;
+	border:1px solid #bdbdbd;
+	}
+.banner .main .right form div span {
+	float:left;
+	width:38px;
+	height:38px;
+	border-right:1px solid #bdbdbd;
+	background:#f4f4f4 url(../images/r.png) no-repeat center center;
+	cursor:pointer;
+	}
+.banner .main .right form div input{
+	float:left;
+	height:38px;
+	border:none;
+	outline:none;
+	padding-left:12px;
+	color:#999999;
+	}
+.banner .main .right form .userpwd span{
+	background:#f4f4f4 url(../images/key.png) no-repeat center center;
+	}
+.banner .main .right form .form-link{
+	height:60px;
+	line-height:60px;
+	font-size:12px;
+	border:none;
+	}
+.banner .main .right form .form-link a{
+	float:right;
+	}
+.banner .main .right form button{
+	width:305px;
+	height:34px;
+	background-color:#e4393c;
+	border:none;
+	outline:none;
+	font-size:18px;
+	color:white;
+	}
+.banner .main .right .bottom{
+	height:50px;
+	background-color:#fcfcfc;
+	padding-top:30px;
+	}
+.banner .main .right .bottom .left{
+	width:90px;
+	height:18px;
+	float:left;
+	margin-left:21px;
+	margin-top:16px;
+	font-size:12px;
+	line-height:18px;
+	}
+.banner .main .right .bottom .left a{
+	width:33px;
+	height:18px;
+	background:url(../images/qq.png) no-repeat left center;
+	float:left;
+	padding-left:23px;
+	}
+.banner .main .right .bottom .center{
+	width:90px;
+	height:18px;
+	float:left;
+	margin-left:21px;
+	margin-top:16px;
+	font-size:12px;
+	line-height:18px;
+	}
+.banner .main .right .bottom .center a{
+	width:33px;
+	height:18px;
+	background:url(../images/weixin.jpg) no-repeat left center;
+	float:left;
+	padding-left:23px;
+	}
+	
+.banner .main .right .bottom .right{
+	width:100px;
+	height:18px;
+	float:right;
+	margin-left:21px;
+	margin-top:16px;
+	font-size:12px;
+	line-height:18px;
+	background:url(../images/next.jpg) no-repeat left center;;
+	}
+.banner .main .right .bottom .right a{
+	width:67px;
+	height:18px;
+	
+	float:right;
+	padding-right:15px;
+	}
+	
+/*小导航*/
+.p1{
+	width:990px;
+	height:40px;
+	padding-left:120px;
+	font-size:14px;
+	text-align:center;
+	}
+.p1 a{
+	text-decoration:none;
+	color:black;
+	padding:0 10px;
+	}
+	
+
+.p2{
+	width:990px;
+	height:20px;
+	padding-left:120px;
+	font-size:14px;
+	text-align:center;
+	}
+.p2 a{
+	text-decoration:none;
+	color:black;
+	padding:0 3px;
+	}

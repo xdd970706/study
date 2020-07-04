@@ -1,0 +1,132 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/small/title" /></title>
+  
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var LANGUAGELIST; 
+var DIRLIST;
+var theUIObjects; 
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	LANGUAGELIST = new ListControl("thelang"); 
+	DIRLIST = new ListControl("thedir"); 
+
+	theUIObjects  = new Array(LANGUAGELIST,DIRLIST); 
+
+  tagDialog.populateDropDownList(LANGUAGELIST, theLanguagesCap, theLanguagesVal, 1); 
+  tagDialog.populateDropDownList(DIRLIST, theDirectionCap, theDirectionVal, 1); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/HTML/small/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/small/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:small:class" attname="class" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/small/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:small:id" attname="id" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/small/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:small:class" attname="style" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/small/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:small:title" attname="title" />
+      </td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/HTML/small/div/name/Language"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/small/text/Direction" /> </td>
+      <td nowrap="nowrap">
+        <select name="thedir" class="dirLangList" id="attr:small:dir" attname="dir"> 
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap"></td>
+      <td nowrap="nowrap"></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/small/text/Language" /> </td>
+      <td nowrap="nowrap">
+        <select name="thelang" class="dirLangList" id="attr:small:lang" attname="lang" editable="true"> 
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/HTML/small/div/name/Events"> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onClick"> 
+    <textarea name="theonClick" attname="onClick" id="attr:small:onclick" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onDblClick"> 
+    <textarea name="theonDblClick" attname="onDblClick" id="attr:small:ondblclick" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onMouseDown"> 
+    <textarea name="theonMouseDown" attname="onMouseDown" id="attr:small:onmousedown" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onMouseUp"> 
+    <textarea name="theonMouseUp" attname="onMouseUp" id="attr:small:onmouseup" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onMouseOver"> 
+    <textarea name="theonMouseOver" attname="onMouseOver" id="attr:small:onmouseover" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onMouseMove"> 
+    <textarea name="theonMouseMove" attname="onMouseMove" id="attr:small:onmousemove" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onMouseOut"> 
+    <textarea name="theonMouseOut" attname="onMouseOut" id="attr:small:onmouseout" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onKeyPress"> 
+    <textarea name="theonKeyPress" attname="onKeyPress" id="attr:small:onkeypress" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onKeyDown"> 
+    <textarea name="theonKeyDown" attname="onKeyDown" id="attr:small:onkeydown" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/small/div/name/onKeyUp"> 
+    <textarea name="theonKeyUp" attname="onKeyUp" id="attr:small:onkeyup" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+</div>
+</body>
+</html>

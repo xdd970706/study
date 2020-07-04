@@ -1,0 +1,1494 @@
+<?xml version="1.0" ?>
+<properties>
+	<category name="selInspector/CssPropertyTab/category/Font">
+		<property name="font-family" type="font" />
+		<property name="font-size" type="keyword-length">
+			<propertyoption value="9" />
+			<propertyoption value="10" />
+			<propertyoption value="12" />
+			<propertyoption value="14" />
+			<propertyoption value="16" />
+			<propertyoption value="18" />
+			<propertyoption value="24" />
+			<propertyoption value="36" />
+			<propertyoption value="xx-small" />
+			<propertyoption value="x-small" />
+			<propertyoption value="small" />
+			<propertyoption value="medium" />
+			<propertyoption value="large" />
+			<propertyoption value="x-large" />
+			<propertyoption value="xx-large" />
+			<propertyoption value="smaller" />
+			<propertyoption value="larger" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="color" type="color" />
+		<property name="font-style" type="enumerated">
+			<propertyoption value="normal" />
+			<propertyoption value="italic" />
+			<propertyoption value="oblique" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="line-height" type="keyword-length">
+			<propertyoption value="inherit" />
+			<propertyoption value="none" />
+			<propertyoption value="normal" />
+		</property>
+		<property name="font-weight" type="enumerated">
+			<propertyoption value="normal" />
+			<propertyoption value="bold" />
+			<propertyoption value="bolder" />
+			<propertyoption value="lighter" />
+			<propertyoption value="100" />
+			<propertyoption value="200" />
+			<propertyoption value="300" />
+			<propertyoption value="400" />
+			<propertyoption value="500" />
+			<propertyoption value="600" />
+			<propertyoption value="700" />
+			<propertyoption value="800" />
+			<propertyoption value="900" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="text-transform" type="enumerated">  
+			<propertyoption value="capitalize" />
+			<propertyoption value="uppercase" />
+			<propertyoption value="lowercase" />
+			<propertyoption value="none" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="font-variant" type="enumerated">
+			<propertyoption value="normal" />
+			<propertyoption value="small-caps" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="text-decoration" type="enumerated">
+			<propertyoption value="none" />
+			<propertyoption value="underline" />
+			<propertyoption value="overline" />
+			<propertyoption value="line-through" />
+			<propertyoption value="blink" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="font" type="string" tip="selInspector/CssPropertyTab/toolTip/font" />
+		<property name="text-shadow" type="complex-enumerated" tip="selInspector/CssPropertyTab/toolTip/text-shadow" >
+			<propertyoption value="none" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="font-size-adjust" type="string" />
+		<property name="font-stretch" type="enumerated">
+			<propertyoption value="normal" />
+			<propertyoption value="wider" />
+			<propertyoption value="narrower" />
+			<propertyoption value="ultra-condensed" />
+			<propertyoption value="extra-condensed" />
+			<propertyoption value="condensed" />
+			<propertyoption value="semi-condensed" />
+			<propertyoption value="semi-expanded" />
+			<propertyoption value="expanded" />
+			<propertyoption value="extra-expanded" />
+			<propertyoption value="ultra-expanded" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="direction" type="enumerated">
+			<propertyoption value="ltr" />
+			<propertyoption value="rtl" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="unicode-bidi" type="string" />
+		<property name="src" type="string" />
+		<property name="unicode-range" type="string" />
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Background">
+		<property name="background" type="string" tip="selInspector/CssPropertyTab/toolTip/background" />
+		<property name="background-color" type="color" />
+		<property name="background-image" type="relativepath" />
+		<property name="background-attachment" type="enumerated">
+			<propertyoption value="fixed" />
+			<propertyoption value="local" />
+			<propertyoption value="scroll" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="background-repeat" type="enumerated">
+			<propertyoption value="no-repeat" />
+			<propertyoption value="repeat" />
+			<propertyoption value="repeat-x" />
+			<propertyoption value="repeat-y" />
+			<propertyoption value="round" />
+			<propertyoption value="space" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="background-position" type="string" tip="selInspector/CssPropertyTab/toolTip/background-position" />
+		<property name="background-clip" type="enumerated">
+			<propertyoption value="border-box" />
+			<propertyoption value="padding-box" />
+		</property>
+		<property name="background-origin" type="enumerated">
+			<propertyoption value="border-box" />
+			<propertyoption value="content-box" />
+			<propertyoption value="padding-box" />
+		</property>
+		<property name="background-size" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="contain" />
+			<propertyoption value="cover" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Block">
+		<property name="word-spacing" type="keyword-length">
+			<propertyoption value="normal" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="letter-spacing" type="keyword-length">
+			<propertyoption value="normal" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="text-align" type="enumerated">
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="center" />
+			<propertyoption value="justify" />
+			<propertyoption value="start" />
+			<propertyoption value="end" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="vertical-align" type="keyword-length">
+			<propertyoption value="auto" />
+			<propertyoption value="baseline" />
+			<propertyoption value="central" />
+			<propertyoption value="inherit" />
+			<propertyoption value="sub" />
+			<propertyoption value="super" />
+			<propertyoption value="top" />
+			<propertyoption value="text-top" />
+			<propertyoption value="middle" />
+			<propertyoption value="bottom" />
+			<propertyoption value="text-bottom" />
+			<propertyoption value="use-script" />
+		</property>
+		<property name="text-indent" type="keyword-length">
+			<propertyoption value="hanging" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="white-space" type="enumerated">  
+			<propertyoption value="normal" />
+			<propertyoption value="pre" />
+			<propertyoption value="nowrap" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="display" type="enumerated">
+			<propertyoption value="inline" />
+			<propertyoption value="block" />
+			<propertyoption value="list-item" />
+			<propertyoption value="run-in" />
+			<propertyoption value="inline-block" />
+			<propertyoption value="compact" />
+			<propertyoption value="marker" />
+			<propertyoption value="table" />
+			<propertyoption value="inline-table" />
+			<propertyoption value="table-row-group" />
+			<propertyoption value="table-header-group" />
+			<propertyoption value="table-footer-group" />
+			<propertyoption value="table-row" />
+			<propertyoption value="table-column-group" />
+			<propertyoption value="table-column" />
+			<propertyoption value="table-cell" />
+			<propertyoption value="table-caption" />
+			<propertyoption value="none" />
+			<propertyoption value="inherit" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Border">
+		<property name="border" type="string" tip="selInspector/CssPropertyTab/toolTip/border" />
+		<property name="border-top-color" type="color" />
+		<property name="border-right-color" type="color" />
+		<property name="border-bottom-color" type="color" />
+		<property name="border-left-color" type="color" />
+		<property name="border-top-style" type="enumerated">
+			<propertyoption value="dashed" />
+			<propertyoption value="dotted" />
+			<propertyoption value="double" />
+			<propertyoption value="groove" />
+			<propertyoption value="inherit" />
+			<propertyoption value="inset" />
+			<propertyoption value="hidden" />
+			<propertyoption value="none" />
+			<propertyoption value="outset" />
+			<propertyoption value="ridge" />
+			<propertyoption value="solid" />
+		</property>
+		<property name="border-right-style" type="enumerated">
+			<propertyoption value="dashed" />
+			<propertyoption value="dotted" />
+			<propertyoption value="double" />
+			<propertyoption value="groove" />
+			<propertyoption value="inherit" />
+			<propertyoption value="inset" />
+			<propertyoption value="hidden" />
+			<propertyoption value="none" />
+			<propertyoption value="outset" />
+			<propertyoption value="ridge" />
+			<propertyoption value="solid" />
+		</property>
+		<property name="border-bottom-style" type="enumerated">
+			<propertyoption value="dashed" />
+			<propertyoption value="dotted" />
+			<propertyoption value="double" />
+			<propertyoption value="groove" />
+			<propertyoption value="inherit" />
+			<propertyoption value="inset" />
+			<propertyoption value="hidden" />
+			<propertyoption value="none" />
+			<propertyoption value="outset" />
+			<propertyoption value="ridge" />
+			<propertyoption value="solid" />
+		</property>
+		<property name="border-left-style" type="enumerated">
+			<propertyoption value="dashed" />
+			<propertyoption value="dotted" />
+			<propertyoption value="double" />
+			<propertyoption value="groove" />
+			<propertyoption value="inherit" />
+			<propertyoption value="inset" />
+			<propertyoption value="hidden" />
+			<propertyoption value="none" />
+			<propertyoption value="outset" />
+			<propertyoption value="ridge" />
+			<propertyoption value="solid" />
+		</property>
+		<property name="border-top-width" type="keyword-length">
+			<propertyoption value="thin" />
+			<propertyoption value="medium" />
+			<propertyoption value="thick" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="border-right-width" type="keyword-length">
+			<propertyoption value="thin" />
+			<propertyoption value="medium" />
+			<propertyoption value="thick" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="border-bottom-width" type="keyword-length">
+			<propertyoption value="thin" />
+			<propertyoption value="medium" />
+			<propertyoption value="thick" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="border-left-width" type="keyword-length">
+			<propertyoption value="thin" />
+			<propertyoption value="medium" />
+			<propertyoption value="thick" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="border-top" type="string" tip="selInspector/CssPropertyTab/toolTip/border" />
+		<property name="border-right" type="string" tip="selInspector/CssPropertyTab/toolTip/border" />
+		<property name="border-bottom" type="string" tip="selInspector/CssPropertyTab/toolTip/border" />
+		<property name="border-left" type="string" tip="selInspector/CssPropertyTab/toolTip/border" />
+		<property name="border-color" type="color" tip="selInspector/CssPropertyTab/toolTip/border-color" />
+		<property name="border-style" type="enumerated" tip="selInspector/CssPropertyTab/toolTip/border-style">
+			<propertyoption value="dashed" />
+			<propertyoption value="dotted" />
+			<propertyoption value="double" />
+			<propertyoption value="groove" />
+			<propertyoption value="inherit" />
+			<propertyoption value="inset" />
+			<propertyoption value="hidden" />
+			<propertyoption value="none" />
+			<propertyoption value="outset" />
+			<propertyoption value="ridge" />
+			<propertyoption value="solid" />
+		</property>
+		<property name="border-width" type="string" tip="selInspector/CssPropertyTab/toolTip/border-width" />
+		<property name="border-radius" type="complex" tip="selInspector/CssPropertyTab/toolTip/border-radius" />
+		<property name="border-top-left-radius" type="string" />
+		<property name="border-top-right-radius" type="string" />
+		<property name="border-bottom-left-radius" type="string" />
+		<property name="border-bottom-right-radius" type="string" />
+		<property name="border-image" type="complex-enumerated" tip="selInspector/CssPropertyTab/toolTip/border-image" >
+			<propertyoption value="none" />
+		</property>
+		<property name="border-image-source" type="relativepath" />
+		<property name="border-image-slice" type="keyword-length">
+			<propertyoption value="fill" />
+		</property>
+		<property name="border-image-width" type="keyword-length">
+			<propertyoption value="auto" />
+		</property>
+		<property name="border-image-repeat" type="enumerated">
+			<propertyoption value="repeat" />
+			<propertyoption value="round" />
+			<propertyoption value="space" />
+			<propertyoption value="stretch" />
+		</property>
+		<property name="border-image-outset" type="string" />
+		<property name="outline" type="string" />
+		<property name="outline-color" type="color" tip="selInspector/CssPropertyTab/toolTip/outline-color" />
+		<property name="outline-style" type="enumerated">
+			<propertyoption value="dashed" />
+			<propertyoption value="dotted" />
+			<propertyoption value="double" />
+			<propertyoption value="groove" />
+			<propertyoption value="inherit" />
+			<propertyoption value="inset" />
+			<propertyoption value="hidden" />
+			<propertyoption value="none" />
+			<propertyoption value="outset" />
+			<propertyoption value="ridge" />
+			<propertyoption value="solid" />
+		</property>
+		<property name="outline-width" type="keyword-length">
+			<propertyoption value="thin" />
+			<propertyoption value="medium" />
+			<propertyoption value="thick" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="outline-offset" type="keyword-length">
+			<propertyoption value="inherit" />
+		</property>
+		<property name="box-decoration-break" type="keyword-length">
+			<propertyoption value="clone" />
+			<propertyoption value="slice" />
+		</property>
+		<property name="box-shadow" type="complex-enumerated" tip="selInspector/CssPropertyTab/toolTip/box-shadow" >
+			<propertyoption value="none" />
+		</property>
+	</category>
+	
+	<category name="selInspector/CssPropertyTab/category/Box">
+		<property name="width" type="keyword-length">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="height" type="keyword-length">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="float" type="enumerated">  
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="none" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="clear" type="enumerated">  
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="both" />
+			<propertyoption value="none" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="margin" type="string" tip="selInspector/CssPropertyTab/toolTip/margin" />
+		<property name="margin-top" type="length" />
+		<property name="margin-right" type="length" />
+		<property name="margin-bottom" type="length" />
+		<property name="margin-left" type="length" />
+		<property name="padding" type="string" tip="selInspector/CssPropertyTab/toolTip/padding" />
+		<property name="padding-top" type="length" />
+		<property name="padding-right" type="length" />
+		<property name="padding-bottom" type="length" />
+		<property name="padding-left" type="length" />
+		<property name="min-width" type="length" />
+		<property name="max-width" type="length" />
+		<property name="min-height" type="length" />
+		<property name="max-height" type="length" />
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/List">
+		<property name="list-style-type" type="enumerated"> 
+			<propertyoption value="disc" />
+			<propertyoption value="circle" />
+			<propertyoption value="square" />
+			<propertyoption value="decimal" />
+			<propertyoption value="lower-roman" />
+			<propertyoption value="upper-roman" />
+			<propertyoption value="lower-alpha" />
+			<propertyoption value="upper-alpha" />
+			<propertyoption value="none" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="list-style-image" type="relativepath" />
+		<property name="list-style-position" type="enumerated"> 
+			<propertyoption value="inside" />
+			<propertyoption value="outside" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="list-style" type="string" />
+	</category>
+	
+	<category name="selInspector/CssPropertyTab/category/Positioning">
+		<property name="position" type="enumerated">
+			<propertyoption value="absolute" />
+			<propertyoption value="fixed" />
+			<propertyoption value="relative" />
+			<propertyoption value="static" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="visibility" type="enumerated">
+			<propertyoption value="visible" />
+			<propertyoption value="hidden" />
+			<propertyoption value="inherit" />
+		</property>
+		<!-- Reuse the prior definitions of width and height. -->
+		<property name="width" />
+		<property name="height" />
+		<property name="left" type="keyword-length">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="top" type="keyword-length">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="right" type="keyword-length">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="bottom" type="keyword-length">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="z-index" type="enumerated" tip="selInspector/CssPropertyTab/toolTip/z-index">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="clip" type="enumerated" tip="selInspector/CssPropertyTab/toolTip/clip">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="overflow" type="enumerated">
+			<propertyoption value="visible" />
+			<propertyoption value="hidden" />
+			<propertyoption value="scroll" />
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="overflow-x" type="string" />
+		<property name="overflow-y" type="string" />
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Table">
+		<property name="border-collapse" type="enumerated">
+			<propertyoption value="collapse" />
+			<propertyoption value="separate" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="border-spacing" type="string" />
+		<property name="caption-side" type="enumerated">
+			<propertyoption value="top" />
+			<propertyoption value="bottom" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="empty-cells" type="enumerated">
+			<propertyoption value="show" />
+			<propertyoption value="hide" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="table-layout" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="fixed" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="content" type="enumerated" >
+			<propertyoption value="attr(x)" />
+			<propertyoption value="close-quote" />
+			<propertyoption value="counter(name)" />
+			<propertyoption value="counter(name,style)" />
+			<propertyoption value="counters(name,string)" />
+			<propertyoption value="counters(name,string,style)" />
+			<propertyoption value="icon" />
+			<propertyoption value="inherit" />
+			<propertyoption value="no-close-quote" />
+			<propertyoption value="no-open-quote" />
+			<propertyoption value="normal" />
+			<propertyoption value="open-quote" />
+		</property>
+		<property name="marker-offset" type="keyword-length"> 
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="quotes" type="string" />
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/UserInterface">
+		<property name="appearance" type="enumerated">
+			<propertyoption value="button" />
+			<propertyoption value="checkbox" />
+			<propertyoption value="checkbox-group" />
+			<propertyoption value="combo-box" />
+			<propertyoption value="desktop" />
+			<propertyoption value="dialog" />
+			<propertyoption value="document" />
+			<propertyoption value="field" />
+			<propertyoption value="hyperlink" />
+			<propertyoption value="icon" />
+			<propertyoption value="inherit" />
+			<propertyoption value="list-menu" />
+			<propertyoption value="menu" />
+			<propertyoption value="menubar" />
+			<propertyoption value="menu-item" />
+			<propertyoption value="normal" />
+			<propertyoption value="outline-tree" />
+			<propertyoption value="password" />
+			<propertyoption value="pop-up-menu" />
+			<propertyoption value="pull-down-menu" />
+			<propertyoption value="push-button" />
+			<propertyoption value="range" />
+			<propertyoption value="radio-button" />
+			<propertyoption value="radio-group" />
+			<propertyoption value="signature" />
+			<propertyoption value="tab" />
+			<propertyoption value="tooltip" />
+			<propertyoption value="window" />
+			<propertyoption value="workspace" />
+		</property>
+		<property name="box-sizing" type="enumerated">
+			<propertyoption value="border-box" />
+			<propertyoption value="content-box" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="icon" type="relativepath" />
+		<property name="nav-index" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="nav-down" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="current" />
+			<propertyoption value="inherit" />
+			<propertyoption value="root" />
+		</property>
+		<property name="nav-left" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="current" />
+			<propertyoption value="inherit" />
+			<propertyoption value="root" />
+		</property>
+		<property name="nav-right" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="current" />
+			<propertyoption value="inherit" />
+			<propertyoption value="root" />
+		</property>
+		<property name="nav-up" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="current" />
+			<propertyoption value="inherit" />
+			<propertyoption value="root" />
+		</property>
+		<property name="resize" type="enumerated">
+			<propertyoption value="both" />
+			<propertyoption value="horizontal" />
+			<propertyoption value="inherit" />
+			<propertyoption value="none" />
+			<propertyoption value="vertical" />
+		</property>
+		<property name="scrollbar-3d-light-color" type="color" />
+		<property name="scrollbar-arrow-color" type="color" />
+		<property name="scrollbar-base-color" type="color" />
+		<property name="scrollbar-dark-shadow-color" type="color" />
+		<property name="scrollbar-face-color" type="color" />
+		<property name="scrollbar-highlight-color" type="color" />
+		<property name="scrollbar-shadow-color" type="color" />
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/MultiColumnLayout">
+		<property name="break-before" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="always" />
+			<propertyoption value="avoid" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="page" />
+			<propertyoption value="column" />
+			<propertyoption value="avoid-page" />
+			<propertyoption value="avoid-column" />
+		</property>
+		<property name="break-after" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="always" />
+			<propertyoption value="avoid" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="page" />
+			<propertyoption value="column" />
+			<propertyoption value="avoid-page" />
+			<propertyoption value="avoid-column" />
+		</property>
+		<property name="break-inside" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="avoid" />
+			<propertyoption value="avoid-page" />
+			<propertyoption value="avoid-column" />
+		</property>
+		<property name="columns" type="string" />
+		<property name="column-count" type="enumerated">
+			<propertyoption value="auto" />
+		</property>
+		<property name="column-width" type="keyword-length">
+			<propertyoption value="auto" />
+		</property>
+		<property name="column-rule" type="string" />
+		<property name="column-rule-color" type="color" />
+		<property name="column-rule-style" type="enumerated">
+			<propertyoption value="dashed" />
+			<propertyoption value="dotted" />
+			<propertyoption value="double" />
+			<propertyoption value="groove" />
+			<propertyoption value="inherit" />
+			<propertyoption value="inset" />
+			<propertyoption value="hidden" />
+			<propertyoption value="none" />
+			<propertyoption value="outset" />
+			<propertyoption value="ridge" />
+			<propertyoption value="solid" />
+		</property>
+		<property name="column-rule-width" type="keyword-length" >
+			<propertyoption value="thin" />
+			<propertyoption value="medium" />
+			<propertyoption value="thick" />
+		</property>
+		<property name="column-span" type="enumerated">
+			<propertyoption value="1" />
+			<propertyoption value="all" />
+		</property>
+		<property name="column-fill" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="balance" />
+		</property>
+		<property name="column-gap" type="keyword-length">
+			<propertyoption value="normal" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Text">
+		<property name="hanging-punctuation" type="enumerated">
+			<propertyoption value="end" />
+			<propertyoption value="end-edge" />
+			<propertyoption value="none" />
+			<propertyoption value="start" />
+			<propertyoption value="unrestricted" />
+		</property>
+		<property name="punctuation-trim" type="enumerated">
+			<propertyoption value="adjacent" />
+			<propertyoption value="end" />
+			<propertyoption value="none" />
+			<propertyoption value="start" />
+			<propertyoption value="unrestricted" />
+		</property>
+		<property name="text-autospace" type="string" />
+		<property name="text-kashida-space" type="string" />
+		<property name="text-underline-position" type="string" />
+		<property name="text-wrap" type="enumerated">
+			<propertyoption value="none" />
+			<propertyoption value="normal" />
+			<propertyoption value="suppress" />
+			<propertyoption value="unrestricted" />
+		</property>
+		<property name="text-align-last" type="enumerated">
+			<propertyoption value="center" />
+			<propertyoption value="end" />
+			<propertyoption value="justify" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="start" />
+		</property>
+		<property name="text-emphasis" type="enumerated">
+			<propertyoption value="accent" />
+			<propertyoption value="after" />
+			<propertyoption value="before" />
+			<propertyoption value="center" />
+			<propertyoption value="circle" />
+			<propertyoption value="disc" />
+			<propertyoption value="dot" />
+			<propertyoption value="none" />
+		</property>
+		<property name="text-justify" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="distribute" />
+			<propertyoption value="inter-cluster" />
+			<propertyoption value="inter-ideograph" />
+			<propertyoption value="inter-word" />
+			<propertyoption value="kashida" />
+			<propertyoption value="tibetan" />
+		</property>
+		<property name="text-outline" type="enumerated">
+			<propertyoption value="none" />
+		</property>
+		<property name="white-space-collapse" type="enumerated">
+			<propertyoption value="collapse" />
+			<propertyoption value="discard" />
+			<propertyoption value="preserve" />
+			<propertyoption value="preserve-breaks" />
+		</property>
+		<property name="word-wrap" type="enumerated">
+			<propertyoption value="break-word" />
+			<propertyoption value="normal" />
+		</property>
+		<property name="word-break" type="enumerated">
+			<propertyoption value="break-all" />
+			<propertyoption value="break-strict" />
+			<propertyoption value="keep-all" />
+			<propertyoption value="loose" />
+			<propertyoption value="normal" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/LineLayout">
+		<property name="alignment-adjust" type="enumerated">
+			<propertyoption value="after-edge" />
+			<propertyoption value="alphabetic" />
+			<propertyoption value="auto" />
+			<propertyoption value="baseline" />
+			<propertyoption value="before-edge" />
+			<propertyoption value="central" />
+			<propertyoption value="hanging" />
+			<propertyoption value="ideographic" />
+			<propertyoption value="mathematical" />
+			<propertyoption value="middle" />
+			<propertyoption value="text-after-edge" />
+			<propertyoption value="text-before-edge" />
+		</property>
+		<property name="alignment-baseline" type="enumerated">
+			<propertyoption value="after-edge" />
+			<propertyoption value="alphabetic" />
+			<propertyoption value="baseline" />
+			<propertyoption value="before-edge" />
+			<propertyoption value="central" />
+			<propertyoption value="hanging" />
+			<propertyoption value="ideographic" />
+			<propertyoption value="mathematical" />
+			<propertyoption value="middle" />
+			<propertyoption value="text-after-edge" />
+			<propertyoption value="text-before-edge" />
+			<propertyoption value="use-script" />
+		</property>
+		<property name="baseline-shift" type="enumerated">
+			<propertyoption value="baseline" />
+			<propertyoption value="sub" />
+			<propertyoption value="super" />
+		</property>
+		<property name="dominant-baseline" type="enumerated">
+			<propertyoption value="alphabetic" />
+			<propertyoption value="auto" />
+			<propertyoption value="central" />
+			<propertyoption value="hanging" />
+			<propertyoption value="ideographic" />
+			<propertyoption value="mathematical" />
+			<propertyoption value="middle" />
+			<propertyoption value="no-change" />
+			<propertyoption value="reset-size" />
+			<propertyoption value="text-after-edge" />
+			<propertyoption value="text-before-edge" />
+			<propertyoption value="use-script" />
+		</property>
+		<property name="drop-initial-after-adjust" type="enumerated">
+			<propertyoption value="after-edge" />
+			<propertyoption value="alphabetic" />
+			<propertyoption value="central" />
+			<propertyoption value="hanging" />
+			<propertyoption value="ideographic" />
+			<propertyoption value="mathematical" />
+			<propertyoption value="middle" />
+			<propertyoption value="text-after-edge" />
+			<propertyoption value="text-before-edge" />
+		</property>
+		<property name="drop-initial-after-align" type="enumerated">
+			<propertyoption value="after-edge" />
+			<propertyoption value="alphabetic" />
+			<propertyoption value="baseline" />
+			<propertyoption value="before-edge" />
+			<propertyoption value="central" />
+			<propertyoption value="hanging" />
+			<propertyoption value="ideographic" />
+			<propertyoption value="mathematical" />
+			<propertyoption value="middle" />
+			<propertyoption value="text-after-edge" />
+			<propertyoption value="text-before-edge" />
+			<propertyoption value="use-script" />
+		</property>
+		<property name="drop-initial-before-adjust" type="enumerated">
+			<propertyoption value="after-edge" />
+			<propertyoption value="before-edge" />
+			<propertyoption value="central" />
+			<propertyoption value="hanging" />
+			<propertyoption value="ideographic" />
+			<propertyoption value="mathematical" />
+			<propertyoption value="middle" />
+			<propertyoption value="text-after-edge" />
+			<propertyoption value="text-before-edge" />
+		</property>
+		<property name="drop-initial-before-align" type="enumerated">
+			<propertyoption value="after-edge" />
+			<propertyoption value="alphabetic" />
+			<propertyoption value="central" />
+			<propertyoption value="hanging" />
+			<propertyoption value="ideographic" />
+			<propertyoption value="mathematical" />
+			<propertyoption value="middle" />
+			<propertyoption value="text-after-edge" />
+		</property>
+		<property name="drop-initial-size" type="keyword-length">
+			<propertyoption value="auto" />
+		</property>
+		<property name="drop-initial-value" type="keyword-length">
+			<propertyoption value="initial" />
+		</property>
+		<property name="inline-box-align" type="enumerated">
+			<propertyoption value="initial" />
+			<propertyoption value="last" />
+		</property>
+		<property name="line-stacking" type="string" />
+		<property name="line-stacking-ruby" type="enumerated">
+			<propertyoption value="exclude-ruby" />
+			<propertyoption value="include-ruby" />
+		</property>
+		<property name="line-stacking-shift" type="enumerated">
+			<propertyoption value="consider-shifts" />
+			<propertyoption value="disregard-shifts" />
+		</property>
+		<property name="line-stacking-strategy" type="enumerated">
+			<propertyoption value="block-line-height" />
+			<propertyoption value="grid-height" />
+			<propertyoption value="inline-line-height" />
+			<propertyoption value="max-height" />
+		</property>
+		<property name="text-height" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="font-size" />
+			<propertyoption value="max-size" />
+			<propertyoption value="text-size" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Animations">
+		<property name="animation" type="string" tip="selInspector/CssPropertyTab/toolTip/animation"/>
+		<property name="animation-name" type="string" />
+		<property name="animation-duration" type="string" />
+		<property name="animation-timing-function" type="enumerated">
+			<propertyoption value="cubic-bezier(x1,y1,x2,y2)" />
+			<propertyoption value="ease" />
+			<propertyoption value="ease-in" />
+			<propertyoption value="ease-out" />
+			<propertyoption value="ease-in-out" />
+			<propertyoption value="linear" />
+		</property>
+		<property name="animation-iteration-count" type="enumerated">
+			<propertyoption value="infinite" />
+		</property>
+		<property name="animation-direction" type="enumerated">
+			<propertyoption value="alternate" />
+			<propertyoption value="normal" />
+		</property>
+		<property name="animation-play-state" type="enumerated">
+			<propertyoption value="paused" />
+			<propertyoption value="running" />
+		</property>
+		<property name="animation-delay" type="string" />
+		<property name="backface-visibility" type="enumerated">
+			<propertyoption value="hidden" />
+			<propertyoption value="visible" />
+		</property>
+		<property name="perspective" type="string" />
+		<property name="perspective-origin" type="enumerated">
+			<propertyoption value="bottom" />
+			<propertyoption value="center" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="top" />
+		</property>
+    <property name="transform" type="enumerated">
+      <propertyoption value="matrix" />
+      <propertyoption value="none" />
+      <propertyoption value="rotate()" />
+      <propertyoption value="scale(,)" />
+      <propertyoption value="scaleX()" />
+      <propertyoption value="scaleY()" />
+      <propertyoption value="skew(,)" />
+      <propertyoption value="skewX()" />
+      <propertyoption value="skewY()" />
+      <propertyoption value="translate(,)" />
+      <propertyoption value="translateX()" />
+      <propertyoption value="translateY()" />      
+    </property>
+		<property name="transform-origin" type="enumerated">
+			<propertyoption value="bottom" />
+			<propertyoption value="center" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="top" />
+		</property>
+		<property name="transform-style" type="enumerated">
+			<propertyoption value="flat" />
+			<propertyoption value="preserve-3d" />
+		</property>
+		<property name="transition" type="string" tip="selInspector/CssPropertyTab/toolTip/transition" />
+		<property name="transition-duration" type="string" />
+		<property name="transition-property" type="enumerated">
+			<propertyoption value="all" />
+			<propertyoption value="none" />
+		</property>
+		<property name="transition-timing-function" type="enumerated">
+			<propertyoption value="cubic-bezier(x1,y1,x2,y2)" />
+			<propertyoption value="ease" />
+			<propertyoption value="ease-in" />
+			<propertyoption value="ease-out" />
+			<propertyoption value="ease-in-out" />
+			<propertyoption value="linear" />
+		</property>
+		<property name="transition-delay" type="string" />
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Extensions">
+		<property name="page-break-before" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="always" />
+			<propertyoption value="avoid" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="page-break-after" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="always" />
+			<propertyoption value="avoid" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="inherit" />
+		</property>
+		<property name="cursor" type="enumerated">
+			<propertyoption value="alias" />
+			<propertyoption value="all-scroll" />
+			<propertyoption value="auto" />
+			<propertyoption value="cell" />
+			<propertyoption value="col-resize" />
+			<propertyoption value="context-menu" />
+			<propertyoption value="copy" />
+			<propertyoption value="crosshair" />
+			<propertyoption value="default" />
+			<propertyoption value="e-resize" />
+			<propertyoption value="ew-resize" />
+			<propertyoption value="help" />
+			<propertyoption value="inherit" />
+			<propertyoption value="move" />
+			<propertyoption value="n-resize" />
+			<propertyoption value="ne-resize" />
+			<propertyoption value="nesw-resize" />
+			<propertyoption value="no-drop" />
+			<propertyoption value="none" />
+			<propertyoption value="not-allowed" />
+			<propertyoption value="ns-resize" />
+			<propertyoption value="nw-resize" />
+			<propertyoption value="nwse-resize" />
+			<propertyoption value="pointer" />
+			<propertyoption value="progress" />
+			<propertyoption value="row-resize" />
+			<propertyoption value="s-resize" />
+			<propertyoption value="se-resize" />
+			<propertyoption value="sw-resize" />
+			<propertyoption value="text" />
+			<propertyoption value="vertical-text" />
+			<propertyoption value="wait" />
+			<propertyoption value="w-resize" />
+		</property>
+		<property name="filter" type="string" />
+		<property name="background-position-x" type="string" />
+		<property name="background-position-y" type="string" />
+		<property name="behavior" type="string" />
+		<property name="ime-mode" type="string" />
+		<property name="layout-grid" type="string" />
+		<property name="layout-grid-char" type="string" />
+		<property name="layout-grid-line" type="string" />
+		<property name="layout-grid-mode" type="string" />
+		<property name="layout-grid-type" type="string" />
+		<property name="line-break" type="string" />
+		<property name="marquee-style" type="enumerated">
+			<propertyoption value="alternate" />
+			<propertyoption value="scroll" />
+			<propertyoption value="slide" />
+		</property>
+		<property name="marquee-play-count" type="enumerated">
+			<propertyoption value="infinite" />
+		</property>
+		<property name="marquee-direction" type="enumerated">
+			<propertyoption value="forward" />
+			<propertyoption value="reverse" />
+		</property>
+		<property name="marquee-speed" type="enumerated">
+			<propertyoption value="fast" />
+			<propertyoption value="normal" />
+			<propertyoption value="slow" />
+		</property>
+		<property name="overflow-style" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="marquee-block" />
+			<propertyoption value="marquee-line" />
+		</property>
+		<property name="ruby-align" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="center" />
+			<propertyoption value="distribute-letter" />
+			<propertyoption value="distribute-space" />
+			<propertyoption value="end" />
+			<propertyoption value="left" />
+			<propertyoption value="line-edge" />
+			<propertyoption value="right" />
+			<propertyoption value="start" />
+		</property>
+		<property name="ruby-overhang" type="enumerated">
+			<propertyoption value="auto" />
+			<propertyoption value="end" />
+			<propertyoption value="none" />
+			<propertyoption value="start" />
+		</property>
+		<property name="ruby-position" type="enumerated">
+			<propertyoption value="after" />
+			<propertyoption value="before" />
+			<propertyoption value="right" />
+		</property>
+		<property name="ruby-span" type="enumerated">
+			<propertyoption value="attr()" />
+			<propertyoption value="none" />
+		</property>
+		<property name="writing-mode" type="string" />
+		<property name="zoom" type="string" />
+		<property name="opacity" type="string" />
+		<property name="color-profile" type="string" />
+		<property name="rendering-intent" type="string" />
+		<property name="crop" type="string" />
+		<property name="grid-columns" type="keyword-length">
+			<propertyoption value="inherit" />
+			<propertyoption value="none" />
+		</property>
+		<property name="grid-rows" type="keyword-length">
+			<propertyoption value="inherit" />
+			<propertyoption value="none" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Mozilla">
+		<property name="-moz-appearance" type="string" showinmenu="false" />
+		<property name="-moz-background-clip" type="enumerated" showinmenu="false">
+			<propertyoption value="border" />
+			<propertyoption value="padding" />
+		</property>
+		<property name="-moz-background-inline-policy" type="enumerated" showinmenu="false">
+			<propertyoption value="bounding-box" />
+			<propertyoption value="continuous" />
+			<propertyoption value="each-box" />
+		</property>
+		<property name="-moz-background-origin" type="enumerated" showinmenu="false">
+			<propertyoption value="border" />
+			<propertyoption value="content" />
+			<propertyoption value="padding" />
+		</property>
+		<property name="-moz-binding" type="string" showinmenu="false" />
+		<property name="-moz-border-bottom-colors" type="string" showinmenu="false" />
+		<property name="-moz-border-left-colors" type="string" showinmenu="false" />
+		<property name="-moz-border-right-colors" type="string" showinmenu="false" />
+		<property name="-moz-border-top-colors" type="string" showinmenu="false" />
+		<property name="-moz-border-end" type="string" showinmenu="false" />
+		<property name="-moz-border-end-color" type="color" showinmenu="false" />
+		<property name="-moz-border-end-style" type="string" showinmenu="false" />
+		<property name="-moz-border-end-width" type="length" showinmenu="false" />
+		<property name="-moz-border-image" type="complex-enumerated" showinmenu="false" tip="selInspector/CssPropertyTab/toolTip/border-image" >
+			<propertyoption value="none" />
+		</property>
+		<property name="-moz-border-radius" type="complex" showinmenu="false" tip="selInspector/CssPropertyTab/toolTip/border-radius" />
+		<property name="-moz-border-radius-bottomleft" type="string" showinmenu="false" />
+		<property name="-moz-border-radius-bottomright" type="string" showinmenu="false" />
+		<property name="-moz-border-radius-topleft" type="string" showinmenu="false" />
+		<property name="-moz-border-radius-topright" type="string" showinmenu="false" />
+		<property name="-moz-box-align" type="string" showinmenu="false" />
+		<property name="-moz-box-direction" type="string" showinmenu="false" />
+		<property name="-moz-box-flex" type="string" showinmenu="false" />
+		<property name="-moz-box-ordinal-group" type="string" showinmenu="false" />
+		<property name="-moz-box-orient" type="string" showinmenu="false" />
+		<property name="-moz-box-pack" type="string" showinmenu="false" />
+		<property name="-moz-box-sizing" type="string" showinmenu="false" />
+		<property name="-moz-column-count" type="string" showinmenu="false" />
+		<property name="-moz-column-gap" type="string" showinmenu="false" />
+		<property name="-moz-column-rule" type="string" showinmenu="false" />
+		<property name="-moz-column-rule-color" type="string" showinmenu="false" />
+		<property name="-moz-column-rule-style" type="string" showinmenu="false" />
+		<property name="-moz-column-rule-width" type="string" showinmenu="false" />
+		<property name="-moz-column-width" type="string" showinmenu="false" />
+		<property name="-moz-image-region" type="string" showinmenu="false" />
+		<property name="-moz-key-equivalent" type="string" showinmenu="false" />
+		<property name="-moz-opacity" type="string" showinmenu="false" />
+		<property name="-moz-outline" type="string" showinmenu="false" />
+		<property name="-moz-outline-color" type="string" showinmenu="false" />
+		<property name="-moz-outline-radius" type="string" showinmenu="false" />
+		<property name="-moz-outline-radius-bottomleft" type="string" showinmenu="false" />
+		<property name="-moz-outline-radius-bottomright" type="string" showinmenu="false" />
+		<property name="-moz-outline-radius-topleft" type="string" showinmenu="false" />
+		<property name="-moz-outline-radius-topright" type="string" showinmenu="false" />
+		<property name="-moz-outline-style" type="string" showinmenu="false" />
+		<property name="-moz-outline-width" type="length" showinmenu="false" />
+		<property name="-moz-user-focus" type="string" showinmenu="false" />
+		<property name="-moz-user-input" type="string" showinmenu="false" />
+		<property name="-moz-user-select" type="enumerated" showinmenu="false">
+			<propertyoption value="all" />
+			<propertyoption value="none" />
+			<propertyoption value="text" />
+			<propertyoption value="-moz-none" />
+		</property>
+		<property name="-moz-background-size" type="enumerated" showinmenu="false">
+			<propertyoption value="auto" />
+			<propertyoption value="contain" />
+			<propertyoption value="cover" />
+		</property>
+    <property name="-moz-transform" type="enumerated" showinmenu="false">
+      <propertyoption value="matrix" />
+      <propertyoption value="none" />
+      <propertyoption value="rotate()" />
+      <propertyoption value="scale(,)" />
+      <propertyoption value="scaleX()" />
+      <propertyoption value="scaleY()" />
+      <propertyoption value="skew(,)" />
+      <propertyoption value="skewX()" />
+      <propertyoption value="skewY()" />
+      <propertyoption value="translate(,)" />
+      <propertyoption value="translateX()" />
+      <propertyoption value="translateY()" />
+    </property>
+		<property name="-moz-transform-origin" type="enumerated" showinmenu="false">
+			<propertyoption value="bottom" />
+			<propertyoption value="center" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="top" />
+		</property>
+		<property name="-moz-box-flexgroup" type="string" showinmenu="false" />
+		<property name="-moz-box-shadow" type="complex-enumerated" showinmenu="false" tip="selInspector/CssPropertyTab/toolTip/box-shadow" >
+			<propertyoption value="none" />
+		</property>
+		<property name="-moz-transition" type="string" showinmenu="false" />
+		<property name="-moz-transition-delay" type="string" showinmenu="false" />
+		<property name="-moz-transition-duration" type="string" showinmenu="false" />
+		<property name="-moz-transition-property" type="enumerated" showinmenu="false">
+			<propertyoption value="all" />
+			<propertyoption value="none" />
+		</property>
+		<property name="-moz-transition-timing-function" type="string" showinmenu="false" />
+		<property name="-moz-window-shadow" type="string" showinmenu="false" />
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Microsoft">
+		<property name="-ms-transform" type="enumerated" showinmenu="false">
+			<propertyoption value="matrix" />
+			<propertyoption value="none" />
+			<propertyoption value="rotate()" />
+			<propertyoption value="scale(x,y)" />
+			<propertyoption value="scaleX()" />
+			<propertyoption value="scaleY()" />
+			<propertyoption value="skew(x,y)" />
+			<propertyoption value="skewX()" />
+			<propertyoption value="skewY()" />
+			<propertyoption value="translate(x,y)" />
+			<propertyoption value="translateX()" />
+			<propertyoption value="translateY()" />
+		</property>
+		<property name="-ms-transform-origin" type="enumerated" showinmenu="false">
+			<propertyoption value="bottom" />
+			<propertyoption value="center" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="top" />
+		</property>
+		<property name="-ms-block-progression" type="string" showinmenu="false">
+			<propertyoption value="tb" />
+			<propertyoption value="rl" />
+			<propertyoption value="bt" />
+			<propertyoption value="lr" />
+		</property>
+		<property name="-ms-background-position-x" type="string" showinmenu="false" />
+		<property name="-ms-background-position-y" type="string" showinmenu="false" />
+		<property name="-ms-filter" type="string" showinmenu="false" />
+		<property name="-ms-ime-mode" type="enumerated" showinmenu="false">
+			<propertyoption value="auto" />
+			<propertyoption value="active" />
+			<propertyoption value="inactive" />
+			<propertyoption value="disabled" />
+		</property>
+		<property name="-ms-interpolation-mode" type="enumerated" showinmenu="false">
+			<propertyoption value="bicubic" />
+			<propertyoption value="nearest-neighbor" />
+		</property>
+		<property name="-ms-layout-flow" type="enumerated" showinmenu="false">
+			<propertyoption value="horizontal" />
+			<propertyoption value="vertical-ideographic" />
+		</property>
+		<property name="-ms-layout-grid" type="enumerated" showinmenu="false">
+			<propertyoption value="mode" />
+			<propertyoption value="type" />
+			<propertyoption value="line" />
+			<propertyoption value="char" />
+		</property>
+		<property name="-ms-layout-grid-char" type="enumerated" showinmenu="false">
+			<propertyoption value="none" />
+			<propertyoption value="auto" />
+		</property>
+		<property name="-ms-layout-grid-line" type="enumerated" showinmenu="false">
+			<propertyoption value="none" />
+			<propertyoption value="auto" />
+		</property>
+		<property name="-ms-layout-grid-mode" type="enumerated" showinmenu="false">
+			<propertyoption value="both" />
+			<propertyoption value="none" />
+			<propertyoption value="line" />
+			<propertyoption value="char" />
+		</property>
+		<property name="-ms-layout-grid-type" type="enumerated" showinmenu="false">
+			<propertyoption value="loose" />
+			<propertyoption value="strict" />
+			<propertyoption value="fixed" />
+		</property>
+		<property name="-ms-overflow-x" type="enumerated" showinmenu="false">
+			<propertyoption value="visible" />
+			<propertyoption value="scroll" />
+			<propertyoption value="hidden" />
+			<propertyoption value="auto" />
+		</property>
+		<property name="-ms-overflow-y" type="enumerated" showinmenu="false">
+			<propertyoption value="visible" />
+			<propertyoption value="scroll" />
+			<propertyoption value="hidden" />
+			<propertyoption value="auto" />
+		</property>
+		<property name="-ms-scrollbar-3dlight-color" type="string" showinmenu="false" />
+		<property name="-ms-scrollbar-arrow-color" type="string" showinmenu="false" />
+		<property name="-ms-scrollbar-base-color" type="string" showinmenu="false" />
+		<property name="-ms-scrollbar-darkshadow-color" type="string" showinmenu="false" />
+		<property name="-ms-scrollbar-face-color" type="string" showinmenu="false" />
+		<property name="-ms-scrollbar-highlight-color" type="string" showinmenu="false" />
+		<property name="-ms-scrollbar-shadow-color" type="string" showinmenu="false" />
+		<property name="-ms-text-align-last" type="enumerated" showinmenu="false">
+			<propertyoption value="auto" />
+			<propertyoption value="center" />
+			<propertyoption value="inherit" />
+			<propertyoption value="justify" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+		</property>
+		<property name="-ms-text-autospace" type="enumerated" showinmenu="false">
+			<propertyoption value="none" />
+			<propertyoption value="ideograph-alpha" />
+			<propertyoption value="ideograph-numeric" />
+			<propertyoption value="ideograph-parenthesis" />
+			<propertyoption value="ideograph-space" />
+		</property>
+		<property name="-ms-text-justify" type="enumerated" showinmenu="false">
+			<propertyoption value="auto" />
+			<propertyoption value="distribute" />
+			<propertyoption value="distribute-all-lines" />
+			<propertyoption value="distribute-center-last" />
+			<propertyoption value="inter-cluster" />
+			<propertyoption value="inter-ideograph" />
+			<propertyoption value="inter-word" />
+			<propertyoption value="kashida" />
+			<propertyoption value="newspaper" />
+		</property>
+		<property name="-ms-text-kashida-space" type="enumerated" showinmenu="false">
+			<propertyoption value="inherit" />
+		</property>
+		<property name="-ms-text-overflow" type="enumerated" showinmenu="false">
+			<propertyoption value="ellipsis" />
+			<propertyoption value="clip" />
+		</property>
+		<property name="-ms-text-underline-position" type="enumerated" showinmenu="false">
+			<propertyoption value="auto" />
+			<propertyoption value="above" />
+			<propertyoption value="below" />
+		</property>
+		<property name="-ms-word-break" type="enumerated" showinmenu="false">
+			<propertyoption value="normal" />
+			<propertyoption value="break-all" />
+			<propertyoption value="keep-all" />
+		</property>
+		<property name="-ms-word-spacing" type="enumerated" showinmenu="false">
+			<propertyoption value="normal" />
+		</property>
+		<property name="-ms-word-wrap" type="enumerated" showinmenu="false">
+			<propertyoption value="normal" />
+			<propertyoption value="break-word" />
+		</property>
+		<property name="-ms-writing-mode" type="enumerated" showinmenu="false">
+			<propertyoption value="lr-tb" />
+			<propertyoption value="rl-tb" />
+			<propertyoption value="tb-rl" />
+			<propertyoption value="bt-rl" />
+			<propertyoption value="tb-lr" />
+			<propertyoption value="bt-lr" />
+			<propertyoption value="lr-bt" />
+			<propertyoption value="rl-bt" />
+			<propertyoption value="lr" />
+			<propertyoption value="rl" />
+			<propertyoption value="bt" />
+		</property>
+		<property name="-ms-zoom" type="enumerated" showinmenu="false">
+			<propertyoption value="normal" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Opera">
+		<property name="-o-transform" type="enumerated" showinmenu="false">
+			<propertyoption value="matrix" />
+			<propertyoption value="none" />
+			<propertyoption value="rotate()" />
+			<propertyoption value="scale(,)" />
+			<propertyoption value="scaleX()" />
+			<propertyoption value="scaleY()" />
+			<propertyoption value="skew(,)" />
+			<propertyoption value="skewX()" />
+			<propertyoption value="skewY()" />
+			<propertyoption value="translate(,)" />
+			<propertyoption value="translateX()" />
+			<propertyoption value="translateY()" />
+		</property>
+		<property name="-o-transform-origin" type="enumerated" showinmenu="false">
+			<propertyoption value="bottom" />
+			<propertyoption value="center" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="top" />
+		</property>
+		<property name="-o-transition-delay" type="string" showinmenu="false" />
+		<property name="-o-transition-duration" type="string" showinmenu="false" />
+		<property name="-o-transition-property" type="enumerated" showinmenu="false">
+			<propertyoption value="all" />
+			<propertyoption value="none" />
+		</property>
+		<property name="-o-transition-timing-function" type="enumerated" showinmenu="false">
+			<propertyoption value="cubic-bezier(x1,y1,x2,y2)" />
+			<propertyoption value="ease" />
+			<propertyoption value="ease-in" />
+			<propertyoption value="ease-out" />
+			<propertyoption value="ease-in-out" />
+			<propertyoption value="linear" />
+		</property>
+	</category>
+
+	<category name="selInspector/CssPropertyTab/category/Webkit">
+		<property name="-webkit-animation" type="string" showinmenu="false" />
+		<property name="-webkit-animation-delay" type="string" showinmenu="false" />
+		<property name="-webkit-animation-direction" type="enumerated" showinmenu="false">
+			<propertyoption value="alternate" />
+			<propertyoption value="normal" />
+		</property>
+		<property name="-webkit-animation-duration" type="string" showinmenu="false" />
+		<property name="-webkit-animation-fill-mode" type="string" showinmenu="false" />
+		<property name="-webkit-animation-iteration-count" type="enumerated" showinmenu="false">
+			<propertyoption value="infinite" />
+		</property>
+		<property name="-webkit-animation-name" type="enumerated" showinmenu="false">
+			<propertyoption value="none" />
+		</property>
+		<property name="-webkit-animation-play-state" type="enumerated" showinmenu="false">
+			<propertyoption value="paused" />
+			<propertyoption value="running" />
+		</property>
+		<property name="-webkit-animation-timing-function" type="enumerated" showinmenu="false">
+			<propertyoption value="cubic-bezier(x1,y1,x2,y2)" />
+			<propertyoption value="ease" />
+			<propertyoption value="ease-in" />
+			<propertyoption value="ease-out" />
+			<propertyoption value="ease-in-out" />
+			<propertyoption value="linear" />
+		</property>
+		<property name="-webkit-appearance" type="string" showinmenu="false" />
+		<property name="-webkit-backface-visibility" type="enumerated" showinmenu="false">
+			<propertyoption value="hidden" />
+			<propertyoption value="visible" />
+		</property>
+		<property name="-webkit-background-clip" type="enumerated" showinmenu="false">
+			<propertyoption value="border" />
+			<propertyoption value="content" />
+			<propertyoption value="padding" />
+			<propertyoption value="text" />
+		</property>
+		<property name="-webkit-background-composite" type="string" showinmenu="false" />
+		<property name="-webkit-background-origin" type="enumerated" showinmenu="false">
+			<propertyoption value="border" />
+			<propertyoption value="padding" />
+		</property>
+		<property name="-webkit-background-size" type="string" showinmenu="false" />
+		<property name="-webkit-binding" type="string" showinmenu="false" />
+		<property name="-webkit-border-bottom-left-radius" type="string" showinmenu="false" />
+		<property name="-webkit-border-bottom-right-radius" type="string" showinmenu="false" />
+		<property name="-webkit-border-image" type="complex-enumerated" showinmenu="false" tip="selInspector/CssPropertyTab/toolTip/border-image" >
+			<propertyoption value="none" />
+		</property>
+		<property name="-webkit-border-radius" type="complex" showinmenu="false" tip="selInspector/CssPropertyTab/toolTip/border-radius" />
+		<property name="-webkit-border-top-left-radius" type="string" showinmenu="false" />
+		<property name="-webkit-border-top-right-radius" type="string" showinmenu="false" />
+		<property name="-webkit-box-align" type="string" showinmenu="false" />
+		<property name="-webkit-box-direction" type="string" showinmenu="false" />
+		<property name="-webkit-box-flex" type="string" showinmenu="false" />
+		<property name="-webkit-box-flex-group" type="string" showinmenu="false" />
+		<property name="-webkit-box-lines" type="string" showinmenu="false" />
+		<property name="-webkit-box-ordinal-group" type="string" showinmenu="false" />
+		<property name="-webkit-box-orient" type="string" showinmenu="false" />
+		<property name="-webkit-box-pack" type="string" showinmenu="false" />
+		<property name="-webkit-box-shadow" type="complex-enumerated" showinmenu="false" tip="selInspector/CssPropertyTab/toolTip/box-shadow" >
+			<propertyoption value="none" />
+		</property>
+		<property name="-webkit-box-sizing" type="string" showinmenu="false" />
+		<property name="-webkit-column-break-after" type="string" showinmenu="false" />
+		<property name="-webkit-column-break-before" type="string" showinmenu="false" />
+		<property name="-webkit-column-break-inside" type="string" showinmenu="false" />
+		<property name="-webkit-column-count" type="string" showinmenu="false" />
+		<property name="-webkit-column-gap" type="string" showinmenu="false" />
+		<property name="-webkit-column-rule" type="string" showinmenu="false" />
+		<property name="-webkit-column-rule-color" type="string" showinmenu="false" />
+		<property name="-webkit-column-rule-style" type="string" showinmenu="false" />
+		<property name="-webkit-column-rule-width" type="string" showinmenu="false" />
+		<property name="-webkit-column-width" type="string" showinmenu="false" />
+		<property name="-webkit-columns" type="string" showinmenu="false" />
+		<property name="-webkit-opacity" type="string" showinmenu="false" />
+		<property name="-webkit-transform" type="enumerated" showinmenu="false">
+			<propertyoption value="matrix" />
+			<propertyoption value="none" />
+			<propertyoption value="rotate()" />
+			<propertyoption value="scale(,)" />
+			<propertyoption value="scaleX()" />
+			<propertyoption value="scaleY()" />
+			<propertyoption value="skew(,)" />
+			<propertyoption value="skewX()" />
+			<propertyoption value="skewY()" />
+			<propertyoption value="translate(,)" />
+			<propertyoption value="translateX()" />
+			<propertyoption value="translateY()" />
+		</property>
+		<property name="-webkit-transform-origin" type="enumerated" showinmenu="false">
+			<propertyoption value="bottom" />
+			<propertyoption value="center" />
+			<propertyoption value="left" />
+			<propertyoption value="right" />
+			<propertyoption value="top" />
+		</property>
+		<property name="-webkit-transition" type="string" showinmenu="false" />
+		<property name="-webkit-transition-delay" type="string" showinmenu="false" />
+		<property name="-webkit-transition-duration" type="string" showinmenu="false" />
+		<property name="-webkit-transition-property" type="enumerated" showinmenu="false">
+			<propertyoption value="all" />
+			<propertyoption value="none" />
+		</property>
+		<property name="-webkit-transition-timing-function" type="enumerated" showinmenu="false">
+			<propertyoption value="cubic-bezier(x1,y1,x2,y2)" />
+			<propertyoption value="ease" />
+			<propertyoption value="ease-in" />
+			<propertyoption value="ease-out" />
+			<propertyoption value="ease-in-out" />
+			<propertyoption value="linear" />
+		</property>
+		<property name="-webkit-user-select" type="enumerated" showinmenu="false">
+			<propertyoption value="auto" />
+			<propertyoption value="none" />
+			<propertyoption value="text" />
+		</property>
+	</category>
+</properties>

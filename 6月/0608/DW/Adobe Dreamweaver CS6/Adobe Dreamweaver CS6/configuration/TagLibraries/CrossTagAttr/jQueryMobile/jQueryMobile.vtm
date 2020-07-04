@@ -1,0 +1,464 @@
+<crosstag_attributes>
+	<attribgroup id="data-role" name="jQueryMobile">
+    <attrib name="data-" type="Prefix" />
+    <attrib name="data-ajax" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-add-back-btn" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-back-btn-text" type="text" allowmultiplevalues="no"/>
+		<attrib name="data-back-btn-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-collapsed" type="Enumerated" allowmultiplevalues="no">
+		<attrib name="data-close-btn-text" type="text" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-content-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-count-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-direction" type="text" allowmultiplevalues="no">
+			<attriboption caption="reverse" value='reverse' />
+		</attrib>
+		<attrib name="data-dividertheme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-dom-cache" type="text" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-filter" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-filter-placeholder" type="Enumerated" allowmultiplevalues="no" />
+		<attrib name="data-filter-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-fullscreen" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-grid" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+		</attrib>
+		<attrib name="data-id" type="text" allowmultiplevalues="no"/>
+		<attrib name="data-icon" type="Enumerated" allowmultiplevalues="no">
+		 	<attriboption caption="alert" value='alert' />
+			<attriboption caption="arrow-u" value='arrow-u' />
+			<attriboption caption="arrow-d" value='arrow-d' />
+			<attriboption caption="arrow-r" value='arrow-r' />
+			<attriboption caption="arrow-l" value='arrow-l' />
+			<attriboption caption="back" value='back' />
+			<attriboption caption="check" value='check' />
+			<attriboption caption="custom" value='custom' />
+			<attriboption caption="delete" value='delete' />
+			<attriboption caption="forward" value='forward' />
+			<attriboption caption="gear" value='gear' />
+			<attriboption caption="grid" value='grid' />
+			<attriboption caption="home" value='home' />
+			<attriboption caption="info" value='info' />
+			<attriboption caption="minus" value='minus' />
+			<attriboption caption="plus" value='plus' />
+			<attriboption caption="refresh" value='refresh' />
+			<attriboption caption="search" value='search' />
+			<attriboption caption="star" value='star' />
+		</attrib>
+		<attrib name="data-iconpos" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="left" value='left' />
+			<attriboption caption="right" value='right' />
+			<attriboption caption="top" value='top' />
+			<attriboption caption="bottom" value='bottom' />
+			<attriboption caption="notext" value='notext' />
+		</attrib>
+		<attrib name="data-iconshadow" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-inline" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-inset" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-native-menu" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-overlay-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-placeholder" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-position" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="fixed" value='fixed' />
+		</attrib>
+		<attrib name="data-prefetch" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-rel" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="back" value='back' />
+			<attriboption caption="dialog" value='dialog' />
+			<attriboption caption="external" value='external' />
+		</attrib>
+		<attrib name="data-role" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="button" value='button' />
+			<attriboption caption="collapsible" value='collapsible' />
+			<attriboption caption="collapsible-set" value='collapsible-set' />
+			<attriboption caption="content" value='content' />
+			<attriboption caption="controlgroup" value='controlgroup' />
+			<attriboption caption="fieldcontain" value='fieldcontain' />
+			<attriboption caption="footer" value='footer' />
+			<attriboption caption="header" value='header' />
+			<attriboption caption="listview" value='listview' />
+			<attriboption caption="list-divider" value='list-divider' />
+			<attriboption caption="navbar" value='navbar' />
+			<attriboption caption="none" value='none' />
+			<attriboption caption="page" value='page' />
+			<attriboption caption="slider" value='slider' />
+		</attrib>
+		<attrib name="data-shadow" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="false" value='false' />
+			<attriboption caption="true" value='true' />
+		</attrib>
+		<attrib name="data-split-icon" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="alert" value='alert' />
+			<attriboption caption="arrow-u" value='arrow-u' />
+			<attriboption caption="arrow-d" value='arrow-d' />
+			<attriboption caption="arrow-r" value='arrow-r' />
+			<attriboption caption="arrow-l" value='arrow-l' />
+			<attriboption caption="back" value='back' />
+			<attriboption caption="check" value='check' />
+			<attriboption caption="custom" value='custom' />
+			<attriboption caption="delete" value='delete' />
+			<attriboption caption="forward" value='forward' />
+			<attriboption caption="gear" value='gear' />
+			<attriboption caption="grid" value='grid' />
+			<attriboption caption="home" value='home' />
+			<attriboption caption="info" value='info' />
+			<attriboption caption="minus" value='minus' />
+			<attriboption caption="plus" value='plus' />
+			<attriboption caption="refresh" value='refresh' />
+			<attriboption caption="search" value='search' />
+			<attriboption caption="star" value='star' />
+		</attrib>
+		<attrib name="data-split-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-title" type="text" allowmultiplevalues="no"/>
+		<attrib name="data-track-theme" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="a" value='a' />
+			<attriboption caption="b" value='b' />
+			<attriboption caption="c" value='c' />
+			<attriboption caption="d" value='d' />
+			<attriboption caption="e" value='e' />
+			<attriboption caption="f" value='f' />
+			<attriboption caption="g" value='g' />
+			<attriboption caption="h" value='h' />
+			<attriboption caption="i" value='i' />
+			<attriboption caption="j" value='j' />
+			<attriboption caption="k" value='k' />
+			<attriboption caption="l" value='l' />
+			<attriboption caption="m" value='m' />
+			<attriboption caption="n" value='n' />
+			<attriboption caption="o" value='o' />
+			<attriboption caption="p" value='p' />
+			<attriboption caption="q" value='q' />
+			<attriboption caption="r" value='r' />
+			<attriboption caption="s" value='s' />
+			<attriboption caption="t" value='t' />
+			<attriboption caption="u" value='u' />
+			<attriboption caption="v" value='v' />
+			<attriboption caption="w" value='w' />
+			<attriboption caption="x" value='x' />
+			<attriboption caption="y" value='y' />
+			<attriboption caption="z" value='z' />
+		</attrib>
+		<attrib name="data-transition" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="fade" value='fade' />
+			<attriboption caption="flip" value='flip' />
+			<attriboption caption="pop" value='pop' />
+			<attriboption caption="slide" value='slide' />
+			<attriboption caption="slideup" value='slideup' />
+			<attriboption caption="slidedown" value='slidedown' />
+		</attrib>
+		<attrib name="data-type" type="Enumerated" allowmultiplevalues="no">
+			<attriboption caption="horizontal" value='horizontal' />
+			<attriboption caption="vertical" value='vertical' />
+		</attrib>
+		
+		<taggroup>
+			<tag name="a"/>
+      <tag name="article"/>
+      <tag name="aside"/>
+      <tag name="audio"/>
+			<tag name="button"/>
+      <tag name="canvas"/>
+      <tag name="command"/>
+      <tag name="datalist"/>
+      <tag name="detail"/>
+      <tag name="div"/>
+      <tag name="embed"/>
+      <tag name="fieldset"/>
+      <tag name="figcaption"/>
+      <tag name="figure"/>
+      <tag name="form"/>
+      <tag name="footer"/>
+      <tag name="h1"/>
+			<tag name="h2"/>
+			<tag name="h3"/>
+			<tag name="h4"/>
+			<tag name="h5"/>
+			<tag name="h6"/>
+      <tag name="header"/>
+      <tag name="hgroup"/>
+      <tag name="img"/>
+			<tag name="input"/>
+      <tag name="keygen"/>
+      <tag name="label"/>
+			<tag name="legend"/>
+			<tag name="li"/>
+			<tag name="link"/>
+      <tag name="mark"/>
+      <tag name="menu"/>
+      <tag name="meter"/>
+      <tag name="nav"/>
+      <tag name="ol"/>
+			<tag name="option"/>
+      <tag name="output"/>
+      <tag name="p"/>
+      <tag name="progress"/>
+      <tag name="rp"/>
+      <tag name="rt"/>
+      <tag name="ruby"/>
+      <tag name="section"/>
+      <tag name="select"/>
+      <tag name="source"/>
+      <tag name="span"/>
+      <tag name="summary"/>
+      <tag name="textarea"/>
+      <tag name="time"/>
+      <tag name="ul"/>
+      <tag name="video"/>
+      <tag name="wbr"/>
+    </taggroup>
+	</attribgroup>
+</crosstag_attributes>

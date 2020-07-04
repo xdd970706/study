@@ -1,0 +1,25 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<TITLE><MMString:loadString id="Shared/Controls/String_Menu/RecordsetMenu/title" /></TITLE>
+<SCRIPT>
+
+function controlFiles() {
+  return new Array(
+  "Shared/Common/Scripts/ListControlClass.js",
+	"Shared/Controls/Scripts/RecordsetMenu.js");
+}
+
+function controlSource(name) {
+  return '' +
+    '<SELECT STYLE="width:300px" NAME="' +name+ '">\n' +
+    '  <OPTION SELECTED>' + MM.LABEL_NoRecordsets + '</OPTION>\n' +
+    '</SELECT>';
+}
+
+</SCRIPT>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</HEAD>
+<BODY>
+</BODY>
+</HTML>

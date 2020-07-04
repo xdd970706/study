@@ -1,0 +1,203 @@
+<!-- Copyright 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/link/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var LANGUAGELIST; 
+var DIRLIST;
+var HREFLANGLIST;
+var CHARSETLIST;
+var TYPELIST;
+var theUIObjects; 
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	LANGUAGELIST = new ListControl("thelang"); 
+	HREFLANGLIST = new ListControl("thehreflang"); 
+	DIRLIST = new ListControl("thedir"); 
+  CHARSETLIST = new ListControl("thecharset");
+	TYPELIST = new ListControl("thetype");
+
+	theUIObjects  = new Array(LANGUAGELIST,DIRLIST,HREFLANGLIST,CHARSETLIST,TYPELIST); 
+
+  tagDialog.populateDropDownList(LANGUAGELIST, theLanguagesCap, theLanguagesVal, 1); 
+  tagDialog.populateDropDownList(HREFLANGLIST, theLanguagesCap, theLanguagesVal, 1); 
+  tagDialog.populateDropDownList(CHARSETLIST, theCharsetsVal, theCharsetsVal, 1); 
+  tagDialog.populateDropDownList(DIRLIST, theDirectionCap, theDirectionVal, 1); 
+  tagDialog.populateDropDownList(TYPELIST, theLinkTypesVal, theLinkTypesVal, 1); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/HTML/link/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/HREF" /> </td>
+      <td nowrap="nowrap"> 
+        <input name="thehref" type="text" class="basicTextField" id="attr:link:href" attname="href" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/HTML/link/button/browseBtn/Browse" onClick="tagDialog.browseFile('thehref');focus(this)" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Hreflang" /> </td>
+      <td nowrap="nowrap">
+        <select name="thehreflang" class="dirLangList" id="attr:link:hreflang" attname="hreflang" editable="true">
+           
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Forward" /> </td>
+      <td nowrap="nowrap">
+        <input name="therel" type="text" class="basicTextField" id="attr:link:rel" attname="rel"> 
+        </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Reverse" /> </td>
+      <td nowrap="nowrap">
+        <input name="therev" type="text" class="basicTextField" id="attr:link:rev" attname="rev"> 
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:link:title" attname="title" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Charset" /> </td>
+      <td nowrap="nowrap">
+        <select name="thecharset" class="charsetList" id="attr:link:charset" attname="charset" editable="true">
+           
+        </select>
+      </td>
+    </tr>
+  </table>
+</div> 
+<div MMString:name="TagLibraries/HTML/link/div/name/HTML"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Type" /></td>
+      <td nowrap="nowrap">
+        <select name="thetype" class="smallNumOrCharList" id="attr:link:type" attname="type" editable="true">
+           
+        </select>
+      </td> 
+    </tr> 
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Media" /> </td>
+      <td nowrap="nowrap">
+        <input name="themedia" type="text" class="basicTextField" id="attr:link:media" attname="media" />
+      </td>
+    </tr>
+  </table>
+</div> 
+<div MMString:name="TagLibraries/HTML/link/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:link:class" attname="class" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:link:id" attname="id" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:link:class" attname="style" />
+      </td>
+    </tr>
+  	<tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Label" /> </td>
+      <td nowrap="nowrap">
+        <input name="thelabel" type="text" class="basicTextField" id="attr:link:label" attname="label" />
+      </td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/HTML/link/div/name/Language"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Direction" /> </td>
+      <td nowrap="nowrap">
+        <select name="thedir" class="dirLangList" id="attr:link:dir" attname="dir"> 
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap"></td>
+      <td nowrap="nowrap"></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/link/text/Language" /> </td>
+      <td nowrap="nowrap">
+        <select name="thelang" class="dirLangList" id="attr:link:lang" attname="lang" editable="true"> 
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/HTML/link/div/name/Events"> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onClick"> 
+    <textarea name="theonClick"  wrap="VIRTUAL" class="contentsField" id="attr:link:onclick" attname="onClick"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onDblClick"> 
+    <textarea name="theonDblClick"  wrap="VIRTUAL" class="contentsField" id="attr:link:ondblclick" attname="onDblClick"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onMouseDown"> 
+    <textarea name="theonMouseDown"  wrap="VIRTUAL" class="contentsField" id="attr:link:onmousedown" attname="onMouseDown"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onMouseUp"> 
+    <textarea name="theonMouseUp"  wrap="VIRTUAL" class="contentsField" id="attr:link:onmouseup" attname="onMouseUp"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onMouseOver"> 
+    <textarea name="theonMouseOver"  wrap="VIRTUAL" class="contentsField" id="attr:link:onmouseover" attname="onMouseOver"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onMouseMove"> 
+    <textarea name="theonMouseMove"  wrap="VIRTUAL" class="contentsField" id="attr:link:onmousemove" attname="onMouseMove"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onMouseOut"> 
+    <textarea name="theonMouseOut"  wrap="VIRTUAL" class="contentsField" id="attr:link:onmouseout" attname="onMouseOut"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onKeyPress"> 
+    <textarea name="theonKeyPress"  wrap="VIRTUAL" class="contentsField" id="attr:link:onkeypress" attname="onKeyPress"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onKeyDown"> 
+    <textarea name="theonKeyDown"  wrap="VIRTUAL" class="contentsField" id="attr:link:onkeydown" attname="onKeyDown"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/link/div/name/onKeyUp"> 
+    <textarea name="theonKeyUp"  wrap="VIRTUAL" class="contentsField" id="attr:link:onkeyup" attname="onKeyUp"></textarea>
+  </div> 
+</div>
+</body>
+</html>

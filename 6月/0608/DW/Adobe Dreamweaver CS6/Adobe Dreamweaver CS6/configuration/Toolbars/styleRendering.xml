@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!DOCTYPE toolbarset SYSTEM "-//Macromedia//DWExtension toolbar 5.0">
+<toolbarset xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+
+  <toolbar id="MM_Toolbar_StyleRendering" MMString:label="MM_Toolbar_StyleRendering/toolbar/label" initiallyVisible="false" backgroundStyle="gradient">
+
+  <!-- To save space, some of the less commonly used media type buttons -->
+  <!-- have been commented out to remove them from the toolbar          -->
+  <!-- Please Add, remove, and re-order media types as desired          -->
+
+    <radiobutton id="MM_mediatypes_screen"
+            menuid="MM_DWMenu_Toolbars_StyleRendering_Screen"
+            image="Toolbars/images/MM/T_CSSScreen_Sm_N.png"
+			buttonGroup="mediatype"
+            MMString:tooltip="MM_mediatypes_screen/radiobutton/tooltip"
+			domRequired="FALSE"
+            enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+            checked="dw.cssStylePalette.getMediaType() == 'screen'"
+            command="if (dw.cssStylePalette.getMediaType() != 'screen') dw.cssStylePalette.setMediaType('screen');"
+            update="onStyleRenderingChange,onViewChange"
+            />
+
+
+    <radiobutton id="MM_mediatypes_print"
+            menuid="MM_DWMenu_Toolbars_StyleRendering_Print"
+            image="Toolbars/images/MM/T_CSSPrint_Sm_N.png"
+			buttonGroup="mediatype"
+            MMString:tooltip="MM_mediatypes_print/radiobutton/tooltip"
+			domRequired="FALSE"
+            enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+            checked="dw.cssStylePalette.getMediaType() == 'print'"
+            command="if (dw.cssStylePalette.getMediaType() != 'print') dw.cssStylePalette.setMediaType('print');"
+            update="onStyleRenderingChange,onViewChange"
+            />
+
+
+    <radiobutton id="MM_mediatypes_handheld"
+            menuid="MM_DWMenu_Toolbars_StyleRendering_Handheld"
+            image="Toolbars/images/MM/T_CSSHand_Sm_N.png"
+			buttonGroup="mediatype"
+            MMString:tooltip="MM_mediatypes_handheld/radiobutton/tooltip"
+			domRequired="FALSE"
+            enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+            checked="dw.cssStylePalette.getMediaType() == 'handheld'"
+            command="if (dw.cssStylePalette.getMediaType() != 'handheld') dw.cssStylePalette.setMediaType('handheld');"
+            update="onStyleRenderingChange,onViewChange"
+            />
+
+
+    <radiobutton id="MM_mediatypes_projection"
+            menuid="MM_DWMenu_Toolbars_StyleRendering_Projection"
+            image="Toolbars/images/MM/T_CSSProj_Sm_N.png"
+			buttonGroup="mediatype"
+            MMString:tooltip="MM_mediatypes_projection/radiobutton/tooltip"
+			domRequired="FALSE"
+            enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+            checked="dw.cssStylePalette.getMediaType() == 'projection'"
+            command="if (dw.cssStylePalette.getMediaType() != 'projection') dw.cssStylePalette.setMediaType('projection');"
+            update="onStyleRenderingChange,onViewChange"
+            />
+
+
+    <radiobutton id="MM_mediatypes_tty"
+            menuid="MM_DWMenu_Toolbars_StyleRendering_TTY"
+            image="Toolbars/images/MM/T_CSSTTY_Sm_N.png"
+			buttonGroup="mediatype"
+            MMString:tooltip="MM_mediatypes_tty/radiobutton/tooltip"
+			domRequired="FALSE"
+            enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+            checked="dw.cssStylePalette.getMediaType() == 'tty'"
+            command="if (dw.cssStylePalette.getMediaType() != 'tty') dw.cssStylePalette.setMediaType('tty');"
+            update="onStyleRenderingChange,onViewChange"
+            />
+
+
+    <radiobutton id="MM_mediatypes_tv"
+            menuid="MM_DWMenu_Toolbars_StyleRendering_TV"
+            image="Toolbars/images/MM/T_CSSTV_Sm_N.png"
+			buttonGroup="mediatype"
+            MMString:tooltip="MM_mediatypes_tv/radiobutton/tooltip"
+			domRequired="FALSE"
+            enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+            checked="dw.cssStylePalette.getMediaType() == 'tv'"
+            command="if (dw.cssStylePalette.getMediaType() != 'tv') dw.cssStylePalette.setMediaType('tv');"
+            update="onStyleRenderingChange,onViewChange"
+            />
+
+
+    <checkbutton id="MM_displaystyles"
+            menuid="MM_DWMenu_Toolbars_StyleRendering_DisplayStyles"
+            image="Toolbars/images/MM/T_DispStyles_Sm_N.png"
+            MMString:tooltip="MM_displaystyles/checkbutton/tooltip"
+            enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+            checked="dw.cssStylePalette.getDisplayStyles() == true"
+            command="dw.cssStylePalette.setDisplayStyles(dw.cssStylePalette.getDisplayStyles() == false);"
+            update="onStyleRenderingChange,onViewChange"
+            />
+
+
+	  <button id="MM_designtime_stylesheets"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_Designtime"
+			  image="Toolbars/images/MM/T_dtss_Lg_N.png"
+			  MMString:tooltip="MM_designtime_stylesheets/button/tooltip"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  file="Commands/Design Time Style Sheets.htm"
+			  update="onStyleRenderingChange,onViewChange"
+            />
+
+	  <button id="MM_textSize_zoomIncrement"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_TextSizeIncrement"
+			  image="Toolbars/images/MM/T_IncreaseFont_Sm_N.png"
+			  MMString:tooltip="MM_textSize_zoomIncrement/button/tooltip"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  command="dw.getDocumentDOM().incrementTextSizeZoomLevel()"
+			  buttonGroup="TextSizeZoom"
+			  update="onViewChange"
+            />
+
+	  <button id="MM_textSize_zoomReset"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_TextSizeReset"
+			  image="Toolbars/images/MM/T_ResetFont_Sm_N.png"
+			  MMString:tooltip="MM_textSize_zoomReset/button/tooltip"
+			  enabled="(dw.getDocumentDOM() != null) && (dw.getDocumentDOM().getTextSizeZoomLevel() != 0) && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  command="dw.getDocumentDOM().resetTextSizeZoomLevel()"
+			  buttonGroup="TextSizeZoom"
+			  update="onViewChange"
+            />
+
+	  <button id="MM_textSize_zoomDecrement"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_TextSizeDecrement"
+			  image="Toolbars/images/MM/T_DecreaseFont_Sm_N.png"
+			  MMString:tooltip="MM_textSize_zoomDecrement/button/tooltip"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  command="dw.getDocumentDOM().decrementTextSizeZoomLevel()"
+			  buttonGroup="TextSizeZoom"
+			  update="onViewChange"
+            />
+
+	  <radiobutton id="MM_pseudoclass_link"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_link"
+			  image="Toolbars/images/MM/T_DispLink_Sm_N.png"
+			  buttonGroup="pseudoclass"
+			  MMString:tooltip="MM_pseudoclass_link/radiobutton/tooltip"
+			  domRequired="FALSE"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  checked="dw.cssStylePalette.getPseudoClass() == 'link'"
+			  command="if (dw.cssStylePalette.getPseudoClass() != 'link') dw.cssStylePalette.setPseudoClass('link');"
+			  update="onStyleRenderingChange,onViewChange"
+            />
+
+	  <radiobutton id="MM_pseudoclass_visited"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_visited"
+			  image="Toolbars/images/MM/T_DispVisited_Sm_N.png"
+			  buttonGroup="pseudoclass"
+			  MMString:tooltip="MM_pseudoclass_visited/radiobutton/tooltip"
+			  domRequired="FALSE"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  checked="dw.cssStylePalette.getPseudoClass() == 'visited'"
+			  command="if (dw.cssStylePalette.getPseudoClass() != 'visited') dw.cssStylePalette.setPseudoClass('visited');"
+			  update="onStyleRenderingChange,onViewChange"
+            />
+
+	  <radiobutton id="MM_pseudoclass_hover"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_hover"
+			  image="Toolbars/images/MM/T_DispHover_Sm_N.png"
+			  buttonGroup="pseudoclass"
+			  MMString:tooltip="MM_pseudoclass_hover/radiobutton/tooltip"
+			  domRequired="FALSE"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  checked="dw.cssStylePalette.getPseudoClass() == 'hover'"
+			  command="if (dw.cssStylePalette.getPseudoClass() != 'hover') dw.cssStylePalette.setPseudoClass('hover');"
+			  update="onStyleRenderingChange,onViewChange"
+            />
+
+	  <radiobutton id="MM_pseudoclass_active"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_active"
+			  image="Toolbars/images/MM/T_DispActive_Sm_N.png"
+			  buttonGroup="pseudoclass"
+			  MMString:tooltip="MM_pseudoclass_active/radiobutton/tooltip"
+			  domRequired="FALSE"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  checked="dw.cssStylePalette.getPseudoClass() == 'active'"
+			  command="if (dw.cssStylePalette.getPseudoClass() != 'active') dw.cssStylePalette.setPseudoClass('active');"
+			  update="onStyleRenderingChange,onViewChange"
+            />
+
+	  <radiobutton id="MM_pseudoclass_focus"
+			  menuid="MM_DWMenu_Toolbars_StyleRendering_focus"
+			  image="Toolbars/images/MM/T_DispFocus_Sm_N.png"
+			  buttonGroup="pseudoclass"
+			  MMString:tooltip="MM_pseudoclass_focus/radiobutton/tooltip"
+			  domRequired="FALSE"
+			  enabled="dw.getDocumentDOM() != null && dw.getDocumentDOM().getDesignViewMode() == 'editable'"
+			  checked="dw.cssStylePalette.getPseudoClass() == 'focus'"
+			  command="if (dw.cssStylePalette.getPseudoClass() != 'focus') dw.cssStylePalette.setPseudoClass('focus');"
+			  update="onStyleRenderingChange,onViewChange"
+            />
+  </toolbar>
+</toolbarset>

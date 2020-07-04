@@ -1,0 +1,107 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfprocparam/title" /></title>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var TYPELIST;
+var CFSQLTYPELIST;
+var theUIObjects;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	TYPELIST = new ListControl("thetype"); 
+	CFSQLTYPELIST = new ListControl("thecfsqltype"); 
+
+	theUIObjects = new Array(TYPELIST,CFSQLTYPELIST); 
+
+  tagDialog.populateDropDownList(TYPELIST, theProcparamTypeCap, theProcparamTypeVal, 0)
+  tagDialog.populateDropDownList(CFSQLTYPELIST, theProcparamCFSQLTypeVal, theProcparamCFSQLTypeVal, 0)
+
+  CFSQLTYPELIST.setIndex(2);
+}
+
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cfprocparam/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfprocparam/text/Type" /> </td>
+      <td nowrap="nowrap"> 
+	    <select name="thetype" class="oneWordOptionList" id="attr:cfprocparam:type" attname="type" required="true">
+           
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfprocparam/text/CF" /> </td>
+      <td nowrap="nowrap"> 
+	    <select name="thecfsqltype" class="sqlTypeList" id="attr:cfprocparam:cfsqltype" required="true" attname="cfsqltype">
+           
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfprocparam/text/Variable" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevariable" type="text" class="basicTextField" id="attr:cfprocparam:variable" attname="variable" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfprocparam/text/Value" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevalue" type="text" class="basicTextField" id="attr:cfprocparam:value" attname="value" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfprocparam/text/DB" /> </td>
+      <td nowrap="nowrap">
+        <input name="thedbvarname" type="text" class="basicTextField" id="attr:cfprocparam:dbvarname" attname="dbvarname" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfprocparam/text/Max" /> </td>
+      <td nowrap="nowrap">
+        <input name="themaxlength" type="text" class="smallNumOrChar" id="attr:cfprocparam:maxlength" attname="maxlength" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfprocparam/text/Scale" /> </td>
+      <td nowrap="nowrap">
+        <input name="thescale" type="text" class="basicTextField" id="attr:cfprocparam:scale" attname="scale" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfprocparam:null" name="thenull" attname="null" truevalue="yes" falsevalue="no" /> 
+        <MMString:loadString id="TagLibraries/CFML/cfprocparam/checkbox/thenull/Returns" />
+      </td>
+    </tr>
+  </table>
+</div> 
+</body>
+</html>

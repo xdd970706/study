@@ -1,0 +1,41 @@
+<tag name="SCRIPT" endtag="yes">
+<tagformat nlbeforetag="1" nlbeforetag_min="0" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1" nlaftertag_min="0" formatcontents="no"/>
+<tagdialog file="script.htm" />
+  <attributes>
+    <attrib name="ASYNC" type="Flag"/>
+    <attrib name="language" type="Enumerated">
+      <attriboption value="javascript" caption="JavaScript"/>
+      <attriboption value="javascript1.1" caption="JavaScript1.1"/>
+      <attriboption value="javascript1.2" caption="JavaScript1.2"/>
+      <attriboption value="javascript1.3" caption="JavaScript1.3"/>
+      <attriboption value="javascript1.4" caption="JavaScript1.4"/>
+      <attriboption value="javascript1.5" caption="JavaScript1.5"/>
+      <attriboption value="jscript" caption="JScript"/>
+      <attriboption value="vbscript" caption="VBScript"/>
+      <attriboption value="php" caption="PHP"/>
+      <attriboption value="c#" caption="C#"/>
+      <attriboption value="vb" caption="VB"/>
+		</attrib>
+    <attrib name="SRC" type="Relativepath"/>
+    <attrib name="TYPE" type="Enumerated">
+      <attriboption value="text/javascript" caption="text/javascript"/>
+      <attriboption value="text/ecmascript" caption="text/ecmascript"/>
+      <attriboption value="text/jscript" caption="text/jscript"/>
+      <attriboption value="text/livescript" caption="text/livescript"/>
+      <attriboption value="text/x-javascript" caption="text/x-javascript"/>
+      <attriboption value="text/x-ecmascript" caption="text/x-ecmascript"/>
+      <attriboption value="application/x-javascript" caption="application/x-javascript"/>
+      <attriboption value="application/x-ecmascript" caption="application/x-ecmascript"/>
+      <attriboption value="application/javascript" caption="application/javascript"/>
+      <attriboption value="application/ecmascript" caption="application/ecmascript"/>
+      <attriboption value="text/tcl" caption="text/tcl"/>
+    </attrib>
+    <attrib name="runat" type="Enumerated">
+      <attriboption value="server" caption="server"/>
+		</attrib>
+    <attrib name="DEFER" type="Flag"/>
+  </attributes>
+	<attribcategories>
+		<attribgroup name="General" elements="src,defer,language,type" />
+	</attribcategories>
+</tag>

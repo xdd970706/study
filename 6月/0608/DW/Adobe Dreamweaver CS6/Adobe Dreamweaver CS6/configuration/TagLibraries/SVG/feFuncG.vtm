@@ -1,0 +1,25 @@
+<tag name="feFuncG" casesensitive="yes" endtag="yes">
+	<tagformat indentcontents="yes" formatcontents="yes" nlbeforetag="1" nlbeforecontents="0" nlaftercontents="0" nlaftertag="1" />
+	<attributes>
+		<attrib name="id" type="Text" casesensitive="yes"/>
+		<attrib name="xml:base" type="Text" casesensitive="yes"/>
+		<attrib name="xml:lang" type="Text" casesensitive="yes"/>
+		<attrib name="xml:space" type="Enumerated" casesensitive="yes">
+			<attriboption value="default" caption="default" />
+			<attriboption value="preserve" caption="preserve" />
+		</attrib>
+		<attrib name="type" type="Enumerated" casesensitive="yes">
+			<attriboption value="discrete" caption="discrete" />
+			<attriboption value="gamma" caption="gamma" />
+			<attriboption value="identity" caption="identity" />
+			<attriboption value="linear" caption="linear" />
+			<attriboption value="table" caption="table" />
+		</attrib>
+		<attrib name="tableValues" type="Text" casesensitive="yes"/>
+		<attrib name="slope" type="Text" casesensitive="yes"/>
+		<attrib name="intercept" type="Text" casesensitive="yes"/>
+		<attrib name="amplitude" type="Text" casesensitive="yes"/>
+		<attrib name="exponent" type="Text" casesensitive="yes"/>
+		<attrib name="offset" type="Text" casesensitive="yes"/>
+	</attributes>
+</tag>

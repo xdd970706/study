@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>轮播图</title>
+<link rel="stylesheet" type="text/css" href="css/css.css"/>
+</head>
+
+<body>
+<div class="slider">
+	<ul>
+    	<li class="show"><a href="#"><img src="images/1.jpg"/></a></li>
+        <li><a href="#"><img src="images/2.jpg"/></a></li>
+        <li><a href="#"><img src="images/3.jpg"/></a></li>
+        <li><a href="#"><img src="images/4.jpg"/></a></li>
+        <li><a href="#"><img src="images/5.jpg"/></a></li>
+    </ul>
+    <div class="ridus">
+    	<span class="actived"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<script>
+	var spans=document.getElementsByTagName("span");
+	var images=document.getElementsByTagName("li");		
+		for(var i=0;i<spans.length;i++){
+			let index = i;
+			spans[i].onmouseover=function(){
+				spans[index].className="actived"
+				images[index].className="show"
+				}
+			spans[i].onmouseout=function(){
+				spans[index].className=""
+				images[index].className=""
+				}
+			}
+</script>
+</body>
+
+</html>

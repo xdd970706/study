@@ -1,0 +1,299 @@
+<!-- spry attributes that are common across tags -->
+<crosstag_attributes>
+	<attribgroup id="Accessibility" name="Accessibility">
+    <attrib name="aria-" type="Prefix" />
+    <attrib name="aria-activedescendant" />
+    <attrib name="aria-atomic" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-autocomplete" type="Enumerated">
+      <attriboption value="inline" caption="inline"/>
+      <attriboption value="list" caption="list"/>
+      <attriboption value="both" caption="both"/>
+      <attriboption value="none" caption="none"/>
+    </attrib>
+    <attrib name="aria-busy" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-checked" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+      <attriboption value="mixed" caption="mixed"/>
+      <attriboption value="undefined" caption="undefined"/>
+    </attrib>
+    <attrib name="aria-controls" />
+    <attrib name="aria-describedby" />
+    <attrib name="aria-disabled" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-dropeffect" type="Enumerated" allowmultiplevalues="yes">
+      <attriboption value="copy" caption="copy"/>
+      <attriboption value="move" caption="move"/>
+      <attriboption value="link" caption="link"/>
+      <attriboption value="execute" caption="execute"/>
+      <attriboption value="popup" caption="popup"/>
+      <attriboption value="none" caption="none"/>
+    </attrib>
+    <attrib name="aria-expanded" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+      <attriboption value="undefined" caption="undefined"/>
+    </attrib>
+    <attrib name="aria-flowto" />
+    <attrib name="aria-grabbed" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+      <attriboption value="undefined" caption="undefined"/>
+    </attrib>
+    <attrib name="aria-haspopup" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-hidden" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-invalid" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+      <attriboption value="grammar" caption="grammar"/>
+      <attriboption value="spelling" caption="spelling"/>
+    </attrib>
+    <attrib name="aria-label" />
+    <attrib name="aria-labelledby" />
+    <attrib name="aria-level" />
+    <attrib name="aria-live" type="Enumerated">
+      <attriboption value="off" caption="off"/>
+      <attriboption value="polite" caption="polite"/>
+      <attriboption value="assertive" caption="assertive"/>
+    </attrib>
+    <attrib name="aria-multiline" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-multiselectable" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-orientation" type="Enumerated">
+      <attriboption value="horizontal" caption="horizontal"/>
+      <attriboption value="vertical" caption="vertical"/>
+    </attrib>
+    <attrib name="aria-owns" />
+    <attrib name="aria-posinset" />
+    <attrib name="aria-pressed" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+      <attriboption value="mixed" caption="mixed"/>
+      <attriboption value="undefined" caption="undefined"/>
+    </attrib>
+    <attrib name="aria-readonly" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-relevant" type="Enumerated" allowmultiplevalues="yes">
+      <attriboption value="all" caption="all"/>
+      <attriboption value="additions" caption="additions"/>
+      <attriboption value="removals" caption="removals"/>
+      <attriboption value="text" caption="text"/>
+    </attrib>
+    <attrib name="aria-required" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+    </attrib>
+    <attrib name="aria-selected" type="Enumerated">
+      <attriboption value="true" caption="true"/>
+      <attriboption value="false" caption="false"/>
+      <attriboption value="undefined" caption="undefined"/>
+    </attrib>
+    <attrib name="aria-setsize" />
+    <attrib name="aria-sort" type="Enumerated">
+      <attriboption value="ascending" caption="ascending"/>
+      <attriboption value="descending" caption="descending"/>
+      <attriboption value="none" caption="none"/>
+      <attriboption value="other" caption="other"/>
+    </attrib>
+    <attrib name="aria-valuemax" />
+    <attrib name="aria-valuemin" />
+    <attrib name="aria-valuenow" />
+    <attrib name="aria-valuetext" />
+
+    <attrib name="role" type="Enumerated">
+      <attriboption value="alert" caption="alert"/>
+      <attriboption value="alertdialog" caption="alertdialog"/>
+      <attriboption value="article" caption="article"/>
+      <attriboption value="application" caption="application"/>
+      <attriboption value="banner" caption="banner"/>
+      <attriboption value="button" caption="button"/>
+      <attriboption value="checkbox" caption="checkbox"/>
+      <attriboption value="columnheader" caption="columnheader"/>
+      <attriboption value="combobox" caption="combobox"/>
+      <attriboption value="complementary" caption="complementary"/>
+      <attriboption value="contentinfo" caption="contentinfo"/>
+      <attriboption value="definition" caption="definition"/>
+      <attriboption value="directory" caption="directory"/>
+      <attriboption value="dialog" caption="dialog"/>
+      <attriboption value="document" caption="document"/>
+      <attriboption value="form" caption="form"/>
+      <attriboption value="grid" caption="grid"/>
+      <attriboption value="gridcell" caption="gridcell"/>
+      <attriboption value="group" caption="group"/>
+      <attriboption value="heading" caption="heading"/>
+      <attriboption value="img" caption="img"/>
+      <attriboption value="link" caption="link"/>
+      <attriboption value="list" caption="list"/>
+      <attriboption value="listbox" caption="listbox"/>
+      <attriboption value="listitem" caption="listitem"/>
+      <attriboption value="log" caption="log"/>
+      <attriboption value="main" caption="main"/>
+      <attriboption value="marquee" caption="marquee"/>
+      <attriboption value="math" caption="math"/>
+      <attriboption value="menu" caption="menu"/>
+      <attriboption value="menubar" caption="menubar"/>
+      <attriboption value="menuitem" caption="menuitem"/>
+      <attriboption value="menuitemcheckbox" caption="menuitemcheckbox"/>
+      <attriboption value="menuitemradio" caption="menuitemradio"/>
+      <attriboption value="navigation" caption="navigation"/>
+      <attriboption value="note" caption="note"/>
+      <attriboption value="option" caption="option"/>
+      <attriboption value="presentation" caption="presentation"/>
+      <attriboption value="progressbar" caption="progressbar"/>
+      <attriboption value="radio" caption="radio"/>
+      <attriboption value="radiogroup" caption="radiogroup"/>
+      <attriboption value="region" caption="region"/>
+      <attriboption value="row" caption="row"/>
+      <attriboption value="rowgroup" caption="rowgroup"/>
+      <attriboption value="rowheader" caption="rowheader"/>
+      <attriboption value="scrollbar" caption="scrollbar"/>
+      <attriboption value="search" caption="search"/>
+      <attriboption value="separator" caption="separator"/>
+      <attriboption value="slider" caption="slider"/>
+      <attriboption value="spinbutton" caption="spinbutton"/>
+      <attriboption value="status" caption="status"/>
+      <attriboption value="tab" caption="tab"/>
+      <attriboption value="tablist" caption="tablist"/>
+      <attriboption value="tabpanel" caption="tabpanel"/>
+      <attriboption value="textbox" caption="textbox"/>
+      <attriboption value="timer" caption="timer"/>
+      <attriboption value="toolbar" caption="toolbar"/>
+      <attriboption value="tooltip" caption="tooltip"/>
+      <attriboption value="tree" caption="tree"/>
+      <attriboption value="treegrid" caption="treegrid"/>
+      <attriboption value="treeitem" caption="treeitem"/>
+    </attrib>
+
+    <taggroup>
+      <tag name="a"/>
+      <tag name="abbr"/>
+      <tag name="acronym"/>
+      <tag name="address"/>
+      <tag name="applet"/>
+      <tag name="area"/>
+      <tag name="article"/>
+      <tag name="aside"/>
+      <tag name="audio"/>
+      <tag name="b"/>
+      <tag name="bdo"/>
+      <tag name="big"/>
+      <tag name="blockquote"/>
+      <tag name="body"/>
+      <tag name="button"/>
+      <tag name="canvas"/>
+      <tag name="caption"/>
+      <tag name="center"/>
+      <tag name="cite"/>
+      <tag name="code"/>
+      <tag name="col"/>
+      <tag name="colgroup"/>
+      <tag name="command"/>
+      <tag name="datalist"/>
+      <tag name="dd"/>
+      <tag name="del"/>
+      <tag name="details"/>
+      <tag name="dir"/>
+      <tag name="div"/>
+      <tag name="dfn"/>
+      <tag name="dl"/>
+      <tag name="dt"/>
+      <tag name="em"/>
+      <tag name="embed"/>
+      <tag name="fieldset"/>
+      <tag name="figcaption"/>
+      <tag name="figure"/>
+      <tag name="font"/>
+      <tag name="footer"/>
+      <tag name="form"/>
+      <tag name="frame"/>
+      <tag name="frameset"/>
+      <tag name="h1"/>
+      <tag name="h2"/>
+      <tag name="h3"/>
+      <tag name="h4"/>
+      <tag name="h5"/>
+      <tag name="h6"/>
+      <tag name="header"/>
+      <tag name="hgroup"/>
+      <tag name="hr"/>
+      <tag name="i"/>
+      <tag name="img"/>
+      <tag name="input"/>
+      <tag name="ins"/>
+      <tag name="kbd"/>
+      <tag name="keygen"/>
+      <tag name="label"/>
+      <tag name="legend"/>
+      <tag name="li"/>
+      <tag name="link"/>
+      <tag name="map"/>
+      <tag name="mark"/>
+      <tag name="marquee"/>
+      <tag name="menu"/>
+      <tag name="meter"/>
+      <tag name="nav"/>
+      <tag name="noscript"/>
+      <tag name="object"/>
+      <tag name="ol"/>
+      <tag name="optgroup"/>
+      <tag name="option"/>
+      <tag name="output"/>
+      <tag name="p"/>
+      <tag name="param"/>
+      <tag name="pre"/>
+      <tag name="progress"/>
+      <tag name="q"/>
+      <tag name="rp"/>
+      <tag name="rt"/>
+      <tag name="ruby"/>
+      <tag name="s"/>
+      <tag name="samp"/>
+      <tag name="section"/>
+      <tag name="select"/>
+      <tag name="small"/>
+      <tag name="source"/>
+      <tag name="span"/>
+      <tag name="strike"/>
+      <tag name="strong"/>
+      <tag name="style"/>
+      <tag name="sub"/>
+      <tag name="summary"/>
+      <tag name="sup"/>
+      <tag name="table"/>
+      <tag name="tbody"/>
+      <tag name="td"/>
+      <tag name="textarea"/>
+      <tag name="tfoot"/>
+      <tag name="th"/>
+      <tag name="thead"/>
+      <tag name="time"/>
+      <tag name="tr"/>
+      <tag name="tt"/>
+      <tag name="u"/>
+      <tag name="ul"/>
+      <tag name="var"/>
+      <tag name="video"/>
+    </taggroup>
+	</attribgroup> 
+</crosstag_attributes>

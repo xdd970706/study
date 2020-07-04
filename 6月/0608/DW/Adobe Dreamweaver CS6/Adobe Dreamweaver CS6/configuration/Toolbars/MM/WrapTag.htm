@@ -1,0 +1,41 @@
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Toolbars/MM/WrapTag/title" /></title>
+
+<script language="JavaScript">
+
+function receiveArguments()
+{
+	dw.showQuickTagEditor();
+}
+
+function isDOMRequired()
+{
+	return false;
+}
+
+function canAcceptCommand()
+{
+	var dom = dw.getDocumentDOM();
+
+	if (dom == null)
+		return false;
+	
+	if( dw.getActiveWindow(true) == null || !dw.getActiveWindow(true).allowsEdits() )
+		return false;
+		
+	var focusView = dw.getFocus(true);
+
+	if (focusView == 'document')
+		return false;
+
+	var theSel = dom.source.getSelection();
+	return (theSel != null && theSel[0] != theSel[1]);
+}
+</script>
+</head>
+
+<body>
+</body>
+</html>

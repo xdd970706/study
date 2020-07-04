@@ -1,0 +1,187 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/HTML/ol/title" /></title>
+  
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var LANGUAGELIST; 
+var DIRLIST;
+var OLTYPELIST;
+
+var theUIObjects; 
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+  
+  // make we do a case sensitive match on the type value (inspectTagCommon won't do this) 
+  switch (tagNodeObj.getAttribute("type"))
+  {
+    case "1": 
+    {
+      OLTYPELIST.setIndex(1); 
+      break; 
+    }
+    case "a": 
+    {
+      OLTYPELIST.setIndex(2);     
+      break; 
+    }
+    case "A": 
+    {
+      OLTYPELIST.setIndex(3);     
+      break; 
+    }
+    case "i": 
+    {
+      OLTYPELIST.setIndex(4);     
+      break; 
+    }
+    case "I": 
+    {
+      OLTYPELIST.setIndex(5);     
+      break; 
+    }
+    default: 
+    { 
+      OLTYPELIST.setIndex(0);    
+      break; 
+    }
+  }
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	LANGUAGELIST = new ListControl("thelang"); 
+	DIRLIST = new ListControl("thedir"); 
+	OLTYPELIST = new ListControl("theoltype");
+	
+	theUIObjects  = new Array(LANGUAGELIST,DIRLIST,OLTYPELIST); 
+
+  tagDialog.populateDropDownList(LANGUAGELIST, theLanguagesCap, theLanguagesVal, 1); 
+  tagDialog.populateDropDownList(DIRLIST, theDirectionCap, theDirectionVal, 1); 
+	tagDialog.populateDropDownList(OLTYPELIST, theOLTypesCap, theOLTypesVal, 1);	
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/HTML/ol/div/name/General">
+  <table border="0" cellspacing="4">
+   	<tr>
+     	<td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/Start" /> </td>
+     	<td nowrap="nowrap">
+       <input name="thestart" type="text" class="basicTextField" id="attr:ol:start" attname="start" />
+    		</td>
+  	</tr>
+   	<tr>
+   	  <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/Type" /> </td>
+   	  <td nowrap="nowrap">
+   	    <select name="theoltype" class="smallNumOrCharList"  style="WIDTH: 200px" id="attr:ol:theoltype" attname="type" editable="false">
+   	    </select>      
+   	  </td>
+   	</tr>
+  </table>
+</div> 
+<div MMString:name="TagLibraries/HTML/ol/div/name/Style"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/Class" /> </td>
+      <td nowrap="nowrap">
+        <input name="theclass" type="text" class="basicTextField" id="attr:ol:class" attname="class" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/ID" /> </td>
+      <td nowrap="nowrap">
+        <input name="theid" type="text" class="medTField" id="attr:ol:id" attname="id" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/Style" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:ol:class" attname="style" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/Title" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetitle" type="text" class="basicTextField" id="attr:ol:title" attname="title" />
+      </td>
+    </tr>
+  </table> 
+</div>
+<div MMString:name="TagLibraries/HTML/ol/div/name/Language"> 
+  <table border="0" cellspacing="4">
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/Direction" /> </td>
+      <td nowrap="nowrap">
+        <select name="thedir" class="dirLangList" id="attr:ol:dir" attname="dir"> 
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap"></td>
+      <td nowrap="nowrap"></td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/HTML/ol/text/Language" /> </td>
+      <td nowrap="nowrap">
+        <select name="thelang" class="dirLangList" id="attr:ol:lang" attname="lang" editable="true"> 
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+<div MMString:name="TagLibraries/HTML/ol/div/name/Events"> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onClick"> 
+    <textarea name="theonClick" attname="onClick" id="attr:ol:onclick" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onDblClick"> 
+    <textarea name="theonDblClick" attname="onDblClick" id="attr:ol:ondblclick" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onMouseDown"> 
+    <textarea name="theonMouseDown" attname="onMouseDown" id="attr:ol:onmousedown" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onMouseUp"> 
+    <textarea name="theonMouseUp" attname="onMouseUp" id="attr:ol:onmouseup" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onMouseOver"> 
+    <textarea name="theonMouseOver" attname="onMouseOver" id="attr:ol:onmouseover" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onMouseMove"> 
+    <textarea name="theonMouseMove" attname="onMouseMove" id="attr:ol:onmousemove" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onMouseOut"> 
+    <textarea name="theonMouseOut" attname="onMouseOut" id="attr:ol:onmouseout" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onKeyPress"> 
+    <textarea name="theonKeyPress" attname="onKeyPress" id="attr:ol:onkeypress" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onKeyDown"> 
+    <textarea name="theonKeyDown" attname="onKeyDown" id="attr:ol:onkeydown" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+  <div MMString:name="TagLibraries/HTML/ol/div/name/onKeyUp"> 
+    <textarea name="theonKeyUp" attname="onKeyUp" id="attr:ol:onkeyup" class="contentsField"  wrap="VIRTUAL"></textarea>
+  </div> 
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!-- HTML5, The tags with contentmodel=block model is added because HTML5 tags without content model will not let div tag to be inserted within them -->
+<tagspec tag_name="article"		tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<tagspec tag_name="aside"		tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<tagspec tag_name="canvas"		tag_type="nonempty" render_contents="false"	content_model="marker_model" detect_in_attribute="false" equivalent_tag="IFRAME" icon="none.gif"></tagspec>
+<tagspec tag_name="details"		tag_type="nonempty" render_contents="false"	content_model="block_model"  icon="none.gif"></tagspec>
+<tagspec tag_name="figcaption"	tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<tagspec tag_name="footer"		tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<tagspec tag_name="header"		tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<tagspec tag_name="nav"			tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<tagspec tag_name="section"		tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<tagspec tag_name="summary"		tag_type="nonempty" render_contents="true"	content_model="block_model"  detect_in_attribute="false" equivalent_tag="DIV"></tagspec>
+<!--
+<tagspec tag_name="svg"			tag_type="nonempty" render_contents="false" content_model="marker_model" detect_in_attribute="false" equivalent_tag="IFRAME" icon="none.gif"></tagspec>
+-->
+<tagspec tag_name="video"		tag_type="nonempty" render_contents="false"	content_model="marker_model" detect_in_attribute="false" equivalent_tag="IFRAME" icon="none.gif"></tagspec>

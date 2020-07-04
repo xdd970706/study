@@ -1,0 +1,100 @@
+@charset "UTF-8";
+form {
+	width: 600px;	
+}
+
+label {
+	display: block;
+	position:relative;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.explanationText {
+	color:#333;
+	font-style:normal;
+	font-size:95%
+}
+
+.leftColLabels {
+	position:absolute;
+	text-align:right;
+	width: 145px;
+	padding-top:5px;
+}
+
+.rightColControls {
+	position:relative;
+	left: 150px;
+}
+
+.sectionBreak {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.sectionBreak .leftColLabels {
+	width: 125px;
+}
+
+.sectionBreak .rightColControls {
+	left: 130px;
+}
+
+.bottomLink {
+	margin-top: 10px;
+}
+
+input.fileBrowser, input#bundleId {
+	width:300px;	
+}
+
+select.targetOS {
+	width:150px;
+}
+
+hr.midlineRule {
+	margin-top:10px;
+}
+
+input#installAndroidSDK {
+	margin-left: 10px;
+}
+
+input#version {
+	width:50px;
+}
+
+input#appName, input#bundleId {
+	width:375px;
+}
+
+input#author {
+	width:195px;
+}
+
+.oneLine {
+	position:relative;
+	margin-top:5px;
+	margin-bottom:5px;
+	top: -5px;
+}
+
+#authorGroup {
+	position:absolute;
+	width: 375px;
+}
+
+#versionGroup {
+	position:absolute;
+	left: 375px;
+}
+
+#versionGroup .leftColLabels {
+	width: 95px;
+}
+
+#versionGroup .rightColControls {
+	position:relative;
+	left: 100px;
+}

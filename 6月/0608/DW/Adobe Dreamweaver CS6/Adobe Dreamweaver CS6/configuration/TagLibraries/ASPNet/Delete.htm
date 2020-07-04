@@ -1,0 +1,117 @@
+<!-- Copyright 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/ASPNet/Delete/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script>
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj); 
+}
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div MMString:name="TagLibraries/ASPNet/Delete/div/name/General"> 
+  <input type="hidden" name="therunat" attname="runat" value="server" required="true" /> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Connection" /> </td>
+      <td nowrap="nowrap">
+        <input name="theconnectionstring" type="text" class="basicTextField" id="aspnet:delete:connectionstring" attname="connectionstring" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Command" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecommandtext" type="text" class="basicTextField" id="aspnet:delete:commandtext" attname="commandtext" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Current" /> </td>
+      <td nowrap="nowrap">
+        <input name="thecurrentpage" type="text" class="basicTextField" id="aspnet:delete:currentpage" attname="currentpage" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Success" /> </td>
+      <td nowrap="nowrap">
+        <input name="thesuccessurl" type="text" class="basicTextField" id="aspnet:delete:successurl" attname="successurl" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Failure" /> </td>
+      <td nowrap="nowrap">
+        <input name="thefailureurl" type="text" class="basicTextField" id="aspnet:delete:failureurk" attname="FailureURL" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Start" /> </td>
+      <td nowrap="nowrap">
+        <input name="thestartrow" type="text" class="basicTextField" id="aspnet:delete:startrow" attname="startrow" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Max" /> </td>
+      <td nowrap="nowrap">
+        <input name="themaxrecords" type="text" class="basicTextField" id="aspnet:delete:maxrecords" attname="maxrecords" />
+      </td>
+    </tr>    
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Page" /> </td>
+      <td nowrap="nowrap">
+        <input name="thepagesize" type="text" class="basicTextField" id="aspnet:delete:pagesize" attname="pagesize" />
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/ASPNet/Delete/text/Table" /> </td>
+      <td nowrap="nowrap">
+        <input name="thetablename" type="text" class="basicTextField" id="aspnet:delete:tablename" attname="tablename" />
+      </td>
+    </tr>
+   <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:delete:debug" name="thedebug" attname="debug" truevalue="true" falsevalue="false" checked="checked" /> <MMString:loadString id="TagLibraries/ASPNet/Delete/checkbox/thedebug/Debug" />
+      </td>
+    </tr>  
+
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:delete:getrecordcount" name="thegetrecordCount" attname="getrecordcount" truevalue="true" falsevalue="false" /> <MMString:loadString id="TagLibraries/ASPNet/Delete/checkbox/thegetrecordCount/Get" />
+      </td>
+    </tr>  
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:delete:isstoredprocedure" name="theisstoredprocedure" attname="isstoredprocedure" truevalue="true" falsevalue="false" /> <MMString:loadString id="TagLibraries/ASPNet/Delete/checkbox/theisstoredprocedure/Is" />
+      </td>
+    </tr>  
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:delete:createdataset" name="thecreatedataSet" attname="createdataset" truevalue="true" falsevalue="false" /> <MMString:loadString id="TagLibraries/ASPNet/Delete/checkbox/thecreatedataSet/Create" />
+      </td>
+    </tr>  
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:delete:expression" name="theexpression" attname="expression" truevalue="true" falsevalue="false" /> <MMString:loadString id="TagLibraries/ASPNet/Delete/checkbox/theexpression/Expression" />
+      </td>
+    </tr>  
+  </table>
+</body>
+</html>

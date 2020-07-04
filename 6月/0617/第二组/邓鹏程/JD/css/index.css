@@ -1,0 +1,252 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*重置样式*/
+*{margin:0;padding:0;}
+ul, ol{list-style:none;}
+a{text-decoration:none;color:black;}
+.clear{overflow:hidden;}
+
+/*header*/
+.header{
+	width:1000px;
+	height:80px;
+	margin:0 auto;
+	}
+.header .logo{
+	width:290px;
+	height:54px;
+	float:left;
+	margin-top:15px;
+	background:url(../images/login.png) no-repeat 192px 20px;
+	}
+.header .login{
+	float:right;
+	margin-top:51px;
+	font-size:12px;
+	}
+.header .login a{
+	padding-left:23px;
+	background:url(../images/a.png) no-repeat left 3px;
+	}
+	
+/*info*/
+.info{
+	width:100%;
+	height:40px;
+	background-color:#fff8f0;
+	}	
+.info div{
+	width:990px;
+	height:40px;
+	margin:0 auto;
+	font-size:12px;
+	line-height:40px;
+	}	
+.info div p{
+	padding-left:120px;
+	background:url(../images/info.png) no-repeat 98px 12px;
+	}
+	
+/*网页主体*/
+.main{
+	width:100%;
+	height:475px;
+	background-color:#e93854;
+	}
+.main .A{
+	width:990px;
+	height:475px;
+	margin:0 auto;
+	background:url(../images/banner.png) no-repeat center center;
+	}
+.main .A .a{
+	width:346px;
+	height:377px;
+	background-color:#ffffff;
+	float:right;
+	margin-top:10px;
+	}	
+.main .A .a .box1{
+	width:346px;
+	height:40px;
+	background:url(../images/info.png) no-repeat 30px 12px #fff8f0;
+	}	
+.main .A .a .box1 span{
+	float:left;
+	font-size:12px;
+	line-height:40px;
+	color:#999999;
+	margin-left:52px;
+	}
+.main .A .a .box2{
+	width:346px;
+	height:54px;
+	border-bottom:1px solid #f4f4f4;
+    }
+.main .A .a .box2 .a1{
+	float:left;
+	width:112px;
+	height:18px;
+	border-right:1px solid #f4f4f4;
+	font-size:17px;
+	color:#999999;
+	line-height:18px;
+	margin-left:50px;
+	margin-top:19px;
+	}
+.main .A .a .box2 .a2{
+	float:right;
+	width:121px;
+	height:18px;
+	border-right:1px solid #f4f4f4;
+	font-size:17px;
+	color:#e4393c;
+	line-height:18px;
+	margin-top:19px;
+	}	
+.main .A .a .box3{
+	height:212px;
+	border-bottom:1px solid #f4f4f4;
+    }	
+.main .A .a .box3 form .un{
+	width:304px;
+	height:38px;
+	border:1px solid #bdbdbd;
+	margin-top:33px;
+	margin-left:20px;
+	}	
+.main .A .a .box3 form .un span{
+	float:left;
+	width:38px;
+	height:38px;
+	border-right:1px solid #f4f4f4;
+	background:url(../images/r.png) no-repeat center center #f4f4f4;
+	cursor:pointer;
+	}	
+.main .A .a .box3 form .un input{
+	float:left;
+	height:38px;
+	outline:none;
+	border:none;
+	padding-left:11px;
+	color:#999999;
+	}
+
+.main .A .a .box3 form .pwd{
+	width:304px;
+	height:38px;
+	border:1px solid #bdbdbd;
+	margin-top:20px;
+	margin-left:20px;
+	}	
+.main .A .a .box3 form .pwd span{
+	float:left;
+	width:38px;
+	height:38px;
+	border-right:1px solid #f4f4f4;
+	background:url(../images/key.png) no-repeat center center #f4f4f4;
+	cursor:pointer;
+	}	
+.main .A .a .box3 form .pwd input{
+	float:left;
+	height:38px;
+	outline:none;
+	border:none;
+	padding-left:11px;
+	color:#999999;
+	}
+.main .A .a .ftp{
+	width:346px;
+	height:58px;
+	}	
+.main .A .a .ftp a{
+	float:right;
+	padding-right:21px;
+	padding-top:23px;
+	font-size:12px;
+	color:#666666;
+	}
+.main .A .a .enter button{
+	margin-left:20px;
+	width:305px;
+	height:24px;
+	background-color:#e4393c;
+	outline:none;
+	border:none;
+	color:#ffffff;
+	font-size:18px;
+	}
+.main .A .a .box4{
+	width:346px;
+	height:50px;
+	background-color:#fcfcfc;
+	float:left;
+	}
+.main .A .a .box4 .a1{
+	float:left;
+	width:33px;
+	height:18px;
+	font-size:9px;
+	line-height:18px;
+	margin-top:16px;
+	margin-left:21px;
+	border-right:1px solid #d5ccd5;
+	padding-left:23px;
+	background:url(../images/qq.png) no-repeat left center;
+	color:#666666;
+	}	
+.main .A .a .box4 .a2{
+	float:left;
+	width:27px;
+	height:18px;
+	font-size:12px;
+	line-height:18px;
+	margin-top:16px;
+	padding-left:35px;
+	background:url(../images/weixin.png) no-repeat 11px center;
+	color:#666666;
+	}	
+.main .A .a .box4 .a3{
+	float:left;
+	width:56px;
+	height:16px;
+	font-size:14px;
+	line-height:18px;
+	margin-top:16px;
+	margin-left:109px;
+	padding-left:21px;
+	padding-bottom:2px;
+	background:url(../images/jiantou.png) no-repeat left center;
+	color:#666666;
+	}		
+
+.bottom{
+	width:100%;
+	height:147px;
+	}
+.bottom .A{
+	width:990px;
+	height:147px;
+	margin:0 auto;
+	}	
+.bottom .A .link{
+	width:841px;
+	height:12px;
+	font-size:12px;
+	line-height:12px;
+	float:left;
+	margin-left:73px;
+	margin-top:24px;
+	color:#666666;
+	}	
+.bottom .A span{
+	float:left;
+	width:270px;
+	height:12px;
+	font-size:12px;
+	line-height:12px;
+	margin-left:351px;
+	margin-top:17px;
+	color:#666666;
+	}			

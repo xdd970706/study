@@ -1,0 +1,164 @@
+<!-- Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cftextarea/title" /></title>
+  <link rel="stylesheet" href="../../fields.css">
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var DBTYPELIST;
+var theUIObjects;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects); 
+}
+
+function initializeUI()
+{
+	DBTYPELIST = new ListControl("thevalidateat"); 
+	theUIObjects = new Array(DBTYPELIST); 
+
+  tagDialog.populateDropDownList(DBTYPELIST, theTextAreaCap, theTextAreaVal, 1)
+}
+
+</script>
+</head>
+
+<body onLoad="initializeUI();">
+<div MMString:name="TagLibraries/CFML/cftextarea/div/name/General"> 
+  <table border="0" cellspacing="4">
+    <tr valign="baseline"> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Name" /> </td>
+      <td colspan="2" nowrap="nowrap">
+        <input name="thename" type="text" class="medTField" id="attr:cftextarea:name" attname="name" required="true" />      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Value" /> </td>
+      <td colspan="2" nowrap="nowrap">
+        <input name="thevalue" type="text" class="basicTextField" id="attr:cftextarea:value" attname="value" />      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Label" /> </td>
+      <td colspan="2" nowrap="nowrap"><input name="thelabel" type="text" class="basicTextField" id="attr:cftextarea:label" attname="label" />      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Tooltip" /> </td>
+      <td colspan="2" nowrap="nowrap">
+        <input name="thetooltip" type="text" class="basicTextField" id="attr:cftextarea:tooltip" attname="tooltip" />      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Style" /> </td>
+      <td colspan="2" nowrap="nowrap">
+        <input name="thestyle" type="text" class="basicTextField" id="attr:cftextarea:style" attname="style" />      </td>
+    </tr>
+    <tr> 
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Message" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="themessage" type="text" class="basicTextField" id="attr:cftextarea:message" attname="message" /></td> 
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Bind" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="thebind" type="text" class="basicTextField" id="attr:cftextarea:bind" attname="bind" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Pattern" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="thepattern" type="text" class="basicTextField" id="attr:cftextarea:pattern" attname="pattern" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/MaxLength" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="themaxlength" type="text" class="basicTextField" id="attr:cftextarea:maxlength" attname="maxlength" /></td>
+    </tr>
+	<tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Height" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="theheight" type="text" class="basicTextField" id="attr:cftextarea:height" attname="height" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Width" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="thewidth" type="text" class="basicTextField" id="attr:cftextarea:width" attname="width" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Validate" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="thevalidate" type="text" class="basicTextField" id="attr:cftextarea:validate" attname="validate" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Range" /></td>
+      <td colspan="2" nowrap="nowrap"><input name="therange" type="text" class="basicTextField" id="attr:cftextarea:range" attname="range" /></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/Validate_1" /> </td>
+      <td colspan="2" nowrap="nowrap"><select name="thevalidateat" class="oneWordOptionList" id="attr:cftextarea:validateat" attname="validateat" editable="true">
+      </select></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap"><input type="checkbox" id="attr:cftextarea:html" name="thehtml" attname="html" truevalue="yes" />
+        <MMString:loadString id="TagLibraries/CFML/cftextarea/checkbox/thehtml/HTML" /> </td>
+      <td nowrap="nowrap"><input type="checkbox" id="attr:cftextarea:required" name="therequired" attname="required" truevalue="yes" />
+<MMString:loadString id="TagLibraries/CFML/cftextarea/checkbox/therequired/Required" /> </td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap"><input type="checkbox" id="attr:cftextarea:enabled" name="theenabled" attname="enabled" truevalue="" falsevalue="no"/>
+<MMString:loadString id="TagLibraries/CFML/cftextarea/checkbox/theenabled/Enabled" /></td>
+      <td nowrap="nowrap"><input type="checkbox" id="attr:cftextarea:visible" name="thevisible" attname="visible" truevalue="" falsevalue="no" checked="true" />
+<MMString:loadString id="TagLibraries/CFML/cftextarea/checkbox/thevisible/Visible" /></td>
+    </tr>  
+  </table> 
+</div>
+
+<div MMString:name="TagLibraries/CFML/cftextarea/div/name/Events"> 
+  <table border="0" cellspacing="4">
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/OnError" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonerror" type="text" class="basicTextField" id="attr:cftextarea:onerror" attname="OnError" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/OnValidate" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonvalidate" type="text" class="basicTextField" id="attr:cftextarea:onvalidate" attname="OnValidate" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/OnKeyUp" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonkeyup" type="text" class="basicTextField" id="attr:cftextarea:onkeyup" attname="OnKeyup" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/OnMouseUp" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonmouseup" type="text" class="basicTextField" id="attr:cftextarea:onmouseup" attname="OnMouseup" />
+      </td>
+    </tr>
+    <tr>
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/OnChange" /> </td>
+      <td nowrap="nowrap">
+        <input name="theonchange" type="text" class="basicTextField" id="attr:cftextarea:onchange" attname="OnChange" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="baseline" align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cftextarea/text/OnClick" /> </td>
+      <td nowrap="nowrap"><input name="theonclick" type="text" class="basicTextField" id="attr:cftextarea:onclick" attname="OnClick" /> 
+      </td>
+    </tr>
+  </table> 
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<tag name="CFQUERYPARAM" endtag="no">
+<tagformat nlbeforetag="1" nlaftertag="1"/>
+<tagdialog file="cfqueryparam.htm" />
+  <attributes>
+    <attrib name="VALUE" type="TEXT" entityEncode="never"/>
+    <attrib name="CFSQLTYPE" type="ENUMERATED" entityEncode="never">
+      <attriboption value="CF_SQL_BIGINT"/>
+      <attriboption value="CF_SQL_BIT"/>
+      <attriboption value="CF_SQL_BLOB"/>
+      <attriboption value="CF_SQL_CHAR"/>
+      <attriboption value="CF_SQL_CLOB"/>
+      <attriboption value="CF_SQL_DATE"/>
+      <attriboption value="CF_SQL_DECIMAL"/>
+      <attriboption value="CF_SQL_DOUBLE"/>
+      <attriboption value="CF_SQL_FLOAT"/>
+      <attriboption value="CF_SQL_IDSTAMP"/>
+      <attriboption value="CF_SQL_INTEGER"/>
+      <attriboption value="CF_SQL_LONGVARCHAR"/>
+      <attriboption value="CF_SQL_MONEY"/>
+      <attriboption value="CF_SQL_MONEY4"/>
+      <attriboption value="CF_SQL_NUMERIC"/>
+      <attriboption value="CF_SQL_REAL"/>
+      <attriboption value="CF_SQL_REFCURSOR"/>
+      <attriboption value="CF_SQL_SMALLINT"/>
+      <attriboption value="CF_SQL_TIME"/>
+      <attriboption value="CF_SQL_TIMESTAMP"/>
+      <attriboption value="CF_SQL_TINYINT"/>
+      <attriboption value="CF_SQL_VARCHAR"/>
+    </attrib>
+    <attrib name="MAXLENGTH" type="TEXT" entityEncode="never"/>
+    <attrib name="SCALE" type="TEXT" entityEncode="never"/>
+    <attrib name="DBNAME" type="TEXT" entityEncode="never"/>
+    <attrib name="SEPARATOR" type="TEXT" entityEncode="never"/>
+    <attrib name="NULL" type="ENUMERATED" entityEncode="never">
+      <attriboption value="Yes"/>
+      <attriboption value="No"/>
+    </attrib>
+    <attrib name="LIST" type="ENUMERATED" entityEncode="never">
+      <attriboption value="Yes"/>
+      <attriboption value="No"/>
+    </attrib>
+  </attributes>
+	<attribcategories>
+		<attribgroup name="General" elements="value,maxlength,scale,separator,null,list,cfsqltype" />
+	</attribcategories>
+</tag>

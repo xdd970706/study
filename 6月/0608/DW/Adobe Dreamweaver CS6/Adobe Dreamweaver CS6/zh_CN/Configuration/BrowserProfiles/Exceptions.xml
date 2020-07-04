@@ -1,0 +1,11 @@
+<exceptions>
+<!--
+将标签放在 <exceptions> 和 </exceptions> 之间，避免在代码视图中用下划线标记特定类型的浏览器目标检查错误。
+忽略整个 CSS 属性的示例:
+<cssProperty property="font-family"/>
+忽略未知 CSS 属性值的示例:
+<cssValue property="font-family"/>
+忽略浏览器兼容性问题的示例（可在 Configuration/BrowserProfiles/Issues/ 中的 .html 和 .js 文件中找到名称和 ID 问题）:
+<issue id="THREE_PIXEL_JOG" name="Three Pixel Text Jog"/>
+ -->
+</exceptions>

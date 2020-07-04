@@ -1,0 +1,19 @@
+<participant>
+		<translator priority="10">
+			<searchPatterns>
+				<searchPattern paramNames="cdName"><![CDATA[/Set\s*(\S+)\s*=\s*Server\.CreateObject\("ADODB\.Command"\)/i]]></searchPattern>
+				<searchPattern paramNames="cname"><![CDATA[/\S+\.ActiveConnection\s*=\s*MM_(\S+)_STRING/i]]></searchPattern>
+				<searchPattern paramNames=""><![CDATA[/\S+\.execute/i]]></searchPattern>
+			</searchPatterns>
+			<translations>
+				<translation whereToSearch="directive">
+					<openTag>MM_COMMAND2</openTag>
+					<attributes>
+						<attribute><![CDATA[NAME="@@cdName@@"]]></attribute>
+						<attribute><![CDATA[ACTIVECONNECTION="@@cname@@"]]></attribute>
+					</attributes>
+					<closeTag>MM_COMMAND2</closeTag>
+				</translation>
+			</translations>
+		</translator>
+</participant>

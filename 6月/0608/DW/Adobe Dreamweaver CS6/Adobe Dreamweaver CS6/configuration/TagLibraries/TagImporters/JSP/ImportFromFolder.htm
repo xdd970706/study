@@ -1,0 +1,39 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<title><MMString:loadString id="TagLibraries/TagImporters/JSP/ImportFromFolder/title" /></title>
+<script src="ImportShared.js"></script>
+<script src="ImportFromFolder.js"></script>
+<SCRIPT SRC="../../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+</head>
+<body onLoad="initializeUI()">
+<form>
+  <div ALIGN="center"> 
+    <table border="0">
+      <tr> 
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="TagLibraries/TagImporters/JSP/ImportFromFolder/text/Folder" /></td>
+        <td valign="baseline" nowrap> 
+          <input name="location" type="text" style="width:200px">
+        </td>
+        <td valign="baseline" nowrap> 
+		  <input type="button" MMString:value="TagLibraries/TagImporters/JSP/ImportFromFolder/button/value/Browse" onClick="onBrowseButton();focus(this)">
+        </td>
+      </tr>
+      <tr> 
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="TagLibraries/TagImporters/JSP/ImportFromFolder/text/URI" /></td>
+        <td valign="baseline" nowrap> 
+          <input name="uri" type="text" style="width:200px">
+        </td>
+      </tr>
+      <tr> 
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="TagLibraries/TagImporters/JSP/ImportFromFolder/text/Prefix" /></td>
+        <td valign="baseline" nowrap> 
+          <input name="prefix" type="text" style="width:100px">
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+</body>
+</html>

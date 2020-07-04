@@ -1,0 +1,37 @@
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 9.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="TagLibraries/TagImporters/NewTags/title" /></title>
+<script src="NewTags.js"></script>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<script language="javascript" src="../../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<!-- End removal area. -->
+<link href="../../Styles/NewTags.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onLoad="initializeUI()">
+<form name="theForm">
+  <table border="0">
+    <tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="TagLibraries/TagImporters/NewTags/text/Tag" /></td>
+      <td valign="baseline" colspan="2">
+	    <select name="library" class="cls_NewTags_select_library">
+		</select>
+      </td>
+	</tr>
+	<tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="TagLibraries/TagImporters/NewTags/text/Tag_1" /></td>
+      <td valign="baseline" colspan="2">
+        <input type="text" name="tagNames" class="cls_NewTags_input_tagNames">
+      </td>
+    </tr>
+	<tr valign="baseline" >
+      <td nowrap></td>
+      <td align="right"><input type="checkbox" name="endtag" value="endtag" checked="checked"></td>
+      <td valign="middle" nowrap="nowrap"><label for="endtag"><MMString:loadString id="TagLibraries/TagImporters/NewTags/checkbox/endtag/Have" /></label></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

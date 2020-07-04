@@ -1,0 +1,77 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2007 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and may be covered by U.S. and Foreign Patents,
+* patents in process, and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+/*
+* This css file is used by the Spry Data Set Wizard
+* to display a preview of the dataset
+*/
+
+body
+{
+	font-size: 11px;
+  margin: 0px;
+  padding: 0px;
+}
+
+th
+{
+  height: 25px;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #000000;
+}
+
+td
+{
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+div{
+	height: 40px;
+	overflow: auto;
+}
+
+/* This is the selector for the first cell of a row. */
+.first{
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	overflow: hidden;
+}
+
+/* This is the selector for the last cell of a row. */
+.lastRow
+{
+	border: 0px;
+	border-top: 1px solid black;
+}
+
+/* This selector is used for the data preview header */
+a{
+  height: 25px;
+	color: #000000;
+	text-decoration: none;
+	padding-top: 5px;
+	display: block;
+	overflow: hidden;
+}

@@ -1,0 +1,81 @@
+<!-- Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+	<title><MMString:loadString id="TagLibraries/CFML/cfcontent/title" /></title>
+<script src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../Shared/Common/Scripts/tagDialogsCmn.js"></script>
+<script src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="loc_strings.js"></script>
+<script src="strings.js"></script>
+<script>
+/************************* GLOBAL VARS **************************/
+
+var CFCONTENTTYPELIST;
+var theUIObjects;
+
+/****************************************************************/
+
+function inspectTag(tagNodeObj)
+{
+  tagDialog.inspectTagCommon(tagNodeObj, theUIObjects);
+}
+
+function applyTag(tagNodeObj)
+{
+  tagDialog.applyTagCommon(tagNodeObj, theUIObjects);
+}
+
+function initializeUI()
+{
+	CFCONTENTTYPELIST = new ListControl("thetype");
+	theUIObjects = new Array(CFCONTENTTYPELIST);
+
+  tagDialog.populateDropDownList(CFCONTENTTYPELIST, theTypesContentCap, theTypesContentVar, 1)
+}
+
+</script>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<div MMString:name="TagLibraries/CFML/cfcontent/div/name/CFCONTENT">
+  <table border="0" cellspacing="4">
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcontent/text/MIME" /> </td>
+      <td nowrap="nowrap">
+        <select name="thetype" class="mimeTypesList" id="attr:cfcontent:type" attname="type" editable="true" >
+        </select>
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcontent/text/Return" /> </td>
+      <td nowrap="nowrap">
+        <input name="thefile" type="text" class="basicTextField" id="attr:cfcontent:file" attname="file" />&nbsp;
+        <input type="button" name="browseBtn" MMString:value="TagLibraries/CFML/cfcontent/button/browseBtn/Browse" onClick="tagDialog.browseFile('thefile',null,true);focus(this)"></td>
+    </tr>
+	<tr valign="baseline">
+      <td align="right" nowrap="nowrap"><MMString:loadString id="TagLibraries/CFML/cfcontent/text/Variable" /> </td>
+      <td nowrap="nowrap">
+        <input name="thevariable" type="text" class="basicTextField" id="attr:cfcontent:variable" attname="variable" />&nbsp;
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfcontent:deletefile" name="thedeletefile" attname="deletefile" truevalue="yes" />
+        <MMString:loadString id="TagLibraries/CFML/cfcontent/checkbox/thedeletefile/Delete" />
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap="nowrap">&nbsp;</td>
+      <td nowrap="nowrap">
+        <input type="checkbox" id="attr:cfcontent:reset" name="thereset" attname="reset" truevalue="yes" /> <MMString:loadString id="TagLibraries/CFML/cfcontent/checkbox/thereset/Reset" />
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

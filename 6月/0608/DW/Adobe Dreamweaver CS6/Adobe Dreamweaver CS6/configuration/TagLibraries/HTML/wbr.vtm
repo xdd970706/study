@@ -1,0 +1,130 @@
+<tag name="WBR" endtag="no">
+  <tagformat nlbeforetag="0" nlaftertag="1"/>
+  <tagdialog file="wbr.htm" />
+  <attributes>
+    <!-- HTML5 attribs  common to all tags-->
+    <attrib name="tabindex"/>
+    <!-- End HTML5 coomon attribs -->
+
+    <attrib name="accesskey" type="text" />
+
+	<!-- HTML5 events common to all tags -->
+    <attrib name="onAbort" casesensitive="yes"/>
+    <attrib name="onBlur" casesensitive="yes"/>
+    <attrib name="onCanPlay" casesensitive="yes"/>
+    <attrib name="onCanPlayThrough" casesensitive="yes"/>
+    <attrib name="onChange" casesensitive="yes"/>
+    <attrib name="onClick" casesensitive="yes"/>
+    <attrib name="onContextMenu" casesensitive="yes"/>
+    <attrib name="onDblClick" casesensitive="yes"/>
+    <attrib name="onDrag" casesensitive="yes"/>
+    <attrib name="onDragEnd" casesensitive="yes"/>
+    <attrib name="onDragEnter" casesensitive="yes"/>
+    <attrib name="onDragLeave" casesensitive="yes"/>
+    <attrib name="onDragOver" casesensitive="yes"/>
+    <attrib name="onDragStart" casesensitive="yes"/>
+    <attrib name="onDrop" casesensitive="yes"/>
+    <attrib name="onDurationChange" casesensitive="yes"/>
+    <attrib name="onEmptied" casesensitive="yes"/>
+    <attrib name="onEnded" casesensitive="yes"/>
+    <attrib name="onError" casesensitive="yes"/>
+    <attrib name="onFocus" casesensitive="yes"/>
+    <attrib name="onFormChange" casesensitive="yes"/>
+    <attrib name="onFormInput" casesensitive="yes"/>
+    <attrib name="onInput" casesensitive="yes"/>
+    <attrib name="onInvalid" casesensitive="yes"/>
+    <attrib name="onKeyDown" casesensitive="yes"/>
+    <attrib name="onKeyPress" casesensitive="yes"/>
+    <attrib name="onKeyUp" casesensitive="yes"/>
+    <attrib name="onLoad" casesensitive="yes"/>
+    <attrib name="onLoadedData" casesensitive="yes"/>
+    <attrib name="onLoadedMetadata" casesensitive="yes"/>
+    <attrib name="onLoadStart" casesensitive="yes"/>
+    <attrib name="onMessage" casesensitive="yes"/>
+    <attrib name="onMouseDown" casesensitive="yes"/>
+    <attrib name="onMouseMove" casesensitive="yes"/>
+    <attrib name="onMouseOut" casesensitive="yes"/>
+    <attrib name="onMouseOver" casesensitive="yes"/>
+    <attrib name="onMouseUp" casesensitive="yes"/>
+    <attrib name="onMouseWheel" casesensitive="yes"/>
+    <attrib name="onPause" casesensitive="yes"/>
+    <attrib name="onPlay" casesensitive="yes"/>
+    <attrib name="onPlaying" casesensitive="yes"/>
+    <attrib name="onProgress" casesensitive="yes"/>
+    <attrib name="onRateChange" casesensitive="yes"/>
+    <attrib name="onReadyStateChange" casesensitive="yes"/>
+    <attrib name="onScroll" casesensitive="yes"/>
+    <attrib name="onSeeked" casesensitive="yes"/>
+    <attrib name="onSeeking" casesensitive="yes"/>
+    <attrib name="onSelect" casesensitive="yes"/>
+    <attrib name="onShow" casesensitive="yes"/>
+    <attrib name="onStalled" casesensitive="yes"/>
+    <attrib name="onSubmit" casesensitive="yes"/>
+    <attrib name="onSuspend" casesensitive="yes"/>
+    <attrib name="onTimeUpdate" casesensitive="yes"/>
+    <attrib name="onVolumeChange" casesensitive="yes"/>
+    <attrib name="onWaiting" casesensitive="yes"/>
+    <!-- End common HTML5 events -->
+    
+    <!-- HTML5 Events for all elements -->
+    <event name="onAbort"/>
+    <event name="onBlur"/>
+    <event name="onCanPlay"/>
+    <event name="onCanPlayThrough"/>
+    <event name="onChange"/>
+    <event name="onClick"/>
+    <event name="onContextMenu"/>
+    <event name="onDblClick"/>
+    <event name="onDrag"/>
+    <event name="onDragEnd"/>
+    <event name="onDragEnter"/>
+    <event name="onDragLeave"/>
+    <event name="onDragOver"/>
+    <event name="onDragStart"/>
+    <event name="onDrop"/>
+    <event name="onDurationChange"/>
+    <event name="onEmptied"/>
+    <event name="onEnded"/>
+    <event name="onError"/>
+    <event name="onFocus"/>
+    <event name="onFormChange"/>
+    <event name="onFormInput"/>
+    <event name="onInput"/>
+    <event name="onInvalid"/>
+    <event name="onKeyDown"/>
+    <event name="onKeyPress"/>
+    <event name="onKeyUp"/>
+    <event name="onLoad"/>
+    <event name="onLoadedData"/>
+    <event name="onLoadedMetadata"/>
+    <event name="onLoadStart"/>
+    <event name="onMessage"/>
+    <event name="onMouseDown"/>
+    <event name="onMouseMove"/>
+    <event name="onMouseOver"/>
+    <event name="onMouseOut"/>
+    <event name="onMouseUp"/>
+    <event name="onMouseWheel"/>
+    <event name="onPause"/>
+    <event name="onPlay"/>
+    <event name="onPlaying"/>
+    <event name="onProgress"/>
+    <event name="onRateChange"/>
+    <event name="onReadyStateChange"/>
+    <event name="onScroll"/>
+    <event name="onSeeked"/>
+    <event name="onSeeking"/>
+    <event name="onSelect"/>
+    <event name="onShow"/>
+    <event name="onStalled"/>
+    <event name="onSubmit"/>
+    <event name="onSuspend"/>
+    <event name="onTimeUpdate"/>
+    <event name="onVolumeChange"/>
+    <event name="onWaiting"/>
+    <!-- End Common HTML 5 Events -->
+  </attributes>
+  <attribcategories>
+    <attribgroup name="CSS/Accessibility" elements="class,id,style,tabindex,title" />
+  </attribcategories>
+</tag>

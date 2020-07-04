@@ -1,0 +1,194 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+header{
+    height: 1rem;
+    background: linear-gradient(to right,#ff7037 50%,#ff2220);
+    padding: 0 .3rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header form{
+    height: .6rem;
+    width: 6.05rem;
+    display: flex;
+    background: #fff;
+    line-height: .6rem;
+    border-radius: .28rem;
+    justify-content: center;
+}
+header form input{
+    border: none;
+    outline: none;
+}
+
+header .cart{
+    color: #fff;
+    height: .6rem;
+    display: flex;
+    flex-direction: column;
+}
+header .cart i{
+    font-size: .40rem !important;
+    height: .4rem;
+}
+header .cart span{
+    height: .2rem;
+    font-size: .16rem;
+}
+main{
+    flex: 1;
+}
+main .nav{
+    height: .75rem;
+    display: flex;
+}
+main .nav .btn{
+    width: .75rem;
+    height: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+main .nav .btn p{
+    height: .05rem;
+    width: .32rem;
+    background: #ff2220;
+    margin: .03rem 0;
+}
+main .nav ul{
+    background: #fefefe;
+    white-space: nowrap;
+    height: .75rem;
+    width: 6.73rem;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #f0f0f0;
+    overflow: scroll;
+}
+main .nav ul li{
+    height: .75rem;
+    width: .68rem;
+    padding: 0 .25rem;
+    text-align: center;
+    line-height: .75rem;
+    font-size: .28rem;
+    position: relative;
+    border-bottom:1px solid #f6f6f6; 
+}
+main .nav ul li:hover{
+    color: #ff1e1e;
+    font-weight: bold;
+}
+main .nav ul li:hover::after{
+    display: block;
+    content: "";
+    position: absolute;
+    width: .4rem;
+    height: .06rem;
+    background: #ff1e1e;
+    bottom: .05rem;
+    left:50%;
+    transform: translateX(-50%);
+}
+main .goods{
+    height: 5.5rem;
+    padding-bottom: .1rem;
+    background: #f6f6f6;
+}
+main .goods ul{
+    background: #fff;
+    height: 5.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+}
+main .goods ul li{
+    width: 25%;
+    height: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+main .goods ul li img{
+    width: 40%;
+    height: 60%;
+}
+main .goods ul li span{
+    font-size: .2rem;
+    color: #666666;
+}
+main .ad{
+    height: 4.75rem;
+}
+main .ad ul{
+    height: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .ad ul li{
+    height: .8rem;
+    line-height: .8rem;
+    width: 25%;
+    text-align: center;
+    color:#6d6d6d;
+}
+main .ad .shops{
+    height: 3.94rem;
+    display: flex;
+    justify-content: space-between;
+}
+main .ad .shops div{
+    width: 49%;
+    height: 3.94rem;
+}
+main .ad .shops div img{
+    width: 100%;
+    height: 100%;
+}
+footer{
+    width: 100%;
+    height: .98rem;
+    border-top: 1px solid #f6f6f6;
+}
+footer ul{
+    width: 100%;
+    height: 0.98rem;
+    display: flex;
+}
+footer ul li{
+    height: 0.98rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #777777;
+    justify-content: center;
+}
+footer ul li i{
+    font-size: .40rem !important;
+}
+footer ul li span{
+    font-size: .18rem;
+}
+footer ul li:hover{
+    color:#ff6936;
+}

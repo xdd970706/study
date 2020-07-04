@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<panelset>
+
+  <!-- default to App and Document maximized, but don't hard code sizes (code will compute) -->
+  <application maximize="true" colorIcon="true" docView="code"/>
+  <document maximize="true"/>
+
+  <!-- LEFT - Insert (hidden), CSS (hidden), Application (hidden), Tag Inspector (hidden), Files, Frames (hidden), History (hidden) -->
+  <panelframe dock="left">
+    <panelcontainer  visible="false" >
+      <panel id="objects" showLabel="true"/>
+    </panelcontainer>
+    <panelcontainer expanded="false">
+      <panel id="css styles"/>
+      <panel id="layers"/>
+      <panel id="tag inspector" visibleTab="false"/>
+    </panelcontainer>
+    <panelcontainer visible="false">
+      <panel id="database"/>
+      <panel id="data sources"/>
+      <panel id="server scripts"/>
+      <panel id="server components" visibleTab="false"/>
+    </panelcontainer>
+    <panelcontainer>
+      <panel id="site"/>
+      <panel id="assets"/>
+      <panel id="snippets"/>
+    </panelcontainer>
+    <panelcontainer visible="false" >
+      <panel id="frames"/>
+    </panelcontainer>
+    <panelcontainer visible="false" >
+      <panel id="history"/>
+    </panelcontainer>
+  </panelframe>
+
+  <!-- BOTTOM - Property Inspector (hidden), results (hidden) -->
+  <panelframe dock="bottom">
+    <panelcontainer visible="false">
+      <panel id="propertiesMfc"/>
+    </panelcontainer>
+    <panelcontainer visible="false">
+      <panel id="properties"/>
+    </panelcontainer>
+    <panelcontainer visible="false">
+      <panel id="search"/>
+      <panel id="reference"/>
+      <panel id="validation"/>
+      <panel id="btc"/>
+      <panel id="linkchecker"/>
+      <panel id="reports"/>
+      <panel id="ftp log"/>
+      <panel id="server debug"/>
+    </panelcontainer>
+   </panelframe>
+
+  <!-- FLOATING, individuals don't need to be listed - default behavior...-->
+</panelset>

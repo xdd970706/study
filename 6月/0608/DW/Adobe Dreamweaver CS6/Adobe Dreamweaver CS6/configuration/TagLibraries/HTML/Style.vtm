@@ -1,0 +1,63 @@
+
+  <tag name="STYLE" endtag="yes">
+<tagformat nlbeforetag="1" nlbeforecontents="1" nlaftercontents="1" nlaftertag="1" formatcontents="no"/>
+<tagdialog file="style.htm" />
+  <attributes>
+    <attrib name="TYPE" type="Enumerated">
+      <attriboption value="text/css" caption="text/css"/>
+      <attriboption value="text/javascript" caption="text/javascript"/>
+		</attrib>
+    <attrib name="MEDIA" type="Enumerated" allowmultiplevalues="yes">
+      <attriboption value="screen"/>
+      <attriboption value="tty"/>
+      <attriboption value="tv"/>
+      <attriboption value="projection"/>
+      <attriboption value="handheld"/>
+      <attriboption value="print"/>
+      <attriboption value="braille"/>
+      <attriboption value="embossed"/>
+      <attriboption value="speech"/>
+      <attriboption value="all"/>
+      <attriboption value="width:"/>
+      <attriboption value="min-width:"/>
+      <attriboption value="max-width:"/>
+      <attriboption value="height"/>
+      <attriboption value="min-height"/>
+      <attriboption value="max-height"/>
+      <attriboption value="device-width"/>
+      <attriboption value="min-device-width"/>
+      <attriboption value="max-device-width"/>
+      <attriboption value="device-height"/>
+      <attriboption value="min-device-height"/>
+      <attriboption value="max-device-height"/>
+      <attriboption value="orientation"/>
+      <attriboption value="aspect-ratio"/>
+      <attriboption value="min-aspect-ratio"/>
+      <attriboption value="max-aspect-ratio"/>
+      <attriboption value="device-aspect-ratio"/>
+      <attriboption value="min-device-aspect-ratio"/>
+      <attriboption value="max-device-aspect-ratio"/>
+      <attriboption value="color"/>
+      <attriboption value="min-color"/>
+      <attriboption value="max-color"/>
+      <attriboption value="color-index"/>
+      <attriboption value="min-color-index"/>
+      <attriboption value="max-color-index"/>
+      <attriboption value="monochrome"/>
+      <attriboption value="min-monochrome"/>
+      <attriboption value="max-monochrome"/>
+      <attriboption value="resolution"/>
+      <attriboption value="min-resolution"/>
+      <attriboption value="max-resolution"/>
+      <attriboption value="scan"/>
+      <attriboption value="grid"/>
+    </attrib>
+    <attrib name="DISABLED" type="Flag"/>
+    <attrib name="SCOPED" type="Flag"/>
+    <attrib name="TITLE"/>
+	</attributes>
+	<attribcategories>
+		<attribgroup name="General" elements="media,disabled,type" />
+		<attribgroup name="Accessibility" elements="title" />
+	</attribcategories>
+</tag>

@@ -1,0 +1,20 @@
+The Content referenced by this file is Copyright (c) Macromedia, Inc. All rights reserved. 
+
+Path to Content: \collateral\configuration\snippets\
+Path to License: See AIPAS License #01010
+
+Adobe Engineering Contact: jlondon@adobe.com
+
+Is this Content intended to be used as a developer tool? no
+Is this Content used during release engineering builds? yes
+Are portions of the Content intended to be put into product(s) that Adobe ships? yes
+
+Notes: Terrance Ryan (Black Cat Design) created sample CSS.  
+This work was done for Dreamweaver and UltraDev, but we own material created under agreement, so not product specific.
+
+Fill in the following when Legal has finished reviewing the license and sends you an AIPAS License # (not required at check-in time):
+
+AIPAS License #: 01010
+Reviewed by Adobe Legal on: 2007-02-01
+Adobe Legal Contact: asellier@adobe.com
+

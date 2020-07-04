@@ -1,0 +1,344 @@
+@charset "utf-8";
+/* CSS Document */
+/*重置样式*/
+*{
+	margin:0;
+	padding:0;
+	}
+	
+ul li{
+	list-style:none;
+	}
+	
+a{
+	text-decoration:none;
+	}
+
+/*网页头部*/
+.header{
+	width:1000px;
+	height:100px;
+	/*border:1px solid;*/
+	margin:0 auto;
+	}
+	
+/*当容器没有设置高度的时候，图片会默认把容器的底部撑大几像素---大概3px*/	
+.header .logo{
+	width:244px;
+	height:23px;
+	margin-left:20px;
+	margin-top:40px;
+	float:left;
+	}
+
+.header form{
+	width:225px;
+	height:26px;
+	border:1px solid #e5e5e5;
+	float:right;
+	margin-right:20px;
+	margin-top:39px;
+	}
+	
+/*input有默认2px的边框 去除边框border:none/0; 横向排列的元素换行后，元素与元素中间会有默认的间隙 float:left;*/
+.header form .search{
+	width:181px;
+	height:26px;
+	border:none;
+	float:left;
+	font-size:12px;
+	background-color:#f1f1f1;
+	color:#858585
+	padding-left:14px;
+	/*轮廓---取消input默认自带的蓝色边框*/
+	outline:none;
+	}
+	
+
+.header form .btn{
+	width:30px;
+	height:26px;
+	border:none;
+	float:left;
+	background-color:#f1f1f1;
+	/*背景图*/
+	background-image:url(../images/02.jpg);
+	/*背景不平铺*/
+	background-repeat:no-repeat;
+	/*背景位置*/
+	background-position:center center;
+	
+	outline:none;
+	/*鼠标指针 --- 手型*/
+	cursor:pointer;
+	}
+
+.hanner{
+	width:1000px;
+	height:60px;
+	margin:0 auto;
+	background-color:black;
+	}
+.hanner ul {
+	width:960px;
+	height:60px;
+	margin-left:27px;
+	/*background-color:orange;*/
+	}
+.hanner ul li{
+	width:119px;
+	height:60px;
+	line-style:none;
+	float:left;
+	line-height:60px;
+	font-size:14px;
+	text-align:center;
+	border-right:1px solid #4a4a4a;
+	}
+.hanner ul .noborder{
+	border:0;
+	}
+.hanner ul li a {
+	color:#fff;
+	text-decoration:none;
+	}
+ul li:hover{
+	background-color:#87aed9;
+	}
+ul li:hover a {
+	color:red;
+	}	
+
+/*图片*/
+.banner{
+	width:1000px;
+	height:463px;
+	margin:0 auto;
+	}
+
+/*新闻资讯 卧龙介绍 人才招聘*/
+.main{
+	width:1000px;
+	height:265px;
+	margin:0 auto;
+	}
+.main .left{
+	width:500px;
+	height:240px;
+	float:left;
+	}
+.main .left .wrap{
+	width:452px;
+	height:190px;
+	margin-top:30px;
+	margin-left:20px;
+	}
+.main .left .wrap div{
+	height:47px;
+	}
+.main .left .wrap div h3{
+	/*取消加粗*/
+	font-weight:normal;
+	font-size:17px;
+	float:left;
+	}
+.main .left .warp div img{
+	float:right;
+	}
+.main .left .wrap ul li{
+	font-size:12px;
+	line-height:24px;
+	padding-left:13px;
+	background:url(../images/list.png) no-repeat left center;
+	}
+.main .left .wrap ul li a {
+	color:#515151;
+	}
+.main .left .wrap ul li span{
+	float:right;
+	color:#969696;
+	}
+	
+	
+.main .center{
+	width:240px;
+	height:240px;
+	float:left;
+	background-color:#f1f1f1;
+	
+	}
+.main .center div{
+	width:193px;
+	height:191px;
+	margin-top:30px;
+	margin-left:24px;
+	}	
+.main .center div h3{
+	font-weight:normal;
+	font-size:17px;
+	height:56px;
+	}
+.main .center div p{
+	font-size:12px;
+	line-height:24px;
+	}
+.main .center div p span {
+	font-size:14px;
+	}
+.main .center div p2{
+	color:#969696;
+	margin-top:13px;
+	}
+
+
+.main .right{
+	width:260px;
+	height:240px;
+	background:#fbfbfb url(../images/05.jpg) no-repeat 166px 122px;
+	float:left;
+	}
+
+
+.main .right div{
+	width:183px;
+	height:160px;
+	margin-top:30px;
+	margin-left:24px;	
+	}
+.main .right div h3{
+	font-weight:normal;
+	font-size:17px;
+	height:43px;
+	}
+.main .right div p {
+	font-size:12px;
+	line-height:24px;
+	margin-bottom:48px;
+	}
+	
+	
+	
+/*wolong*/
+.wolong{
+	width:1000px;
+	height:280px;
+	margin:0 auto;
+	}
+.wolong div{
+	height:40px;
+	padding:0 22px;
+	}
+.wolong div h3{
+	font-weiht:normal;
+	font-size:17px;
+	float:left;
+	}
+.wolong div img{
+	float:right;
+	}
+.wolong dl {
+	width:210px;
+	height:200px;
+	float:left;
+	margin:0 20px;
+	}
+.wolong dl dt{
+	height:137px;
+	margin-bottom:12px;
+	}
+.wolong dl dd{
+	font-size:12px;
+	ling-height:24px;
+	}
+/*links*/
+
+.links{
+	width:1000px;
+	height:220px;
+	background-color:#e5e5e5;
+	margin:0 auto;
+	padding-top:30px;
+	}
+.links .left{
+	width:452px;
+	height:200px;
+	float:left;
+	margin-left:20px;
+	}
+.links h3{
+	font-weight:normal;
+	font-size:16px;
+	height:29px;
+	color:#656565;
+	border-bottom:1px solid #c1c1c1;
+	padding-left:12px;
+	padding-bottom:14px;
+	}
+.links .left ul{
+	float:left;
+	}
+.links .left .mg{
+	margin-left:72px;
+	margin-right:67px;
+	}
+.links ul li{
+	font-size:12px;
+	line-height:24px;
+	padding-left:19px;
+	background:url(../images/gt.jpg) no-repeat 6px center;
+	}
+.links ul li a {
+	color:#656565;
+	}
+.links .center{
+	width:152px;
+	height:200px;
+	float:left;
+	margin:0 auto;
+	padding-left:50px;
+	}
+.links .right{
+	width:256px;
+	height:200px;
+	float:left;
+	padding-left:50px;
+	background:url(../images/12.jpg) no-repeat 60px 50px;
+	}
+	
+/*底部导航栏*/
+.bottom{
+	width:1000px;
+	margin:0 auto;
+	height:40px;
+	padding-top:20px;
+	}
+.u1{
+	width:285px;
+	padding-left:20px;
+	font-size:10px;
+	line-height:16px;
+	background-color:#ffffff;
+	float:left;
+	}
+.u1 li{
+	text-decoration:none;
+	color:#898989;
+	float:left;
+	}
+.u1 span{
+	float:left;
+	height:10px;
+	width:1px;
+	background-color:black;
+	margin:0 4px;
+	margin-top:3px;
+	}
+
+.u2{
+	width:695px;
+	font-size:12px;
+	text-decoration:none;
+	color:#898989;
+	line-height:16px;
+	padding-left:360px;
+	}
