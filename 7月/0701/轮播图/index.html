@@ -32,7 +32,7 @@
                 <img src="img/7.jpg">
             </div>
              <ul>
-                <li></li>
+                <li class="active"></li>
                 <li></li>
                 <li></li>
                 <li></li>
@@ -40,8 +40,8 @@
                 <li></li>
                 <li></li>
             </ul>
-            <span class="gt">&gt;</span>
-            <span class="gt">&lt;</span>
+            <span id="right" class="gt">&gt;</span>
+            <span id="left" class="gt">&lt;</span>
         </div>
     </div>
 </body>
@@ -51,34 +51,60 @@
     // 获取小点点
     let points=document.getElementsByTagName('li')
     // 当前点点的下标
-    var point= 0;
+    let point= 0;
     // 当前图片下标
-    var setp=0;
+    let setp=0;
     // 上张图片下标
-    var per=0;
+    let per=0;
     // let imgs = Array.from(imgsDom)
-    function change(){      
+    // 右按钮
+    let right=document.getElementById("right");
+    // 左按钮
+    let left=document.getElementById("left");
+    this.right.addEventListener('click',moveTo);
+    this.left.addEventListener('click',()=>{
+        per=setp;
+        setp--;
+
+        if(setp<0){
+            setp=6
+        }
+        this.change()
+    });
+    function change(){
+            console.log(setp)      
             imgsDom[setp].style.zIndex="1";
             imgsDom[setp].style.opacity="1";
 
             imgsDom[per].style.zIndex="0";
-            imgsDom[per].style.opacity="0";              
+            imgsDom[per].style.opacity="0";
+            this.focus()              
     }
     function moveTo(){
         per=setp;
         setp++;
 
         if(setp>6){
-            this.setp=0
+            setp=0
         }
-        this.change()
+        change()
     }
     function focus(){    
         point=setp;
         [].forEach.call(points,(item,index)=>{
-            setp===idnex?points[index]
+            setp===index?points[index].className="active":points[index].className="";
         })
     }
-    var timer = setInterval(moveTo,500)
+    timer = setInterval(moveTo,2000);
+        [].forEach.call(imgsDom,(item,index)=>{
+            item.addEventListener('mouseover',function(){
+                clearInterval(timer);
+            })
+        });
+        [].forEach.call(imgsDom,(item,index)=>{
+            item.addEventListener('mouseout',function(){
+                timer = setInterval(moveTo,2000);
+            })
+        })
 </script>
 </html>
