@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			在JS中数据类型转换分为两种：隐式数据类型转换、强制数据类型转换
+			*/
+			
+			//var a = "5" + 10;
+		    //字符串加数字,数字就会转成字符串。
+			//console.log(typeof a);
+			
+			//数字减字符串，字符串转成数字。如果字符串不是纯数字就会转成NaN。
+			//字符串减数字也一样。两个字符串相减也先转成数字。
+			console.log("10" - 5);
+			console.log("10" - "3");
+			console.log("hello" - 10); //NaN 浏览器告诉你，哥们儿，你不要为难我了，没有这么搞事情的
+			
+			var a = "hello" - 10;
+			console.log(typeof a);
+			
+			console.log("5" / 2);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//为抵抗洪水，战士连续作战89小时，编程计算共多少天零多少小时？ 取模 %
+			var allHours = 89;
+			var days = parseInt(allHours / 24);
+			//console.log(days);
+			var hours = allHours % 24;
+			//console.log(hours);
+			document.write("共"+days+"天,"+hours+"小时");
+			
+			//小明要到美国旅游，可是那里的温度是以华氏度为单位记录的。它需要一个程序将华氏温度（80度）转换为摄氏度，并以华氏度和摄氏度为单位分别显示该温度。
+			//提示：摄氏度与华氏度的转换公式为：摄氏度 = 5/9.0*(华氏度-32)
+			var hss = 80;
+			var ssd = parseInt(5/9*(hss - 32));
+			console.log(ssd);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table{
+            border: 1px solid;
+            border-collapse: collapse;
+            width: 300px;
+            height: 150px;
+            table-layout: fixed;
+        }
+        td{
+            border: 1px solid;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var tr = 1
+        var count= 1
+        document.write("<table>")
+        while(tr<=3){
+            document.write("<tr>")
+            var td = 1
+            while(td<=3){
+                document.write("<td>"+count+"</td>") 
+                td++
+                count++
+            }
+            tr++
+            document.write("</tr>")
+        }
+        document.write("</table>")
+    </script>
+</body>
+</html>

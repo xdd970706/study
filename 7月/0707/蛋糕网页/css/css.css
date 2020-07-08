@@ -1,0 +1,219 @@
+body,html,a,p,ul,li,form,input{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+html,body{
+    width: 100%;
+}
+.warp{
+    width: 100%;
+}
+.warp .header{
+    width: 100%;
+    height: 82px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.warp .header .con{
+    width: 1120px;
+    height: 82px;
+    margin: 0 auto;
+    line-height:82px;
+}
+.warp  .banner{
+    width: 100%;
+    height: 515px;
+    background: url(../img/banner.jpg) no-repeat center center;
+}
+.warp  .banner .con{
+    height: 515px;
+    margin: 0 auto;
+    width: 1120px;
+}
+.warp  .banner .con .formWarp{
+    padding: 20px 60px;
+    background: #fff;
+    width: 250px;
+    float: right;
+    margin-right: 120px;
+    margin-top: 45px;
+}
+.warp  .banner .con .formWarp .title{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+.warp  .banner .con .formWarp .title span:nth-child(1) a{
+    color: #fd4b2a;
+}
+.warp  .banner .con .formWarp .title span:nth-child(2){
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    background: #999999;
+}
+.warp  .banner .con .formWarp .title span:nth-child(3) a{
+    color: #474747;
+}
+.warp  .banner .con .formWarp form{
+    width: 100%;
+}
+.warp  .banner .con .formWarp form div{
+    height: 60px;
+    line-height: 60px;
+    width: 100%;  
+}
+.warp  .banner .con .formWarp form div input:nth-child(1){
+    height: 30px;
+    border:none;
+    outline: none;
+    border-bottom: 1px solid #e5e5e6;
+    width: 100%;
+}
+.warp  .banner .con .formWarp .yzm{
+    display: flex;
+    align-items: center;
+}
+.warp  .banner .con .formWarp .yzm input{
+    flex: 4;
+}
+.warp  .banner .con .formWarp .yzm p{
+    font-size: 12px;
+    padding-left: 60px;
+    background: url('../img/yzm.jpg') no-repeat 5px center;
+}
+.warp  .banner .con .formWarp .message{
+    display: flex;
+    align-items: center;
+}
+.warp  .banner .con .formWarp .message input:nth-child(1){
+    flex: 4;
+}
+.warp  .banner .con .formWarp .message input:nth-child(2){
+    flex: 2;
+    background: #fd4b2a;
+    border: none;
+    outline: none;
+    height: 30px;
+    margin-left: 5px;
+    font-size: 12px;
+    color: #fff;
+}
+.warp  .banner .con .formWarp .btn input:nth-child(1){
+    height: 50px;
+    background: #fd4b2a;
+    color: #fff;
+    font-size: 15px;
+}
+.warp  .banner .con .formWarp .links{
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+.warp  .banner .con .formWarp .links a{
+    color: #989898;
+}
+.warp  .banner .con .formWarp .links span:nth-child(2) a{
+    color: #464647;
+}
+.warp  .banner .con .formWarp .links span:nth-child(2) span{
+    color: #fd4b2a;
+}
+.warp  .banner .con .formWarp .bottom{
+    position: relative;
+    width: 100%;
+}
+.warp  .banner .con .formWarp .bottom p{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+}
+.warp  .banner .con .formWarp .bottom p::before{
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: #e5e5e5;
+    width: 100%;
+    top: 15px;
+    left: 0;
+}
+.warp  .banner .con .formWarp .bottom p::after{
+    content: "其他登录方式";
+    position: absolute;
+    width: 100px;
+    background: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.warp  .banner .con .formWarp .bottom .qq_wei{
+    height: 50px;
+    width: 100%;
+}
+.warp .footer{
+    width: 100%;
+    height: 210px; 
+    padding: 20px 0 50px;
+    box-sizing: border-box;
+}
+.warp .footer .con{
+    width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+.warp .footer .con .left ul{
+    display: flex;
+}
+.warp .footer .con .left ul li{
+    padding: 0 20px;
+}
+.warp .footer .con .left ul li:nth-child(1){
+    padding-left: 0;
+}
+.warp .footer .con .left ul li a{
+    font-size: 14px;
+    color: #3e3e3e;
+}
+.warp .footer .con .left p{
+    margin-top: 25px;
+    font-size: 12px;
+}
+.warp .footer .con .left p:nth-child(3){
+    color: #949494;
+}
+.warp .footer .con .left p:nth-child(3) a{
+    color: #949494;
+}
+.warp .footer .con .right{
+    width: 108px;
+}
+.warp .footer .con .right img{
+    width: 108px;
+    height: 105px;
+    border:1px solid #999999;
+}
+.warp .footer .con .right p{
+    font-size: 12px;
+    text-align: center;
+}
+.warp .service{
+    width: 74px;
+    height: 74px;
+    border: 1px solid #e5e5e5;
+    position: fixed;
+    top: 80%;
+    right: 0;
+    text-align: center;
+}
+.warp .service span{
+    font-size: 12px;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算器</title>
+</head>
+<body>
+    <script>
+        var num1 = prompt("请输入第一个数字");
+        var input = prompt("请输入符号");
+        var num2 = prompt("请输入第二个数字");
+        var res
+        switch (input){
+            case "*":
+            res = Number(num1) * Number(num2)
+            break;
+            case "+":
+            res = Number(num1) + Number(num2)
+            break;
+            case "-":
+            res = Number(num1) - Number(num2)
+            break;
+            case "/":
+            res = Number(num1) / Number(num2)
+            break;
+        }
+        alert("计算结果为："+res);
+    </script>
+</body>
+</html>
