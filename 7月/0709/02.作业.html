@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .warp{
+            width: 100%;
+            position: relative;
+        }
+        .ad{
+            position: absolute;
+            width: 100%;
+        }
+        .ad img{
+            width: 100%;
+        }
+        #btn{
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <div class="ad" id="imgbox">
+            <img src="img/dbc2b31a20427936.jpg!q70.jpg.webp">
+            <button id="btn" onclick="closed()">x</button>
+        </div>
+    </div>
+</body>
+<script>
+    function closed(){
+        var imgbox = document.getElementById('imgbox')
+        imgbox.style.display="none"
+    }
+    
+
+</script>
+</html>

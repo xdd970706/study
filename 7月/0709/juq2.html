@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的计算器</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .warp{
+            width: 200px;
+            height: 300px;
+            margin: 50px auto;
+        }
+        .warp input{
+            height: 50px;
+            width: 200px;
+            outline: none;
+            font-size: 20px;
+            box-sizing: border-box;
+            padding-left: 10px;
+            background: #8ac6d1;
+            color: #fff;
+            border: none;
+        }
+        div ul{
+            display: flex;
+            flex-wrap: wrap;
+            height: 100%;
+            align-content: flex-start;
+        }
+        div ul li{
+            box-sizing: border-box;
+            width: 50px;
+            list-style: none;
+            border: 1px solid #8ac6d1;
+            height: 50px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background: #8ac6d1;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="warp">
+            <input id="text">
+            <ul>
+                <li></li>
+                <li></li>
+                <li>c</li>
+                <li>&lt;</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>+</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>x</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>-</li>
+                <li>/</li>
+                <li>0</li>
+                <li>.</li>
+                <li>=</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    var text=document.getElementById('text');
+    var liArrs=document.getElementsByTagName('li');
+    var num1
+    var num2
+    [].forEach.call(liArrs,(item,index)=>{
+        item.addEventListener('click',()=>{
+            var txt = parseFloat(item.innerHTML)
+            if(index==2){
+                text.value=""
+            }
+            if(isNaN(txt)&&index==3){
+                var txtArr = [...text.value]
+                txtArr.pop()
+                text.value=txtArr.toString()
+            }
+            if(isNaN(txt)&&index!=2&&index!=19&&index!=18&&index!=3){
+                num1= parseFloat(text.value)
+                text.value=""
+                symbol = liArrs[index].innerHTML
+            }
+            if(isNaN(txt)&&index==19){
+                num2=parseFloat(text.value)
+                switch (symbol) {
+                    case "+":
+                        text.value=num1+num2
+                        break;
+                        case "-":
+                        text.value=num1-num2
+                        break;
+                        case "x":
+                        text.value=num1*num2
+                        break;
+                        case "/":
+                        text.value=num1/num2
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if(!isNaN(txt)||index==18){
+                text.value+=item.innerHTML
+            }
+        })
+    })
+</script>
+</html>

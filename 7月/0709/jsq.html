@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- <form onsubmit="return false"> -->
+            <input id="num1">
+            <select id="sel">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+            </select>
+            <input id="num2">
+            <button onclick="compute()">compute</button>
+            <input id="res">
+            <!-- <input type="reset" value="clear"> -->
+            <button onclick="qc()">clear</button>
+            <!-- <input type="button" value="clear" onclick="qc()"> -->
+        <!-- </form> -->
+    </div>
+</body>
+    <script>
+        var input1 = document.getElementById("num1");
+        var input2 = document.getElementById("num2");
+        var sel = document.getElementById("sel")
+        var res = document.getElementById("res");
+        function compute(){
+            symbol = sel.value
+            var num1=Number(input1.value);
+            var num2=Number(input2.value);
+            switch(symbol){
+                case "+":
+                res.value=num1+num2;
+                break;
+                case "-":
+                res.value=num1-num2;
+                break;
+                case "*":
+                res.value=num1*num2;
+                break;
+                case "/":
+                res.value=num1/num2
+            }
+        }
+        function qc(){
+            input1.value=" "
+            input2.value=" "
+            res.value=" "
+        }
+    </script>
+</html>

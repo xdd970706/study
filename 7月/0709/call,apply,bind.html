@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj1={
+            name:"悟空",
+            age:500,
+            show:function(){
+                document.write(this.name+"年龄:"+this.age+"岁")
+            }
+
+        }
+        var obj2={
+            name:"猪八戒",
+            age:250,
+        }
+        obj1.show(); 
+        obj1.show.call(obj2)
+    </script>
+</body>
+</html>

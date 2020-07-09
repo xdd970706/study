@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			1、入职薪水10K，每年涨幅5%，50年后工资多少？
+			5% --- 0.05
+			
+			第一年工资：10000
+			第二年工资：10000 + 10000*0.05
+			第三年工资：10000 + 10000*0.05 + (10000+10000*0.05)*0.05
+			
+			*/ 
+		    var salary = 10000;
+			for(var i=1; i<50; i++){
+				salary += salary*0.05;
+			}
+			console.log(salary);
+			
+			/*
+			2、五个小朋友排成一队。问第一个多大了，第一个说比第二个大两岁，问第二个，第二个说比第三个大两岁，
+			以此类推。问第五个小朋友几岁了，第五个小朋友说3岁了。问第一个小朋友几岁？
+			
+			第一个小朋友：11
+			第二个小朋友：11-2=9
+			*/
+		    var age = 3;
+			for(var i=1; i<5; i++){
+				age += 2;
+			}
+			console.log(age);
+		</script>
+	</body>
+</html>
