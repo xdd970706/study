@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2048</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .warp{
+            width: 220px;
+            height: 220px;
+            margin: 50px auto;
+        }
+        .warp ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            background: #fff;
+            justify-content: space-between;
+            background:#fff1c1;
+        }
+        .warp ul li{
+            list-style: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            color: #fff;
+            /* background: #a64942; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        .notEmptItem{
+            background: #a64942;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <ul>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+            <li class="emptItem"></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var items=document.getElementsByTagName("li");
+    var numArray = []
+    function createNumber(){
+        var emptBox = document.getElementsByClassName("emptItem");
+        var ranNum = Math.floor(Math.random()*(emptBox.length-1));
+        var ranNum2 = Math.floor(Math.random()*2+1);
+        [].forEach.call(emptBox,(item,index)=>{
+            if(index==ranNum){
+            emptBox[index].innerHTML=""+(ranNum2*2);  
+            emptBox[index].className="notEmptItem";
+            items[index].title="num";
+            numArray.push(index)
+            }
+        })
+
+    }
+    document.addEventListener('keydown',move);
+    function move(event){
+        if(event.keyCode==37){
+            var numberBox = document.getElementsByClassName('notEmptItem');
+            var emptBox = document.getElementsByClassName("emptItem");
+            var notEmptItemArr=[];
+            var notSideItemArr=[]
+            numArray.forEach(item=>{
+                if(item%4!=0){
+                    numArray.forEach(item1=>{
+                        if(item-1!=item1){
+                            items[item-1].className='notEmptItem';
+                            items[item].className='emptItem';
+                            items[item].innerHTML=''
+                            items[item].removeAttribute('title')
+                        }
+                    })
+                }
+                
+                })
+            
+            // [].forEach.call(numberBox,(item,index)=>{
+            //     item.title='num';
+            // })
+            // var notSideItemArr=[];
+            // notEmptItemArr.forEach((item,index)=>{
+            //     if(item%4!=0){
+                    // notEmptItemArr.forEach(item1=>{
+                    //     if(item-1!=item1){
+                    //         emptBox[item-1].className='notEmptItem';
+                    //         emptBox[item-1].title='num';
+                    //         emptBox[item].className='emptItem';
+                    //         emptBox[item].removeAttribute('num');
+                            // notSideItemArr.push(item-1);
+                            // console.log(notSideItemArr)
+                    //     }
+                    // })
+            createNumber()
+        }
+}
+    createNumber()
+</script>
+</html>
