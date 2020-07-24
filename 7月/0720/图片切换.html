@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .warp{
+            width: 300px;
+            height: 350px;
+            position: relative;
+            margin: 50px auto;
+            cursor: pointer;
+        }
+        .warp img{
+            width: 100%;
+            height: 100%;
+        }
+        .warp span{
+            display: inline-block;
+            width: 30px;
+            height: 25px;
+            line-height: 25px;
+            background: #000000;
+            opacity: .5;
+            color: #fff;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor:pointer;
+        }
+        .warp .left{
+            left: 0;
+        }
+        .warp .right{
+            right: 0;
+        }
+        .warp ul{
+            display: flex;
+            width: 150px;
+            height: 25px;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .warp ul li{
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #333333;
+            opacity: .5;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <img src="">
+        <span class="left">&lt;</span>
+        <span class="right">&gt;</span>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        var warp = document.querySelector('div');
+        var pic = document.querySelector('img');
+        var left = document.querySelector('.left');
+        var right = document.querySelector('.right');
+        var liArr = document.querySelectorAll('li');
+        var Slider = {
+            picArr:['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg'],
+            index:0,
+            lastIndex:0,
+            autoPlay:function(){
+                pic.src = 'img/'+Slider.picArr[0]
+                liArr[0].style.background = 'red';
+                timer = setInterval(function(){
+                    Slider.next()
+                },1000)
+            },
+            next:function(){
+                Slider.lastIndex=Slider.index
+                Slider.index++
+                if(Slider.index>6){
+                    Slider.index=0;
+                }
+                pic.src = 'img/'+Slider.picArr[Slider.index]
+                Slider.foucs();
+            },
+            previous:function(){
+                Slider.index--;
+                if(Slider.index<0){
+                    Slider.index=6
+                }
+                pic.src = 'img/'+Slider.picArr[Slider.index]
+            },
+            foucs:function(){
+                liArr[Slider.lastIndex].style.background = '#333333';
+                liArr[Slider.index].style.background = 'red';
+            }
+        }
+        Slider.autoPlay();
+        right.onclick = function(){
+            Slider.next()
+        }
+        left.onclick = function(){
+            Slider.previous()
+        }
+        warp.onmouseover=function(){
+            clearInterval(timer)
+        }
+        warp.onmouseout = function(){
+            timer = setInterval(function(){
+                Slider.next()
+            },1000)
+        };
+        [].forEach.call(liArr,(item,index)=>{
+            item.onclick = function(){
+                if(index==0){
+                    Slider.lastIndex = 6;
+                }
+                Slider.lastIndex = Slider.index
+                Slider.index = index;
+            }
+        })
+    </script>
+</body>
+</html>

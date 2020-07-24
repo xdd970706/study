@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 30px;
+            margin: 50px auto;
+        }
+        div span{
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>距离活动结束还有:<span></span></div>
+    <script>
+        // var date = new Date();
+        // date.setHours(14)
+        // var date1 = new Date();
+        // var d = date.getDate();
+        // 时间戳,获取从1970年至今经历多少毫秒
+        // var h = date.getHours()
+        // console.log(date/1000/3600/24)      
+        // console.log(date)
+        // console.log(time/1000/3600/24)
+        // var d1 = date.setHours(40);
+        // console.log(date-d)
+        // console.log(d1)
+        // var timer = setInterval(function(){
+        //     console.log(date.getTime())
+        // },1000)
+        // console.log(((date-date1)/1000/3600/24)%24);
+        var span = document.querySelector('span');
+        
+        getTimeStr()
+        var timer = setInterval(getTimeStr, 1000)
+        function getTimeStr(){
+            var d = new Date("2020/7/16 15:30:00");
+            // 总的秒数
+            var alls = (d.getTime()-new Date().getTime())/1000;
+            // 小时数
+            var hours =  Math.floor(alls/3600)
+            var min = parseInt(alls/3600%60*60)
+            var s = parseInt(alls%60);
+            if(hours<10){
+                hours = "0"+hours;
+            }
+            if(min<10){
+                min = "0"+min;
+            }
+            if(s<10){
+                s = "0"+s;
+            }
+            var timeStr = hours+"时"+min+"分"+s+"秒";
+            span.innerHTML = timeStr 
+        }
+    </script>
+</body>
+</html>

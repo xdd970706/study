@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .wrap{
+            width: 350px;
+            height: 500px;
+            margin: 50px auto;
+        }
+        .inputBox{
+            width: 350px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .inputBox input{
+            width: 50px;
+        }
+        .wrap table{
+            width: 100%;
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        .wrap table thead{
+            width: 100%;
+        }
+        .wrap table tr{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+        .wrap table tr td,.wrap table tr th{
+            text-align: center;
+            flex: 1;
+        }
+        .wrap table tr td span{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="inputBox">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="button" value="添加">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>专业</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>            
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var inputArr = document.querySelectorAll('input');
+        var tbody = document.querySelector('table>tbody');
+        inputArr[4].onclick = function(){
+            var tr = document.createElement('tr')
+            tbody.appendChild(tr);
+            for(var i = 0;i<inputArr.length;i++){
+                if(inputArr[i].value==''){
+                    alert("请输入内容!")
+                    clear()
+                    return flase;
+                }
+            }
+            for(var i = 0;i<inputArr.length;i++){
+                if(i==4){
+                    var td = document.createElement('td')
+                    td.innerHTML = "<span>删除</span>"
+                    tr.appendChild(td)
+                }else{
+                    var td = document.createElement('td')
+                    td.innerHTML = inputArr[i].value
+                    tr.appendChild(td)
+                } 
+            }
+            clear()
+            var span = document.querySelectorAll('span')
+            for(var i = 0;i<span.length;i++){
+                span[i].onclick = function(){
+                    tbody.removeChild(this.parentNode.parentNode)
+                }
+            }
+        }
+        function clear(){
+            for(var i = 0;i<inputArr.length-1;i++){
+                inputArr[i].value = ''
+            }
+        }
+    </script>
+</body>
+</html>

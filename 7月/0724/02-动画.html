@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			button{
+				margin: 20px;
+			}
+			.box1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btn1">向右边进行移动</button>
+		<div class="box1"></div>
+		<script type="text/javascript">
+			//获取元素
+			var btn = document.querySelector(".btn1");
+			var box1 = document.querySelector(".box1");
+			//css3新增的动画，提供了相应的方法我们直接使用，不需要思考太多
+			//js怎么去实现动画效果呢？定时器 --- 使用原先的位置 + 每步走了多少（步长）
+
+			// btn.onclick = function(){
+			// 	//开启定时器
+			// 	setInterval(function(){
+			// 		//获取开始位置
+			// 		var begin = box1.offsetLeft;
+			// 		//步长
+			// 		var step = 10;
+			// 		//把结果保存
+			// 		var res = begin + step;
+			// 		//直接赋值
+			// 		box1.style.left = res + "px";
+			// 	}, 30)
+			// }
+			
+			btn.addEventListener("click", function(){
+				//开启定时器
+				setInterval(function(){
+					//获取开始位置
+					var begin = box1.offsetLeft;
+					//步长
+					var step = 10;
+					//把结果保存
+					var res = begin + step;
+					//直接赋值
+					box1.style.left = res + "px";
+				}, 30)
+			}, false)
+		</script>
+	</body>
+</html>

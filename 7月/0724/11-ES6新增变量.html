@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+		<button>按钮4</button>
+		<button>按钮5</button>
+		<script type="text/javascript">
+			//之前声明变量都是使用关键字var
+			//ES6新增了两种声明变量方式，let、const（常量---不可以更改的值）
+			//ES6新增了一个块级作用域的概念
+			//之前没有块级作用域的，只有全局和局部（函数内部）
+			//怎么是块级作用域呢？{}就是一个块级作用域
+			// if(){
+				
+			// }
+			// for(){
+				
+			// }
+			
+			// {
+			// 	var a = 10;
+			// 	console.log(a);
+			// }
+			// console.log(a);
+			
+			// {
+			// 	//块级作用域
+			// 	let b = 20;
+			// 	console.log(b);
+			// }
+			// console.log(b);
+			
+			// let str = "张三";
+			// console.log(str);
+			//var aBtn = document.querySelectorAll("button");
+			// for(var i=0; i<aBtn.length; i++){
+			// 	aBtn[i].onclick = function(){
+			// 		console.log(i);
+			// 	}
+			// }
+			
+			// for(let i=0; i<aBtn.length; i++){
+			// 	aBtn[i].onclick = function(){
+			// 		console.log(i);
+			// 	}
+			// }
+			//console.log(i);
+			
+			// console.log(a);
+			// var a = 10;
+			
+			//let没有变量声明提升的
+			// console.log(a);
+			// let a = 10;
+			
+			// var a = 10;
+			// if(true){
+			// 	console.log(a);
+			// 	var a = 20;
+			// 	console.log(a);
+			// }
+			
+			// let a = 10;
+			// a = 20;
+			// console.log(a);
+			
+			//因为const定义的是一个常量，常量是不允许修改的
+			// const a = 10;
+			// a = 20;
+			// console.log(a);
+			
+			{
+				const a = "张三";
+				console.log(a);
+			}
+			console.log(a);
+		</script>
+	</body>
+</html>

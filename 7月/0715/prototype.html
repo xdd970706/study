@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // obj={
+        //     name:"xia",
+        //     age:18,
+        //     sex:"男"
+        // }
+        // arr = [1,2,3]
+        // // console.log(obj.__proto__.constructor)
+        // console.log(arr.__proto__)
+        // console.log(arr.constructor)
+
+        // 继承
+        function Animal(){
+            this.species = "动物";
+        }
+        function Cat(name,color){
+            this.name = name;
+            this.color = color
+        }
+
+        // 将Cat的prototype对象指向一个Animal实例;相当于完全删除了prototype对象原先的值，然后赋予一个新值。
+        Cat.prototype = new Animal();
+        // 任何一个prototype对象都有一个constructor属性，指向它的构造函数。
+        // 并且每一个实例也有一个constructor属性,默认调用prototype对象的constructor属性
+        Cat.prototype.constructor = Cat;
+        // console.log(Cat.prototype.constructor);
+        // var cat1 = new Cat("小花","黑色")
+        // console.log(cat1.constructor)//Cat
+        // console.log(Cat.prototype.constructor)//Cat
+
+        // 利用空对象继承
+        var F = function(){};
+        F.prototype = Animal.prototype;
+        Cat.prototype = new F();
+        Cat.prototype.constructor = Cat;
+        console.log(Animal.prototype.constructor); // Animal
+        // 封装成一个函数，便于使用
+//         function extend(Child, Parent) {
+// 　　　　 var F = function(){};
+// 　　　　 F.prototype = Parent.prototype;
+// 　　　　 Child.prototype = new F();
+// 　　　 　Child.prototype.constructor = Child;
+// 　　　　 Child.uber = Parent.prototype;
+// 　　    }
+        // 使用的时候
+        // extend(Cat,Animal);
+
+        // 特别讲一点
+        /* 函数体的最后一行
+        Child.uber = Parent.prototype;
+        意思是为子对象设一个uber属性，这个属性直接指向父对象的prototype属性。
+        这等于在子对象上打开一条通道，可以直接调用父对象的方法，这里只是为了实现继承的完备性，纯属备用性质。
+        */
+    </script>
+</body>
+</html>

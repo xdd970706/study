@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .warp{
+            width: 800px;
+            height: 600px;
+            border: 1px solid;
+            margin: 50px auto;
+            position: relative;
+        }
+        .warp .box{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <div class="box"></div>
+    </div>
+    <script>
+        var warp = document.querySelector('.warp');
+        var box = document.querySelector('.box');
+        box.onmousedown = function(e){
+        var t = e.clientY - box.offsetTop;
+        var l = e.clientX - box.offsetLeft;
+        document.onmousemove = function(e){
+            box.style.top = e.clientY - t+'px';
+            box.style.left = e.clientX - l+'px';
+            if(box.offsetLeft<=0){
+                box.style.left = 0+'px'
+            }
+            if(box.offsetTop<=0){
+                box.style.top = 0+'px'
+            }
+            if(box.offsetLeft>=(warp.offsetWidth-box.offsetWidth)){
+                box.style.left = warp.offsetWidth-box.offsetWidth -2+'px'
+            }
+            if(box.offsetTop>=(warp.offsetHeight-box.offsetHeight)){
+                box.style.top = warp.offsetHeight-box.offsetHeight-2+'px'
+            }
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+    </script>
+</body>
+</html>

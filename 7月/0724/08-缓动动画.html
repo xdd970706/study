@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			button{
+				margin: 20px;
+			}
+			.box1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+			}
+			.box2{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+				position: absolute;
+				top: 300px;
+			}
+			.bd{
+				width: 0;
+				border-right: 1px solid black;
+				height: 800px;
+				position: absolute;
+				left: 800px;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btn1">向右边进行移动1</button>
+		<button class="btn2">向左边进行移动</button>
+		<button class="btn3">向右边进行移动2</button>
+		<div class="box1"></div>
+		<div class="box2"></div>
+		<div class="bd"></div>
+		<script src="js/animation.js"></script>
+		<script type="text/javascript">
+			//获取元素
+			var btn1 = document.querySelector(".btn1");
+			var btn2 = document.querySelector(".btn2");
+			var btn3 = document.querySelector(".btn3");
+			var box1 = document.querySelector(".box1");
+			var box2 = document.querySelector(".box2");
+			
+			
+			var timer = null;
+			btn1.onclick = function(){
+				animation(box1, 800, "left", function(){
+					animation(box1, 300, "bottom", function(){
+						animation(box1, 0, "top", function(){
+							animation(box1, 0, "left", function(){
+								animation(box1, 50, "top")
+							});
+						});
+					});
+				});
+			}
+			btn2.onclick = function(){
+				animation(box1, 0, "left");
+			}
+			btn3.onclick = function(){
+				animation(box2, 800, "top");
+			}
+			
+			/*
+				参数1表示要传递的元素
+				参数2表示目标位置
+				参数3表示要获取的属性
+				参数4表示回调函数 --- 前面的执行完毕，再执行它
+			*/
+			function animation(ele, target, attr, callback){
+				//先清除，再开启
+				clearInterval(ele.timer);
+				//开启定时器
+				ele.timer = setInterval(function(){
+					//获取开始位置
+					var begin = parseInt(getstyle(ele, attr));
+					//步长 缓动动画公式: (目标位置 - 开始位置)/10
+					var step = (target - begin)/10;
+					step = step>0 ? Math.ceil(step) : Math.floor(step);
+					//把结果保存
+					var res = begin + step;
+					//当值等于目标位置时，清除定时器
+					 if(res == target){
+						 clearInterval(ele.timer);
+						 //如果你存在，我就调用你
+						 if(callback){
+							 callback();
+						 }
+						 //callback && callback();
+					 } 
+					//直接赋值
+					ele.style[attr] = res + "px";
+				}, 30)
+			}
+			//获取属性
+			function getstyle(ele, attr){
+				if(window.getComputedStyle){
+					return getComputedStyle(ele, null)[attr];
+				}else{
+					return ele.currentStyle[attr];
+				}
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			p{
+				text-align: center;
+				color: red;
+				font-size: 66px;
+				margin: 50px 0;
+				font-weight: 900;
+			}
+		</style>
+	</head>
+	<body>
+		<p>距离抢购时间还剩01天10小时30分20秒</p>
+		<script type="text/javascript">
+			//通过构造函数形式
+			//var d = new Date();
+			//console.log(d);
+			
+			//获取年
+			//console.log(new Date().getFullYear());
+			//console.log(d.getFullYear());
+			
+			//获取月份 注意点：月份默认是从0开始的，所以获取的到月份要+1
+			//console.log(d.getMonth()+1);
+			
+			//获取星期（周）
+			//console.log(d.getDay());
+			
+			//获取日（天数）
+			//console.log(d.getDate());
+			
+			//获取小时
+			//console.log(d.getHours());
+			//获取分钟
+			//console.log(d.getMinutes());
+			//获取秒数
+			//console.log(d.getSeconds());
+			//获取毫秒数 1000毫秒 === 1秒
+			//console.log(d.getMilliseconds());
+			
+			//时间戳 从1970年1月1日 零时距今经历了多少毫秒数
+			//console.log(d.getTime());
+			
+			//使用将来的时间 - 现在的时间  使用时间戳去减 --- 获取的是毫秒数
+			//获取的差值是好秒数/1000 = 总的秒数
+			//总的秒数/3600/24 = 天
+			//总的秒数/3600%24 = 小时
+			//总的秒数/60%60 = 分钟
+			//总的秒数%60 = 秒数
+			//给元素进行赋值
+			//补位 当那个对象小于10的时候，给0
+			
+			//动态的获取时间戳  定时器
+			setInterval(function(){
+				console.log(new Date().getTime());
+			},1000)
+		</script>
+	</body>
+</html>

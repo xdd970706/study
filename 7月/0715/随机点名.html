@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button{
+            height: 20px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="start">start</button>
+    <button id="end">end</button>
+    <div>这是傻逼同学</div>
+    <script>
+        var start = document.querySelector('#start');
+        var end = document.querySelector('#end');
+        var box = document.querySelector('div');
+
+        // 存放名字
+        var arrName = ['小龙','小沛','小宇','小攀']
+        // 设置定时器
+         var timer = null;
+        // 绑定事件
+        start.onclick = function(){
+            console.log(1)
+            timer = setInterval(function(){
+                var ranNum = Math.floor(Math.random()*arrName.length)
+                box.innerText = "这是"+arrName[ranNum]+"同学";
+            },1)
+            
+        }
+        end.onclick = function(){
+            clearInterval(timer)
+        }
+    </script>
+</body>
+</html>

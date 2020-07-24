@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			button{
+				margin: 20px;
+			}
+			.box1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+			}
+			.box2{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+				position: absolute;
+				top: 300px;
+			}
+			.bd{
+				width: 0;
+				border-right: 1px solid black;
+				height: 800px;
+				position: absolute;
+				left: 800px;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btn1">向右边进行移动1</button>
+		<button class="btn2">向左边进行移动</button>
+		<button class="btn3">向右边进行移动2</button>
+		<div class="box1"></div>
+		<div class="box2"></div>
+		<div class="bd"></div>
+		<script src="js/animation.js"></script>
+		<script type="text/javascript">
+			//获取元素
+			var btn1 = document.querySelector(".btn1");
+			var btn2 = document.querySelector(".btn2");
+			var btn3 = document.querySelector(".btn3");
+			var box1 = document.querySelector(".box1");
+			var box2 = document.querySelector(".box2");
+			//css3新增的动画，提供了相应的方法我们直接使用，不需要思考太多
+			//js怎么去实现动画效果呢？定时器 --- 使用原先的位置 + 每步走了多少（步长）
+			
+			var timer = null;
+			btn1.onclick = function(){
+				animation(box1, 10, 800);
+			}
+			
+			btn2.onclick = function(){
+				animation(box1, -10, 0);
+			}
+			btn3.onclick = function(){
+				animation(box2, 10, 800);
+			}
+			
+			
+			//参数1 ele元素
+			//参数2 num 数值
+			//参数3 target 目标值
+			// function animation(ele, num, target){
+			// 	//先清除，再开启
+			// 	clearInterval(ele.timer);
+			// 	//开启定时器
+			// 	ele.timer = setInterval(function(){
+			// 		//获取开始位置
+			// 		var begin = ele.offsetLeft;
+			// 		//步长
+			// 		var step = num;
+			// 		//把结果保存
+			// 		var res = begin + step;
+			// 		//判断当到达目标位置时，清除定时器
+			// 		if(res >= target && num>0){
+			// 			res = target;
+			// 			clearInterval(ele.timer);
+			// 		}else if(res<=target && num<0){
+			// 			res = target;
+			// 			clearInterval(ele.timer);
+			// 		}
+			// 		//直接赋值
+			// 		ele.style.left = res + "px";
+			// 	}, 30)
+			//}
+			
+			// var obj1 = {say:function(){console.log(1)}}
+			// obj1.say();
+			// var obj2 = {say:function(){console.log(1)}}
+			// obj2.say();
+			
+			// setInterval();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			button{
+				margin: 20px;
+			}
+			.box1{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: absolute;
+			}
+			.box2{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+				position: absolute;
+				top: 300px;
+			}
+			.bd{
+				width: 0;
+				border-right: 1px solid black;
+				height: 800px;
+				position: absolute;
+				left: 800px;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btn1">向右边进行移动1</button>
+		<button class="btn2">向左边进行移动</button>
+		<button class="btn3">向右边进行移动2</button>
+		<div class="box1"></div>
+		<div class="box2"></div>
+		<div class="bd"></div>
+		<script src="js/animation.js"></script>
+		<script type="text/javascript">
+			//获取元素
+			var btn1 = document.querySelector(".btn1");
+			var btn2 = document.querySelector(".btn2");
+			var btn3 = document.querySelector(".btn3");
+			var box1 = document.querySelector(".box1");
+			var box2 = document.querySelector(".box2");
+			
+			
+			var timer = null;
+			btn1.onclick = function(){
+				animation(box1, 800);
+			}
+			
+			
+			
+			function animation(ele, target){
+				//先清除，再开启
+				clearInterval(ele.timer);
+				//开启定时器
+				ele.timer = setInterval(function(){
+					//获取开始位置
+					var begin = ele.offsetLeft;
+					//步长 缓动动画公式: (目标位置 - 开始位置)/10
+					//步长 = (target - begin)/10
+					/*
+						目标的位置是100
+						(100-0)/10 = 10
+						(100-10)/10 = 9
+						(100-19)/10 = 8.1
+					*/
+					var step = (target - begin)/10;
+					//当step>0时，最后几步的时候，0.8 0.7 0.6 1
+					//当step<0时，最后几步的时候，-0.8 -0.7 -0.6 0
+					step = step>0 ? Math.ceil(step) : Math.floor(step);
+					//把结果保存
+					var res = begin + step;
+					//当值等于目标位置时，清除定时器
+					 if(res == target){
+						 clearInterval(ele.timer);
+					 } 
+					//直接赋值
+					ele.style.left = res + "px";
+					console.log(res, target);
+				}, 30)
+			}
+			
+		</script>
+	</body>
+</html>

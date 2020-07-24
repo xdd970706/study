@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .warp{
+            width: 500px;
+            height: 300px;
+            margin: 50px auto;
+            padding: 10px 0;
+
+        }
+        #show{
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+            padding: 10px;
+        }
+        textarea{
+            resize: none;
+            width: 200px;
+        }
+        p{
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+        a{
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <textarea></textarea>
+        <button onclick="show()">添加</button>
+        <div id="show"></div>
+    </div>
+    <script>
+        var text = document.querySelector('textarea');
+        var showBox = document.getElementById('show');
+        var pArr;
+        var aArr;
+        var index = 0;
+        function show(){
+            if(text.value!==''){
+            var txt = text.value
+            var p = document.createElement('p');
+            var a = document.createElement('a')
+            a.innerHTML = "删除"
+            a.setAttribute("index",index)
+            p.innerHTML = txt;
+            p.setAttribute("index",index)
+            index++;
+            p.appendChild(a);
+            showBox.appendChild(p);
+            text.value = ""
+            pArr = document.getElementsByTagName('p');
+            aArr = document.getElementsByTagName('a');
+            for(var i = 0;i<aArr.length;i++){
+                aArr[i].index = i;
+                aArr[i].onclick = function del() {
+                    showBox.removeChild(pArr[this.index])
+                }
+            }
+            }else{
+                alert("输入框为空!!")
+            }
+        }
+            
+    </script>
+</body>
+</html>

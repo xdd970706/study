@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: red;
+            left:0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        var al = 0;
+        var ve = 0
+        document.onkeydown=function(e){
+            if(e.keyCode==40){
+                ve++;
+                div.style.top = ve+'px'
+            }
+            if(e.keyCode==38){
+                ve--;
+                div.style.top = ve+'px'
+            }
+            if(e.keyCode==37){
+                al--;
+                div.style.left = al+'px'
+            }
+            if(e.keyCode==39){
+                al++;
+                div.style.left = al+'px'
+            }
+        }
+    </script>
+</body>
+</html>

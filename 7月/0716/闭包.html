@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>按钮被点击的次数:<span>0</span></div>
+        <button onclick="clicked">点击</button>
+    </div>
+    <script>
+        // var add = function(){
+        //     var counter = 0;
+        //     return function(){
+        //         return counter+=1
+        //     }
+        // }
+        var add = (function(){
+            var a=0
+            return function fun(){
+                return a+=1
+            }
+        })()
+        add();
+        add();
+        add()
+        console.log(add());//4
+    </script>
+</body>
+</html>

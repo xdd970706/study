@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 450px;
+				min-height: 200px;
+				border: 1px solid;
+				margin: 50px auto;
+			}
+			.box .page{
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+			}
+			.box .wrap{
+				height: 260px;
+				position: relative;
+			}
+			.box .wrap img{
+				width: 100%;
+				height: 100%;
+			}
+			.box .des{
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+			}
+			.box .wrap span{
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				background-color: black;
+				color: #fff;
+				line-height: 50px;
+				text-align: center;
+				cursor: pointer;
+				top: 50%;
+				margin-top: -25px;
+			}
+			.box .wrap .btn span:nth-child(1){
+				left: 0;
+			}
+			.box .wrap .btn span:nth-child(2){
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="page"></div>
+			<div class="wrap">
+				<img src="" >
+				<div class="btn">
+					<span>&lt;</span>
+					<span>&gt;</span>
+				</div>
+			</div>
+			<div class="des"></div>
+		</div>
+		<script type="text/javascript">
+			//获取元素
+			var wrap = document.querySelector(".wrap");
+			var page = document.querySelector(".page");
+			var des = document.querySelector(".des");
+			var pic = document.querySelector("img");
+			var previous = document.querySelector(".btn").children[0];
+			var next = document.querySelector(".btn").children[1];
+			//准备数据
+			var num = 0;
+			var timer = null;
+			var arrPic = ["img/1.jpg", "img/2.jpg", "img/3.jpg"];
+			var arrDes = ["这是小姐姐1", "这是小姐姐2", "这是小姐姐3",];
+			//页面初始化
+			pic.src = arrPic[0];
+			page.innerHTML = (num + 1)+"/"+arrPic.length;
+			des.innerHTML = arrDes[0];
+			//给next绑定事件
+			next.onclick = function(){
+				num ++;
+				if(num>arrPic.length-1){
+					num = 0;
+				}
+				imgChange();
+			}
+			//给previous绑定事件
+			previous.onclick = function(){
+				num --;
+				if(num<0){
+					num = arrPic.length-1;
+				}
+				imgChange();
+			}
+			
+			function imgChange(){
+				pic.src = arrPic[num];
+				page.innerHTML = (num + 1)+"/"+arrPic.length;
+				des.innerHTML = arrDes[num];
+			}
+			
+			//next.onclick()
+			//让图片自动轮播
+			timer = setInterval(function(){
+				next.onclick();
+			}, 2000)
+			//当鼠标移入到wrap容器里面时清除定时器
+			wrap.onmouseover = function(){
+				clearInterval(timer);
+			}
+			wrap.onmouseout = function(){
+				timer = setInterval(function(){
+					next.onclick();
+				}, 2000)
+			}
+		</script>
+	</body>
+</html>
