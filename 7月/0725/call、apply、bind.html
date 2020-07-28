@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call、apply、bind三者区分</title>
+</head>
+<body>
+    <script>
+        var obj1 = {
+            name:"张三",
+            age:18,
+            sayName:function(b){
+                console.log(this.name)
+                console.log(b)
+            }
+        }
+        var obj2 = {
+            name:"李四",
+            age:19,
+            // sayName:function(){
+            //     console.log(this.name)
+            // }
+        }
+        // obj1.sayName.call(obj2,2)
+        obj1.sayName.bind(obj2,2)
+    </script>
+</body>
+</html>

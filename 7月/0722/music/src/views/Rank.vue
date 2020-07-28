@@ -23,7 +23,6 @@ export default {
             const res = await this.$http.get('/top/category?showDetail=1',{   
             })
             this.rankList = res.data.data;
-            console.log(this.rankList)
         }
     },
     created(){

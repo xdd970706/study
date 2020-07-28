@@ -5,8 +5,10 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
+// 引入公共样式
 import './assets/style/style.css'
-
+// 引入字体图标
+import './assets/font/iconfont.css'
 
 import http from './htpp'
 

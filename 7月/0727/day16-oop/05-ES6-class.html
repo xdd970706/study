@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 实现的功能是构造函数+原型是一毛一样的，只不过写起来更精简，但是ES6的有兼容问题
+    class Person {
+      constructor (name) {
+        this.name = name
+      }
+      say () {
+        console.log(`My name is ${this.name}`)
+      }
+    }
+
+    var zs = new Person('zhangsan')
+    var ls = new Person('lisi')
+
+    zs.say()
+    ls.say()
+
+    console.log(zs.say === ls.say)
+
+
+  </script>
+</body>
+</html>

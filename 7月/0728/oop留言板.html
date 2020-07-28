@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #tab{
+            width: 800px;
+            margin: 50px auto;
+        }
+        #tab input{
+            width: 19.6%;
+            outline: none;
+            height: 30px;
+            line-height: 30px;
+        }
+        #tab .tab-content{
+            width: 800px;
+        }
+        #tab .tab-content table{
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        #tab .tab-content table td{
+            text-align: center;
+            border:1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <input type="text"/><input type="text"/><input type="text"/><input type="text"/><input type="button" value="添加"/>
+        <div class="tab-content">
+            <table>
+                <tr>
+                    <td>姓名</td>
+                    <td>性别</td>
+                    <td>专业</td>
+                    <td>爱好</td>
+                    <td>操作</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        class Tab{
+            constructor(select){
+                this.tab = document.querySelector(select)
+                this.inputArr = tab.querySelectorAll('input')
+                this.tabC = tab.querySelector('.tab-content table')
+                this.bindEvets()
+            }
+            bindEvets(){
+                this.inputArr[this.inputArr.length-1].onclick = ()=>{
+                    let tr = document.createElement('tr');
+                    this.addInfo(tr)
+                    this.tabC.appendChild(tr)
+                }
+            }
+            addInfo(tr){
+                [].forEach.call(this.inputArr,(item,index)=>{
+                    // if(item.value==''){
+                    //     alert("输入值为空！")
+                    //     return false;
+                    // }
+                    // console.log(item.value);
+                    let td = document.createElement('td')
+                    if(index==4){
+                        let span = document.createElement('span')
+                        td.innerHTML = "<span>删除</span>"
+                        td.onclick = function(){
+                            this.parentNode.parentNode.removeChild(this.parentNode)
+                        }
+                        tr.appendChild(td)
+                    }else{
+                        td.innerHTML = this.inputArr[index].value
+                        tr.appendChild(td)
+                        this.inputArr[index].value =''
+                    }
+                })
+            }
+
+        }
+        new Tab('#tab')
+    </script>
+</body>
+</html>

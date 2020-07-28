@@ -50,6 +50,12 @@
             // var div = document.getElementById('div');
             // div.style.cssText="color:red"
             // div.style.color = 'red'
+            var timer1 = setInterval(()=>{
+                console.log(1);
+                setInterval(()=>{
+                    console.log(2)
+                },1000)
+            },1000)
         </script>
 </body>
 </html>

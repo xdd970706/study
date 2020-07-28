@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 字面量方式声明对象
+    var obj = {
+      name: 'Dary',
+      height: 180,
+      say: function () {
+        console.log(`My name is ${this.name}, my height is ${this.height}`)
+      },
+      // ES6的增强对象写法
+      eat (food) {
+        console.log(`${this.name} is eating ${food}`)
+      }
+    }
+    obj.say()
+    obj.eat('榴莲')
+
+    // 第二种可以使用new Object()的方式，我这里就省略了
+
+    // 遍历对象
+    for (var key in obj) {
+      // 这里不能obj.key因为这样写的话会去obj里直接找 'key' 这个属性
+      // 如果确切知道属性名叫什么直接用. ,如果属性名存在一个变量里的，用中括号
+      console.log(obj[key])
+    }
+
+  </script>
+</body>
+</html>

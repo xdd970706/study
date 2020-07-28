@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // slice()、concat()能够是实现数组的拷贝，但是不是深拷贝，因为没有拷贝到对象的各个层级的属性
+        // let arr1 = [1,4,5,7,8,[3,4],10]
+        // let arr2 = arr1.slice()
+        // arr1[0] = 2
+        // arr1[5][0] = 2//改变arr1依然能够影响到arr2
+        // console.log(arr1,arr2)
+        
+        // JSON对象的parse和stringify实现深拷贝
+        function deepClone(obj){//深拷贝函数的封装
+            let _obj = JSON.stringify(obj);
+            let objClone = JSON.parse(_obj)
+            return objClone;
+        }
+        let arr1 = [0,2,[1,5],4,7];
+        arr2 = deepClone(arr1);
+        arr1[2][0] = 4;
+        console.log(arr1,arr2)
+    </script>
+</body>
+</html>

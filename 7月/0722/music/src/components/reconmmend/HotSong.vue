@@ -5,13 +5,17 @@
         </div> -->
         <ul>
             <li v-for="item in hotsongList" :key="item.id">
-                <img :src="item.img">
+                <img :src="item.img"
+                @click="toSongSheet()"
+                >
                 <div>
                     <p class="name">{{item.name}}<p>
                     <p class="title">{{item.title}}</p>
                 </div>
             </li>
         </ul>
+        <router-view 
+        ></router-view>
     </div>
 </template>
 <style scoped>
@@ -67,10 +71,14 @@ export default {
         //     console.log(res.data.data.list)
         //     console.log(this.hotSongList[0])
         // }
+        toSongSheet(){
+            console.log(1)
+            this.$router.push('/reconmmend/songsheet')
+            
+        }
     },
     created(){
         // this.getHotSongList()
-        console.log(this.hotsongList)
     },
 }
 </script>

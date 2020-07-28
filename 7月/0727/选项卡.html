@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #tab{
+            width: 600px;
+            height: 540px;
+            margin: 50px auto;
+        }
+        #tab .tab-item{
+            width: 100%;
+            list-style: none;
+            height: 40px;
+            line-height: 40px;
+        }
+        #tab .tab-item li{
+            float: left;
+            width: 33%;
+            text-align: center;
+            cursor: pointer;
+        }
+        #tab .tab-content{
+            width: 100%;
+            height: 500px;
+        }
+        #tab .tab-content div{
+            display: none;
+            height: 500px;
+        }
+        #tab .tab-content div img{
+            width: 100%;
+            height: 100%;
+        }
+        #tab .tab-content .ac{
+            display: block;
+        }
+        #tab .tab-item .ac{
+            background: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <ul class="tab-item">
+            <li class="ac">娃哈哈</li>
+            <li>嘻嘻嘻</li>
+            <li>嗯嗯啊</li>
+        </ul>
+        <div class="tab-content">
+            <div class="ac"><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1995461271,2040609395&fm=26&gp=0.jpg"></div>
+            <div><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3302407625,2204157742&fm=26&gp=0.jpg"></div>
+            <div><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1135064372,163164656&fm=26&gp=0.jpg"></div>
+        </div>
+    </ul>
+    <script>
+        class Tab{
+            constructor(select){
+                this.tab = document.querySelector(select);
+                this.tabItem = tab.querySelectorAll('.tab-item li');
+                this.imgBoxa = tab.querySelectorAll('.tab-content div')
+                this.bindEvents()
+                
+            }
+            bindEvents(){
+            //     var that = this
+            //    for(var i = 0;i<this.tabItem.length;i++){
+            //        this.tabItem[i].index = i;
+            //        this.tabItem[i].onclick = function(){
+            //             that.change(this.index)
+            //        }
+            //    }
+                [].forEach.call(this.tabItem,(item,index)=>{
+                    var that = this
+                    item.onclick = function(){
+                        that.change(index)
+                    }
+                })
+            }
+            change(index){
+                for(var j = 0;j<this.tabItem.length;j++){
+                    this.tabItem[j].className = '';
+                    this.imgBoxa[j].className = '';
+                }
+                    this.tabItem[index].className = 'ac'
+                    this.imgBoxa[index].className = 'ac'
+            }
+        }
+        new Tab('#tab')
+    </script>
+</body>
+</html>

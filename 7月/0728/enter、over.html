@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 200px;
+            background: red;
+        }
+        div span{
+            background: green;
+        }
+    
+    </style>
+</head>
+<body>
+    <div>
+        <span>我是子元素</span>
+    </div>
+    <script>
+        var div = document.querySelector('div');
+        div.onmouseover = function(){
+            console.log('over')
+        }
+        div.onmouseout = function(){
+            console.log('out')
+        }
+        div.onmouseenter = function(){
+            console.log('enter')
+        }
+        div.onmouseleave = function(){
+            console.log('leave')
+        }
+    </script>
+</body>
+</html>

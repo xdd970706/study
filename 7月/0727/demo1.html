@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>点我</button>
+</body>
+<script>
+    var btn = document.querySelector('button');
+    btn.onclick=debounce(function(){
+        console.log("1")//事件业务逻辑
+    },500)
+
+    function debounce(func,time){
+        let timer = 0;
+        return function(...args){
+            timer && clearTimeout(timer)
+            timer = setTimeout(()=>{
+                timer = 0
+                // func()
+                func.apply(this,args)
+                // console.log(this)                
+            },time)
+        }
+    }
+</script>
+</html>

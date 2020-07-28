@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function Person (name) {
+      // 给this对象新增一个name属性，赋值为参数name
+      this.name = name
+      this.say = function () {
+        console.log(this.name)
+      }
+    }
+
+    // 查看函数内部结构用dir
+    console.dir(Person)
+
+    // prototype是函数的原型（每一个函数都有，只不过构造函数的原型才用得着）
+    // 用来给所有实例共享属性和方法的地方！！！
+    // 面向对象代码里一般属性写在构造函数里，方法写原型上！
+    Person.prototype.eat = function (food) {
+      console.log(`${this.name} is eating ${food}`)
+    }
+
+    var zs = new Person('zhangsan')
+    var ls = new Person('lisi')
+
+    zs.say()
+    ls.say()
+
+    console.log(zs.say === ls.say) // false
+
+    zs.eat('土')
+    ls.eat('帝王蟹')
+
+    console.log(zs.eat === ls.eat) // true
+
+  </script>
+</body>
+</html>

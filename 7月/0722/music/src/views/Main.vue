@@ -5,10 +5,12 @@
             @nav-click = "toPath"
         ></MainHeader>
         <router-view></router-view>
+        <FootPlayer></FootPlayer>
     </div>
 </template>
 <script>
     import MainHeader from '../components/main/MainHeader'
+    import FootPlayer from '../components/main/FootPlayer'
 export default {
     methods:{
         toPath(path){
@@ -17,6 +19,7 @@ export default {
     },  
     components:{
         MainHeader,
+        FootPlayer
     }
 }
 </script>

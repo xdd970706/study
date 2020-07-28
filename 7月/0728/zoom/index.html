@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .zoom {
+      position: relative;
+    }
+    .box {
+      width: 400px;
+      height: 400px;
+      position: relative;
+    }
+    .box img {
+      width: 100%;
+    }
+    .box span {
+      display: none;
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      left: 0;
+      top: 0;
+      background-color: rgba(255,255,0,.3);
+      cursor: move;
+    }
+    .bigBox {
+      display: none;
+      position: absolute;
+      left: 410px;
+      top: 0;
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+    }
+    .bigBox img {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="zoom">
+    <div class="box">
+      <img src="./1.jpg" alt="">
+      <span></span>
+    </div>
+    <div class="bigBox">
+      <img src="./1.jpg" alt="">
+    </div>
+  </div>
+  <script>
+    class Zoom {
+      constructor () {
+        this.zoom = document.querySelector('.zoom')
+        this.box = document.querySelector('.box')
+        this.span = document.querySelector('.box span')
+        this.bigBox = document.querySelector('.bigBox')
+        this.bigImg = document.querySelector('.bigBox img')
+        this.bindEvents()
+      }
+      bindEvents () {
+        this.box.onmouseenter = () => {
+          this.toggleDisplay('block')
+        }
+        this.box.onmouseleave = () => {
+          this.toggleDisplay('none')
+        }
+        this.box.onmousemove = e => {
+          this.move(e)
+        }
+      }
+      toggleDisplay (display) {
+        this.span.style.display = display
+        this.bigBox.style.display = display
+      }
+      move (e) {
+        var left = e.clientX - this.zoom.offsetLeft - this.box.offsetLeft - this.span.offsetWidth / 2
+        var top = e.clientY - this.zoom.offsetTop - this.box.offsetTop - this.span.offsetHeight / 2
+        if (left < 0) left = 0
+        if (top < 0) top = 0
+        if (left > this.box.offsetWidth - this.span.offsetWidth) {
+          left = this.box.offsetWidth - this.span.offsetWidth
+        }
+        if (top > this.box.offsetHeight - this.span.offsetHeight) {
+          top = this.box.offsetHeight - this.span.offsetHeight
+        }
+        this.span.style.left = left +'px'
+        this.span.style.top = top +'px'
+
+        this.bigImg.style.left = -2 * left + 'px'
+        this.bigImg.style.top = -2 * top + 'px'
+
+      }
+    }
+    new Zoom()
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .warp{
+            width: 1200px;
+            position: relative;
+        }
+        .warp .imgBox{
+            float: left;
+            width: 240px;
+        }
+        .warp .imgBox img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body onload="show()">
+    <div class="warp">
+        <div class="imgBox"><img src="img/1.jpg"></div>
+        <div class="imgBox"><img src="img/6.jpg"></div>
+        <div class="imgBox"><img src="img/9.jpg"></div>
+        <div class="imgBox"><img src="img/4.jpg"></div>
+        <div class="imgBox"><img src="img/5.jpg"></div>
+        <div class="imgBox"><img src="img/2.jpg"></div>
+        <div class="imgBox"><img src="img/7.jpg"></div>
+        <div class="imgBox"><img src="img/8.jpg"></div>
+        <div class="imgBox"><img src="img/3.jpg"></div>
+        <div class="imgBox"><img src="img/10.jpg"></div>
+        <div class="imgBox"><img src="img/11.jpg"></div>
+        <div class="imgBox"><img src="img/12.jpg"></div>
+        <div class="imgBox"><img src="img/13.jpg"></div>
+        <div class="imgBox"><img src="img/14.jpg"></div>
+        <div class="imgBox"><img src="img/15.jpg"></div>
+        <div class="imgBox"><img src="img/16.jpg"></div>
+        <div class="imgBox"><img src="img/17.jpg"></div>
+    </div>
+</body>
+<script>
+        function show(){
+            var imgBoxArray = document.getElementsByClassName('imgBox');
+        var imgBoxWidth = imgBoxArray[0].offsetWidth;
+        var screenWidth = document.body.offsetWidth;
+        var cols = parseInt(screenWidth/imgBoxArray[0].offsetWidth)
+        var heightArray = [];
+        
+        [].forEach.call(imgBoxArray,(item,index)=>{
+            var boxHeight = item.offsetHeight;
+            if(index<=cols){
+                heightArray.push(boxHeight)
+            }else{
+                var heightArrayMinHeight = Math.min.apply(Math.min,heightArray);
+                var heightArrayMinHeightIndex = heightArray.indexOf(heightArrayMinHeight);
+                imgBoxArray[index].style.position = 'absolute'
+                imgBoxArray[index].style.top = heightArrayMinHeight + 'px'
+                imgBoxArray[index].style.left = heightArrayMinHeightIndex * imgBoxWidth + 'px'
+            }
+            heightArray[heightArrayMinHeightIndex] += boxHeight
+        })  
+        }    
+    </script>
+</html>

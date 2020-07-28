@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1">我是小pp同学</p>
+    <button>点我</button>
+    <script>
+        $(document).ready(()=>{
+            $('button').click(()=>{
+                $('#p1').css('color','red')
+                .slideUp(1000)
+                .slideDown(1000,()=>{
+                $('#p1').css('color','black') 
+                })
+            })
+        })
+    </script>
+</body>
+</html>

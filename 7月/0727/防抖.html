@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function debounce (func, time) {
+    let timer = 0
+    return function (...args) {
+        timer && clearTimeout(timer)
+        timer = setTimeout(() => {
+            timer = 0
+            func.apply(this, args)
+        }, time)
+    }
+}
+
+input.onkeypress = debounce(function () {
+console.log(input.value) // 事件处理逻辑
+}, 500)    
+</script>
+</body>
+</html>

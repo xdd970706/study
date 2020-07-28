@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function fn () {
+
+    }
+    function Fn (name) {
+      // 构造函数里的this指向将来new的那个实例对象！！！
+      this.name = name
+    }
+
+    var a1 = fn()
+    // Fn就是构造函数，区分普通函数和构造函数就看调用的时候的new
+    var a2 = new Fn('zhangsan')
+    var a3 = new Fn('lisi')
+    console.log(a1) // undefined
+    console.log(a2)
+    console.log(a3)
+
+
+
+  </script>
+</body>
+</html>
